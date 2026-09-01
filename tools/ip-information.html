@@ -3,193 +3,145 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>IP Information · Rashid CyberForge</title>
+<title>IPFindX — Repository</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#0d1117;
+    color:#e6edf3;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
 }
-
-body {
-    margin: 0;
-    background: #0d1117;
-    color: #e6edf3;
-    font-family: Arial, sans-serif;
+.top{
+    height:64px;
+    background:#010409;
+    border-bottom:1px solid #30363d;
+    display:flex;
+    align-items:center;
+    padding:0 28px
 }
-
-header {
-    background: #010409;
-    border-bottom: 1px solid #30363d;
-    padding: 16px 6%;
+.logo{font-weight:600;font-size:17px}
+.wrap{max-width:1200px;margin:auto;padding:30px 24px}
+.repo{
+    font-size:24px;
+    color:#58a6ff;
+    font-weight:500
 }
-
-.logo {
-    font-weight: bold;
-    letter-spacing: 1px;
+.repo span{color:#8b949e}
+.desc{color:#8b949e;margin-top:9px}
+.actions{
+    display:flex;
+    gap:8px;
+    margin:20px 0;
+    flex-wrap:wrap
 }
-
-.container {
-    max-width: 1100px;
-    margin: auto;
-    padding: 35px 20px;
+button{
+    background:#21262d;
+    border:1px solid #30363d;
+    color:#e6edf3;
+    padding:7px 13px;
+    border-radius:6px;
+    cursor:pointer
 }
-
-.repo-top {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    flex-wrap: wrap;
+button:hover{background:#30363d}
+.tabs{
+    display:flex;
+    gap:25px;
+    border-bottom:1px solid #30363d;
+    padding-bottom:15px
 }
-
-.repo-name {
-    font-size: 28px;
-    color: #58a6ff;
+.tabs a{
+    color:#8b949e;
+    text-decoration:none
 }
-
-.repo-name span {
-    color: #8b949e;
+.tabs a.active{color:#f0f6fc;font-weight:600}
+.grid{
+    display:grid;
+    grid-template-columns:1fr 280px;
+    gap:28px;
+    margin-top:28px
 }
-
-.description {
-    color: #8b949e;
-    margin-top: 10px;
+.panel{
+    border:1px solid #30363d;
+    border-radius:6px;
+    overflow:hidden
 }
-
-.buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
+.panelhead{
+    background:#161b22;
+    padding:14px 18px;
+    border-bottom:1px solid #30363d;
+    font-weight:600
 }
-
-.btn {
-    padding: 8px 14px;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    background: #21262d;
-    color: #e6edf3;
-    text-decoration: none;
-    cursor: pointer;
+.file{
+    padding:13px 18px;
+    border-bottom:1px solid #21262d;
+    color:#58a6ff
 }
-
-.btn:hover {
-    background: #30363d;
+.file:last-child{border-bottom:0}
+.readme{
+    margin-top:24px;
+    border:1px solid #30363d;
+    border-radius:6px;
+    padding:30px
 }
-
-.green {
-    color: #3fb950;
+.readme h1{
+    font-size:30px;
+    border-bottom:1px solid #30363d;
+    padding-bottom:15px
 }
-
-.layout {
-    display: grid;
-    grid-template-columns: 1fr 280px;
-    gap: 30px;
-    margin-top: 35px;
+.readme h2{
+    margin-top:32px;
+    border-bottom:1px solid #21262d;
+    padding-bottom:9px
 }
-
-.panel {
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    overflow: hidden;
-    background: #0d1117;
+.readme p,.readme li{
+    color:#b1bac4;
+    line-height:1.7
 }
-
-.panel-title {
-    padding: 14px 18px;
-    border-bottom: 1px solid #30363d;
-    font-weight: bold;
+pre{
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:6px;
+    padding:18px;
+    overflow-x:auto;
+    color:#e6edf3;
+    line-height:1.55
 }
-
-.file {
-    padding: 13px 18px;
-    border-bottom: 1px solid #21262d;
-    color: #58a6ff;
+.side{
+    border-left:1px solid #30363d;
+    padding-left:22px
 }
-
-.file:last-child {
-    border-bottom: 0;
+.side h3{margin-top:0}
+.side p{color:#8b949e;line-height:1.6}
+.tag{
+    display:inline-block;
+    background:#1f6feb;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:12px;
+    margin:3px
 }
-
-.readme {
-    margin-top: 25px;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 25px;
+.notice{
+    margin-top:20px;
+    padding:13px;
+    border:1px solid #30363d;
+    border-radius:6px;
+    color:#8b949e
 }
-
-.readme h1 {
-    border-bottom: 1px solid #30363d;
-    padding-bottom: 12px;
+footer{
+    margin-top:60px;
+    padding:30px;
+    border-top:1px solid #30363d;
+    text-align:center;
+    color:#8b949e
 }
-
-.readme h2 {
-    margin-top: 30px;
-}
-
-.readme p,
-.readme li {
-    color: #b1bac4;
-    line-height: 1.7;
-}
-
-pre {
-    background: #161b22;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 18px;
-    overflow-x: auto;
-    color: #e6edf3;
-}
-
-code {
-    font-family: monospace;
-}
-
-.sidebar {
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    padding: 20px;
-    height: fit-content;
-}
-
-.sidebar h3 {
-    margin-top: 0;
-}
-
-.sidebar p {
-    color: #8b949e;
-    line-height: 1.6;
-}
-
-.tag {
-    display: inline-block;
-    background: #1f6feb;
-    color: white;
-    padding: 4px 8px;
-    border-radius: 20px;
-    font-size: 12px;
-    margin: 3px;
-}
-
-.notice {
-    padding: 12px;
-    border: 1px solid #30363d;
-    border-radius: 6px;
-    color: #8b949e;
-    margin-top: 20px;
-}
-
-footer {
-    border-top: 1px solid #30363d;
-    margin-top: 50px;
-    padding: 30px;
-    text-align: center;
-    color: #8b949e;
-}
-
-@media(max-width: 750px) {
-    .layout {
-        grid-template-columns: 1fr;
+@media(max-width:800px){
+    .grid{grid-template-columns:1fr}
+    .side{
+        border-left:0;
+        border-top:1px solid #30363d;
+        padding:25px 0 0
     }
 }
 </style>
@@ -197,55 +149,46 @@ footer {
 
 <body>
 
-<header>
-    <div class="logo">
-        RASHID//CYBERFORGE
-    </div>
-</header>
+<div class="top">
+    <div class="logo">IPFindX</div>
+</div>
 
-<main class="container">
+<div class="wrap">
 
-    <div class="repo-top">
-
-        <div>
-            <div class="repo-name">
-                rashid-cyberforge
-                <span>/</span>
-                ip-information
-            </div>
-
-            <div class="description">
-                Educational IP information and network learning tool.
-            </div>
-        </div>
-
-        <div class="buttons">
-            <button class="btn">☆ Star</button>
-            <button class="btn">◌ Fork</button>
-            <button class="btn green">Code ▾</button>
-        </div>
-
+    <div class="repo">
+        VritraSecz <span>/</span> IPFindX
     </div>
 
-
-    <div class="notice">
-        This project is provided for educational and authorized
-        security-learning purposes.
+    <div class="desc">
+        Advanced IP intelligence tool for geolocation, ASN, ISP and proxy detection.
     </div>
 
+    <div class="actions">
+        <button>☆ Star</button>
+        <button>Fork</button>
+        <button onclick="copyClone()">Code ▾</button>
+        <button>Issues</button>
+    </div>
 
-    <div class="layout">
+    <div class="tabs">
+        <a href="#files" class="active">Code</a>
+        <a href="#readme">README</a>
+        <a href="#installation">Installation</a>
+        <a href="#usage">Usage</a>
+    </div>
 
-        <div>
+    <div class="grid">
 
-            <div class="panel">
+        <main>
 
-                <div class="panel-title">
-                    Files
+            <section class="panel" id="files">
+
+                <div class="panelhead">
+                    IPFindX
                 </div>
 
                 <div class="file">
-                    📄 ip-information.py
+                    📄 LICENSE
                 </div>
 
                 <div class="file">
@@ -253,156 +196,146 @@ footer {
                 </div>
 
                 <div class="file">
-                    📄 requirements.txt
+                    📄 ipfindx.py
                 </div>
 
                 <div class="file">
-                    📁 docs/
+                    📄 requirements.txt
                 </div>
 
-            </div>
+            </section>
 
 
-            <section class="readme">
+            <section class="readme" id="readme">
 
-                <h1>IP Information</h1>
+                <h1>IPFindX</h1>
 
                 <p>
-                    IP Information is an educational project designed
-                    to demonstrate how basic public IP information can
-                    be retrieved and displayed.
+                    IPFindX is a command-line IP intelligence project
+                    designed for cybersecurity learning, network
+                    administration and authorized research.
                 </p>
 
 
                 <h2>Features</h2>
 
                 <ul>
-                    <li>Basic public IP information</li>
-                    <li>Network-related information</li>
-                    <li>Simple command-line interface</li>
-                    <li>Python implementation</li>
-                    <li>Designed for learning</li>
+                    <li>Single public IP lookup</li>
+                    <li>Batch IP processing</li>
+                    <li>Geolocation information</li>
+                    <li>ISP and organization information</li>
+                    <li>ASN information</li>
+                    <li>Proxy, mobile and hosting indicators</li>
+                    <li>Reverse DNS information</li>
+                    <li>Structured output</li>
                 </ul>
 
 
-                <h2>Installation</h2>
+                <h2 id="installation">Installation</h2>
 
-                <pre><code>git clone YOUR-REPOSITORY
-cd ip-information
-python3 ip-information.py</code></pre>
+<pre>pip install ipfindx</pre>
 
+                <p>Or install from the source repository:</p>
 
-                <h2>Usage</h2>
-
-                <p>
-                    Run the Python program from your terminal.
-                    The program retrieves basic information associated
-                    with the public IP connection.
-                </p>
-
-                <pre><code>python3 ip-information.py</code></pre>
+<pre>git clone https://github.com/VritraSecz/IPFindX.git
+cd IPFindX
+pip install -r requirements.txt</pre>
 
 
-                <h2>Source Code</h2>
+                <h2 id="usage">Usage</h2>
 
-                <pre><code>import urllib.request
-import json
+<pre>ipfindx -i 8.8.8.8</pre>
 
-url = "https://ipinfo.io/json"
+                <p>Batch processing:</p>
 
-try:
-    with urllib.request.urlopen(url, timeout=10) as response:
-        data = json.loads(
-            response.read().decode()
-        )
+<pre>ipfindx -l ip_list.txt</pre>
 
-    print("IP Information")
-    print("----------------")
-    print("IP:", data.get("ip", "N/A"))
-    print("City:", data.get("city", "N/A"))
-    print("Region:", data.get("region", "N/A"))
-    print("Country:", data.get("country", "N/A"))
-    print("Organization:", data.get("org", "N/A"))
+                <p>Help:</p>
 
-except Exception as error:
-    print("Unable to retrieve information.")
-    print("Error:", error)</code></pre>
+<pre>ipfindx --help</pre>
 
 
-                <h2>How It Works</h2>
+                <h2>Project Structure</h2>
 
-                <p>
-                    The Python program requests basic public-IP
-                    information and displays the returned data.
-                    It is intended for learning about APIs,
-                    HTTP requests and network information.
-                </p>
+<pre>IPFindX/
+├── ipfindx.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+└── output-ipfindx/</pre>
+
+
+                <h2>Requirements</h2>
+
+                <ul>
+                    <li>Python 3.7+</li>
+                    <li>requests</li>
+                    <li>rich</li>
+                    <li>Internet connection</li>
+                </ul>
 
 
                 <h2>License</h2>
 
                 <p>
-                    Educational project for authorized use.
+                    IPFindX is distributed under the MIT License.
+                    See the project's LICENSE file for the complete
+                    license terms.
+                </p>
+
+
+                <h2>Credits</h2>
+
+                <p>
+                    Original project:
+                    VritraSecz / IPFindX
                 </p>
 
             </section>
 
-        </div>
+        </main>
 
 
-        <aside class="sidebar">
+        <aside class="side">
 
             <h3>About</h3>
 
             <p>
-                Educational cybersecurity project hosted
-                inside Rashid CyberForge.
+                Advanced IP intelligence tool for geolocation,
+                ASN, ISP and proxy detection from the terminal.
             </p>
 
-            <div>
-                <span class="tag">Python</span>
-                <span class="tag">Networking</span>
-                <span class="tag">Security</span>
+            <span class="tag">Python</span>
+            <span class="tag">Networking</span>
+            <span class="tag">OSINT</span>
+            <span class="tag">Security</span>
+
+            <div class="notice">
+                This page presents information about the
+                IPFindX project without redirecting the visitor
+                away from this website.
             </div>
-
-            <h3 style="margin-top:25px;">
-                Repository
-            </h3>
-
-            <p>
-                This page is a local presentation of the project.
-                It does not redirect visitors to an external
-                repository.
-            </p>
-
-            <button class="btn" onclick="copyCommand()">
-                Copy Clone Command
-            </button>
 
         </aside>
 
     </div>
 
-</main>
-
+</div>
 
 <footer>
-    RASHID // CYBERFORGE — 2026
+    IPFindX · Project information
 </footer>
 
-
 <script>
-
-function copyCommand() {
+function copyClone(){
 
     const command =
-        "git clone YOUR-REPOSITORY";
+        "git clone https://github.com/VritraSecz/IPFindX.git";
 
     navigator.clipboard.writeText(command);
 
     alert("Clone command copied.");
 }
-
 </script>
 
 </body>
