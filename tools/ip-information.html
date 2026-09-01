@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>IP Information | Rashid CyberForge</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #05070a;
+      color: #e8fff1;
+      font-family: Arial, sans-serif;
+    }
+
+    header {
+      padding: 18px 20px;
+      border-bottom: 1px solid #1b3025;
+      font-weight: bold;
+      letter-spacing: 1px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+    }
+
+    .tag {
+      color: #22ff88;
+      font-size: 12px;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: 38px;
+      margin-bottom: 10px;
+    }
+
+    .description {
+      color: #91a59a;
+      line-height: 1.6;
+    }
+
+    .panel {
+      margin-top: 30px;
+      padding: 25px;
+      border: 1px solid #1c3b29;
+      border-radius: 14px;
+      background: #08100c;
+    }
+
+    input {
+      width: 100%;
+      box-sizing: border-box;
+      padding: 14px;
+      margin-bottom: 12px;
+      background: #030605;
+      color: white;
+      border: 1px solid #294936;
+      border-radius: 8px;
+    }
+
+    button {
+      padding: 13px 20px;
+      background: #18e875;
+      border: 0;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    #result {
+      margin-top: 20px;
+      line-height: 1.8;
+      white-space: pre-line;
+      color: #b9ffd1;
+    }
+
+    .download {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 13px 18px;
+      border: 1px solid #22ff88;
+      border-radius: 8px;
+      color: #22ff88;
+      text-decoration: none;
+    }
+
+    .note {
+      margin-top: 25px;
+      color: #77887d;
+      font-size: 13px;
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  RASHID // CYBERFORGE
+</header>
+
+<div class="container">
+
+  <div class="tag">TOOL / 002</div>
+
+  <h1>IP Information</h1>
+
+  <p class="description">
+    A simple defensive IP-information utility for learning
+    about publicly available network information.
+  </p>
+
+  <div class="panel">
+
+    <input
+      id="ipInput"
+      type="text"
+      placeholder="Enter an IP address, e.g. 8.8.8.8"
+    >
+
+    <button onclick="lookupIP()">
+      Check IP
+    </button>
+
+    <div id="result">
+      Waiting for an IP address...
+    </div>
+
+    <a
+      class="download"
+      href="ip-information.py"
+      download
+    >
+      Download Python Tool
+    </a>
+
+    <div class="note">
+      Use this tool only for IP addresses you own or are authorized
+      to investigate.
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+async function lookupIP() {
+
+  const ip = document.getElementById("ipInput").value.trim();
+  const result = document.getElementById("result");
+
+  if (!ip) {
+    result.textContent = "Please enter an IP address.";
+    return;
+  }
+
+  result.textContent = "Looking up information...";
+
+  try {
+
+    const response =
+      await fetch(
+        "https://ipwho.is/" + encodeURIComponent(ip)
+      );
+
+    const data = await response.json();
+
+    if (!data.success) {
+      result.textContent =
+        "Could not retrieve information for this IP.";
+      return;
+    }
+
+    result.textContent =
+`IP: ${data.ip}
+Type: ${data.type || "N/A"}
+Country: ${data.country || "N/A"}
+Region: ${data.region || "N/A"}
+City: ${data.city || "N/A"}
+Postal Code: ${data.postal || "N/A"}
+Latitude: ${data.latitude || "N/A"}
+Longitude: ${data.longitude || "N/A"}
+ISP: ${data.connection?.isp || "N/A"}
+Organization: ${data.connection?.org || "N/A"}
+`;
+
+  } catch (error) {
+
+    result.textContent =
+      "Unable to retrieve IP information.";
+
+  }
+}
+</script>
+
+</body>
+</html>
