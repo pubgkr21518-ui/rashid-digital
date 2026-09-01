@@ -1,1 +1,343 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IPFindX — Repository</title>
+
+<style>
+*{box-sizing:border-box}
+body{
+    margin:0;
+    background:#0d1117;
+    color:#e6edf3;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif
+}
+.top{
+    height:64px;
+    background:#010409;
+    border-bottom:1px solid #30363d;
+    display:flex;
+    align-items:center;
+    padding:0 28px
+}
+.logo{font-weight:600;font-size:17px}
+.wrap{max-width:1200px;margin:auto;padding:30px 24px}
+.repo{
+    font-size:24px;
+    color:#58a6ff;
+    font-weight:500
+}
+.repo span{color:#8b949e}
+.desc{color:#8b949e;margin-top:9px}
+.actions{
+    display:flex;
+    gap:8px;
+    margin:20px 0;
+    flex-wrap:wrap
+}
+button{
+    background:#21262d;
+    border:1px solid #30363d;
+    color:#e6edf3;
+    padding:7px 13px;
+    border-radius:6px;
+    cursor:pointer
+}
+button:hover{background:#30363d}
+.tabs{
+    display:flex;
+    gap:25px;
+    border-bottom:1px solid #30363d;
+    padding-bottom:15px
+}
+.tabs a{
+    color:#8b949e;
+    text-decoration:none
+}
+.tabs a.active{color:#f0f6fc;font-weight:600}
+.grid{
+    display:grid;
+    grid-template-columns:1fr 280px;
+    gap:28px;
+    margin-top:28px
+}
+.panel{
+    border:1px solid #30363d;
+    border-radius:6px;
+    overflow:hidden
+}
+.panelhead{
+    background:#161b22;
+    padding:14px 18px;
+    border-bottom:1px solid #30363d;
+    font-weight:600
+}
+.file{
+    padding:13px 18px;
+    border-bottom:1px solid #21262d;
+    color:#58a6ff
+}
+.file:last-child{border-bottom:0}
+.readme{
+    margin-top:24px;
+    border:1px solid #30363d;
+    border-radius:6px;
+    padding:30px
+}
+.readme h1{
+    font-size:30px;
+    border-bottom:1px solid #30363d;
+    padding-bottom:15px
+}
+.readme h2{
+    margin-top:32px;
+    border-bottom:1px solid #21262d;
+    padding-bottom:9px
+}
+.readme p,.readme li{
+    color:#b1bac4;
+    line-height:1.7
+}
+pre{
+    background:#161b22;
+    border:1px solid #30363d;
+    border-radius:6px;
+    padding:18px;
+    overflow-x:auto;
+    color:#e6edf3;
+    line-height:1.55
+}
+.side{
+    border-left:1px solid #30363d;
+    padding-left:22px
+}
+.side h3{margin-top:0}
+.side p{color:#8b949e;line-height:1.6}
+.tag{
+    display:inline-block;
+    background:#1f6feb;
+    padding:4px 9px;
+    border-radius:20px;
+    font-size:12px;
+    margin:3px
+}
+.notice{
+    margin-top:20px;
+    padding:13px;
+    border:1px solid #30363d;
+    border-radius:6px;
+    color:#8b949e
+}
+footer{
+    margin-top:60px;
+    padding:30px;
+    border-top:1px solid #30363d;
+    text-align:center;
+    color:#8b949e
+}
+@media(max-width:800px){
+    .grid{grid-template-columns:1fr}
+    .side{
+        border-left:0;
+        border-top:1px solid #30363d;
+        padding:25px 0 0
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="top">
+    <div class="logo">IPFindX</div>
+</div>
+
+<div class="wrap">
+
+    <div class="repo">
+        VritraSecz <span>/</span> IPFindX
+    </div>
+
+    <div class="desc">
+        Advanced IP intelligence tool for geolocation, ASN, ISP and proxy detection.
+    </div>
+
+    <div class="actions">
+        <button>☆ Star</button>
+        <button>Fork</button>
+        <button onclick="copyClone()">Code ▾</button>
+        <button>Issues</button>
+    </div>
+
+    <div class="tabs">
+        <a href="#files" class="active">Code</a>
+        <a href="#readme">README</a>
+        <a href="#installation">Installation</a>
+        <a href="#usage">Usage</a>
+    </div>
+
+    <div class="grid">
+
+        <main>
+
+            <section class="panel" id="files">
+
+                <div class="panelhead">
+                    IPFindX
+                </div>
+
+                <div class="file">
+                    📄 LICENSE
+                </div>
+
+                <div class="file">
+                    📄 README.md
+                </div>
+
+                <div class="file">
+                    📄 ipfindx.py
+                </div>
+
+                <div class="file">
+                    📄 requirements.txt
+                </div>
+
+            </section>
+
+
+            <section class="readme" id="readme">
+
+                <h1>IPFindX</h1>
+
+                <p>
+                    IPFindX is a command-line IP intelligence project
+                    designed for cybersecurity learning, network
+                    administration and authorized research.
+                </p>
+
+
+                <h2>Features</h2>
+
+                <ul>
+                    <li>Single public IP lookup</li>
+                    <li>Batch IP processing</li>
+                    <li>Geolocation information</li>
+                    <li>ISP and organization information</li>
+                    <li>ASN information</li>
+                    <li>Proxy, mobile and hosting indicators</li>
+                    <li>Reverse DNS information</li>
+                    <li>Structured output</li>
+                </ul>
+
+
+                <h2 id="installation">Installation</h2>
+
+<pre>pip install ipfindx</pre>
+
+                <p>Or install from the source repository:</p>
+
+<pre>git clone https://github.com/VritraSecz/IPFindX.git
+cd IPFindX
+pip install -r requirements.txt</pre>
+
+
+                <h2 id="usage">Usage</h2>
+
+<pre>ipfindx -i 8.8.8.8</pre>
+
+                <p>Batch processing:</p>
+
+<pre>ipfindx -l ip_list.txt</pre>
+
+                <p>Help:</p>
+
+<pre>ipfindx --help</pre>
+
+
+                <h2>Project Structure</h2>
+
+<pre>IPFindX/
+├── ipfindx.py
+├── requirements.txt
+├── README.md
+├── LICENSE
+└── output-ipfindx/</pre>
+
+
+                <h2>Requirements</h2>
+
+                <ul>
+                    <li>Python 3.7+</li>
+                    <li>requests</li>
+                    <li>rich</li>
+                    <li>Internet connection</li>
+                </ul>
+
+
+                <h2>License</h2>
+
+                <p>
+                    IPFindX is distributed under the MIT License.
+                    See the project's LICENSE file for the complete
+                    license terms.
+                </p>
+
+
+                <h2>Credits</h2>
+
+                <p>
+                    Original project:
+                    VritraSecz / IPFindX
+                </p>
+
+            </section>
+
+        </main>
+
+
+        <aside class="side">
+
+            <h3>About</h3>
+
+            <p>
+                Advanced IP intelligence tool for geolocation,
+                ASN, ISP and proxy detection from the terminal.
+            </p>
+
+            <span class="tag">Python</span>
+            <span class="tag">Networking</span>
+            <span class="tag">OSINT</span>
+            <span class="tag">Security</span>
+
+            <div class="notice">
+                This page presents information about the
+                IPFindX project without redirecting the visitor
+                away from this website.
+            </div>
+
+        </aside>
+
+    </div>
+
+</div>
+
+<footer>
+    IPFindX · Project information
+</footer>
+
+<script>
+function copyClone(){
+
+    const command =
+        "git clone https://github.com/VritraSecz/IPFindX.git";
+
+    navigator.clipboard.writeText(command);
+
+    alert("Clone command copied.");
+}
+</script>
+
+</body>
+</html>
