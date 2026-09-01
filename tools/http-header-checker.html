@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Header Checker — Rashid CyberForge</title>
+  <link rel="stylesheet" href="../style.css">
+</head>
+
+<body>
+
+  <header>
+    <nav class="nav">
+      <a href="../index.html" class="logo">
+        RASHID<span>//</span>CYBERFORGE
+      </a>
+
+      <div class="nav-links">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Tools</a>
+        <a href="../index.html#tutorials">Tutorials</a>
+      </div>
+    </nav>
+  </header>
+
+  <main class="section">
+
+    <div class="section-heading">
+      <span>TOOL / 001</span>
+      <h2>HTTP Header Checker</h2>
+      <p>
+        Check the security-related HTTP headers of a website
+        you own or are authorized to test.
+      </p>
+    </div>
+
+    <div class="card">
+
+      <input
+        id="url"
+        type="url"
+        placeholder="https://example.com"
+        style="width:100%;padding:15px;margin-bottom:15px;"
+      >
+
+      <button class="btn primary" onclick="checkHeaders()">
+        Check Headers
+      </button>
+
+      <pre id="result"
+        style="margin-top:25px;white-space:pre-wrap;">
+Waiting for a URL...
+      </pre>
+
+    </div>
+
+  </main>
+
+  <script>
+    async function checkHeaders() {
+
+      const url = document.getElementById("url").value;
+      const result = document.getElementById("result");
+
+      if (!url) {
+        result.textContent = "Please enter a URL.";
+        return;
+      }
+
+      result.textContent = "Checking...";
+
+      try {
+        const response = await fetch(url, {
+          method: "HEAD"
+        });
+
+        let output = "";
+
+        for (const [key, value] of response.headers.entries()) {
+          output += key + ": " + value + "\\n";
+        }
+
+        result.textContent =
+          output || "No readable headers returned.";
+
+      } catch (error) {
+
+        result.textContent =
+          "The browser could not access this website's headers. " +
+          "This can happen because of CORS restrictions.";
+      }
+    }
+  </script>
+
+</body>
+</html>
