@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +8,641 @@
   <meta name="description" content="Free Fire MAX device-based sensitivity generator.">
 
   <link rel="stylesheet" href="style.css">
+
+  <style>
+    /* ================================
+       CYBER HOME BACKGROUND
+    ================================= */
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .cyber-bg {
+      position: fixed;
+      inset: 0;
+      z-index: -5;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 20% 20%,
+          rgba(0, 200, 255, .12),
+          transparent 32%),
+        radial-gradient(circle at 80% 70%,
+          rgba(150, 50, 255, .12),
+          transparent 34%),
+        #05070d;
+    }
+
+    .cyber-grid {
+      position: absolute;
+      inset: -50%;
+      width: 200%;
+      height: 200%;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,.025) 1px,
+          transparent 1px
+        );
+
+      background-size: 45px 45px;
+
+      transform: perspective(500px) rotateX(60deg);
+      animation: gridMove 9s linear infinite;
+    }
+
+    @keyframes gridMove {
+      from {
+        transform:
+          perspective(500px)
+          rotateX(60deg)
+          translateY(0);
+      }
+
+      to {
+        transform:
+          perspective(500px)
+          rotateX(60deg)
+          translateY(45px);
+      }
+    }
+
+
+    /* ================================
+       CODE STREAM AREA
+    ================================= */
+
+    .code-streams {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      opacity: .42;
+      pointer-events: none;
+    }
+
+    .code-column {
+      position: absolute;
+      top: -140%;
+      width: 110px;
+
+      font-family:
+        "Courier New",
+        monospace;
+
+      font-size: 11px;
+      line-height: 1.75;
+
+      white-space: pre;
+
+      writing-mode: vertical-rl;
+
+      animation:
+        codeFall linear infinite;
+
+      text-shadow:
+        0 0 8px currentColor;
+    }
+
+    .code-column.reverse {
+      top: auto;
+      bottom: -140%;
+      animation-name: codeRise;
+    }
+
+    @keyframes codeFall {
+      from {
+        transform: translateY(-10%);
+      }
+
+      to {
+        transform: translateY(220%);
+      }
+    }
+
+    @keyframes codeRise {
+      from {
+        transform: translateY(10%);
+      }
+
+      to {
+        transform: translateY(-220%);
+      }
+    }
+
+
+    /* ================================
+       RANDOM COLOR STREAMS
+    ================================= */
+
+    .c1 {
+      left: 2%;
+      color: #00eaff;
+      animation-duration: 5s;
+    }
+
+    .c2 {
+      left: 9%;
+      color: #8b5cf6;
+      animation-duration: 7s;
+    }
+
+    .c3 {
+      left: 17%;
+      color: #22c55e;
+      animation-duration: 4s;
+    }
+
+    .c4 {
+      left: 26%;
+      color: #ff4ecd;
+      animation-duration: 6s;
+    }
+
+    .c5 {
+      left: 35%;
+      color: #00c8ff;
+      animation-duration: 4.5s;
+    }
+
+    .c6 {
+      left: 44%;
+      color: #a78bfa;
+      animation-duration: 6.5s;
+    }
+
+    .c7 {
+      left: 53%;
+      color: #34d399;
+      animation-duration: 5.5s;
+    }
+
+    .c8 {
+      left: 62%;
+      color: #f472b6;
+      animation-duration: 4.2s;
+    }
+
+    .c9 {
+      left: 71%;
+      color: #38bdf8;
+      animation-duration: 7s;
+    }
+
+    .c10 {
+      left: 80%;
+      color: #c084fc;
+      animation-duration: 5s;
+    }
+
+    .c11 {
+      left: 89%;
+      color: #4ade80;
+      animation-duration: 6s;
+    }
+
+    .c12 {
+      left: 96%;
+      color: #fb7185;
+      animation-duration: 4.8s;
+    }
+
+
+    /* ================================
+       HOME OVERLAY
+    ================================= */
+
+    .home-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          ellipse at center,
+          transparent 15%,
+          rgba(3,5,12,.38) 65%,
+          rgba(3,5,12,.88) 100%
+        );
+    }
+
+
+    /* ================================
+       HEADER
+    ================================= */
+
+    .header {
+      position: relative;
+      z-index: 5;
+
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom:
+        1px solid rgba(255,255,255,.07);
+    }
+
+
+    /* ================================
+       HERO
+    ================================= */
+
+    .hero {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero::before {
+      content: "";
+
+      position: absolute;
+      width: 420px;
+      height: 420px;
+
+      left: 50%;
+      top: 35%;
+
+      transform: translate(-50%, -50%);
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(0,190,255,.11),
+          transparent 68%
+        );
+
+      filter: blur(20px);
+
+      pointer-events: none;
+    }
+
+
+    /* ================================
+       BADGE
+    ================================= */
+
+    .badge {
+      position: relative;
+
+      border:
+        1px solid rgba(0,220,255,.25);
+
+      background:
+        rgba(0,180,255,.055);
+
+      box-shadow:
+        0 0 25px rgba(0,200,255,.08),
+        inset 0 0 20px rgba(0,200,255,.025);
+
+      backdrop-filter: blur(10px);
+    }
+
+
+    /* ================================
+       TITLE
+    ================================= */
+
+    .hero h1 {
+      position: relative;
+
+      text-shadow:
+        0 0 35px rgba(0,190,255,.10);
+    }
+
+    .hero h1 span {
+      background:
+        linear-gradient(
+          90deg,
+          #00eaff,
+          #7c5cff,
+          #d946ef,
+          #00eaff
+        );
+
+      background-size: 300% 100%;
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      animation:
+        homeGradient 6s ease infinite;
+    }
+
+    @keyframes homeGradient {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+
+    /* ================================
+       GENERATOR CARD
+    ================================= */
+
+    .generator-box {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(15,20,34,.88),
+          rgba(6,9,18,.78)
+        ) !important;
+
+      border:
+        1px solid rgba(255,255,255,.10) !important;
+
+      box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        0 0 35px rgba(0,190,255,.07),
+        inset 0 1px 0 rgba(255,255,255,.05) !important;
+
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+    }
+
+    .generator-box::before {
+      content: "";
+
+      position: absolute;
+
+      width: 180%;
+      height: 1px;
+
+      left: -40%;
+      top: 0;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          #00eaff,
+          #8b5cf6,
+          transparent
+        );
+
+      animation:
+        cardScan 4s linear infinite;
+    }
+
+    @keyframes cardScan {
+      from {
+        transform: translateX(-35%);
+      }
+
+      to {
+        transform: translateX(35%);
+      }
+    }
+
+
+    /* ================================
+       INPUT
+    ================================= */
+
+    #device {
+      background:
+        rgba(0,0,0,.28) !important;
+
+      border:
+        1px solid rgba(255,255,255,.10) !important;
+
+      box-shadow:
+        inset 0 0 20px rgba(0,0,0,.25) !important;
+
+      transition:
+        .25s ease;
+    }
+
+    #device:focus {
+      border-color:
+        rgba(0,220,255,.65) !important;
+
+      box-shadow:
+        0 0 0 3px rgba(0,220,255,.06),
+        0 0 25px rgba(0,220,255,.13),
+        inset 0 0 20px rgba(0,220,255,.025) !important;
+    }
+
+
+    /* ================================
+       SELECTS
+    ================================= */
+
+    select {
+      background:
+        rgba(0,0,0,.30) !important;
+
+      border-color:
+        rgba(255,255,255,.10) !important;
+    }
+
+
+    /* ================================
+       GENERATE BUTTON
+    ================================= */
+
+    #generateBtn {
+      position: relative;
+      overflow: hidden;
+
+      border: 0;
+
+      background:
+        linear-gradient(
+          100deg,
+          #00bfff,
+          #695cff,
+          #b845ff,
+          #00d9ff
+        );
+
+      background-size: 300% 100%;
+
+      box-shadow:
+        0 10px 30px rgba(0,190,255,.15);
+
+      animation:
+        buttonFlow 5s ease infinite;
+
+      transition:
+        transform .2s ease,
+        box-shadow .2s ease;
+    }
+
+    #generateBtn:hover {
+      transform:
+        translateY(-2px);
+
+      box-shadow:
+        0 14px 35px rgba(0,190,255,.25);
+    }
+
+    @keyframes buttonFlow {
+      0% {
+        background-position: 0% 50%;
+      }
+
+      50% {
+        background-position: 100% 50%;
+      }
+
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+
+    /* ================================
+       INFO CARDS
+    ================================= */
+
+    .info-card {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        rgba(7,11,21,.68) !important;
+
+      border:
+        1px solid rgba(255,255,255,.07) !important;
+
+      backdrop-filter: blur(14px);
+
+      box-shadow:
+        0 15px 45px rgba(0,0,0,.22);
+    }
+
+    .info-card::after {
+      content: "";
+
+      position: absolute;
+
+      width: 120px;
+      height: 120px;
+
+      right: -60px;
+      bottom: -60px;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(0,210,255,.10),
+          transparent 70%
+        );
+
+      filter: blur(10px);
+    }
+
+
+    /* ================================
+       MOBILE
+    ================================= */
+
+    @media (max-width: 700px) {
+
+      .code-column {
+        width: 70px;
+        font-size: 9px;
+        opacity: .65;
+      }
+
+      .cyber-grid {
+        background-size: 32px 32px;
+      }
+
+      .generator-box {
+        margin-left: 12px;
+        margin-right: 12px;
+      }
+
+    }
+  </style>
 </head>
 
 <body>
 
-  <div class="background-glow"></div>
-  <div class="grid"></div>
+  <!-- CYBER BACKGROUND -->
+  <div class="cyber-bg">
 
+    <div class="cyber-grid"></div>
+
+    <div class="code-streams">
+
+      <div class="code-column c1">
+        01010110 00110101 FFMAX SYSTEM CORE 7A 91 00 11 010011
+      </div>
+
+      <div class="code-column c2 reverse">
+        INIT PROFILE 0xA7 DEVICE SCAN 10101011 USER CONFIG 7F21
+      </div>
+
+      <div class="code-column c3">
+        RAM_CHECK 8GB FPS_ENGINE SENS_2026 00110011 CORE ONLINE
+      </div>
+
+      <div class="code-column c4 reverse">
+        FF_MAX PROFILE READY 11001100 INPUT DEVICE CONFIGURE 9D
+      </div>
+
+      <div class="code-column c5">
+        SYSTEM 01011010 GRAPHICS ENGINE HIGH FPS SENSOR READY 88
+      </div>
+
+      <div class="code-column c6 reverse">
+        101001 110010 DEVICE PROFILE SENSITIVITY MATRIX 0xFF 7A
+      </div>
+
+      <div class="code-column c7">
+        PERFORMANCE MODE ACTIVE 01101010 BATTERY CORE 101011 42
+      </div>
+
+      <div class="code-column c8 reverse">
+        CONFIG LOAD 001101 DEVICE DATA 0xA1 PROFILE BUILD 2026
+      </div>
+
+      <div class="code-column c9">
+        SENS_ENGINE 01010101 TOUCH RESPONSE 999 FPS MODE READY
+      </div>
+
+      <div class="code-column c10 reverse">
+        DEVICE INPUT 11010011 PROFILE GENERATOR ACTIVE 7B 01 88
+      </div>
+
+      <div class="code-column c11">
+        CORE ONLINE 10101010 GAME MODE ENABLED SYSTEM STATUS OK
+      </div>
+
+      <div class="code-column c12 reverse">
+        01001101 FFMAX LAB PROFILE MATRIX 0x9F 10110011 READY
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="home-overlay"></div>
+
+
+  <!-- HEADER -->
   <header class="header">
+
     <div class="logo">
       FF<span>MAX</span>
     </div>
@@ -24,9 +650,11 @@
     <div class="status">
       ● SENSITIVITY LAB
     </div>
+
   </header>
 
 
+  <!-- MAIN -->
   <main>
 
     <section class="hero">
@@ -46,9 +674,12 @@
       </p>
 
 
+      <!-- GENERATOR -->
       <div class="generator-box">
 
-        <label for="device">DEVICE NAME</label>
+        <label for="device">
+          DEVICE NAME
+        </label>
 
         <input
           type="text"
@@ -61,29 +692,72 @@
         <div class="row">
 
           <div class="field">
-            <label for="ram">RAM</label>
+
+            <label for="ram">
+              RAM
+            </label>
 
             <select id="ram">
-              <option value="4">4 GB</option>
-              <option value="6">6 GB</option>
-              <option value="8" selected>8 GB</option>
-              <option value="12">12 GB</option>
-              <option value="16">16 GB</option>
-              <option value="24">24 GB</option>
+
+              <option value="4">
+                4 GB
+              </option>
+
+              <option value="6">
+                6 GB
+              </option>
+
+              <option value="8" selected>
+                8 GB
+              </option>
+
+              <option value="12">
+                12 GB
+              </option>
+
+              <option value="16">
+                16 GB
+              </option>
+
+              <option value="24">
+                24 GB
+              </option>
+
             </select>
+
           </div>
 
 
           <div class="field">
-            <label for="storage">STORAGE</label>
+
+            <label for="storage">
+              STORAGE
+            </label>
 
             <select id="storage">
-              <option value="64">64 GB</option>
-              <option value="128" selected>128 GB</option>
-              <option value="256">256 GB</option>
-              <option value="512">512 GB</option>
-              <option value="1024">1 TB</option>
+
+              <option value="64">
+                64 GB
+              </option>
+
+              <option value="128" selected>
+                128 GB
+              </option>
+
+              <option value="256">
+                256 GB
+              </option>
+
+              <option value="512">
+                512 GB
+              </option>
+
+              <option value="1024">
+                1 TB
+              </option>
+
             </select>
+
           </div>
 
         </div>
@@ -100,33 +774,54 @@
     </section>
 
 
+    <!-- INFO -->
     <section class="info-section">
 
       <div class="info-card">
+
         <span>01</span>
-        <h3>Device Based</h3>
+
+        <h3>
+          Device Based
+        </h3>
+
         <p>
           Recommendations are generated using
           your device information.
         </p>
+
       </div>
 
+
       <div class="info-card">
+
         <span>02</span>
-        <h3>Game Settings</h3>
+
+        <h3>
+          Game Settings
+        </h3>
+
         <p>
           Get useful in-game settings together
           with your sensitivity profile.
         </p>
+
       </div>
 
+
       <div class="info-card">
+
         <span>03</span>
-        <h3>Performance Tips</h3>
+
+        <h3>
+          Performance Tips
+        </h3>
+
         <p>
           Safe phone settings that can help
           reduce unnecessary background load.
         </p>
+
       </div>
 
     </section>
@@ -134,58 +829,107 @@
   </main>
 
 
+  <!-- FOOTER -->
   <footer>
-    <span>FF MAX SENSITIVITY LAB</span>
-    <span>© 2026</span>
+
+    <span>
+      FF MAX SENSITIVITY LAB
+    </span>
+
+    <span>
+      © 2026
+    </span>
+
   </footer>
 
 
+  <!-- GENERATOR SCRIPT -->
   <script>
 
-    const deviceInput = document.getElementById("device");
-    const ramInput = document.getElementById("ram");
-    const storageInput = document.getElementById("storage");
-    const generateBtn = document.getElementById("generateBtn");
-    const error = document.getElementById("error");
+    const deviceInput =
+      document.getElementById("device");
+
+    const ramInput =
+      document.getElementById("ram");
+
+    const storageInput =
+      document.getElementById("storage");
+
+    const generateBtn =
+      document.getElementById("generateBtn");
+
+    const error =
+      document.getElementById("error");
 
 
-    generateBtn.addEventListener("click", function () {
+    generateBtn.addEventListener(
+      "click",
+      function () {
 
-      const device = deviceInput.value.trim();
-      const ram = ramInput.value;
-      const storage = storageInput.value;
+        const device =
+          deviceInput.value.trim();
+
+        const ram =
+          ramInput.value;
+
+        const storage =
+          storageInput.value;
 
 
-      if (!device) {
-        error.textContent = "Please enter your device name.";
-        deviceInput.focus();
-        return;
+        if (!device) {
+
+          error.textContent =
+            "Please enter your device name.";
+
+          deviceInput.focus();
+
+          return;
+        }
+
+
+        error.textContent = "";
+
+
+        const params =
+          new URLSearchParams();
+
+
+        params.set(
+          "device",
+          device
+        );
+
+        params.set(
+          "ram",
+          ram
+        );
+
+        params.set(
+          "storage",
+          storage
+        );
+
+
+        window.location.href =
+          "sensitivity.html?" +
+          params.toString();
+
       }
+    );
 
 
-      error.textContent = "";
+    deviceInput.addEventListener(
+      "keydown",
+      function (event) {
 
+        if (event.key === "Enter") {
 
-      const params = new URLSearchParams();
+          generateBtn.click();
 
-      params.set("device", device);
-      params.set("ram", ram);
-      params.set("storage", storage);
+        }
 
-
-      window.location.href =
-        "sensitivity.html?" + params.toString();
-
-    });
-
-
-    deviceInput.addEventListener("keydown", function(event) {
-
-      if (event.key === "Enter") {
-        generateBtn.click();
       }
-
-    });
+    );
 
   </script>
 
