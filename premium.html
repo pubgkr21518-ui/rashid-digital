@@ -1,581 +1,370 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Premium Tools — Brazilian Sensi FF</title>
 
-<title>Premium Tools | Brazilian Sensi FF</title>
-<meta name="description" content="Brazilian Sensi FF Premium Tools">
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(120, 0, 0, .22), transparent 35%),
+        linear-gradient(135deg, #020706, #06120f 50%, #020303);
+      color: white;
+      font-family: Arial, sans-serif;
+      overflow-x: hidden;
+    }
 
-body{
-  min-height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
-  background:#030806;
-  color:#eafff4;
-  overflow-x:hidden;
-}
+    canvas {
+      position: fixed;
+      inset: 0;
+      z-index: -2;
+      opacity: .22;
+    }
 
-/* DARK BACKGROUND */
-.bg{
-  position:fixed;
-  inset:0;
-  z-index:-5;
-  background:
-    radial-gradient(circle at 50% 20%,rgba(0,255,120,.08),transparent 35%),
-    linear-gradient(180deg,#020504,#030806 55%,#010302);
-}
+    .glow {
+      position: fixed;
+      width: 500px;
+      height: 500px;
+      left: 50%;
+      top: 35%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(180,0,20,.15), transparent 70%);
+      filter: blur(30px);
+      z-index: -1;
+    }
 
-/* CODE RAIN */
-#codeRain{
-  position:fixed;
-  inset:0;
-  width:100%;
-  height:100%;
-  z-index:-4;
-  opacity:.18;
-}
+    header {
+      padding: 25px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255,255,255,.08);
+      background: rgba(0,0,0,.35);
+      backdrop-filter: blur(12px);
+    }
 
-/* DARK OVERLAY */
-.overlay{
-  position:fixed;
-  inset:0;
-  z-index:-3;
-  background:linear-gradient(
-    180deg,
-    rgba(0,0,0,.30),
-    rgba(0,10,5,.55)
-  );
-  pointer-events:none;
-}
+    .logo {
+      font-size: 22px;
+      font-weight: 800;
+    }
 
-/* HEADER */
-header{
-  width:100%;
-  padding:22px 7%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  border-bottom:1px solid rgba(0,255,120,.12);
-  background:rgba(0,0,0,.35);
-  backdrop-filter:blur(15px);
-}
+    .logo span {
+      color: #18ff75;
+    }
 
-.logo{
-  font-size:21px;
-  font-weight:900;
-  letter-spacing:.5px;
-}
+    .back {
+      color: #18ff75;
+      text-decoration: none;
+      font-weight: bold;
+    }
 
-.logo span{
-  color:#00ff78;
-  text-shadow:0 0 15px rgba(0,255,120,.45);
-}
+    .container {
+      width: min(1050px, 92%);
+      margin: auto;
+      padding: 70px 0;
+      text-align: center;
+    }
 
-.status{
-  color:#00ff78;
-  font-size:12px;
-  font-weight:bold;
-  letter-spacing:1px;
-}
+    .badge {
+      display: inline-block;
+      padding: 8px 16px;
+      border: 1px solid rgba(255,50,70,.4);
+      border-radius: 999px;
+      color: #ff4058;
+      background: rgba(80,0,10,.25);
+      font-size: 12px;
+      letter-spacing: 2px;
+      margin-bottom: 20px;
+    }
 
-/* HERO */
-.hero{
-  text-align:center;
-  padding:75px 20px 45px;
-}
+    h1 {
+      font-size: clamp(42px, 8vw, 75px);
+      margin-bottom: 15px;
+    }
 
-.badge{
-  display:inline-block;
-  padding:9px 15px;
-  border:1px solid rgba(0,255,120,.25);
-  border-radius:999px;
-  color:#00ff78;
-  background:rgba(0,255,120,.05);
-  font-size:11px;
-  font-weight:bold;
-  letter-spacing:2px;
-  margin-bottom:20px;
-}
+    h1 span {
+      color: #18ff75;
+    }
 
-.hero h1{
-  font-size:clamp(42px,8vw,78px);
-  line-height:1;
-  font-weight:1000;
-  letter-spacing:-3px;
-}
+    .subtitle {
+      color: #9ca9a5;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.7;
+    }
 
-.hero h1 span{
-  color:#00ff78;
-  text-shadow:
-    0 0 15px rgba(0,255,120,.25),
-    0 0 35px rgba(0,255,120,.12);
-}
+    .products {
+      margin-top: 55px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
 
-.hero p{
-  max-width:650px;
-  margin:22px auto 0;
-  color:#9bb5a5;
-  line-height:1.7;
-  font-size:15px;
-}
+    .card {
+      padding: 30px;
+      text-align: left;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      background: rgba(5,10,9,.72);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 60px rgba(0,0,0,.35);
+      transition: .25s;
+    }
 
-/* STORE */
-.store{
-  width:min(1150px,92%);
-  margin:auto;
-  padding:25px 0 80px;
-}
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(24,255,117,.4);
+    }
 
-.section-title{
-  text-align:center;
-  margin-bottom:35px;
-}
+    .card h2 {
+      margin-bottom: 12px;
+    }
 
-.section-title h2{
-  font-size:30px;
-}
+    .card p {
+      color: #9ca9a5;
+      line-height: 1.6;
+      min-height: 75px;
+    }
 
-.section-title p{
-  color:#718a7a;
-  margin-top:8px;
-}
+    .price {
+      font-size: 38px;
+      font-weight: 900;
+      margin: 20px 0;
+      color: #18ff75;
+    }
 
-/* CARDS */
-.grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(270px,1fr));
-  gap:22px;
-}
+    .buy {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 15px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #18ff75, #08a84b);
+      color: #001108;
+      text-decoration: none;
+      font-weight: 900;
+      border: none;
+      cursor: pointer;
+    }
 
-.card{
-  position:relative;
-  overflow:hidden;
-  padding:28px;
-  min-height:330px;
-  border:1px solid rgba(0,255,120,.15);
-  border-radius:22px;
-  background:rgba(5,18,12,.68);
-  backdrop-filter:blur(18px);
-  box-shadow:0 15px 50px rgba(0,0,0,.35);
-  transition:.3s ease;
-}
+    .payment-note {
+      margin-top: 35px;
+      padding: 18px;
+      border: 1px solid rgba(255,50,70,.2);
+      border-radius: 15px;
+      background: rgba(70,0,10,.18);
+      color: #aeb8b5;
+      line-height: 1.6;
+      font-size: 14px;
+    }
 
-.card:hover{
-  transform:translateY(-7px);
-  border-color:rgba(0,255,120,.45);
-  box-shadow:
-    0 20px 55px rgba(0,0,0,.5),
-    0 0 30px rgba(0,255,120,.08);
-}
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: #65716d;
+      font-size: 12px;
+    }
 
-.card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background:#00ff78;
-  box-shadow:0 0 18px #00ff78;
-  opacity:.65;
-}
+    @media(max-width: 800px) {
+      .products {
+        grid-template-columns: 1fr;
+      }
 
-.icon{
-  width:55px;
-  height:55px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  border-radius:15px;
-  background:rgba(0,255,120,.07);
-  border:1px solid rgba(0,255,120,.15);
-  color:#00ff78;
-  font-size:25px;
-  margin-bottom:20px;
-}
+      .container {
+        padding-top: 45px;
+      }
 
-.card h3{
-  font-size:21px;
-  margin-bottom:10px;
-}
-
-.card p{
-  color:#8ea596;
-  line-height:1.6;
-  font-size:14px;
-  min-height:68px;
-}
-
-.features{
-  list-style:none;
-  margin:18px 0;
-}
-
-.features li{
-  color:#b8cabe;
-  font-size:13px;
-  margin:9px 0;
-}
-
-.features li::before{
-  content:"✓";
-  color:#00ff78;
-  margin-right:8px;
-  font-weight:bold;
-}
-
-.price-row{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  margin-top:20px;
-}
-
-.price{
-  font-size:25px;
-  font-weight:900;
-}
-
-.price small{
-  color:#718a7a;
-  font-size:12px;
-  font-weight:normal;
-}
-
-.buy{
-  border:0;
-  border-radius:12px;
-  padding:12px 18px;
-  background:#00ff78;
-  color:#001b0d;
-  font-weight:900;
-  cursor:pointer;
-  transition:.2s;
-}
-
-.buy:hover{
-  transform:scale(1.04);
-  box-shadow:0 0 22px rgba(0,255,120,.25);
-}
-
-/* NOTICE */
-.notice{
-  margin:40px auto 0;
-  padding:18px 20px;
-  max-width:850px;
-  border:1px solid rgba(0,255,120,.12);
-  border-radius:15px;
-  background:rgba(0,255,120,.025);
-  color:#7f9889;
-  text-align:center;
-  font-size:13px;
-  line-height:1.6;
-}
-
-/* FOOTER */
-footer{
-  padding:30px 20px;
-  text-align:center;
-  color:#50675a;
-  border-top:1px solid rgba(0,255,120,.08);
-  font-size:12px;
-}
-
-footer span{
-  color:#00ff78;
-}
-
-/* MOBILE */
-@media(max-width:600px){
-  header{
-    padding:18px 5%;
-  }
-
-  .status{
-    font-size:9px;
-  }
-
-  .hero{
-    padding-top:55px;
-  }
-
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
-  .card{
-    min-height:auto;
-  }
-}
-</style>
+      header {
+        padding: 20px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="bg"></div>
 <canvas id="codeRain"></canvas>
-<div class="overlay"></div>
+<div class="glow"></div>
 
 <header>
   <div class="logo">
     Brazilian <span>Sensi FF</span>
   </div>
 
-  <div class="status">
-    ● PREMIUM STORE
-  </div>
+  <a href="index.html" class="back">
+    ← HOME
+  </a>
 </header>
 
-<section class="hero">
+<main class="container">
 
   <div class="badge">
-    BRAZILIAN SENSI FF • PREMIUM
+    PREMIUM ACCESS
   </div>
 
   <h1>
     Premium <span>Tools</span>
   </h1>
 
-  <p>
-    Unlock premium gaming utilities, advanced sensitivity profiles
-    and exclusive tools built for Free Fire MAX players.
+  <p class="subtitle">
+    Unlock premium Brazilian Sensi FF gaming tools and advanced sensitivity profiles.
   </p>
 
-</section>
+  <section class="products">
 
-<section class="store">
-
-  <div class="section-title">
-    <h2>Choose Your Tool</h2>
-    <p>Secure checkout will be connected to each product.</p>
-  </div>
-
-  <div class="grid">
-
-    <!-- TOOL 1 -->
     <div class="card">
-
-      <div class="icon">⚡</div>
-
-      <h3>Pro Sensitivity Engine</h3>
+      <h2>Pro Sensitivity Engine</h2>
 
       <p>
-        Advanced device-based sensitivity profile generator
-        with premium tuning options.
+        Advanced sensitivity profiles with device-based recommendations.
       </p>
 
-      <ul class="features">
-        <li>Device-based profile</li>
-        <li>Advanced sensitivity tuning</li>
-        <li>Custom gaming settings</li>
-      </ul>
+      <div class="price">₹49</div>
 
-      <div class="price-row">
-        <div class="price">₹49 <small>one-time</small></div>
-
-        <button class="buy"
-          onclick="buyTool('Pro Sensitivity Engine')">
-          BUY NOW
-        </button>
-      </div>
-
+      <a href="#" class="buy" onclick="paymentRequired(event, 'Pro Sensitivity Engine', 49)">
+        BUY NOW
+      </a>
     </div>
 
 
-    <!-- TOOL 2 -->
     <div class="card">
-
-      <div class="icon">🎯</div>
-
-      <h3>Premium Sensi Pack</h3>
+      <h2>Premium Sensi Pack</h2>
 
       <p>
-        Premium collection of recommended sensitivity
-        profiles for supported devices.
+        Premium collection of optimized Free Fire MAX sensitivity profiles.
       </p>
 
-      <ul class="features">
-        <li>Multiple device profiles</li>
-        <li>Premium presets</li>
-        <li>Regular profile updates</li>
-      </ul>
+      <div class="price">₹99</div>
 
-      <div class="price-row">
-        <div class="price">₹99 <small>one-time</small></div>
-
-        <button class="buy"
-          onclick="buyTool('Premium Sensi Pack')">
-          BUY NOW
-        </button>
-      </div>
-
+      <a href="#" class="buy" onclick="paymentRequired(event, 'Premium Sensi Pack', 99)">
+        BUY NOW
+      </a>
     </div>
 
 
-    <!-- TOOL 3 -->
     <div class="card">
-
-      <div class="icon">🚀</div>
-
-      <h3>Ultimate Gaming Pack</h3>
+      <h2>Ultimate Gaming Pack</h2>
 
       <p>
-        Complete premium package containing sensitivity
-        profiles and gaming optimization guides.
+        Complete premium gaming settings and sensitivity recommendations.
       </p>
 
-      <ul class="features">
-        <li>Premium sensitivity tools</li>
-        <li>Gaming optimization</li>
-        <li>Exclusive presets</li>
-      </ul>
+      <div class="price">₹149</div>
 
-      <div class="price-row">
-        <div class="price">₹149 <small>one-time</small></div>
-
-        <button class="buy"
-          onclick="buyTool('Ultimate Gaming Pack')">
-          BUY NOW
-        </button>
-      </div>
-
+      <a href="#" class="buy" onclick="paymentRequired(event, 'Ultimate Gaming Pack', 149)">
+        BUY NOW
+      </a>
     </div>
 
+  </section>
+
+  <div class="payment-note">
+    🔒 <b>Payment Required</b><br>
+    Select a premium product and complete the payment to receive access.
   </div>
 
-  <div class="notice">
-    🔒 Payments and digital delivery will be handled through a secure
-    payment provider. Never put payment API secrets or private keys
-    inside this HTML file.
-  </div>
-
-</section>
+</main>
 
 <footer>
-  © 2026 <span>BRAZILIAN SENSI FF</span> • Premium Store
+  © 2026 Brazilian Sensi FF — Premium Tools
 </footer>
 
 
 <script>
+  /*
+    अपना payment link यहाँ डालना है।
 
-/* =================================
-   PAYMENT LINKS
-   =================================
+    Example:
 
-   Later, put your REAL checkout URLs here.
+    const PAYMENT_LINKS = {
+      "Pro Sensitivity Engine": "YOUR_LINK",
+      "Premium Sensi Pack": "YOUR_LINK",
+      "Ultimate Gaming Pack": "YOUR_LINK"
+    };
+  */
 
-   Example:
-
-   "Pro Sensitivity Engine":
-      "YOUR_PAYMENT_CHECKOUT_URL"
-
-   Do NOT put secret API keys here.
-*/
-
-const PAYMENT_LINKS = {
-
-  "Pro Sensitivity Engine": "",
-
-  "Premium Sensi Pack": "",
-
-  "Ultimate Gaming Pack": ""
-
-};
+  const PAYMENT_LINKS = {
+    "Pro Sensitivity Engine": "",
+    "Premium Sensi Pack": "",
+    "Ultimate Gaming Pack": ""
+  };
 
 
-/* BUY BUTTON */
+  function paymentRequired(event, product, price) {
+    event.preventDefault();
 
-function buyTool(toolName){
+    const link = PAYMENT_LINKS[product];
 
-  const paymentUrl = PAYMENT_LINKS[toolName];
+    if (!link) {
+      alert(
+        "🔒 PAYMENT REQUIRED\n\n" +
+        product + "\n" +
+        "Price: ₹" + price + "\n\n" +
+        "Payment checkout अभी connect नहीं किया गया है."
+      );
 
-  if(!paymentUrl){
-
-    alert(
-      "Payment checkout is not connected yet.\n\n" +
-      "First create your payment checkout link, " +
-      "then add it to PAYMENT_LINKS."
-    );
-
-    return;
-  }
-
-  window.location.href = paymentUrl;
-}
-
-
-/* =================================
-   CODE RAIN
-   ================================= */
-
-const canvas = document.getElementById("codeRain");
-const ctx = canvas.getContext("2d");
-
-let width;
-let height;
-let columns;
-let drops;
-
-const chars =
-"01ABCDEFGHIJKLMNOPQRSTUVWXYZ<>[]{}$#@%";
-
-function resize(){
-
-  width = canvas.width = window.innerWidth;
-  height = canvas.height = window.innerHeight;
-
-  columns = Math.floor(width / 18);
-
-  drops = [];
-
-  for(let i=0;i<columns;i++){
-
-    drops[i] =
-      Math.random() * -50;
-
-  }
-}
-
-function draw(){
-
-  ctx.fillStyle = "rgba(2,8,5,.16)";
-  ctx.fillRect(0,0,width,height);
-
-  ctx.font = "12px monospace";
-
-  for(let i=0;i<columns;i++){
-
-    const char =
-      chars[Math.floor(Math.random()*chars.length)];
-
-    const x = i * 18;
-    const y = drops[i] * 18;
-
-    ctx.fillStyle = "rgba(0,255,120,.55)";
-    ctx.fillText(char,x,y);
-
-    if(y > height && Math.random() > .975){
-      drops[i] = 0;
+      return;
     }
 
-    drops[i] += .55;
+    window.location.href = link;
   }
 
-  requestAnimationFrame(draw);
-}
 
-window.addEventListener("resize",resize);
+  // Background code rain
+  const canvas = document.getElementById("codeRain");
+  const ctx = canvas.getContext("2d");
 
-resize();
-draw();
+  let width;
+  let height;
+  let columns;
+  let drops = [];
 
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+
+    columns = Math.floor(width / 18);
+    drops = Array(columns).fill(0).map(() =>
+      Math.random() * -100
+    );
+  }
+
+  function draw() {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
+    ctx.fillRect(0, 0, width, height);
+
+    ctx.font = "13px monospace";
+
+    for (let i = 0; i < drops.length; i++) {
+
+      const chars = "01ABCDEF<>/{}[]$#@";
+      const char = chars[Math.floor(Math.random() * chars.length)];
+
+      ctx.fillStyle = "rgba(24,255,117,.55)";
+      ctx.fillText(char, i * 18, drops[i] * 18);
+
+      if (drops[i] * 18 > height && Math.random() > .975) {
+        drops[i] = 0;
+      }
+
+      drops[i] += .7;
+    }
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener("resize", resize);
+
+  resize();
+  draw();
 </script>
 
 </body>
