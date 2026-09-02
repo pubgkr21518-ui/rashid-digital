@@ -1,1298 +1,876 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Brazilian Sensi FF</title>
-
-<meta
-  name="description"
-  content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and premium gaming tools."
->
-
-<style>
-
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
-html,
-body{
-  width:100%;
-  min-height:100%;
-}
-
-body{
-  overflow-x:hidden;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#ecfff5;
-
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(0,255,120,.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(0,150,110,.10),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #03100c 0%,
-      #04171a 48%,
-      #020806 100%
-    );
-}
-
-/* =========================================
-   CODE BACKGROUND
-========================================= */
-
-#codeRain{
-  position:fixed;
-  inset:0;
-
-  width:100%;
-  height:100%;
-
-  z-index:-10;
-  pointer-events:none;
-
-  opacity:.27;
-}
-
-.background-glow{
-  position:fixed;
-  inset:0;
-
-  z-index:-5;
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 0%,
-      rgba(0,10,8,.20) 45%,
-      rgba(0,5,4,.72) 100%
-    );
-}
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="description"
+        content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
+
+  <title>Brazilian Sensi FF</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #ffffff;
+      background:
+        radial-gradient(circle at 20% 10%, rgba(0,255,136,0.12), transparent 30%),
+        radial-gradient(circle at 80% 30%, rgba(0,140,255,0.13), transparent 32%),
+        linear-gradient(135deg, #020b0a, #03151a 45%, #020809);
+      overflow-x: hidden;
+    }
+
+    /* =========================
+       ANIMATED BACKGROUND
+    ========================== */
+
+    #codeRain {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+      pointer-events: none;
+      opacity: 0.32;
+    }
+
+    .background-glow {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 20%,
+          rgba(0,255,136,0.08),
+          transparent 40%
+        );
+    }
+
+    /* =========================
+       HEADER
+    ========================== */
+
+    .header {
+      width: 100%;
+      padding: 18px 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      background: rgba(2, 10, 11, 0.82);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+
+      border-bottom: 1px solid rgba(0,255,136,0.18);
+    }
+
+    .logo {
+      font-size: 22px;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+      white-space: nowrap;
+    }
+
+    .logo span {
+      color: #00ff88;
+      text-shadow: 0 0 14px rgba(0,255,136,0.55);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    /* BIG PREMIUM BUTTON */
 
-/* =========================================
-   HEADER
-========================================= */
+    .premium-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
 
-.header{
-  position:relative;
-  z-index:20;
+      min-width: 190px;
+      padding: 14px 26px;
 
-  min-height:76px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
+      color: #00ff88;
+      text-decoration: none;
 
-  padding:18px 7%;
+      font-size: 16px;
+      font-weight: 900;
+      letter-spacing: 1.3px;
 
-  background:
-    rgba(2,12,9,.52);
+      border: 1px solid rgba(0,255,136,0.75);
+      border-radius: 13px;
 
-  border-bottom:
-    1px solid rgba(0,255,120,.12);
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,255,136,0.13),
+          rgba(0,120,255,0.10)
+        );
 
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
+      box-shadow:
+        0 0 15px rgba(0,255,136,0.18),
+        inset 0 0 15px rgba(0,255,136,0.04);
 
-.logo{
-  font-size:21px;
-  font-weight:900;
-  letter-spacing:.5px;
+      transition: 0.25s ease;
+    }
 
-  text-shadow:
-    0 0 18px rgba(0,255,120,.16);
-}
+    .premium-link:hover {
+      transform: translateY(-2px) scale(1.04);
 
-.logo span{
-  color:#00ff78;
+      color: #ffffff;
 
-  text-shadow:
-    0 0 18px rgba(0,255,120,.35);
-}
+      border-color: #00ff88;
 
-.header-right{
-  display:flex;
-  align-items:center;
-  gap:18px;
-}
+      background:
+        linear-gradient(
+          135deg,
+          rgba(0,255,136,0.24),
+          rgba(0,140,255,0.18)
+        );
 
-.status{
-  color:#00ff78;
-  font-size:10px;
-  font-weight:900;
-  letter-spacing:1.5px;
-}
+      box-shadow:
+        0 0 25px rgba(0,255,136,0.42),
+        0 0 45px rgba(0,140,255,0.12);
+    }
 
-/* PREMIUM BUTTON */
+    .status {
+      font-size: 11px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.65);
+      letter-spacing: 0.7px;
+      white-space: nowrap;
+    }
 
-.premium-link{
-  display:inline-block;
+    /* =========================
+       HERO
+    ========================== */
 
-  padding:10px 15px;
+    .hero {
+      width: min(1100px, 92%);
+      margin: 70px auto 30px;
 
-  color:#00ff78;
-  text-decoration:none;
+      padding: 60px 30px;
 
-  font-size:11px;
-  font-weight:900;
-  letter-spacing:1px;
+      text-align: center;
 
-  border:
-    1px solid rgba(0,255,120,.28);
+      border: 1px solid rgba(0,255,136,0.18);
+      border-radius: 28px;
 
-  border-radius:10px;
+      background:
+        linear-gradient(
+          135deg,
+          rgba(4,25,23,0.74),
+          rgba(3,17,25,0.70)
+        );
 
-  background:
-    rgba(0,255,120,.045);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
-  box-shadow:
-    0 0 20px rgba(0,255,120,.035);
+      box-shadow:
+        0 20px 70px rgba(0,0,0,0.35),
+        inset 0 0 35px rgba(0,255,136,0.025);
+    }
 
-  transition:.25s ease;
-}
+    .badge {
+      display: inline-block;
 
-.premium-link:hover{
-  color:#00160b;
+      margin-bottom: 20px;
+      padding: 8px 16px;
 
-  background:#00ff78;
+      color: #00ff88;
 
-  box-shadow:
-    0 0 28px rgba(0,255,120,.25);
+      border: 1px solid rgba(0,255,136,0.35);
+      border-radius: 999px;
 
-  transform:translateY(-2px);
-}
+      background: rgba(0,255,136,0.06);
 
-/* =========================================
-   HERO
-========================================= */
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+    }
 
-.hero{
-  position:relative;
-  z-index:5;
+    .hero h1 {
+      font-size: clamp(38px, 7vw, 76px);
+      line-height: 1.05;
+      font-weight: 1000;
 
-  min-height:
-    calc(100vh - 76px);
+      margin-bottom: 18px;
 
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
+      text-shadow:
+        0 0 25px rgba(0,255,136,0.12);
+    }
 
-  text-align:center;
+    .hero h1 span {
+      color: #00ff88;
 
-  padding:
-    70px 20px 90px;
-}
+      text-shadow:
+        0 0 18px rgba(0,255,136,0.45);
+    }
 
-.badge{
-  display:inline-block;
+    .hero p {
+      max-width: 720px;
+      margin: 0 auto;
 
-  padding:9px 15px;
+      color: rgba(255,255,255,0.68);
 
-  border:
-    1px solid rgba(0,255,120,.22);
+      font-size: 16px;
+      line-height: 1.7;
+    }
 
-  border-radius:999px;
+    /* =========================
+       GENERATOR
+    ========================== */
 
-  background:
-    rgba(0,255,120,.045);
+    .generator {
+      width: min(900px, 92%);
+      margin: 30px auto;
 
-  color:#00ff78;
+      padding: 35px;
 
-  font-size:10px;
-  font-weight:900;
+      border: 1px solid rgba(0,255,136,0.18);
+      border-radius: 24px;
 
-  letter-spacing:2px;
+      background: rgba(2,15,17,0.72);
 
-  box-shadow:
-    0 0 25px rgba(0,255,120,.035);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
 
-  margin-bottom:22px;
-}
+      box-shadow:
+        0 20px 60px rgba(0,0,0,0.3);
+    }
 
-.hero h1{
-  font-size:
-    clamp(45px,8vw,82px);
+    .section-title {
+      margin-bottom: 25px;
 
-  line-height:.98;
+      text-align: center;
 
-  font-weight:1000;
+      font-size: 25px;
+      font-weight: 900;
+    }
 
-  letter-spacing:-4px;
+    .section-title span {
+      color: #00ff88;
+    }
 
-  color:#f1fff7;
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
 
-  text-shadow:
-    0 0 35px rgba(0,255,120,.08);
-}
+    .field {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
 
-.hero h1 span{
-  display:inline-block;
+    .field label {
+      color: rgba(255,255,255,0.65);
 
-  color:#00ff78;
+      font-size: 12px;
+      font-weight: 800;
 
-  text-shadow:
-    0 0 15px rgba(0,255,120,.25),
-    0 0 45px rgba(0,255,120,.08);
-}
+      letter-spacing: 0.8px;
+    }
 
-.hero-description{
-  max-width:620px;
+    .field input,
+    .field select {
+      width: 100%;
 
-  margin:
-    25px auto 0;
+      padding: 14px 13px;
 
-  color:#91aa9c;
+      color: #ffffff;
+      background: rgba(0,0,0,0.35);
 
-  font-size:15px;
+      border: 1px solid rgba(0,255,136,0.22);
+      border-radius: 11px;
 
-  line-height:1.7;
-}
+      outline: none;
 
-/* =========================================
-   GENERATOR
-========================================= */
+      font-size: 14px;
 
-.generator-box{
-  width:min(650px,94%);
+      transition: 0.2s ease;
+    }
 
-  margin-top:38px;
+    .field input:focus,
+    .field select:focus {
+      border-color: #00ff88;
 
-  padding:30px;
+      box-shadow:
+        0 0 14px rgba(0,255,136,0.16);
+    }
 
-  text-align:left;
+    .field select option {
+      color: #000000;
+    }
 
-  position:relative;
-  overflow:hidden;
+    .generate-btn {
+      width: 100%;
 
-  border:
-    1px solid rgba(0,255,120,.14);
+      margin-top: 25px;
+      padding: 16px;
 
-  border-radius:24px;
+      border: 0;
+      border-radius: 13px;
 
-  background:
-    linear-gradient(
-      145deg,
-      rgba(7,25,18,.78),
-      rgba(2,10,10,.72)
-    );
+      color: #00130b;
 
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
+      background:
+        linear-gradient(
+          135deg,
+          #00ff88,
+          #00d9ff
+        );
 
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.48),
-    inset 0 1px 0 rgba(255,255,255,.045);
-}
+      font-size: 15px;
+      font-weight: 1000;
+      letter-spacing: 1px;
 
-.generator-box::before{
-  content:"";
+      cursor: pointer;
 
-  position:absolute;
+      box-shadow:
+        0 0 22px rgba(0,255,136,0.18);
 
-  top:0;
-  left:-80%;
+      transition: 0.25s ease;
+    }
 
-  width:65%;
-  height:1px;
+    .generate-btn:hover {
+      transform: translateY(-2px);
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #00ff78,
-      transparent
-    );
+      box-shadow:
+        0 0 32px rgba(0,255,136,0.35);
+    }
 
-  box-shadow:
-    0 0 16px #00ff78;
+    /* =========================
+       INFO CARDS
+    ========================== */
 
-  animation:
-    laser 4s linear infinite;
-}
+    .info-section {
+      width: min(1100px, 92%);
+      margin: 40px auto 70px;
+    }
 
-@keyframes laser{
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
 
-  0%{
-    left:-80%;
-  }
+    .card {
+      padding: 25px;
 
-  100%{
-    left:140%;
-  }
+      border: 1px solid rgba(0,255,136,0.15);
+      border-radius: 20px;
 
-}
+      background:
+        rgba(3,20,22,0.68);
 
-.generator-title{
-  color:#eafff2;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
 
-  font-size:19px;
-  font-weight:900;
+      transition: 0.25s ease;
+    }
 
-  margin-bottom:7px;
-}
+    .card:hover {
+      transform: translateY(-5px);
 
-.generator-subtitle{
-  color:#637c6d;
+      border-color: rgba(0,255,136,0.38);
 
-  font-size:12px;
+      box-shadow:
+        0 15px 40px rgba(0,0,0,0.25);
+    }
 
-  margin-bottom:24px;
-}
+    .card-icon {
+      font-size: 27px;
+      margin-bottom: 12px;
+    }
 
-label{
-  display:block;
+    .card h3 {
+      margin-bottom: 9px;
 
-  margin-bottom:8px;
+      font-size: 18px;
+    }
 
-  color:#91aa9c;
+    .card p {
+      color: rgba(255,255,255,0.58);
 
-  font-size:10px;
-  font-weight:900;
+      font-size: 13px;
+      line-height: 1.65;
+    }
 
-  letter-spacing:1.5px;
-}
+    /* =========================
+       FOOTER
+    ========================== */
 
-input,
-select{
-  width:100%;
+    footer {
+      padding: 25px 20px;
 
-  height:48px;
+      text-align: center;
 
-  padding:
-    0 14px;
+      border-top: 1px solid rgba(0,255,136,0.12);
 
-  border:
-    1px solid rgba(255,255,255,.08);
+      color: rgba(255,255,255,0.45);
 
-  border-radius:11px;
+      font-size: 12px;
+    }
 
-  outline:none;
+    footer strong {
+      color: #00ff88;
+    }
 
-  background:
-    rgba(0,0,0,.28);
+    /* =========================
+       MOBILE
+    ========================== */
 
-  color:#eafff4;
+    @media (max-width: 800px) {
 
-  font-size:14px;
+      .header {
+        padding: 14px 4%;
+      }
 
-  transition:.25s ease;
-}
+      .status {
+        display: none;
+      }
 
-input::placeholder{
-  color:#50665a;
-}
+      .premium-link {
+        min-width: 155px;
+        padding: 12px 16px;
+        font-size: 13px;
+      }
 
-input:focus,
-select:focus{
-  border-color:
-    rgba(0,255,120,.45);
+      .logo {
+        font-size: 18px;
+      }
 
-  box-shadow:
-    0 0 0 3px rgba(0,255,120,.035),
-    0 0 22px rgba(0,255,120,.08);
-}
+      .hero {
+        margin-top: 35px;
+        padding: 45px 20px;
+      }
 
-select option{
-  background:#07120e;
-  color:#fff;
-}
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
 
-.field{
-  flex:1;
-}
+      .cards {
+        grid-template-columns: 1fr;
+      }
 
-.row{
-  display:flex;
+      .generator {
+        padding: 25px 18px;
+      }
+    }
 
-  gap:14px;
+    @media (max-width: 480px) {
 
-  margin-top:18px;
-}
+      .header {
+        gap: 10px;
+      }
 
-.generate-btn{
-  position:relative;
+      .logo {
+        font-size: 16px;
+      }
 
-  width:100%;
+      .premium-link {
+        min-width: 135px;
+        padding: 11px 12px;
+        font-size: 11px;
+        letter-spacing: 0.8px;
+      }
 
-  height:52px;
+      .hero h1 {
+        font-size: 40px;
+      }
 
-  margin-top:22px;
-
-  border:0;
-
-  border-radius:12px;
-
-  cursor:pointer;
-
-  overflow:hidden;
-
-  color:#00150a;
-
-  font-size:13px;
-
-  font-weight:1000;
-
-  letter-spacing:.8px;
-
-  background:
-    linear-gradient(
-      100deg,
-      #00d96b,
-      #00ff78,
-      #31e889,
-      #00c968
-    );
-
-  box-shadow:
-    0 12px 35px rgba(0,255,120,.12);
-
-  transition:.25s ease;
-}
-
-.generate-btn::after{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-100%;
-
-  width:65%;
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.30),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    button-shine 3.5s linear infinite;
-}
-
-@keyframes button-shine{
-
-  0%{
-    left:-100%;
-  }
-
-  45%,
-  100%{
-    left:140%;
-  }
-
-}
-
-.generate-btn:hover{
-  transform:translateY(-2px);
-
-  box-shadow:
-    0 17px 42px rgba(0,255,120,.20);
-}
-
-#error{
-  min-height:18px;
-
-  margin-top:10px;
-
-  color:#ff7474;
-
-  font-size:12px;
-}
-
-/* =========================================
-   INFO CARDS
-========================================= */
-
-.info-section{
-  position:relative;
-  z-index:5;
-
-  width:min(1050px,92%);
-
-  margin:
-    -15px auto 90px;
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:18px;
-}
-
-.info-card{
-  padding:24px;
-
-  border:
-    1px solid rgba(0,255,120,.10);
-
-  border-radius:18px;
-
-  background:
-    rgba(3,15,11,.58);
-
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
-
-  transition:.3s ease;
-}
-
-.info-card:hover{
-  transform:translateY(-5px);
-
-  border-color:
-    rgba(0,255,120,.28);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.30);
-}
-
-.info-number{
-  color:#00ff78;
-
-  font-size:11px;
-  font-weight:900;
-
-  letter-spacing:1px;
-}
-
-.info-card h3{
-  margin-top:12px;
-
-  font-size:18px;
-}
-
-.info-card p{
-  margin-top:9px;
-
-  color:#718a7b;
-
-  font-size:13px;
-
-  line-height:1.6;
-}
-
-/* =========================================
-   FOOTER
-========================================= */
-
-footer{
-  position:relative;
-  z-index:5;
-
-  padding:30px 20px;
-
-  text-align:center;
-
-  color:#52695b;
-
-  border-top:
-    1px solid rgba(0,255,120,.08);
-
-  background:
-    rgba(1,7,5,.35);
-}
-
-footer strong{
-  color:#00ff78;
-}
-
-/* =========================================
-   MOBILE
-========================================= */
-
-@media(max-width:700px){
-
-  .header{
-    padding:16px 5%;
-  }
-
-  .header-right{
-    gap:7px;
-  }
-
-  .status{
-    display:none;
-  }
-
-  .premium-link{
-    padding:8px 10px;
-
-    font-size:9px;
-  }
-
-  .hero{
-    padding:
-      60px 15px 70px;
-  }
-
-  .hero h1{
-    font-size:
-      clamp(42px,14vw,65px);
-
-    letter-spacing:-3px;
-  }
-
-  .hero-description{
-    font-size:14px;
-  }
-
-  .generator-box{
-    padding:22px;
-
-    border-radius:19px;
-  }
-
-  .row{
-    flex-direction:column;
-  }
-
-  .info-section{
-    grid-template-columns:1fr;
-
-    margin-top:0;
-  }
-
-  #codeRain{
-    opacity:.18;
-  }
-
-}
-
-/* VERY SMALL PHONES */
-
-@media(max-width:400px){
-
-  .logo{
-    font-size:17px;
-  }
-
-  .premium-link{
-    font-size:8px;
-    padding:8px;
-  }
-
-}
-
-</style>
+      .hero p {
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
-
 
 <body>
 
-<!-- =====================================
-     BACKGROUND
-====================================== -->
+  <!-- BACKGROUND -->
+  <canvas id="codeRain"></canvas>
+  <div class="background-glow"></div>
 
-<canvas id="codeRain"></canvas>
+  <!-- HEADER -->
+  <header class="header">
 
-<div class="background-glow"></div>
-
-
-<!-- =====================================
-     HEADER
-====================================== -->
-
-<header class="header">
-
-  <div class="logo">
-    Brazilian <span>Sensi FF</span>
-  </div>
-
-  <div class="header-right">
-
-    <a
-      href="premium.html"
-      class="premium-link"
-    >
-      PREMIUM TOOLS
-    </a>
-
-    <div class="status">
-      ● BRAZILIAN SENSI FF
+    <div class="logo">
+      Brazilian <span>Sensi FF</span>
     </div>
 
-  </div>
+    <div class="header-right">
 
-</header>
+      <!-- PREMIUM TOOLS -->
+      <a href="premium.html" class="premium-link">
+        PREMIUM TOOLS
+      </a>
 
+      <div class="status">
+        ● BRAZILIAN SENSI FF
+      </div>
 
-<!-- =====================================
-     MAIN
-====================================== -->
+    </div>
 
-<main>
-
-<section class="hero">
-
-  <div class="badge">
-    BRAZILIAN SENSI FF • SENSITIVITY ENGINE
-  </div>
+  </header>
 
 
-  <h1>
-    Find Your<br>
-    <span>Brazilian Sensi</span>
-  </h1>
+  <!-- HERO -->
+  <section class="hero">
 
+    <div class="badge">
+      BRAZILIAN SENSI FF • SENSITIVITY ENGINE
+    </div>
 
-  <p class="hero-description">
-    Enter your device information and get a
-    recommended Free Fire MAX sensitivity profile
-    with gaming settings.
-  </p>
+    <h1>
+      Brazilian <span>Sensi</span>
+    </h1>
+
+    <p>
+      Generate a recommended Free Fire MAX sensitivity
+      profile based on your device, RAM and storage.
+      Use the result as a starting point and fine-tune it
+      according to your touch response and play style.
+    </p>
+
+  </section>
 
 
   <!-- GENERATOR -->
+  <section class="generator">
 
-  <div class="generator-box">
-
-    <div class="generator-title">
-      Sensitivity Generator
+    <div class="section-title">
+      Generate Your <span>Sensi</span>
     </div>
 
-    <div class="generator-subtitle">
-      Enter your device details to generate your profile.
-    </div>
-
-
-    <label for="device">
-      DEVICE NAME
-    </label>
-
-    <input
-      type="text"
-      id="device"
-      placeholder="Example: POCO F5"
-      autocomplete="off"
-    >
-
-
-    <div class="row">
+    <div class="form-grid">
 
       <div class="field">
+        <label for="device">
+          DEVICE MODEL
+        </label>
 
+        <input
+          id="device"
+          type="text"
+          placeholder="Example: POCO F5"
+          autocomplete="off"
+        >
+      </div>
+
+
+      <div class="field">
         <label for="ram">
           RAM
         </label>
 
         <select id="ram">
 
-          <option value="4">
-            4 GB
-          </option>
-
-          <option value="6">
-            6 GB
-          </option>
-
-          <option value="8" selected>
-            8 GB
-          </option>
-
-          <option value="12">
-            12 GB
-          </option>
-
-          <option value="16">
-            16 GB
-          </option>
-
-          <option value="24">
-            24 GB
-          </option>
+          <option value="2">2 GB</option>
+          <option value="3">3 GB</option>
+          <option value="4">4 GB</option>
+          <option value="6">6 GB</option>
+          <option value="8" selected>8 GB</option>
+          <option value="12">12 GB</option>
+          <option value="16">16 GB</option>
+          <option value="24">24 GB</option>
 
         </select>
-
       </div>
 
 
       <div class="field">
-
         <label for="storage">
           STORAGE
         </label>
 
         <select id="storage">
 
-          <option value="64">
-            64 GB
-          </option>
-
-          <option value="128" selected>
-            128 GB
-          </option>
-
-          <option value="256">
-            256 GB
-          </option>
-
-          <option value="512">
-            512 GB
-          </option>
-
-          <option value="1024">
-            1 TB
-          </option>
+          <option value="32">32 GB</option>
+          <option value="64">64 GB</option>
+          <option value="128" selected>128 GB</option>
+          <option value="256">256 GB</option>
+          <option value="512">512 GB</option>
+          <option value="1024">1 TB</option>
 
         </select>
-
       </div>
 
     </div>
 
 
     <button
-      id="generateBtn"
       class="generate-btn"
+      onclick="generateSensi()"
     >
-      GENERATE SENSITIVITY →
+      ⚡ GENERATE SENSITIVITY
     </button>
 
-
-    <div id="error"></div>
-
-  </div>
-
-</section>
+  </section>
 
 
-<!-- =====================================
-     INFO
-====================================== -->
+  <!-- INFO -->
+  <section class="info-section">
 
-<section class="info-section">
-
-  <div class="info-card">
-
-    <div class="info-number">
-      01
+    <div class="section-title">
+      Why Use <span>Brazilian Sensi?</span>
     </div>
 
-    <h3>
-      Device Based
-    </h3>
+    <div class="cards">
 
-    <p>
-      Recommendations are generated using
-      your device information.
-    </p>
+      <div class="card">
 
-  </div>
+        <div class="card-icon">
+          🎯
+        </div>
+
+        <h3>
+          Device Based
+        </h3>
+
+        <p>
+          The generator considers your device and
+          RAM to provide a suitable sensitivity starting point.
+        </p>
+
+      </div>
 
 
-  <div class="info-card">
+      <div class="card">
 
-    <div class="info-number">
-      02
+        <div class="card-icon">
+          ⚡
+        </div>
+
+        <h3>
+          Gaming Focused
+        </h3>
+
+        <p>
+          Recommended settings are designed around
+          touch response, FPS and comfortable gameplay.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="card-icon">
+          🔥
+        </div>
+
+        <h3>
+          Easy To Use
+        </h3>
+
+        <p>
+          Enter your device information and generate
+          your profile in seconds.
+        </p>
+
+      </div>
+
     </div>
 
-    <h3>
-      Gaming Settings
-    </h3>
-
-    <p>
-      Get useful gaming settings together
-      with your sensitivity profile.
-    </p>
-
-  </div>
+  </section>
 
 
-  <div class="info-card">
+  <!-- FOOTER -->
+  <footer>
 
-    <div class="info-number">
-      03
-    </div>
+    <strong>BRAZILIAN SENSI FF</strong>
+    <br><br>
 
-    <h3>
-      Premium Tools
-    </h3>
+    Free Fire MAX sensitivity recommendations.
+    Actual results may vary depending on device,
+    game version, FPS, touch response and player preference.
 
-    <p>
-      Explore additional premium tools and
-      digital products from Brazilian Sensi FF.
-    </p>
-
-  </div>
-
-</section>
-
-</main>
+  </footer>
 
 
-<!-- =====================================
-     FOOTER
-====================================== -->
+  <script>
 
-<footer>
+    /* =========================
+       GENERATOR
+    ========================== */
 
-  <strong>
-    BRAZILIAN SENSI FF
-  </strong>
+    function generateSensi() {
 
-  &nbsp; • &nbsp;
+      const device =
+        document.getElementById("device").value.trim();
 
-  © 2026
+      const ram =
+        document.getElementById("ram").value;
 
-</footer>
+      const storage =
+        document.getElementById("storage").value;
 
+      if (!device) {
 
-<script>
+        alert("Please enter your device model.");
 
-/* =========================================
-   GENERATOR
-========================================= */
+        document.getElementById("device").focus();
 
-const deviceInput =
-  document.getElementById("device");
+        return;
+      }
 
-const ramInput =
-  document.getElementById("ram");
+      const params = new URLSearchParams();
 
-const storageInput =
-  document.getElementById("storage");
+      params.set("device", device);
+      params.set("ram", ram);
+      params.set("storage", storage);
 
-const generateBtn =
-  document.getElementById("generateBtn");
-
-const error =
-  document.getElementById("error");
-
-
-generateBtn.addEventListener(
-  "click",
-  function(){
-
-    const device =
-      deviceInput.value.trim();
-
-    const ram =
-      ramInput.value;
-
-    const storage =
-      storageInput.value;
-
-
-    if(!device){
-
-      error.textContent =
-        "Please enter your device name.";
-
-      deviceInput.focus();
-
-      return;
+      window.location.href =
+        "sensitivity.html?" + params.toString();
     }
 
 
-    error.textContent = "";
+    /* =========================
+       ENTER KEY
+    ========================== */
+
+    document
+      .getElementById("device")
+      .addEventListener("keydown", function(event) {
+
+        if (event.key === "Enter") {
+          generateSensi();
+        }
+
+      });
 
 
-    const params =
-      new URLSearchParams();
+    /* =========================
+       CODE RAIN
+    ========================== */
 
+    const canvas =
+      document.getElementById("codeRain");
 
-    params.set(
-      "device",
-      device
-    );
+    const ctx =
+      canvas.getContext("2d");
 
+    let width;
+    let height;
 
-    params.set(
-      "ram",
-      ram
-    );
+    let columns;
+    let drops;
 
+    const chars =
+      "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\$#@%&*+=-";
 
-    params.set(
-      "storage",
-      storage
-    );
+    function resizeCanvas() {
 
+      width =
+        canvas.width =
+          window.innerWidth;
 
-    window.location.href =
-      "sensitivity.html?" +
-      params.toString();
+      height =
+        canvas.height =
+          window.innerHeight;
 
-  }
-);
+      columns =
+        Math.floor(width / 16);
 
-
-deviceInput.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      generateBtn.click();
-
+      drops =
+        Array.from(
+          { length: columns },
+          () => Math.random() * height / 16
+        );
     }
 
-  }
-);
-
-
-/* =========================================
-   GREEN CODE RAIN
-========================================= */
-
-const canvas =
-  document.getElementById("codeRain");
-
-const ctx =
-  canvas.getContext("2d");
-
-
-let width;
-let height;
-
-let columns;
-let drops;
-
-
-const characters =
-  "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\\\|=+-_*#$%@";
-
-
-function resize(){
-
-  width =
-    window.innerWidth;
-
-  height =
-    window.innerHeight;
-
-
-  canvas.width =
-    width *
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-  canvas.height =
-    height *
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-
-  canvas.style.width =
-    width + "px";
-
-  canvas.style.height =
-    height + "px";
-
-
-  const dpr =
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-
-  const size = 19;
-
-  columns =
-    Math.ceil(
-      width / size
-    );
-
-
-  drops = [];
-
-
-  for(
-    let i = 0;
-    i < columns;
-    i++
-  ){
-
-    drops.push(
-      Math.random() *
-      -80
-    );
-
-  }
-
-}
-
-
-function drawCode(){
-
-  ctx.fillStyle =
-    "rgba(2,8,6,.16)";
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  ctx.font =
-    "12px monospace";
-
-
-  for(
-    let i = 0;
-    i < columns;
-    i++
-  ){
-
-    const char =
-      characters[
-        Math.floor(
-          Math.random() *
-          characters.length
-        )
-      ];
-
-
-    const x =
-      i * 19;
-
-    const y =
-      drops[i] * 17;
-
-
-    /* HEAD */
-
-    ctx.fillStyle =
-      "rgba(130,255,180,.85)";
-
-    ctx.shadowBlur =
-      8;
-
-    ctx.shadowColor =
-      "#00ff78";
-
-    ctx.fillText(
-      char,
-      x,
-      y
-    );
-
-
-    /* TRAIL */
-
-    ctx.shadowBlur =
-      0;
-
-    ctx.fillStyle =
-      "rgba(0,255,120,.38)";
-
-
-    for(
-      let trail = 1;
-      trail < 9;
-      trail++
-    ){
-
-      const trailChar =
-        characters[
-          Math.floor(
-            Math.random() *
-            characters.length
-          )
-        ];
-
-
-      const trailY =
-        y -
-        trail * 17;
-
-
-      ctx.globalAlpha =
-        1 -
-        trail / 10;
-
-
-      ctx.fillText(
-        trailChar,
-        x,
-        trailY
+    function drawRain() {
+
+      ctx.fillStyle =
+        "rgba(2, 8, 9, 0.075)";
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
       );
 
+      ctx.font =
+        "12px monospace";
+
+      for (
+        let i = 0;
+        i < drops.length;
+        i++
+      ) {
+
+        const char =
+          chars[
+            Math.floor(
+              Math.random() * chars.length
+            )
+          ];
+
+        const x =
+          i * 16;
+
+        const y =
+          drops[i] * 16;
+
+        ctx.fillStyle =
+          Math.random() > 0.88
+            ? "rgba(0,255,136,0.42)"
+            : "rgba(0,180,140,0.20)";
+
+        ctx.fillText(
+          char,
+          x,
+          y
+        );
+
+        if (
+          y > height &&
+          Math.random() > 0.975
+        ) {
+          drops[i] = 0;
+        }
+
+        drops[i] += 0.42;
+      }
+
+      requestAnimationFrame(drawRain);
     }
 
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
 
-    ctx.globalAlpha = 1;
+    resizeCanvas();
+    drawRain();
 
-
-    drops[i] +=
-      .55 +
-      Math.random() * .75;
-
-
-    if(
-      y > height + 200 &&
-      Math.random() > .975
-    ){
-
-      drops[i] =
-        Math.random() * -40;
-
-    }
-
-  }
-
-}
-
-
-function animateCode(){
-
-  drawCode();
-
-  requestAnimationFrame(
-    animateCode
-  );
-
-}
-
-
-resize();
-
-window.addEventListener(
-  "resize",
-  resize
-);
-
-animateCode();
-
-</script>
+  </script>
 
 </body>
 </html>
