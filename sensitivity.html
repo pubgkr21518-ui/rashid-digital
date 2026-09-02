@@ -2,967 +2,575 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>FF MAX • Sensitivity Profile</title>
+<title>FF MAX Sensitivity Profile</title>
 
 <style>
-
-/* =====================================================
-   BASE
-===================================================== */
-
-:root{
-  --accent:#00d9ff;
-  --accent2:#7468ff;
-  --rgb:0,217,255;
-  --bg:#05070c;
-}
-
 *{
   box-sizing:border-box;
   margin:0;
   padding:0;
 }
 
-html{
-  scroll-behavior:smooth;
+:root{
+  --accent:#00eaff;
+  --accent2:#7c3cff;
+  --bg1:#02040b;
+  --bg2:#08051a;
+  --text:#f4f7ff;
+  --muted:#8d96aa;
+  --card:rgba(8,12,25,.78);
 }
 
 body{
   min-height:100vh;
-  overflow-x:hidden;
-
+  font-family:Arial,Helvetica,sans-serif;
+  color:var(--text);
   background:
-    radial-gradient(
-      circle at 15% 15%,
-      rgba(var(--rgb),.09),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 85% 85%,
-      rgba(116,104,255,.07),
-      transparent 35%
-    ),
-    #05070c;
-
-  color:#f3f6ff;
-
-  font-family:
-    Arial,
-    Helvetica,
-    sans-serif;
+    radial-gradient(circle at 20% 20%,var(--accent2),transparent 28%),
+    radial-gradient(circle at 80% 70%,var(--accent),transparent 25%),
+    linear-gradient(135deg,var(--bg1),var(--bg2));
+  overflow-x:hidden;
+  transition:background 1s ease;
 }
 
+/* BACKGROUND GRID */
 
-/* =====================================================
-   ANIMATED CODE BACKGROUND
-===================================================== */
-
-.code-background{
+.grid{
   position:fixed;
-
   inset:0;
+  z-index:-5;
+  opacity:.12;
+  background-image:
+    linear-gradient(var(--accent) 1px,transparent 1px),
+    linear-gradient(90deg,var(--accent) 1px,transparent 1px);
+  background-size:45px 45px;
+}
 
-  z-index:0;
+/* CODE STREAM */
 
+.code-layer{
+  position:fixed;
+  inset:0;
+  z-index:-3;
   overflow:hidden;
-
   pointer-events:none;
-
-  opacity:.18;
 }
 
 .code-column{
   position:absolute;
-
-  top:-120%;
-
-  width:220px;
-
-  color:var(--accent);
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size:11px;
-
+  top:-130%;
+  width:240px;
+  white-space:pre-line;
+  font-family:"Courier New",monospace;
+  font-size:12px;
   line-height:1.8;
-
-  white-space:pre;
-
-  filter:
-    drop-shadow(
-      0 0 7px
-      rgba(var(--rgb),.25)
-    );
-
-  animation:
-    codeFall var(--speed)
-    linear infinite;
-
-  animation-delay:var(--delay);
-
-  transform:rotate(
-    var(--rotation)
-  );
+  color:var(--accent);
+  opacity:.16;
+  text-shadow:0 0 10px var(--accent);
+  animation:codeRun linear infinite;
 }
 
-@keyframes codeFall{
-
-  0%{
-    transform:
-      translateY(-20vh)
-      rotate(var(--rotation));
-
-    opacity:0;
+@keyframes codeRun{
+  from{
+    transform:translateY(0);
   }
-
-  10%{
-    opacity:.7;
-  }
-
-  80%{
-    opacity:.45;
-  }
-
-  100%{
-    transform:
-      translateY(145vh)
-      rotate(var(--rotation));
-
-    opacity:0;
+  to{
+    transform:translateY(230%);
   }
 }
 
-
-/* =====================================================
-   GRID
-===================================================== */
-
-.grid{
-  position:fixed;
-
-  inset:0;
-
-  z-index:1;
-
-  pointer-events:none;
-
-  opacity:.10;
-
-  background-image:
-    linear-gradient(
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(255,255,255,.035) 1px,
-      transparent 1px
-    );
-
-  background-size:45px 45px;
-
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent 92%
-    );
-}
-
-
-/* =====================================================
-   SOFT ORBS
-===================================================== */
+/* GLOW */
 
 .orb{
   position:fixed;
-
-  width:300px;
-  height:300px;
-
+  width:320px;
+  height:320px;
   border-radius:50%;
-
-  pointer-events:none;
-
-  z-index:1;
-
-  background:
-    radial-gradient(
-      circle,
-      rgba(var(--rgb),.10),
-      transparent 68%
-    );
-
-  filter:blur(25px);
-
-  animation:
-    floatOrb 10s ease-in-out infinite;
+  background:var(--accent);
+  filter:blur(120px);
+  opacity:.08;
+  z-index:-4;
+  animation:orbMove 9s ease-in-out infinite alternate;
 }
 
 .orb.one{
-  top:-100px;
   left:-100px;
+  top:10%;
 }
 
 .orb.two{
   right:-120px;
-  bottom:-100px;
-
-  animation-delay:-4s;
+  bottom:5%;
+  animation-delay:2s;
 }
 
-@keyframes floatOrb{
-
-  50%{
-    transform:
-      translate(
-        25px,
-        -20px
-      );
-  }
-
+@keyframes orbMove{
+  from{transform:translate(0,0)}
+  to{transform:translate(80px,-50px)}
 }
 
+/* HEADER */
 
-/* =====================================================
-   HEADER
-===================================================== */
-
-header{
-  position:relative;
-
-  z-index:5;
-
-  width:min(1100px,92%);
-
+.header{
+  width:min(1150px,92%);
   margin:auto;
-
-  padding:
-    25px 0;
-
+  padding:25px 0;
   display:flex;
-
   justify-content:space-between;
-
   align-items:center;
 }
 
 .logo{
-  font-size:24px;
-
-  font-weight:950;
-
+  font-size:25px;
+  font-weight:900;
   letter-spacing:2px;
 }
 
 .logo span{
   color:var(--accent);
-
-  text-shadow:
-    0 0 14px
-    rgba(var(--rgb),.45);
+  text-shadow:0 0 15px var(--accent);
 }
 
 .status{
-  color:#718097;
-
-  font-size:10px;
-
+  font-size:11px;
   letter-spacing:2px;
+  color:var(--accent);
 }
 
-
-/* =====================================================
-   MAIN
-===================================================== */
+/* MAIN */
 
 main{
-  position:relative;
-
-  z-index:4;
-
   width:min(1050px,92%);
-
-  margin:
-    35px auto
-    90px;
+  margin:25px auto 70px;
 }
 
+.back{
+  display:inline-block;
+  margin-bottom:20px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:13px;
+}
 
-/* =====================================================
-   HERO
-===================================================== */
+.back:hover{
+  color:var(--accent);
+}
+
+/* HERO */
 
 .hero{
   text-align:center;
-
-  margin-bottom:38px;
+  margin-bottom:35px;
 }
 
 .badge{
   display:inline-block;
-
-  padding:
-    8px 15px;
-
-  border-radius:999px;
-
-  border:
-    1px solid
-    rgba(var(--rgb),.25);
-
-  background:
-    rgba(var(--rgb),.04);
-
+  padding:9px 15px;
+  border:1px solid var(--accent);
+  border-radius:30px;
   color:var(--accent);
-
-  font-size:9px;
-
+  font-size:10px;
   letter-spacing:2px;
-
-  box-shadow:
-    0 0 25px
-    rgba(var(--rgb),.05);
-}
-
-.hero h1{
-  margin-top:18px;
-
-  font-size:
-    clamp(
-      34px,
-      7vw,
-      70px
-    );
-
-  line-height:.95;
-
-  letter-spacing:-3px;
-
-  font-weight:950;
-}
-
-.hero h1 span{
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--accent),
-      var(--accent2),
-      var(--accent)
-    );
-
-  background-size:200%;
-
-  -webkit-background-clip:text;
-
-  background-clip:text;
-
-  color:transparent;
-
-  animation:
-    gradientMove 5s linear infinite;
-}
-
-@keyframes gradientMove{
-
-  to{
-    background-position:200%;
-  }
-
-}
-
-.meta{
-  margin-top:18px;
-
-  color:#78859a;
-
-  font-size:13px;
-}
-
-
-/* =====================================================
-   PANELS
-===================================================== */
-
-.panel{
-  position:relative;
-
-  padding:26px;
-
+  box-shadow:0 0 20px rgba(0,234,255,.15);
   margin-bottom:18px;
-
-  border-radius:22px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(14,19,31,.84),
-      rgba(7,10,17,.78)
-    );
-
-  border:
-    1px solid
-    rgba(255,255,255,.065);
-
-  backdrop-filter:blur(15px);
-
-  -webkit-backdrop-filter:blur(15px);
-
-  box-shadow:
-    0 20px 65px
-    rgba(0,0,0,.30);
-
-  overflow:hidden;
 }
 
-.panel::before{
-  content:"";
-
-  position:absolute;
-
-  left:0;
-  top:0;
-
-  width:100%;
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(var(--rgb),.45),
-      transparent
-    );
-
-  opacity:.45;
+h1{
+  font-size:clamp(32px,7vw,62px);
+  line-height:1;
+  margin-bottom:15px;
 }
 
-.title{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:26px;
-}
-
-.title h2{
-  font-size:17px;
-
-  letter-spacing:1px;
-}
-
-.title span{
+h1 span{
   color:var(--accent);
+  text-shadow:0 0 25px var(--accent);
+}
 
-  font-size:9px;
+.subtitle{
+  color:var(--muted);
+  font-size:14px;
+}
 
+/* DEVICE CARD */
+
+.device-card{
+  margin:30px auto;
+  padding:22px;
+  border:1px solid rgba(255,255,255,.1);
+  background:var(--card);
+  backdrop-filter:blur(18px);
+  border-radius:18px;
+  text-align:left;
+  box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.device-label{
+  color:var(--muted);
+  font-size:10px;
   letter-spacing:2px;
 }
 
-
-/* =====================================================
-   SENSITIVITY
-===================================================== */
-
-.sensitivity{
-  display:flex;
-
-  flex-direction:column;
-
-  gap:25px;
-}
-
-.item-head{
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  margin-bottom:10px;
-}
-
-.name{
-  font-size:14px;
-
+.device-name{
+  margin-top:7px;
+  font-size:25px;
   font-weight:800;
 }
 
-.value{
-  color:var(--accent);
-
-  font-size:26px;
-
-  font-weight:950;
-
-  text-shadow:
-    0 0 12px
-    rgba(var(--rgb),.55);
-
-  animation:
-    valuePulse 2.5s
-    ease-in-out infinite;
-}
-
-@keyframes valuePulse{
-
-  50%{
-    transform:scale(1.045);
-  }
-
-}
-
-.bar{
-  position:relative;
-
-  height:9px;
-
-  border-radius:999px;
-
-  background:#111722;
-
-  border:
-    1px solid
-    rgba(255,255,255,.05);
-}
-
-.fill{
-  position:absolute;
-
-  left:0;
-  top:0;
-  bottom:0;
-
-  width:var(--p);
-
-  border-radius:999px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--accent2),
-      var(--accent)
-    );
-
-  box-shadow:
-    0 0 15px
-    rgba(var(--rgb),.25);
-}
-
-.knob{
-  position:absolute;
-
-  left:var(--p);
-  top:50%;
-
-  width:17px;
-  height:17px;
-
-  transform:
-    translate(-50%,-50%);
-
-  border-radius:50%;
-
-  background:#fff;
-
-  border:
-    4px solid
-    var(--accent);
-
-  box-shadow:
-    0 0 16px
-    rgba(var(--rgb),.65);
-}
-
-.scale{
-  display:flex;
-
-  justify-content:space-between;
-
+.device-meta{
   margin-top:7px;
-
-  color:#566176;
-
-  font-size:8px;
+  color:var(--accent);
+  font-size:12px;
 }
 
+/* SECTIONS */
 
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-.settings{
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:12px;
+.section{
+  margin-top:25px;
 }
 
-.setting{
-  padding:18px;
-
-  border-radius:15px;
-
-  background:
-    rgba(255,255,255,.025);
-
-  border:
-    1px solid
-    rgba(255,255,255,.055);
-
-  transition:.25s;
-}
-
-.setting:hover{
-  transform:translateY(-3px);
-
-  border-color:
-    rgba(var(--rgb),.25);
-
-  box-shadow:
-    0 10px 30px
-    rgba(var(--rgb),.04);
-}
-
-.setting small{
-  display:block;
-
-  margin-bottom:8px;
-
-  color:#68758a;
-
-  font-size:8px;
-
-  letter-spacing:1.5px;
-}
-
-.setting strong{
-  font-size:13px;
-}
-
-
-/* =====================================================
-   BUTTONS
-===================================================== */
-
-.buttons{
+.section-title{
   display:flex;
-
-  gap:12px;
-
-  margin-top:23px;
-}
-
-button,
-.back{
-  flex:1;
-
-  min-height:50px;
-
-  display:flex;
-
+  justify-content:space-between;
   align-items:center;
-
-  justify-content:center;
-
-  border-radius:14px;
-
-  border:
-    1px solid
-    rgba(var(--rgb),.22);
-
-  background:
-    linear-gradient(
-      135deg,
-      rgba(var(--rgb),.12),
-      rgba(116,104,255,.10)
-    );
-
-  color:#fff;
-
-  font-weight:900;
-
-  letter-spacing:1px;
-
-  text-decoration:none;
-
-  cursor:pointer;
-
-  transition:.25s;
+  margin-bottom:14px;
 }
 
-button:hover,
-.back:hover{
-
-  transform:translateY(-3px);
-
-  box-shadow:
-    0 12px 30px
-    rgba(var(--rgb),.12);
+.section-title h2{
+  font-size:18px;
 }
 
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-  position:relative;
-
-  z-index:5;
-
-  text-align:center;
-
-  padding:25px;
-
-  color:#4c586c;
-
-  font-size:9px;
-
+.section-title span{
+  color:var(--accent);
+  font-size:10px;
   letter-spacing:2px;
 }
 
+/* SENSITIVITY */
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.sensitivity-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
 
-@media(max-width:650px){
+.sens-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:17px;
+  backdrop-filter:blur(14px);
+}
 
-  header{
-    padding:20px 0;
+.sens-top{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:12px;
+}
+
+.sens-name{
+  font-size:13px;
+  font-weight:bold;
+}
+
+.sens-value{
+  color:var(--accent);
+  font-weight:900;
+  text-shadow:0 0 12px var(--accent);
+}
+
+.bar{
+  height:9px;
+  background:rgba(255,255,255,.07);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.bar-fill{
+  height:100%;
+  width:0;
+  border-radius:20px;
+  background:linear-gradient(90deg,var(--accent2),var(--accent));
+  box-shadow:0 0 15px var(--accent);
+  transition:width 1.2s cubic-bezier(.2,.8,.2,1);
+}
+
+/* SETTINGS */
+
+.settings-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.setting-card{
+  background:var(--card);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:17px;
+  backdrop-filter:blur(14px);
+}
+
+.setting-card h3{
+  font-size:14px;
+  margin-bottom:13px;
+}
+
+.setting{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  padding:10px 0;
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+
+.setting:last-child{
+  border-bottom:0;
+}
+
+.setting-name{
+  font-size:12px;
+  color:#d8deea;
+}
+
+.state{
+  padding:5px 9px;
+  border-radius:20px;
+  font-size:9px;
+  font-weight:900;
+  letter-spacing:1px;
+  white-space:nowrap;
+}
+
+.enable{
+  color:#61ffad;
+  border:1px solid rgba(97,255,173,.35);
+  background:rgba(97,255,173,.08);
+}
+
+.disable{
+  color:#ff8291;
+  border:1px solid rgba(255,130,145,.3);
+  background:rgba(255,130,145,.07);
+}
+
+.optional{
+  color:#ffd166;
+  border:1px solid rgba(255,209,102,.3);
+  background:rgba(255,209,102,.07);
+}
+
+/* INFO */
+
+.note{
+  margin-top:15px;
+  padding:14px;
+  border-left:2px solid var(--accent);
+  background:rgba(255,255,255,.035);
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.7;
+}
+
+/* BUTTONS */
+
+.actions{
+  display:flex;
+  gap:12px;
+  margin-top:30px;
+}
+
+button{
+  flex:1;
+  border:0;
+  padding:16px;
+  border-radius:12px;
+  font-weight:900;
+  letter-spacing:1px;
+  cursor:pointer;
+  color:#fff;
+}
+
+.copy{
+  background:linear-gradient(135deg,var(--accent2),var(--accent));
+  box-shadow:0 0 25px rgba(0,234,255,.15);
+}
+
+.generate{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+}
+
+button:hover{
+  transform:translateY(-2px);
+}
+
+/* FOOTER */
+
+footer{
+  width:min(1050px,92%);
+  margin:auto;
+  padding:25px 0 40px;
+  display:flex;
+  justify-content:space-between;
+  color:#667085;
+  font-size:10px;
+  letter-spacing:1px;
+}
+
+/* MOBILE */
+
+@media(max-width:700px){
+
+  .header{
+    padding:18px 0;
   }
 
   .status{
     font-size:8px;
   }
 
-  main{
-    width:94%;
-
-    margin-top:20px;
-  }
-
-  .panel{
-    padding:19px;
-  }
-
-  .settings{
+  .sensitivity-grid,
+  .settings-grid{
     grid-template-columns:1fr;
   }
 
-  .buttons{
+  .actions{
     flex-direction:column;
   }
 
-  .hero h1{
-    letter-spacing:-2px;
-  }
-
   .code-column{
-    font-size:8px;
-
+    font-size:9px;
     width:150px;
   }
-
 }
-
 </style>
 </head>
 
-
 <body>
-
-
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
-
-<div class="code-background" id="codeBackground"></div>
 
 <div class="grid"></div>
 
 <div class="orb one"></div>
 <div class="orb two"></div>
 
+<div class="code-layer" id="codeLayer"></div>
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
-
-<header>
-
-  <div class="logo">
-    FF<span>MAX</span>
-  </div>
-
-  <div class="status">
-    ● SENSITIVITY LAB
-  </div>
-
+<header class="header">
+  <div class="logo">FF<span>MAX</span></div>
+  <div class="status">● SENSITIVITY LAB</div>
 </header>
-
-
-<!-- =====================================================
-     MAIN
-===================================================== -->
 
 <main>
 
+<a href="index.html" class="back">← BACK TO GENERATOR</a>
 
 <section class="hero">
 
-  <div class="badge">
-    DEVICE PROFILE GENERATED
-  </div>
+  <div class="badge">PROFILE GENERATED • DEVICE OPTIMIZED</div>
 
   <h1>
-    <span id="deviceName">
-      DEVICE
-    </span>
+    Your <span>Sensitivity</span>
   </h1>
 
-  <div
-    class="meta"
-    id="meta">
-    Loading profile...
+  <p class="subtitle">
+    Recommended Free Fire MAX profile with gaming and battery settings.
+  </p>
+
+</section>
+
+<div class="device-card">
+
+  <div class="device-label">DEVICE DETECTED</div>
+
+  <div class="device-name" id="deviceName">
+    Loading...
   </div>
+
+  <div class="device-meta" id="deviceMeta">
+    ANALYZING DEVICE PROFILE...
+  </div>
+
+</div>
+
+
+<!-- SENSITIVITY -->
+
+<section class="section">
+
+  <div class="section-title">
+    <h2>🎯 Sensitivity Profile</h2>
+    <span>0 — 200</span>
+  </div>
+
+  <div class="sensitivity-grid" id="sensitivityGrid"></div>
 
 </section>
 
 
-<!-- =====================================================
-     SENSITIVITY
-===================================================== -->
+<!-- PHONE SETTINGS -->
 
-<section class="panel">
+<section class="section">
 
-  <div class="title">
-
-    <h2>
-      SENSITIVITY PROFILE
-    </h2>
-
-    <span>
-      0 — 200
-    </span>
-
+  <div class="section-title">
+    <h2>📱 Phone Gaming Settings</h2>
+    <span>RECOMMENDED</span>
   </div>
 
+  <div class="settings-grid">
 
-  <div
-    class="sensitivity"
-    id="sensitivity">
+    <div class="setting-card">
 
-  </div>
+      <h3>⚡ Performance</h3>
 
-</section>
+      <div class="setting">
+        <span class="setting-name">Game / Performance Mode</span>
+        <span class="state enable">ENABLE</span>
+      </div>
 
+      <div class="setting">
+        <span class="setting-name">High Refresh Rate</span>
+        <span class="state enable">ENABLE</span>
+      </div>
 
-<!-- =====================================================
-     PHONE SETTINGS
-===================================================== -->
+      <div class="setting">
+        <span class="setting-name">Auto-Rotate During Game</span>
+        <span class="state disable">DISABLE</span>
+      </div>
 
-<section class="panel">
-
-  <div class="title">
-
-    <h2>
-      PHONE SETTINGS
-    </h2>
-
-    <span>
-      OPTIMIZER
-    </span>
-
-  </div>
-
-
-  <div class="settings">
-
-    <div class="setting">
-
-      <small>
-        REFRESH RATE
-      </small>
-
-      <strong>
-        Highest Available
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Unnecessary Background Apps</span>
+        <span class="state disable">LIMIT</span>
+      </div>
 
     </div>
 
 
-    <div class="setting">
+    <div class="setting-card">
 
-      <small>
-        DPI
-      </small>
+      <h3>🎮 Game Settings</h3>
 
-      <strong>
-        Keep Default
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Graphics</span>
+        <span class="state optional">SMOOTH</span>
+      </div>
 
-    </div>
+      <div class="setting">
+        <span class="setting-name">High FPS</span>
+        <span class="state enable">ENABLE</span>
+      </div>
 
+      <div class="setting">
+        <span class="setting-name">Battery Saver While Gaming</span>
+        <span class="state disable">DISABLE</span>
+      </div>
 
-    <div class="setting">
-
-      <small>
-        GAME MODE
-      </small>
-
-      <strong>
-        ON
-      </strong>
-
-    </div>
-
-
-    <div class="setting">
-
-      <small>
-        BATTERY SAVER
-      </small>
-
-      <strong>
-        OFF WHILE GAMING
-      </strong>
-
-    </div>
-
-
-    <div class="setting">
-
-      <small>
-        BACKGROUND APPS
-      </small>
-
-      <strong>
-        Keep Minimal
-      </strong>
-
-    </div>
-
-
-    <div class="setting">
-
-      <small>
-        THERMAL
-      </small>
-
-      <strong>
-        Avoid Excessive Heat
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Game Booster</span>
+        <span class="state enable">ENABLE</span>
+      </div>
 
     </div>
 
@@ -971,599 +579,543 @@ footer{
 </section>
 
 
-<!-- =====================================================
-     GAME SETTINGS
-===================================================== -->
+<!-- BATTERY -->
 
-<section class="panel">
+<section class="section">
 
-  <div class="title">
-
-    <h2>
-      GAME SETTINGS
-    </h2>
-
-    <span>
-      FF MAX
-    </span>
-
+  <div class="section-title">
+    <h2>🔋 Battery & Thermal</h2>
+    <span>SAFE PROFILE</span>
   </div>
 
+  <div class="settings-grid">
 
-  <div class="settings">
+    <div class="setting-card">
 
-    <div class="setting">
+      <h3>🔋 Battery</h3>
 
-      <small>
-        GRAPHICS
-      </small>
+      <div class="setting">
+        <span class="setting-name">Battery Saver in Match</span>
+        <span class="state disable">DISABLE</span>
+      </div>
 
-      <strong>
-        Smooth / Balanced
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Background Sync</span>
+        <span class="state optional">LIMIT</span>
+      </div>
 
-    </div>
+      <div class="setting">
+        <span class="setting-name">Unused Apps</span>
+        <span class="state optional">RESTRICT</span>
+      </div>
 
-
-    <div class="setting">
-
-      <small>
-        FPS
-      </small>
-
-      <strong>
-        Highest Supported
-      </strong>
-
-    </div>
-
-
-    <div class="setting">
-
-      <small>
-        SHADOWS
-      </small>
-
-      <strong>
-        Low / Optional
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Brightness</span>
+        <span class="state optional">BALANCED</span>
+      </div>
 
     </div>
 
 
-    <div class="setting">
+    <div class="setting-card">
 
-      <small>
-        AUTO SCALE
-      </small>
+      <h3>🌡️ Thermal</h3>
 
-      <strong>
-        OFF
-      </strong>
+      <div class="setting">
+        <span class="setting-name">Heavy Gaming While Charging</span>
+        <span class="state disable">AVOID</span>
+      </div>
+
+      <div class="setting">
+        <span class="setting-name">Extreme Performance / Overclock</span>
+        <span class="state disable">AVOID</span>
+      </div>
+
+      <div class="setting">
+        <span class="setting-name">Phone Temperature</span>
+        <span class="state optional">MONITOR</span>
+      </div>
+
+      <div class="setting">
+        <span class="setting-name">Cooling Breaks</span>
+        <span class="state enable">RECOMMENDED</span>
+      </div>
 
     </div>
 
   </div>
 
-
-  <div class="buttons">
-
-    <button id="copy">
-      COPY SETTINGS
-    </button>
-
-    <a
-      href="index.html"
-      class="back">
-
-      ← GENERATE AGAIN
-
-    </a>
-
+  <div class="note">
+    ⚠ These are general gaming recommendations. Actual performance,
+    FPS and battery life depend on the phone, game version,
+    temperature and system software.
   </div>
 
 </section>
+
+
+<div class="actions">
+
+  <button class="copy" id="copyBtn">
+    COPY SETTINGS
+  </button>
+
+  <button class="generate" onclick="location.href='index.html'">
+    GENERATE AGAIN →
+  </button>
+
+</div>
 
 </main>
 
 
 <footer>
-
-  FF MAX SENSITIVITY LAB
-  •
-  DEVICE BASED RECOMMENDATIONS
-
+  <span>FF MAX SENSITIVITY LAB</span>
+  <span>© 2026</span>
 </footer>
 
 
 <script>
 
-/* =====================================================
+/* =========================================
+   RANDOM VISUAL THEME
+========================================= */
+
+const themes = [
+
+  {
+    a:"#00eaff",
+    b:"#7c3cff",
+    bg1:"#02040b",
+    bg2:"#09051c"
+  },
+
+  {
+    a:"#ff3b6b",
+    b:"#7b2cff",
+    bg1:"#0b0207",
+    bg2:"#18051a"
+  },
+
+  {
+    a:"#62ff9a",
+    b:"#00c8ff",
+    bg1:"#020b08",
+    bg2:"#03151a"
+  },
+
+  {
+    a:"#ff9d3b",
+    b:"#ff3b81",
+    bg1:"#0b0602",
+    bg2:"#180811"
+  },
+
+  {
+    a:"#a66cff",
+    b:"#00eaff",
+    bg1:"#05020d",
+    bg2:"#09051a"
+  },
+
+  {
+    a:"#38ffdc",
+    b:"#2388ff",
+    bg1:"#020b0b",
+    bg2:"#02091a"
+  }
+];
+
+const theme =
+  themes[Math.floor(Math.random()*themes.length)];
+
+document.documentElement.style.setProperty("--accent",theme.a);
+document.documentElement.style.setProperty("--accent2",theme.b);
+document.documentElement.style.setProperty("--bg1",theme.bg1);
+document.documentElement.style.setProperty("--bg2",theme.bg2);
+
+
+/* =========================================
+   CYBER CODE GENERATOR
+========================================= */
+
+const codeLayer =
+  document.getElementById("codeLayer");
+
+const codePool = [
+
+  "INITIALIZING FF_MAX_ENGINE...",
+  "SCAN_DEVICE_PROFILE",
+  "READ_DISPLAY_CONFIG",
+  "CHECK_REFRESH_RATE",
+  "ANALYZE_TOUCH_RESPONSE",
+  "LOAD_GPU_PROFILE",
+  "LOAD_RAM_PROFILE",
+  "CHECK_SYSTEM_LOAD",
+  "OPTIMIZE_INPUT_RESPONSE",
+  "CALCULATE_SENSITIVITY",
+  "GENERATE_PROFILE",
+  "PROFILE_STATUS: READY",
+  "GAME_MODE = ON",
+  "BACKGROUND_LOAD = LOW",
+  "TOUCH_RESPONSE = HIGH",
+  "FPS_TARGET = HIGH",
+  "THERMAL_CHECK = ACTIVE",
+  "BATTERY_PROFILE = BALANCED",
+  "SYSTEM_OPTIMIZATION = COMPLETE",
+  "FFMAX://PROFILE/READY",
+  "CORE::INPUT_ANALYZER",
+  "CORE::DISPLAY_ENGINE",
+  "CORE::PROFILE_ENGINE",
+  "STATUS::ONLINE",
+  "DATA_STREAM::ACTIVE",
+  "0xFF 0xMAX 0x01",
+  "10101010 00110101",
+  "01001101 11001010",
+  "CHECKSUM: OK",
+  "SYNC::COMPLETE",
+  "RENDER_PIPELINE::ACTIVE",
+  "TOUCH_MATRIX::READY",
+  "SENS_ENGINE::ONLINE"
+];
+
+function createColumn(){
+
+  const column =
+    document.createElement("div");
+
+  column.className="code-column";
+
+  let output="";
+
+  for(let i=0;i<35;i++){
+
+    const line =
+      codePool[
+        Math.floor(Math.random()*codePool.length)
+      ];
+
+    output += line + "\n";
+  }
+
+  column.textContent=output;
+
+  column.style.left =
+    Math.random()*100 + "%";
+
+  column.style.animationDuration =
+    (12 + Math.random()*18) + "s";
+
+  column.style.animationDelay =
+    (-Math.random()*20) + "s";
+
+  column.style.opacity =
+    (0.07 + Math.random()*0.13);
+
+  codeLayer.appendChild(column);
+}
+
+for(let i=0;i<12;i++){
+  createColumn();
+}
+
+
+/* =========================================
    DEVICE DATABASE
-===================================================== */
+========================================= */
 
-const devices = {
+const profiles = {
 
-  /* POCO */
+  "poco f1":{
+    general:[190,185,175,180,170,160],
+    ram:"6/8 GB"
+  },
 
-  "poco f1":[185,175,165,155,95,180],
-  "poco f3":[190,180,170,160,100,185],
-  "poco f4":[190,180,170,160,100,185],
-  "poco f5":[195,185,175,165,105,190],
-  "poco f5 pro":[195,185,175,165,105,190],
-  "poco f6":[198,188,178,168,108,192],
-  "poco x3":[185,175,165,155,95,180],
-  "poco x3 pro":[190,180,170,160,100,185],
-  "poco x4 pro":[188,178,168,158,98,183],
-  "poco x5":[190,180,170,160,100,185],
-  "poco x5 pro":[195,185,175,165,105,190],
-  "poco x6":[195,185,175,165,105,190],
-  "poco x6 pro":[198,188,178,168,108,192],
-  "poco x7":[195,185,175,165,105,190],
-  "poco x7 pro":[198,188,178,168,108,192],
+  "poco f3":{
+    general:[195,190,180,185,175,165],
+    ram:"6/8 GB"
+  },
 
-  /* REDMI */
+  "poco f4":{
+    general:[195,190,180,185,175,165],
+    ram:"6/8 GB"
+  },
 
-  "redmi note 10":[180,170,160,150,90,175],
-  "redmi note 11":[185,175,165,155,95,180],
-  "redmi note 12":[188,178,168,158,98,183],
-  "redmi note 13":[190,180,170,160,100,185],
-  "redmi note 13 pro":[195,185,175,165,105,190],
-  "redmi note 13 pro plus":[198,188,178,168,108,192],
-  "redmi note 14":[190,180,170,160,100,185],
-  "redmi note 14 pro":[195,185,175,165,105,190],
-  "redmi note 14 pro plus":[198,188,178,168,108,192],
+  "poco f5":{
+    general:[200,195,185,190,180,170],
+    ram:"8/12 GB"
+  },
 
-  /* SAMSUNG */
+  "poco f5 pro":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12 GB"
+  },
 
-  "samsung galaxy a14":[175,165,155,145,85,170],
-  "samsung galaxy a15":[178,168,158,148,88,173],
-  "samsung galaxy a24":[180,170,160,150,90,175],
-  "samsung galaxy a34":[185,175,165,155,95,180],
-  "samsung galaxy a35":[188,178,168,158,98,183],
-  "samsung galaxy a54":[190,180,170,160,100,185],
-  "samsung galaxy a55":[192,182,172,162,102,187],
+  "poco f6":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12 GB"
+  },
 
-  "samsung galaxy s21":[190,180,170,160,100,185],
-  "samsung galaxy s22":[192,182,172,162,102,187],
-  "samsung galaxy s23":[195,185,175,165,105,190],
-  "samsung galaxy s24":[198,188,178,168,108,192],
-  "samsung galaxy s25":[199,190,180,170,110,194],
-  "samsung galaxy s26":[200,190,180,170,110,195],
+  "poco x3":{
+    general:[185,180,170,175,165,155],
+    ram:"6/8 GB"
+  },
 
-  /* GOOGLE */
+  "poco x3 pro":{
+    general:[195,190,180,185,175,165],
+    ram:"6/8 GB"
+  },
 
-  "google pixel 8":[190,180,170,160,100,185],
-  "google pixel 9":[192,182,172,162,102,187],
-  "google pixel 10":[195,185,175,165,105,190],
-  "google pixel 11":[200,190,180,170,110,195],
+  "poco x6":{
+    general:[195,190,180,185,175,165],
+    ram:"8/12 GB"
+  },
 
-  /* ONEPLUS */
+  "poco x6 pro":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12 GB"
+  },
 
-  "oneplus 10 pro":[195,185,175,165,105,190],
-  "oneplus 11":[198,188,178,168,108,192],
-  "oneplus 12":[199,190,180,170,110,194],
-  "oneplus 13":[199,190,180,170,110,194],
-  "oneplus 15":[200,192,182,172,112,196],
-  "oneplus nord 4":[195,185,175,165,105,190],
-  "oneplus nord 5":[196,186,176,166,106,191],
+  "poco x7":{
+    general:[195,190,180,185,175,165],
+    ram:"8/12 GB"
+  },
 
-  /* REALME */
+  "poco x7 pro":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12 GB"
+  },
 
-  "realme 11 pro":[188,178,168,158,98,183],
-  "realme 12 pro":[190,180,170,160,100,185],
-  "realme 13 pro plus":[195,185,175,165,105,190],
-  "realme gt 6":[198,188,178,168,108,192],
-  "realme gt 7":[199,190,180,170,110,194],
-  "realme gt 8 pro":[200,192,182,172,112,196],
+  "redmi note 12":{
+    general:[185,180,170,175,165,155],
+    ram:"4/6/8 GB"
+  },
 
-  /* OPPO */
+  "redmi note 13":{
+    general:[190,185,175,180,170,160],
+    ram:"6/8/12 GB"
+  },
 
-  "oppo find x7":[195,185,175,165,105,190],
-  "oppo find x8":[198,188,178,168,108,192],
-  "oppo find x9":[199,190,180,170,110,194],
+  "redmi note 13 pro":{
+    general:[195,190,180,185,175,165],
+    ram:"8/12 GB"
+  },
 
-  /* VIVO */
+  "redmi note 13 pro plus":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12 GB"
+  },
 
-  "vivo x100":[195,185,175,165,105,190],
-  "vivo x200":[198,188,178,168,108,192],
-  "vivo x300":[199,190,180,170,110,194],
+  "samsung galaxy s23":{
+    general:[195,190,185,190,180,170],
+    ram:"8/12 GB"
+  },
 
-  /* IQOO */
+  "samsung galaxy s24":{
+    general:[195,190,185,190,180,170],
+    ram:"8/12 GB"
+  },
 
-  "iqoo 13":[199,190,180,170,110,194],
-  "iqoo 15":[200,192,182,172,112,196],
+  "samsung galaxy s25":{
+    general:[200,195,190,195,185,175],
+    ram:"12 GB"
+  },
 
-  /* NOTHING */
+  "samsung galaxy s26":{
+    general:[200,195,195,195,190,180],
+    ram:"12 GB"
+  },
 
-  "nothing phone 2":[190,180,170,160,100,185],
-  "nothing phone 3":[195,185,175,165,105,190],
+  "oneplus 11":{
+    general:[200,195,190,195,185,175],
+    ram:"8/16 GB"
+  },
 
-  /* MOTOROLA */
+  "oneplus 12":{
+    general:[200,195,190,195,185,175],
+    ram:"12/16 GB"
+  },
 
-  "motorola edge 60 pro":[195,185,175,165,105,190],
-  "motorola edge 70 pro":[198,188,178,168,108,192],
+  "oneplus 13":{
+    general:[200,195,195,195,190,180],
+    ram:"12/16 GB"
+  },
 
-  /* INFINIX */
+  "oneplus 15":{
+    general:[200,195,195,195,190,180],
+    ram:"12/16 GB"
+  },
 
-  "infinix gt 20 pro":[195,185,175,165,105,190],
-  "infinix gt 30 pro":[198,188,178,168,108,192],
+  "realme gt 6":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12/16 GB"
+  },
 
-  /* TECNO */
+  "realme gt 7":{
+    general:[200,195,190,195,185,175],
+    ram:"8/12/16 GB"
+  },
 
-  "tecno pova 6":[185,175,165,155,95,180],
-  "tecno pova 7":[190,180,170,160,100,185],
+  "iphone 13":{
+    general:[190,185,180,185,175,165],
+    ram:"4 GB"
+  },
 
-  /* APPLE */
+  "iphone 14":{
+    general:[190,185,180,185,175,165],
+    ram:"6 GB"
+  },
 
-  "iphone 11":[185,175,165,155,95,180],
-  "iphone 12":[188,178,168,158,98,183],
-  "iphone 13":[190,180,170,160,100,185],
-  "iphone 14":[192,182,172,162,102,187],
-  "iphone 15":[195,185,175,165,105,190],
-  "iphone 16":[198,188,178,168,108,192],
-  "iphone 17":[200,190,180,170,110,195],
+  "iphone 15":{
+    general:[195,190,185,190,180,170],
+    ram:"6 GB"
+  },
 
-  /* IPAD */
+  "iphone 16":{
+    general:[200,195,190,195,185,175],
+    ram:"8 GB"
+  },
 
-  "ipad m1":[190,180,170,160,100,185],
-  "ipad m2":[195,185,175,165,105,190],
-  "ipad m3":[198,188,178,168,108,192],
-  "ipad m4":[200,190,180,170,110,195],
+  "iphone 17":{
+    general:[200,195,195,195,190,180],
+    ram:"8 GB"
+  },
 
-  "ipad pro m2":[198,188,178,168,108,192],
-  "ipad pro m4":[200,190,180,170,110,195]
+  "google pixel 9":{
+    general:[190,185,180,185,175,165],
+    ram:"12 GB"
+  },
+
+  "google pixel 10":{
+    general:[195,190,185,190,180,170],
+    ram:"12 GB"
+  },
+
+  "google pixel 11":{
+    general:[200,195,190,195,185,175],
+    ram:"12 GB"
+  }
 
 };
 
 
-/* =====================================================
-   ALIASES
-===================================================== */
+/* =========================================
+   URL PARAMETERS
+========================================= */
 
-const aliases = {
+const params =
+  new URLSearchParams(location.search);
 
-  "poco x5 5g":"poco x5",
-  "poco x5 pro 5g":"poco x5 pro",
-  "poco x6 5g":"poco x6",
-  "poco x6 pro 5g":"poco x6 pro",
+const rawDevice =
+  params.get("device") || "";
 
-  "redmi note 13 pro+":"redmi note 13 pro plus",
-  "redmi note 14 pro+":"redmi note 14 pro plus",
+const ram =
+  params.get("ram") || "8";
 
-  "samsung s24":"samsung galaxy s24",
-  "samsung s25":"samsung galaxy s25",
-  "samsung s26":"samsung galaxy s26",
-
-  "pixel 8":"google pixel 8",
-  "pixel 9":"google pixel 9",
-  "pixel 10":"google pixel 10",
-  "pixel 11":"google pixel 11",
-
-  "iphone 13 pro":"iphone 13",
-  "iphone 13 pro max":"iphone 13",
-  "iphone 14 pro":"iphone 14",
-  "iphone 14 pro max":"iphone 14",
-  "iphone 15 pro":"iphone 15",
-  "iphone 15 pro max":"iphone 15",
-  "iphone 16 pro":"iphone 16",
-  "iphone 16 pro max":"iphone 16",
-  "iphone 17 pro":"iphone 17",
-  "iphone 17 pro max":"iphone 17",
-
-  "ipad pro m3":"ipad m3"
-
-};
+const storage =
+  params.get("storage") || "128";
 
 
-/* =====================================================
-   NORMALIZE
-===================================================== */
+function normalize(value){
 
-function normalize(text){
-
-  return text
+  return value
     .toLowerCase()
     .trim()
-    .replace(/[()]/g,"")
-    .replace(/-/g," ")
     .replace(/\s+/g," ");
 
 }
 
 
-/* =====================================================
-   THEME
-===================================================== */
-
-function applyTheme(device){
-
-  const d=device.toLowerCase();
-
-  let accent="#00d9ff";
-  let accent2="#7468ff";
-  let rgb="0,217,255";
-
-
-  if(
-    d.includes("iphone") ||
-    d.includes("ipad")
-  ){
-
-    accent="#ff6fb5";
-    accent2="#9b68ff";
-    rgb="255,111,181";
-
-
-  }else if(
-    d.includes("samsung")
-  ){
-
-    accent="#5f8fff";
-    accent2="#8068ff";
-    rgb="95,143,255";
-
-
-  }else if(
-    d.includes("oneplus")
-  ){
-
-    accent="#ff5757";
-    accent2="#ff9148";
-    rgb="255,87,87";
-
-
-  }else if(
-    d.includes("realme")
-  ){
-
-    accent="#42e2a0";
-    accent2="#19b8d0";
-    rgb="66,226,160";
-
-
-  }else if(
-    d.includes("poco") ||
-    d.includes("redmi") ||
-    d.includes("xiaomi")
-  ){
-
-    accent="#00d9ff";
-    accent2="#7468ff";
-    rgb="0,217,255";
-
-
-  }else if(
-    d.includes("vivo") ||
-    d.includes("iqoo")
-  ){
-
-    accent="#55a8ff";
-    accent2="#596eff";
-    rgb="85,168,255";
-
-
-  }else if(
-    d.includes("oppo")
-  ){
-
-    accent="#5fe5a1";
-    accent2="#20bca5";
-    rgb="95,229,161";
-
-
-  }else if(
-    d.includes("nothing")
-  ){
-
-    accent="#e7e7e7";
-    accent2="#806cff";
-    rgb="231,231,231";
-
-
-  }else if(
-    d.includes("motorola") ||
-    d.includes("google")
-  ){
-
-    accent="#69a8ff";
-    accent2="#7468ff";
-    rgb="105,168,255";
-
-  }
-
-
-  document.documentElement
-    .style.setProperty(
-      "--accent",
-      accent
-    );
-
-  document.documentElement
-    .style.setProperty(
-      "--accent2",
-      accent2
-    );
-
-  document.documentElement
-    .style.setProperty(
-      "--rgb",
-      rgb
-    );
-
-}
-
-
-/* =====================================================
-   CODE GENERATOR
-===================================================== */
-
-function createCodeBackground(){
-
-  const container=
-    document.getElementById(
-      "codeBackground"
-    );
-
-  container.innerHTML="";
-
-
-  const codeLines=[
-
-    "01  INIT_DEVICE_PROFILE",
-    "02  SCAN_DISPLAY",
-    "03  ANALYZE_TOUCH",
-    "04  CHECK_REFRESH_RATE",
-    "05  LOAD_SENSITIVITY",
-    "06  CALCULATE_PROFILE",
-    "07  OPTIMIZE_RESPONSE",
-    "08  GAME_MODE = ON",
-    "09  BACKGROUND = MINIMAL",
-    "10  PROFILE_READY",
-    "const sensitivity = profile;",
-    "let device = detectDevice();",
-    "if(device) loadProfile();",
-    "renderSensitivity();",
-    "system.optimize();",
-    "touch.response = stable;",
-    "fps.mode = highest;",
-    "profile.status = READY;",
-    ">>> FF_MAX_ENGINE",
-    ">>> DEVICE_DATABASE",
-    ">>> PROFILE_ENGINE",
-    ">>> SETTINGS_READY"
-
-  ];
-
-
-  for(let i=0;i<11;i++){
-
-    const column=
-      document.createElement("div");
-
-    column.className=
-      "code-column";
-
-
-    let text="";
-
-    for(let j=0;j<20;j++){
-
-      text +=
-        codeLines[
-          Math.floor(
-            Math.random()*
-            codeLines.length
-          )
-        ] + "\n";
-
-    }
-
-
-    column.textContent=text;
-
-
-    column.style.left=
-      (Math.random()*100)+"%";
-
-    column.style.setProperty(
-      "--speed",
-      (16+Math.random()*15)+"s"
-    );
-
-    column.style.setProperty(
-      "--delay",
-      (-Math.random()*20)+"s"
-    );
-
-    column.style.setProperty(
-      "--rotation",
-      (-3+Math.random()*6)+"deg"
-    );
-
-
-    container.appendChild(column);
-
-  }
-
-}
-
-
-/* =====================================================
-   URL
-===================================================== */
-
-const params=
-  new URLSearchParams(
-    window.location.search
-  );
-
-const rawDevice=
-  params.get("device") || "";
-
-const ram=
-  params.get("ram") || "8";
-
-const storage=
-  params.get("storage") || "128";
-
-
-/* =====================================================
-   FIND DEVICE
-===================================================== */
-
-let key=
+/* =========================================
+   FIND PROFILE
+========================================= */
+
+const deviceKey =
   normalize(rawDevice);
 
+let profile =
+  profiles[deviceKey];
 
-if(aliases[key]){
 
-  key=
-    aliases[key];
+/* aliases */
+
+if(!profile){
+
+  const aliases = [
+
+    ["poco f5","poco f5"],
+    ["poco f6","poco f6"],
+    ["poco x6 pro","poco x6 pro"],
+    ["s23","samsung galaxy s23"],
+    ["s24","samsung galaxy s24"],
+    ["s25","samsung galaxy s25"],
+    ["s26","samsung galaxy s26"],
+    ["oneplus 12","oneplus 12"],
+    ["oneplus 13","oneplus 13"],
+    ["oneplus 15","oneplus 15"],
+    ["iphone 13","iphone 13"],
+    ["iphone 14","iphone 14"],
+    ["iphone 15","iphone 15"],
+    ["iphone 16","iphone 16"],
+    ["iphone 17","iphone 17"],
+    ["pixel 9","google pixel 9"],
+    ["pixel 10","google pixel 10"],
+    ["pixel 11","google pixel 11"]
+  ];
+
+  for(const item of aliases){
+
+    if(
+      deviceKey === item[0] ||
+      deviceKey.includes(item[0])
+    ){
+
+      profile =
+        profiles[item[1]];
+
+      break;
+    }
+  }
+}
+
+
+/* =========================================
+   DISPLAY DEVICE
+========================================= */
+
+const deviceName =
+  document.getElementById("deviceName");
+
+const deviceMeta =
+  document.getElementById("deviceMeta");
+
+
+deviceName.textContent =
+  rawDevice || "Unknown Device";
+
+
+if(profile){
+
+  deviceMeta.textContent =
+    "PROFILE FOUND • RAM " +
+    ram +
+    " GB • STORAGE " +
+    storage +
+    " GB";
+
+}else{
+
+  deviceMeta.textContent =
+    "CUSTOM DEVICE PROFILE • GENERAL SETTINGS";
 
 }
 
 
-const profile=
-  devices[key];
+/* =========================================
+   SENSITIVITY
+========================================= */
 
-
-/* =====================================================
-   DEVICE DISPLAY
-===================================================== */
-
-document.getElementById(
-  "deviceName"
-).textContent=
-  rawDevice ||
-  "UNKNOWN DEVICE";
-
-
-document.getElementById(
-  "meta"
-).textContent=
-  `${ram} GB RAM • ${storage} GB STORAGE`;
-
-
-/* =====================================================
-   APPLY DEVICE THEME
-===================================================== */
-
-applyTheme(key);
-
-
-/* =====================================================
-   START CODE BACKGROUND
-===================================================== */
-
-createCodeBackground();
-
-
-/* =====================================================
-   SENSITIVITY RENDER
-===================================================== */
-
-const names=[
+const labels = [
 
   "General",
   "Red Dot",
@@ -1575,198 +1127,138 @@ const names=[
 ];
 
 
-const sensitivity=
-  document.getElementById(
-    "sensitivity"
-  );
-
+let values;
 
 if(profile){
 
-  profile.forEach(
-    (value,index)=>{
-
-      const percent=
-        (value/200)*100;
-
-
-      const item=
-        document.createElement(
-          "div"
-        );
-
-
-      item.className=
-        "item";
-
-
-      item.innerHTML=`
-
-        <div class="item-head">
-
-          <div class="name">
-            ${names[index]}
-          </div>
-
-          <div class="value">
-            ${value}
-          </div>
-
-        </div>
-
-
-        <div
-          class="bar"
-          style="--p:${percent}%">
-
-          <div class="fill"></div>
-
-          <div class="knob"></div>
-
-        </div>
-
-
-        <div class="scale">
-
-          <span>0</span>
-          <span>50</span>
-          <span>100</span>
-          <span>150</span>
-          <span>200</span>
-
-        </div>
-
-      `;
-
-
-      sensitivity.appendChild(
-        item
-      );
-
-    }
-  );
-
+  values =
+    [...profile.general];
 
 }else{
 
-  sensitivity.innerHTML=`
+  /*
+    Unknown device gets a moderate
+    general-purpose profile.
+  */
 
-    <div style="
-      text-align:center;
-      padding:40px 10px;
-    ">
+  values =
+    [180,175,165,170,155,150];
 
-      <h3 style="
-        color:#ff6470;
-        margin-bottom:10px;
-      ">
-        DEVICE NOT FOUND
-      </h3>
+}
 
-      <p style="
-        color:#758196;
-        line-height:1.6;
-      ">
-        This device is not currently
-        available in the profile database.
-      </p>
+
+const sensitivityGrid =
+  document.getElementById("sensitivityGrid");
+
+
+labels.forEach((label,index)=>{
+
+  const card =
+    document.createElement("div");
+
+  card.className="sens-card";
+
+  card.innerHTML = `
+
+    <div class="sens-top">
+
+      <span class="sens-name">
+        ${label}
+      </span>
+
+      <span class="sens-value">
+        ${values[index]}
+      </span>
+
+    </div>
+
+    <div class="bar">
+
+      <div
+        class="bar-fill"
+        style="width:${values[index]/2}%"
+      ></div>
 
     </div>
 
   `;
 
-}
+  sensitivityGrid.appendChild(card);
+
+});
 
 
-/* =====================================================
+/* =========================================
    COPY SETTINGS
-===================================================== */
+========================================= */
 
-document.getElementById(
-  "copy"
-).addEventListener(
-  "click",
-  async()=>{
+document
+.getElementById("copyBtn")
+.addEventListener("click",async()=>{
 
-    if(!profile){
-      return;
-    }
+  const text = `
 
-
-    let text=
-`FF MAX SENSITIVITY PROFILE
+FF MAX SENSITIVITY PROFILE
 
 Device: ${rawDevice}
 RAM: ${ram} GB
 Storage: ${storage} GB
 
-`;
+Sensitivity:
+General: ${values[0]}
+Red Dot: ${values[1]}
+2X Scope: ${values[2]}
+4X Scope: ${values[3]}
+Sniper Scope: ${values[4]}
+Free Look: ${values[5]}
 
+PHONE GAMING SETTINGS
 
-    profile.forEach(
-      (value,index)=>{
-
-        text +=
-          `${names[index]}: ${value}\n`;
-
-      }
-    );
-
-
-    text +=`
-
-PHONE SETTINGS
-
-Refresh Rate: Highest Available
-DPI: Keep Default
-Game Mode: ON
-Battery Saver: OFF While Gaming
-Background Apps: Keep Minimal
+Game / Performance Mode: ENABLE
+High Refresh Rate: ENABLE
+Auto-Rotate During Game: DISABLE
+Background Apps: LIMIT
 
 GAME SETTINGS
 
-Graphics: Smooth / Balanced
-FPS: Highest Supported
-Shadows: Low / Optional
-Auto Scale: OFF
+Graphics: SMOOTH
+High FPS: ENABLE
+Battery Saver While Gaming: DISABLE
+Game Booster: ENABLE
+
+BATTERY & THERMAL
+
+Battery Saver During Match: DISABLE
+Background Sync: LIMIT
+Unused Apps: RESTRICT
+Heavy Gaming While Charging: AVOID
+Extreme Performance / Overclock: AVOID
+Temperature: MONITOR
+
 `;
 
+  try{
 
-    try{
+    await navigator.clipboard.writeText(text);
 
-      await navigator
-        .clipboard
-        .writeText(text);
+    const btn =
+      document.getElementById("copyBtn");
 
+    btn.textContent="✓ COPIED";
 
-      const button=
-        document.getElementById(
-          "copy"
-        );
+    setTimeout(()=>{
 
+      btn.textContent="COPY SETTINGS";
 
-      button.textContent=
-        "✓ SETTINGS COPIED";
+    },1800);
 
+  }catch(error){
 
-      setTimeout(()=>{
-
-        button.textContent=
-          "COPY SETTINGS";
-
-      },2200);
-
-
-    }catch{
-
-      alert(
-        "Copy failed. Please copy manually."
-      );
-
-    }
+    alert("Copy failed. Please copy manually.");
 
   }
-);
+
+});
 
 </script>
 
