@@ -1,130 +1,1271 @@
-/* ===== SUBTLE GLASS LIQUID ===== */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-.liquid-layer{
+<title>FF MAX • Sensitivity Lab</title>
+
+<style>
+:root{
+  --a:#00d9ff;
+  --b:#7567ff;
+  --rgb:0,217,255;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  background:
+    radial-gradient(circle at 15% 10%,rgba(var(--rgb),.08),transparent 32%),
+    radial-gradient(circle at 90% 90%,rgba(117,103,255,.07),transparent 35%),
+    #05070b;
+  color:#f4f7ff;
+  font-family:Arial,Helvetica,sans-serif;
+}
+
+/* BACKGROUND */
+
+.grid{
   position:fixed;
   inset:0;
   pointer-events:none;
-  overflow:hidden;
-  z-index:50;
+  opacity:.12;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+
+  background-size:45px 45px;
 }
+
+.scan{
+  position:fixed;
+  left:0;
+  top:-5%;
+  width:100%;
+  height:1px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    rgba(var(--rgb),.35),
+    transparent
+  );
+
+  animation:scan 9s linear infinite;
+  pointer-events:none;
+}
+
+@keyframes scan{
+  to{top:105%}
+}
+
+/* HEADER */
+
+header{
+  position:relative;
+  z-index:5;
+
+  width:min(1100px,92%);
+  margin:auto;
+
+  padding:25px 0;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:2px;
+}
+
+.logo span{
+  color:var(--a);
+}
+
+.status{
+  color:#718097;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+/* MAIN */
+
+main{
+  position:relative;
+  z-index:4;
+
+  width:min(1050px,92%);
+  margin:30px auto 80px;
+}
+
+.hero{
+  text-align:center;
+  margin-bottom:35px;
+}
+
+.badge{
+  display:inline-block;
+
+  padding:8px 14px;
+
+  border:1px solid rgba(var(--rgb),.3);
+  border-radius:999px;
+
+  color:var(--a);
+  background:rgba(var(--rgb),.05);
+
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+h1{
+  margin-top:18px;
+
+  font-size:clamp(35px,7vw,70px);
+  line-height:.95;
+
+  letter-spacing:-3px;
+}
+
+h1 span{
+  background:
+    linear-gradient(90deg,var(--a),var(--b),var(--a));
+
+  background-size:200%;
+
+  -webkit-background-clip:text;
+  background-clip:text;
+
+  color:transparent;
+
+  animation:gradient 4s linear infinite;
+}
+
+@keyframes gradient{
+  to{background-position:200%}
+}
+
+.meta{
+  margin-top:16px;
+  color:#78859a;
+  font-size:13px;
+}
+
+/* PANELS */
+
+.panel{
+  position:relative;
+
+  padding:25px;
+
+  margin-bottom:18px;
+
+  border-radius:22px;
+
+  background:rgba(10,14,23,.78);
+
+  border:1px solid rgba(255,255,255,.07);
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.3);
+
+  backdrop-filter:blur(15px);
+}
+
+.title{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:25px;
+}
+
+.title h2{
+  font-size:17px;
+  letter-spacing:1px;
+}
+
+.title span{
+  color:var(--a);
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+/* SENSITIVITY */
+
+.sensitivity{
+  display:flex;
+  flex-direction:column;
+  gap:25px;
+}
+
+.item{
+  position:relative;
+}
+
+.item-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  margin-bottom:10px;
+}
+
+.name{
+  font-size:14px;
+  font-weight:800;
+}
+
+.value{
+  color:var(--a);
+
+  font-size:26px;
+  font-weight:950;
+
+  text-shadow:
+    0 0 12px rgba(var(--rgb),.6);
+
+  animation:valuePulse 2s ease-in-out infinite;
+}
+
+@keyframes valuePulse{
+  50%{
+    transform:scale(1.05);
+  }
+}
+
+.bar{
+  height:9px;
+
+  position:relative;
+
+  border-radius:999px;
+
+  background:#111722;
+
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.fill{
+  position:absolute;
+  left:0;
+  top:0;
+  bottom:0;
+
+  width:var(--p);
+
+  border-radius:999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      var(--b),
+      var(--a)
+    );
+
+  box-shadow:
+    0 0 15px rgba(var(--rgb),.3);
+}
+
+.knob{
+  position:absolute;
+
+  left:var(--p);
+  top:50%;
+
+  width:17px;
+  height:17px;
+
+  transform:translate(-50%,-50%);
+
+  border-radius:50%;
+
+  background:#fff;
+
+  border:4px solid var(--a);
+
+  box-shadow:
+    0 0 18px rgba(var(--rgb),.7);
+}
+
+.scale{
+  display:flex;
+  justify-content:space-between;
+
+  margin-top:7px;
+
+  color:#566176;
+  font-size:8px;
+}
+
+/* SETTINGS */
+
+.settings{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.setting{
+  padding:17px;
+
+  border-radius:15px;
+
+  background:rgba(255,255,255,.025);
+
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.setting small{
+  display:block;
+
+  margin-bottom:7px;
+
+  color:#68758a;
+
+  font-size:8px;
+  letter-spacing:1.5px;
+}
+
+.setting strong{
+  font-size:13px;
+}
+
+/* BUTTONS */
+
+.buttons{
+  display:flex;
+  gap:12px;
+  margin-top:22px;
+}
+
+button,
+.back{
+  flex:1;
+
+  min-height:50px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  border-radius:14px;
+
+  border:1px solid rgba(var(--rgb),.25);
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(var(--rgb),.14),
+      rgba(117,103,255,.12)
+    );
+
+  color:white;
+
+  font-weight:900;
+  letter-spacing:1px;
+
+  text-decoration:none;
+
+  cursor:pointer;
+
+  transition:.25s;
+}
+
+button:hover,
+.back:hover{
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 12px 30px rgba(var(--rgb),.13);
+}
+
+/* =====================================================
+   GLASS LIQUID
+   This layer is intentionally ABOVE the content.
+===================================================== */
+
+.liquid{
+  position:fixed;
+  inset:0;
+
+  z-index:100;
+
+  pointer-events:none;
+
+  overflow:hidden;
+}
+
+/* individual drop */
 
 .drop{
   position:absolute;
 
+  left:var(--x);
+  top:-45px;
+
   width:var(--w);
   height:var(--h);
 
-  left:var(--x);
-  top:-40px;
+  border-radius:
+    60% 40% 52% 48%
+    / 50% 42% 58% 50%;
 
-  border-radius:50% 48% 55% 45%;
+  /*
+    glossy dark-red liquid,
+    not photorealistic blood
+  */
 
   background:
     radial-gradient(
-      ellipse at 35% 20%,
-      rgba(255,255,255,.42) 0%,
-      rgba(255,255,255,.10) 12%,
-      transparent 24%
+      ellipse at 31% 18%,
+      rgba(255,255,255,.38) 0 8%,
+      transparent 17%
+    ),
+    radial-gradient(
+      ellipse at 58% 70%,
+      rgba(255,75,75,.28),
+      transparent 42%
     ),
     linear-gradient(
-      160deg,
-      rgba(245,55,65,.92),
-      rgba(170,18,30,.88) 55%,
-      rgba(95,5,15,.82)
+      150deg,
+      #e93848,
+      #9f1425 60%,
+      #5b0814
     );
 
+  opacity:.70;
+
   box-shadow:
-    0 3px 10px rgba(0,0,0,.35),
+    0 3px 9px rgba(0,0,0,.45),
     inset 1px 1px 3px rgba(255,255,255,.22),
-    inset -2px -3px 5px rgba(40,0,5,.28);
-
-  opacity:.76;
-
-  transform:translateY(0) scale(.8);
+    inset -2px -3px 5px rgba(35,0,5,.35);
 
   animation:
-    glassDrip var(--duration) cubic-bezier(.45,.05,.55,.95)
-    var(--delay) forwards;
+    slideDown
+    var(--time)
+    cubic-bezier(.45,.05,.55,.95)
+    var(--delay)
+    forwards;
 }
 
-/* पतली trail */
+/*
+  Thin trail attached to the drop.
+  It follows the drop while it moves down.
+*/
 
 .drop::after{
   content:"";
 
   position:absolute;
 
-  width:28%;
-  height:var(--trail);
+  left:38%;
+  top:70%;
 
-  left:36%;
-  top:68%;
+  width:24%;
+
+  height:var(--trail);
 
   border-radius:999px;
 
-  background:linear-gradient(
-    to bottom,
-    rgba(180,15,30,.62),
-    rgba(150,10,25,.30),
-    transparent
-  );
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(185,20,35,.55),
+      rgba(120,8,20,.25),
+      transparent
+    );
 
-  filter:blur(.7px);
+  filter:blur(.65px);
 }
 
-/* छोटा glass highlight */
+/* tiny glass reflection */
 
 .drop::before{
   content:"";
 
   position:absolute;
 
-  width:28%;
-  height:16%;
+  left:20%;
+  top:12%;
 
-  left:22%;
-  top:13%;
+  width:27%;
+  height:13%;
 
   border-radius:50%;
 
-  background:rgba(255,255,255,.30);
+  background:rgba(255,255,255,.28);
 
   filter:blur(.5px);
 }
 
-@keyframes glassDrip{
+@keyframes slideDown{
 
   0%{
-    transform:translateY(0) scale(.65);
+    transform:
+      translate3d(0,0,0)
+      scale(.65);
+
     opacity:0;
   }
 
-  7%{
-    opacity:.76;
+  6%{
+    opacity:.70;
   }
 
   18%{
-    transform:translateY(18vh) translateX(3px) scale(.88);
+    transform:
+      translate3d(4px,18vh,0)
+      scale(.86);
   }
 
   35%{
-    transform:translateY(36vh) translateX(-2px) scale(.94);
+    transform:
+      translate3d(-3px,36vh,0)
+      scale(.94);
   }
 
   52%{
-    transform:translateY(54vh) translateX(4px) scale(1);
+    transform:
+      translate3d(3px,54vh,0)
+      scale(1);
   }
 
-  70%{
-    transform:translateY(72vh) translateX(-3px) scale(.96);
+  68%{
+    transform:
+      translate3d(-2px,70vh,0)
+      scale(.96);
   }
 
-  86%{
-    transform:translateY(88vh) translateX(2px) scale(1.02);
+  84%{
+    transform:
+      translate3d(3px,87vh,0)
+      scale(1.01);
   }
 
   100%{
-    transform:translateY(112vh) translateX(-2px) scale(.9);
+    transform:
+      translate3d(-2px,112vh,0)
+      scale(.88);
+
     opacity:0;
   }
 }
+
+/* FOOTER */
+
+footer{
+  position:relative;
+  z-index:5;
+
+  padding:25px;
+
+  text-align:center;
+
+  color:#4c586c;
+
+  font-size:9px;
+  letter-spacing:2px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+  header{
+    padding:20px 0;
+  }
+
+  .status{
+    font-size:8px;
+  }
+
+  main{
+    width:94%;
+    margin-top:20px;
+  }
+
+  .panel{
+    padding:18px;
+  }
+
+  .settings{
+    grid-template-columns:1fr;
+  }
+
+  .buttons{
+    flex-direction:column;
+  }
+
+  h1{
+    letter-spacing:-2px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="grid"></div>
+<div class="scan"></div>
+
+<!--
+  IMPORTANT:
+  This layer is ABOVE all cards/text.
+  इसलिए liquid words के ऊपर दिखाई देगा.
+-->
+<div class="liquid" id="liquid"></div>
+
+
+<header>
+
+  <div class="logo">
+    FF<span>MAX</span>
+  </div>
+
+  <div class="status">
+    ● SENSITIVITY LAB
+  </div>
+
+</header>
+
+
+<main>
+
+  <section class="hero">
+
+    <div class="badge">
+      DEVICE PROFILE
+    </div>
+
+    <h1>
+      <span id="deviceName">DEVICE</span>
+    </h1>
+
+    <div class="meta" id="meta">
+      Loading profile...
+    </div>
+
+  </section>
+
+
+  <section class="panel">
+
+    <div class="title">
+      <h2>SENSITIVITY PROFILE</h2>
+      <span>0 — 200</span>
+    </div>
+
+    <div class="sensitivity" id="sensitivity"></div>
+
+  </section>
+
+
+  <section class="panel">
+
+    <div class="title">
+      <h2>PHONE SETTINGS</h2>
+      <span>OPTIMIZER</span>
+    </div>
+
+    <div class="settings">
+
+      <div class="setting">
+        <small>REFRESH RATE</small>
+        <strong>Highest Available</strong>
+      </div>
+
+      <div class="setting">
+        <small>DPI</small>
+        <strong>Keep Default</strong>
+      </div>
+
+      <div class="setting">
+        <small>GAME MODE</small>
+        <strong>ON</strong>
+      </div>
+
+      <div class="setting">
+        <small>BATTERY SAVER</small>
+        <strong>OFF WHILE GAMING</strong>
+      </div>
+
+      <div class="setting">
+        <small>BACKGROUND APPS</small>
+        <strong>Keep Minimal</strong>
+      </div>
+
+      <div class="setting">
+        <small>THERMAL</small>
+        <strong>Avoid Excessive Heat</strong>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section class="panel">
+
+    <div class="title">
+      <h2>GAME SETTINGS</h2>
+      <span>FF MAX</span>
+    </div>
+
+    <div class="settings">
+
+      <div class="setting">
+        <small>GRAPHICS</small>
+        <strong>Smooth / Balanced</strong>
+      </div>
+
+      <div class="setting">
+        <small>FPS</small>
+        <strong>Highest Supported</strong>
+      </div>
+
+      <div class="setting">
+        <small>SHADOWS</small>
+        <strong>Low / Optional</strong>
+      </div>
+
+      <div class="setting">
+        <small>AUTO SCALE</small>
+        <strong>OFF</strong>
+      </div>
+
+    </div>
+
+    <div class="buttons">
+
+      <button id="copy">
+        COPY SETTINGS
+      </button>
+
+      <a href="index.html" class="back">
+        ← GENERATE AGAIN
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+  FF MAX SENSITIVITY LAB • DEVICE BASED RECOMMENDATIONS
+</footer>
+
+
+<script>
+
+/* =====================================================
+   DEVICE PROFILES
+===================================================== */
+
+const devices = {
+
+  "poco f5":[195,185,175,165,105,190],
+  "poco f5 pro":[195,185,175,165,105,190],
+  "poco f6":[198,188,178,168,108,192],
+  "poco x5":[190,180,170,160,100,185],
+  "poco x5 pro":[195,185,175,165,105,190],
+  "poco x6":[195,185,175,165,105,190],
+  "poco x6 pro":[198,188,178,168,108,192],
+  "poco x7":[195,185,175,165,105,190],
+  "poco x7 pro":[198,188,178,168,108,192],
+
+  "redmi note 12":[188,178,168,158,98,183],
+  "redmi note 13":[190,180,170,160,100,185],
+  "redmi note 13 pro":[195,185,175,165,105,190],
+  "redmi note 13 pro plus":[198,188,178,168,108,192],
+  "redmi note 14":[190,180,170,160,100,185],
+  "redmi note 14 pro":[195,185,175,165,105,190],
+  "redmi note 14 pro plus":[198,188,178,168,108,192],
+
+  "samsung galaxy a34":[185,175,165,155,95,180],
+  "samsung galaxy a35":[188,178,168,158,98,183],
+  "samsung galaxy a54":[190,180,170,160,100,185],
+  "samsung galaxy a55":[192,182,172,162,102,187],
+  "samsung galaxy s23":[195,185,175,165,105,190],
+  "samsung galaxy s24":[198,188,178,168,108,192],
+  "samsung galaxy s25":[199,190,180,170,110,194],
+  "samsung galaxy s26":[200,190,180,170,110,195],
+
+  "google pixel 8":[190,180,170,160,100,185],
+  "google pixel 9":[192,182,172,162,102,187],
+  "google pixel 10":[195,185,175,165,105,190],
+  "google pixel 11":[200,190,180,170,110,195],
+
+  "oneplus 11":[198,188,178,168,108,192],
+  "oneplus 12":[199,190,180,170,110,194],
+  "oneplus 13":[199,190,180,170,110,194],
+  "oneplus 15":[200,192,182,172,112,196],
+  "oneplus nord 4":[195,185,175,165,105,190],
+
+  "realme gt 6":[198,188,178,168,108,192],
+  "realme gt 7":[199,190,180,170,110,194],
+  "realme gt 8 pro":[200,192,182,172,112,196],
+
+  "oppo find x8":[198,188,178,168,108,192],
+  "oppo find x9":[199,190,180,170,110,194],
+  "vivo x200":[198,188,178,168,108,192],
+  "vivo x300":[199,190,180,170,110,194],
+
+  "iqoo 13":[199,190,180,170,110,194],
+  "iqoo 15":[200,192,182,172,112,196],
+
+  "nothing phone 2":[190,180,170,160,100,185],
+  "nothing phone 3":[195,185,175,165,105,190],
+
+  "motorola edge 60 pro":[195,185,175,165,105,190],
+
+  "infinix gt 20 pro":[195,185,175,165,105,190],
+  "infinix gt 30 pro":[198,188,178,168,108,192],
+
+  "iphone 11":[185,175,165,155,95,180],
+  "iphone 12":[188,178,168,158,98,183],
+  "iphone 13":[190,180,170,160,100,185],
+  "iphone 14":[192,182,172,162,102,187],
+  "iphone 15":[195,185,175,165,105,190],
+  "iphone 16":[198,188,178,168,108,192],
+  "iphone 17":[200,190,180,170,110,195],
+
+  "ipad m1":[190,180,170,160,100,185],
+  "ipad m2":[195,185,175,165,105,190],
+  "ipad m3":[198,188,178,168,108,192],
+  "ipad m4":[200,190,180,170,110,195],
+  "ipad pro m2":[198,188,178,168,108,192],
+  "ipad pro m4":[200,190,180,170,110,195]
+
+};
+
+
+/* =====================================================
+   ALIASES
+===================================================== */
+
+const aliases = {
+
+  "poco x5 5g":"poco x5",
+  "poco x5 pro 5g":"poco x5 pro",
+  "poco x6 5g":"poco x6",
+  "poco x6 pro 5g":"poco x6 pro",
+  "poco x7 5g":"poco x7",
+  "poco x7 pro 5g":"poco x7 pro",
+
+  "redmi note 13 pro+":"redmi note 13 pro plus",
+  "redmi note 14 pro+":"redmi note 14 pro plus",
+
+  "samsung s24":"samsung galaxy s24",
+  "samsung s25":"samsung galaxy s25",
+  "samsung s26":"samsung galaxy s26",
+
+  "pixel 8":"google pixel 8",
+  "pixel 9":"google pixel 9",
+  "pixel 10":"google pixel 10",
+  "pixel 11":"google pixel 11",
+
+  "iphone 13 pro":"iphone 13",
+  "iphone 13 pro max":"iphone 13",
+  "iphone 14 pro":"iphone 14",
+  "iphone 14 pro max":"iphone 14",
+  "iphone 15 pro":"iphone 15",
+  "iphone 15 pro max":"iphone 15",
+  "iphone 16 pro":"iphone 16",
+  "iphone 16 pro max":"iphone 16",
+  "iphone 17 pro":"iphone 17",
+  "iphone 17 pro max":"iphone 17",
+
+  "ipad pro m3":"ipad m3"
+
+};
+
+
+/* =====================================================
+   NORMALIZE
+===================================================== */
+
+function normalize(text){
+
+  return text
+    .toLowerCase()
+    .trim()
+    .replace(/[()]/g,"")
+    .replace(/-/g," ")
+    .replace(/\s+/g," ");
+
+}
+
+
+/* =====================================================
+   THEME
+===================================================== */
+
+function theme(device){
+
+  const d=device.toLowerCase();
+
+  let a="#00d9ff";
+  let b="#7567ff";
+  let rgb="0,217,255";
+
+  if(
+    d.includes("iphone") ||
+    d.includes("ipad")
+  ){
+
+    a="#ff70b8";
+    b="#9b68ff";
+    rgb="255,112,184";
+
+  }else if(d.includes("samsung")){
+
+    a="#6190ff";
+    b="#8068ff";
+    rgb="97,144,255";
+
+  }else if(d.includes("oneplus")){
+
+    a="#ff5555";
+    b="#ff913d";
+    rgb="255,85,85";
+
+  }else if(d.includes("realme")){
+
+    a="#45e5a3";
+    b="#1db9d2";
+    rgb="69,229,163";
+
+  }else if(
+    d.includes("poco") ||
+    d.includes("redmi") ||
+    d.includes("xiaomi")
+  ){
+
+    a="#00d9ff";
+    b="#7567ff";
+    rgb="0,217,255";
+  }
+
+  document.documentElement
+    .style.setProperty("--a",a);
+
+  document.documentElement
+    .style.setProperty("--b",b);
+
+  document.documentElement
+    .style.setProperty("--rgb",rgb);
+
+}
+
+
+/* =====================================================
+   LIQUID DROPS
+===================================================== */
+
+function createLiquid(){
+
+  const layer=
+    document.getElementById("liquid");
+
+  layer.innerHTML="";
+
+  /*
+    सिर्फ कुछ छोटे drops.
+    वे content के ऊपर रहेंगे.
+  */
+
+  for(let i=0;i<8;i++){
+
+    const drop=
+      document.createElement("div");
+
+    drop.className="drop";
+
+    const width=
+      7 + Math.random()*10;
+
+    const height=
+      11 + Math.random()*20;
+
+    const x=
+      4 + Math.random()*92;
+
+    const time=
+      9 + Math.random()*6;
+
+    const delay=
+      Math.random()*8;
+
+    const trail=
+      20 + Math.random()*30;
+
+    drop.style.setProperty(
+      "--w",
+      width+"px"
+    );
+
+    drop.style.setProperty(
+      "--h",
+      height+"px"
+    );
+
+    drop.style.setProperty(
+      "--x",
+      x+"%"
+    );
+
+    drop.style.setProperty(
+      "--time",
+      time+"s"
+    );
+
+    drop.style.setProperty(
+      "--delay",
+      delay+"s"
+    );
+
+    drop.style.setProperty(
+      "--trail",
+      trail+"px"
+    );
+
+    layer.appendChild(drop);
+  }
+
+}
+
+
+/* =====================================================
+   URL
+===================================================== */
+
+const params=
+  new URLSearchParams(
+    window.location.search
+  );
+
+const raw=
+  params.get("device") || "";
+
+const ram=
+  params.get("ram") || "8";
+
+const storage=
+  params.get("storage") || "128";
+
+
+/* =====================================================
+   DEVICE LOOKUP
+===================================================== */
+
+let key=normalize(raw);
+
+if(aliases[key]){
+  key=aliases[key];
+}
+
+const profile=
+  devices[key];
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+document.getElementById("deviceName")
+  .textContent=
+    raw || "UNKNOWN DEVICE";
+
+document.getElementById("meta")
+  .textContent=
+    `${ram} GB RAM • ${storage} GB STORAGE`;
+
+theme(key);
+
+createLiquid();
+
+
+/* =====================================================
+   SENSITIVITY
+===================================================== */
+
+const names=[
+  "General",
+  "Red Dot",
+  "2X Scope",
+  "4X Scope",
+  "Sniper Scope",
+  "Free Look"
+];
+
+const box=
+  document.getElementById("sensitivity");
+
+if(profile){
+
+  profile.forEach((value,i)=>{
+
+    const percent=
+      (value/200)*100;
+
+    const row=
+      document.createElement("div");
+
+    row.className="item";
+
+    row.innerHTML=`
+
+      <div class="item-head">
+
+        <div class="name">
+          ${names[i]}
+        </div>
+
+        <div class="value">
+          ${value}
+        </div>
+
+      </div>
+
+      <div
+        class="bar"
+        style="--p:${percent}%">
+
+        <div class="fill"></div>
+
+        <div class="knob"></div>
+
+      </div>
+
+      <div class="scale">
+        <span>0</span>
+        <span>50</span>
+        <span>100</span>
+        <span>150</span>
+        <span>200</span>
+      </div>
+
+    `;
+
+    box.appendChild(row);
+
+  });
+
+}else{
+
+  box.innerHTML=`
+
+    <div style="
+      text-align:center;
+      padding:40px 10px;
+      color:#7d899d;
+    ">
+
+      <h3 style="
+        color:#ff6370;
+        margin-bottom:10px;
+      ">
+        DEVICE NOT FOUND
+      </h3>
+
+      <p>
+        This device isn't available in the current
+        verified profile database.
+      </p>
+
+    </div>
+
+  `;
+
+}
+
+
+/* =====================================================
+   COPY
+===================================================== */
+
+document.getElementById("copy")
+.addEventListener("click",async()=>{
+
+  if(!profile){
+    return;
+  }
+
+  let text=
+`FF MAX SENSITIVITY PROFILE
+
+Device: ${raw}
+RAM: ${ram} GB
+Storage: ${storage} GB
+
+`;
+
+  profile.forEach((value,i)=>{
+
+    text+=
+      `${names[i]}: ${value}\n`;
+
+  });
+
+  text+=`
+
+PHONE SETTINGS
+
+Refresh Rate: Highest Available
+DPI: Keep Default
+Game Mode: ON
+Battery Saver: OFF While Gaming
+Background Apps: Keep Minimal
+
+GAME SETTINGS
+
+Graphics: Smooth / Balanced
+FPS: Highest Supported
+`;
+
+  try{
+
+    await navigator.clipboard
+      .writeText(text);
+
+    const btn=
+      document.getElementById("copy");
+
+    btn.textContent=
+      "✓ COPIED";
+
+    setTimeout(()=>{
+
+      btn.textContent=
+        "COPY SETTINGS";
+
+    },2000);
+
+  }catch{
+
+    alert(
+      "Copy failed. Please copy manually."
+    );
+
+  }
+
+});
+
+</script>
+
+</body>
+</html>
