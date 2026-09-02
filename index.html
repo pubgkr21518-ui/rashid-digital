@@ -10,235 +10,77 @@
   <link rel="stylesheet" href="style.css">
 
   <style>
-    /* ================================
-       CYBER HOME BACKGROUND
-    ================================= */
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      min-height: 100%;
+      background: #03050b;
+    }
 
     body {
       overflow-x: hidden;
     }
 
-    .cyber-bg {
+    /* =====================================
+       3D CANVAS
+    ===================================== */
+
+    #space3d {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -10;
+      display: block;
+      background: #03050b;
+    }
+
+    .scene-overlay {
       position: fixed;
       inset: 0;
       z-index: -5;
-      overflow: hidden;
-      background:
-        radial-gradient(circle at 20% 20%,
-          rgba(0, 200, 255, .12),
-          transparent 32%),
-        radial-gradient(circle at 80% 70%,
-          rgba(150, 50, 255, .12),
-          transparent 34%),
-        #05070d;
-    }
-
-    .cyber-grid {
-      position: absolute;
-      inset: -50%;
-      width: 200%;
-      height: 200%;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.025) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.025) 1px,
-          transparent 1px
-        );
-
-      background-size: 45px 45px;
-
-      transform: perspective(500px) rotateX(60deg);
-      animation: gridMove 9s linear infinite;
-    }
-
-    @keyframes gridMove {
-      from {
-        transform:
-          perspective(500px)
-          rotateX(60deg)
-          translateY(0);
-      }
-
-      to {
-        transform:
-          perspective(500px)
-          rotateX(60deg)
-          translateY(45px);
-      }
-    }
-
-
-    /* ================================
-       CODE STREAM AREA
-    ================================= */
-
-    .code-streams {
-      position: absolute;
-      inset: 0;
-      overflow: hidden;
-      opacity: .42;
-      pointer-events: none;
-    }
-
-    .code-column {
-      position: absolute;
-      top: -140%;
-      width: 110px;
-
-      font-family:
-        "Courier New",
-        monospace;
-
-      font-size: 11px;
-      line-height: 1.75;
-
-      white-space: pre;
-
-      writing-mode: vertical-rl;
-
-      animation:
-        codeFall linear infinite;
-
-      text-shadow:
-        0 0 8px currentColor;
-    }
-
-    .code-column.reverse {
-      top: auto;
-      bottom: -140%;
-      animation-name: codeRise;
-    }
-
-    @keyframes codeFall {
-      from {
-        transform: translateY(-10%);
-      }
-
-      to {
-        transform: translateY(220%);
-      }
-    }
-
-    @keyframes codeRise {
-      from {
-        transform: translateY(10%);
-      }
-
-      to {
-        transform: translateY(-220%);
-      }
-    }
-
-
-    /* ================================
-       RANDOM COLOR STREAMS
-    ================================= */
-
-    .c1 {
-      left: 2%;
-      color: #00eaff;
-      animation-duration: 5s;
-    }
-
-    .c2 {
-      left: 9%;
-      color: #8b5cf6;
-      animation-duration: 7s;
-    }
-
-    .c3 {
-      left: 17%;
-      color: #22c55e;
-      animation-duration: 4s;
-    }
-
-    .c4 {
-      left: 26%;
-      color: #ff4ecd;
-      animation-duration: 6s;
-    }
-
-    .c5 {
-      left: 35%;
-      color: #00c8ff;
-      animation-duration: 4.5s;
-    }
-
-    .c6 {
-      left: 44%;
-      color: #a78bfa;
-      animation-duration: 6.5s;
-    }
-
-    .c7 {
-      left: 53%;
-      color: #34d399;
-      animation-duration: 5.5s;
-    }
-
-    .c8 {
-      left: 62%;
-      color: #f472b6;
-      animation-duration: 4.2s;
-    }
-
-    .c9 {
-      left: 71%;
-      color: #38bdf8;
-      animation-duration: 7s;
-    }
-
-    .c10 {
-      left: 80%;
-      color: #c084fc;
-      animation-duration: 5s;
-    }
-
-    .c11 {
-      left: 89%;
-      color: #4ade80;
-      animation-duration: 6s;
-    }
-
-    .c12 {
-      left: 96%;
-      color: #fb7185;
-      animation-duration: 4.8s;
-    }
-
-
-    /* ================================
-       HOME OVERLAY
-    ================================= */
-
-    .home-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
       pointer-events: none;
 
       background:
         radial-gradient(
-          ellipse at center,
-          transparent 15%,
-          rgba(3,5,12,.38) 65%,
-          rgba(3,5,12,.88) 100%
+          circle at 50% 45%,
+          transparent 0%,
+          rgba(2, 4, 10, .15) 38%,
+          rgba(2, 4, 10, .72) 100%
         );
     }
 
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: -4;
+      pointer-events: none;
 
-    /* ================================
+      background:
+        repeating-linear-gradient(
+          0deg,
+          rgba(255,255,255,.018) 0px,
+          rgba(255,255,255,.018) 1px,
+          transparent 1px,
+          transparent 5px
+        );
+
+      opacity: .28;
+    }
+
+    /* =====================================
        HEADER
-    ================================= */
+    ===================================== */
 
     .header {
       position: relative;
-      z-index: 5;
+      z-index: 20;
+
+      background: rgba(3, 6, 15, .42);
 
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
@@ -247,71 +89,23 @@
         1px solid rgba(255,255,255,.07);
     }
 
+    .logo {
+      text-shadow:
+        0 0 18px rgba(0,220,255,.28);
+    }
 
-    /* ================================
+    /* =====================================
        HERO
-    ================================= */
+    ===================================== */
 
     .hero {
       position: relative;
-      z-index: 2;
+      z-index: 5;
     }
-
-    .hero::before {
-      content: "";
-
-      position: absolute;
-      width: 420px;
-      height: 420px;
-
-      left: 50%;
-      top: 35%;
-
-      transform: translate(-50%, -50%);
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(0,190,255,.11),
-          transparent 68%
-        );
-
-      filter: blur(20px);
-
-      pointer-events: none;
-    }
-
-
-    /* ================================
-       BADGE
-    ================================= */
-
-    .badge {
-      position: relative;
-
-      border:
-        1px solid rgba(0,220,255,.25);
-
-      background:
-        rgba(0,180,255,.055);
-
-      box-shadow:
-        0 0 25px rgba(0,200,255,.08),
-        inset 0 0 20px rgba(0,200,255,.025);
-
-      backdrop-filter: blur(10px);
-    }
-
-
-    /* ================================
-       TITLE
-    ================================= */
 
     .hero h1 {
-      position: relative;
-
       text-shadow:
-        0 0 35px rgba(0,190,255,.10);
+        0 0 35px rgba(0,180,255,.12);
     }
 
     .hero h1 span {
@@ -319,23 +113,23 @@
         linear-gradient(
           90deg,
           #00eaff,
-          #7c5cff,
-          #d946ef,
+          #6675ff,
+          #bd4cff,
+          #ff4fd8,
           #00eaff
         );
 
-      background-size: 300% 100%;
+      background-size: 400% 100%;
 
       -webkit-background-clip: text;
       background-clip: text;
-
       -webkit-text-fill-color: transparent;
 
       animation:
-        homeGradient 6s ease infinite;
+        titleFlow 7s ease infinite;
     }
 
-    @keyframes homeGradient {
+    @keyframes titleFlow {
       0% {
         background-position: 0% 50%;
       }
@@ -349,10 +143,9 @@
       }
     }
 
-
-    /* ================================
-       GENERATOR CARD
-    ================================= */
+    /* =====================================
+       GENERATOR GLASS
+    ===================================== */
 
     .generator-box {
       position: relative;
@@ -361,102 +154,89 @@
       background:
         linear-gradient(
           145deg,
-          rgba(15,20,34,.88),
-          rgba(6,9,18,.78)
+          rgba(10,16,31,.88),
+          rgba(4,7,16,.76)
         ) !important;
 
       border:
-        1px solid rgba(255,255,255,.10) !important;
+        1px solid rgba(255,255,255,.11) !important;
 
       box-shadow:
-        0 25px 80px rgba(0,0,0,.45),
-        0 0 35px rgba(0,190,255,.07),
-        inset 0 1px 0 rgba(255,255,255,.05) !important;
+        0 30px 90px rgba(0,0,0,.5),
+        0 0 50px rgba(0,190,255,.07),
+        inset 0 1px 0 rgba(255,255,255,.07) !important;
 
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
+      backdrop-filter: blur(22px);
+      -webkit-backdrop-filter: blur(22px);
     }
 
     .generator-box::before {
       content: "";
 
       position: absolute;
-
-      width: 180%;
-      height: 1px;
-
-      left: -40%;
+      left: -100%;
       top: 0;
+
+      width: 70%;
+      height: 1px;
 
       background:
         linear-gradient(
           90deg,
           transparent,
           #00eaff,
-          #8b5cf6,
+          #a855f7,
           transparent
         );
 
+      box-shadow:
+        0 0 18px #00eaff;
+
       animation:
-        cardScan 4s linear infinite;
+        cardLaser 4s linear infinite;
     }
 
-    @keyframes cardScan {
-      from {
-        transform: translateX(-35%);
+    @keyframes cardLaser {
+      0% {
+        left: -80%;
       }
 
-      to {
-        transform: translateX(35%);
+      100% {
+        left: 130%;
       }
     }
 
-
-    /* ================================
+    /* =====================================
        INPUT
-    ================================= */
+    ===================================== */
 
     #device {
       background:
-        rgba(0,0,0,.28) !important;
+        rgba(0,0,0,.35) !important;
 
       border:
         1px solid rgba(255,255,255,.10) !important;
 
-      box-shadow:
-        inset 0 0 20px rgba(0,0,0,.25) !important;
-
-      transition:
-        .25s ease;
+      transition: .25s ease;
     }
 
     #device:focus {
       border-color:
-        rgba(0,220,255,.65) !important;
+        rgba(0,225,255,.7) !important;
 
       box-shadow:
-        0 0 0 3px rgba(0,220,255,.06),
-        0 0 25px rgba(0,220,255,.13),
-        inset 0 0 20px rgba(0,220,255,.025) !important;
+        0 0 0 3px rgba(0,220,255,.05),
+        0 0 28px rgba(0,220,255,.14) !important;
     }
-
-
-    /* ================================
-       SELECTS
-    ================================= */
 
     select {
       background:
-        rgba(0,0,0,.30) !important;
-
-      border-color:
-        rgba(255,255,255,.10) !important;
+        rgba(0,0,0,.35) !important;
     }
 
-
-    /* ================================
-       GENERATE BUTTON
-    ================================= */
+    /* =====================================
+       BUTTON
+    ===================================== */
 
     #generateBtn {
       position: relative;
@@ -467,31 +247,55 @@
       background:
         linear-gradient(
           100deg,
-          #00bfff,
-          #695cff,
-          #b845ff,
+          #00c8ff,
+          #645cff,
+          #b348ff,
+          #ff4bd8,
           #00d9ff
         );
 
-      background-size: 300% 100%;
+      background-size: 400% 100%;
 
       box-shadow:
-        0 10px 30px rgba(0,190,255,.15);
+        0 12px 35px rgba(0,190,255,.18);
 
       animation:
-        buttonFlow 5s ease infinite;
+        buttonFlow 6s ease infinite;
 
       transition:
         transform .2s ease,
         box-shadow .2s ease;
     }
 
+    #generateBtn::after {
+      content: "";
+
+      position: absolute;
+      top: 0;
+      left: -100%;
+
+      width: 70%;
+      height: 100%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(255,255,255,.30),
+          transparent
+        );
+
+      transform: skewX(-20deg);
+
+      animation:
+        buttonShine 3.5s linear infinite;
+    }
+
     #generateBtn:hover {
-      transform:
-        translateY(-2px);
+      transform: translateY(-2px);
 
       box-shadow:
-        0 14px 35px rgba(0,190,255,.25);
+        0 16px 45px rgba(0,190,255,.28);
     }
 
     @keyframes buttonFlow {
@@ -508,139 +312,96 @@
       }
     }
 
+    @keyframes buttonShine {
+      0% {
+        left: -100%;
+      }
 
-    /* ================================
+      45%,
+      100% {
+        left: 140%;
+      }
+    }
+
+    /* =====================================
        INFO CARDS
-    ================================= */
+    ===================================== */
 
     .info-card {
       position: relative;
       overflow: hidden;
 
       background:
-        rgba(7,11,21,.68) !important;
+        rgba(5,9,19,.68) !important;
 
       border:
-        1px solid rgba(255,255,255,.07) !important;
+        1px solid rgba(255,255,255,.075) !important;
 
-      backdrop-filter: blur(14px);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
 
-      box-shadow:
-        0 15px 45px rgba(0,0,0,.22);
+      transition:
+        transform .3s ease,
+        border-color .3s ease;
     }
 
-    .info-card::after {
-      content: "";
+    .info-card:hover {
+      transform: translateY(-5px);
 
-      position: absolute;
+      border-color:
+        rgba(0,220,255,.25) !important;
+    }
 
-      width: 120px;
-      height: 120px;
+    /* =====================================
+       FOOTER
+    ===================================== */
 
-      right: -60px;
-      bottom: -60px;
+    footer {
+      position: relative;
+      z-index: 5;
 
       background:
-        radial-gradient(
-          circle,
-          rgba(0,210,255,.10),
-          transparent 70%
-        );
-
-      filter: blur(10px);
+        rgba(2,4,10,.30);
     }
 
-
-    /* ================================
+    /* =====================================
        MOBILE
-    ================================= */
+    ===================================== */
 
     @media (max-width: 700px) {
 
-      .code-column {
-        width: 70px;
-        font-size: 9px;
-        opacity: .65;
+      #space3d {
+        opacity: .85;
       }
 
-      .cyber-grid {
-        background-size: 32px 32px;
+      .scanlines {
+        opacity: .18;
       }
 
       .generator-box {
-        margin-left: 12px;
-        margin-right: 12px;
+        margin-left: 10px;
+        margin-right: 10px;
       }
-
     }
   </style>
 </head>
 
 <body>
 
-  <!-- CYBER BACKGROUND -->
-  <div class="cyber-bg">
+  <!-- ===================================
+       REAL-TIME 3D BACKGROUND
+  ==================================== -->
 
-    <div class="cyber-grid"></div>
+  <canvas id="space3d"></canvas>
 
-    <div class="code-streams">
-
-      <div class="code-column c1">
-        01010110 00110101 FFMAX SYSTEM CORE 7A 91 00 11 010011
-      </div>
-
-      <div class="code-column c2 reverse">
-        INIT PROFILE 0xA7 DEVICE SCAN 10101011 USER CONFIG 7F21
-      </div>
-
-      <div class="code-column c3">
-        RAM_CHECK 8GB FPS_ENGINE SENS_2026 00110011 CORE ONLINE
-      </div>
-
-      <div class="code-column c4 reverse">
-        FF_MAX PROFILE READY 11001100 INPUT DEVICE CONFIGURE 9D
-      </div>
-
-      <div class="code-column c5">
-        SYSTEM 01011010 GRAPHICS ENGINE HIGH FPS SENSOR READY 88
-      </div>
-
-      <div class="code-column c6 reverse">
-        101001 110010 DEVICE PROFILE SENSITIVITY MATRIX 0xFF 7A
-      </div>
-
-      <div class="code-column c7">
-        PERFORMANCE MODE ACTIVE 01101010 BATTERY CORE 101011 42
-      </div>
-
-      <div class="code-column c8 reverse">
-        CONFIG LOAD 001101 DEVICE DATA 0xA1 PROFILE BUILD 2026
-      </div>
-
-      <div class="code-column c9">
-        SENS_ENGINE 01010101 TOUCH RESPONSE 999 FPS MODE READY
-      </div>
-
-      <div class="code-column c10 reverse">
-        DEVICE INPUT 11010011 PROFILE GENERATOR ACTIVE 7B 01 88
-      </div>
-
-      <div class="code-column c11">
-        CORE ONLINE 10101010 GAME MODE ENABLED SYSTEM STATUS OK
-      </div>
-
-      <div class="code-column c12 reverse">
-        01001101 FFMAX LAB PROFILE MATRIX 0x9F 10110011 READY
-      </div>
-
-    </div>
-
-  </div>
-
-  <div class="home-overlay"></div>
+  <div class="scene-overlay"></div>
+  <div class="scanlines"></div>
 
 
-  <!-- HEADER -->
+  <!-- ===================================
+       HEADER
+  ==================================== -->
+
   <header class="header">
 
     <div class="logo">
@@ -654,7 +415,10 @@
   </header>
 
 
-  <!-- MAIN -->
+  <!-- ===================================
+       MAIN
+  ==================================== -->
+
   <main>
 
     <section class="hero">
@@ -675,6 +439,7 @@
 
 
       <!-- GENERATOR -->
+
       <div class="generator-box">
 
         <label for="device">
@@ -774,7 +539,10 @@
     </section>
 
 
-    <!-- INFO -->
+    <!-- =================================
+         INFO
+    ================================== -->
+
     <section class="info-section">
 
       <div class="info-card">
@@ -829,7 +597,6 @@
   </main>
 
 
-  <!-- FOOTER -->
   <footer>
 
     <span>
@@ -843,7 +610,10 @@
   </footer>
 
 
-  <!-- GENERATOR SCRIPT -->
+  <!-- ===================================
+       GENERATOR
+  ==================================== -->
+
   <script>
 
     const deviceInput =
@@ -893,7 +663,6 @@
         const params =
           new URLSearchParams();
 
-
         params.set(
           "device",
           device
@@ -920,16 +689,710 @@
 
     deviceInput.addEventListener(
       "keydown",
-      function (event) {
+      function(event) {
 
         if (event.key === "Enter") {
-
           generateBtn.click();
-
         }
 
       }
     );
+
+
+    /* ===================================
+       3D ENGINE
+    ==================================== */
+
+    const canvas =
+      document.getElementById("space3d");
+
+    const ctx =
+      canvas.getContext("2d");
+
+
+    let width;
+    let height;
+
+    let mouseX = 0;
+    let mouseY = 0;
+
+    let targetX = 0;
+    let targetY = 0;
+
+
+    const DPR =
+      Math.min(window.devicePixelRatio || 1, 2);
+
+
+    function resize() {
+
+      width =
+        window.innerWidth;
+
+      height =
+        window.innerHeight;
+
+      canvas.width =
+        width * DPR;
+
+      canvas.height =
+        height * DPR;
+
+      canvas.style.width =
+        width + "px";
+
+      canvas.style.height =
+        height + "px";
+
+      ctx.setTransform(
+        DPR,
+        0,
+        0,
+        DPR,
+        0,
+        0
+      );
+    }
+
+
+    resize();
+
+    window.addEventListener(
+      "resize",
+      resize
+    );
+
+
+    /* ===================================
+       MOUSE PARALLAX
+    ==================================== */
+
+    window.addEventListener(
+      "pointermove",
+      function(e) {
+
+        targetX =
+          (e.clientX / width - .5) * 2;
+
+        targetY =
+          (e.clientY / height - .5) * 2;
+
+      }
+    );
+
+
+    /* ===================================
+       COLOR SYSTEM
+    ==================================== */
+
+    const colors = [
+      "#00eaff",
+      "#00bfff",
+      "#7c5cff",
+      "#a855f7",
+      "#d946ef",
+      "#ff4fd8",
+      "#22c55e",
+      "#34d399",
+      "#38bdf8",
+      "#f472b6"
+    ];
+
+
+    /* ===================================
+       3D PARTICLES
+    ==================================== */
+
+    const particles = [];
+
+    const particleCount =
+      Math.min(
+        190,
+        Math.floor(
+          (width * height) / 8500
+        )
+      );
+
+
+    for (
+      let i = 0;
+      i < particleCount;
+      i++
+    ) {
+
+      particles.push({
+        x: (Math.random() - .5) * 1800,
+        y: (Math.random() - .5) * 1100,
+        z: Math.random() * 1800 + 100,
+
+        size:
+          Math.random() * 2 + .5,
+
+        color:
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ],
+
+        speed:
+          Math.random() * 2 + .5
+      });
+
+    }
+
+
+    /* ===================================
+       CODE RAIN
+    ==================================== */
+
+    const codeChars =
+      "01{}[]<>/\\\\|=+-_*#$%";
+
+    const codeWords = [
+      "FFMAX",
+      "SENS",
+      "DEVICE",
+      "PROFILE",
+      "CORE",
+      "FPS",
+      "RAM",
+      "GPU",
+      "INPUT",
+      "SYSTEM",
+      "CONFIG",
+      "READY",
+      "ENGINE",
+      "DATA",
+      "OPT",
+      "LOAD"
+    ];
+
+
+    const columns = [];
+
+    const columnSize = 26;
+
+    const columnCount =
+      Math.ceil(
+        width / columnSize
+      );
+
+
+    for (
+      let i = 0;
+      i < columnCount;
+      i++
+    ) {
+
+      columns.push({
+
+        x:
+          i * columnSize,
+
+        y:
+          Math.random() * height,
+
+        speed:
+          1.8 +
+          Math.random() * 5.5,
+
+        length:
+          12 +
+          Math.floor(
+            Math.random() * 25
+          ),
+
+        color:
+          colors[
+            Math.floor(
+              Math.random() * colors.length
+            )
+          ],
+
+        alpha:
+          .15 +
+          Math.random() * .28,
+
+        change:
+          Math.random() * 100
+
+      });
+
+    }
+
+
+    /* ===================================
+       RANDOM CODE
+    ==================================== */
+
+    function randomCode() {
+
+      if (
+        Math.random() < .18
+      ) {
+
+        return codeWords[
+          Math.floor(
+            Math.random() *
+            codeWords.length
+          )
+        ];
+
+      }
+
+      return codeChars[
+        Math.floor(
+          Math.random() *
+          codeChars.length
+        )
+      ];
+
+    }
+
+
+    /* ===================================
+       3D RINGS
+    ==================================== */
+
+    let rotation = 0;
+
+
+    function drawRing(
+      centerX,
+      centerY,
+      radius,
+      tilt,
+      color,
+      speed
+    ) {
+
+      ctx.save();
+
+      ctx.translate(
+        centerX,
+        centerY
+      );
+
+      ctx.rotate(
+        tilt
+      );
+
+      ctx.beginPath();
+
+      const segments = 100;
+
+      for (
+        let i = 0;
+        i <= segments;
+        i++
+      ) {
+
+        const angle =
+          (i / segments) *
+          Math.PI * 2;
+
+        const x =
+          Math.cos(angle) *
+          radius;
+
+        const y =
+          Math.sin(angle) *
+          radius *
+          .28;
+
+        if (i === 0) {
+          ctx.moveTo(x, y);
+        } else {
+          ctx.lineTo(x, y);
+        }
+
+      }
+
+      ctx.strokeStyle =
+        color;
+
+      ctx.globalAlpha =
+        .18;
+
+      ctx.lineWidth =
+        1;
+
+      ctx.shadowBlur =
+        18;
+
+      ctx.shadowColor =
+        color;
+
+      ctx.stroke();
+
+      ctx.restore();
+
+    }
+
+
+    /* ===================================
+       DRAW 3D PARTICLES
+    ==================================== */
+
+    function drawParticles() {
+
+      for (
+        const p of particles
+      ) {
+
+        p.z -= p.speed;
+
+        if (p.z < 1) {
+
+          p.z =
+            1800;
+
+          p.x =
+            (Math.random() - .5) *
+            1800;
+
+          p.y =
+            (Math.random() - .5) *
+            1100;
+
+        }
+
+
+        const perspective =
+          650 / p.z;
+
+
+        const x =
+          width / 2 +
+          p.x *
+          perspective +
+          mouseX * 25 *
+          perspective;
+
+
+        const y =
+          height / 2 +
+          p.y *
+          perspective +
+          mouseY * 20 *
+          perspective;
+
+
+        const size =
+          Math.max(
+            .4,
+            p.size *
+            perspective *
+            2
+          );
+
+
+        if (
+          x < -50 ||
+          x > width + 50 ||
+          y < -50 ||
+          y > height + 50
+        ) {
+          continue;
+        }
+
+
+        ctx.beginPath();
+
+        ctx.arc(
+          x,
+          y,
+          size,
+          0,
+          Math.PI * 2
+        );
+
+        ctx.fillStyle =
+          p.color;
+
+        ctx.globalAlpha =
+          Math.min(
+            .75,
+            perspective
+          );
+
+        ctx.shadowBlur =
+          14;
+
+        ctx.shadowColor =
+          p.color;
+
+        ctx.fill();
+
+      }
+
+      ctx.globalAlpha = 1;
+
+      ctx.shadowBlur = 0;
+
+    }
+
+
+    /* ===================================
+       DRAW CODE
+    ==================================== */
+
+    function drawCode() {
+
+      ctx.font =
+        "11px monospace";
+
+      for (
+        const c of columns
+      ) {
+
+        for (
+          let i = 0;
+          i < c.length;
+          i++
+        ) {
+
+          const char =
+            randomCode();
+
+          const y =
+            c.y -
+            i * 17;
+
+
+          const fade =
+            1 -
+            i / c.length;
+
+
+          ctx.globalAlpha =
+            c.alpha *
+            fade;
+
+
+          ctx.fillStyle =
+            c.color;
+
+          ctx.shadowBlur =
+            8;
+
+          ctx.shadowColor =
+            c.color;
+
+          ctx.fillText(
+            char,
+            c.x,
+            y
+          );
+
+        }
+
+
+        c.y +=
+          c.speed;
+
+
+        if (
+          c.y -
+          c.length * 17 >
+          height
+        ) {
+
+          c.y =
+            -Math.random() * 300;
+
+          c.speed =
+            1.8 +
+            Math.random() * 5.5;
+
+          c.color =
+            colors[
+              Math.floor(
+                Math.random() *
+                colors.length
+              )
+            ];
+
+          c.length =
+            12 +
+            Math.floor(
+              Math.random() * 25
+            );
+
+        }
+
+      }
+
+      ctx.globalAlpha = 1;
+
+      ctx.shadowBlur = 0;
+
+    }
+
+
+    /* ===================================
+       ANIMATION
+    ==================================== */
+
+    function animate() {
+
+      requestAnimationFrame(
+        animate
+      );
+
+
+      mouseX +=
+        (targetX - mouseX) *
+        .035;
+
+      mouseY +=
+        (targetY - mouseY) *
+        .035;
+
+
+      ctx.clearRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      /* Dark base */
+
+      ctx.fillStyle =
+        "#03050b";
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      /* Atmospheric glow */
+
+      const glow =
+        ctx.createRadialGradient(
+          width / 2 +
+          mouseX * 70,
+          height / 2 +
+          mouseY * 50,
+          0,
+          width / 2,
+          height / 2,
+          Math.max(
+            width,
+            height
+          ) * .65
+        );
+
+
+      glow.addColorStop(
+        0,
+        "rgba(30,100,255,.10)"
+      );
+
+      glow.addColorStop(
+        .35,
+        "rgba(120,40,255,.055)"
+      );
+
+      glow.addColorStop(
+        1,
+        "rgba(0,0,0,0)"
+      );
+
+
+      ctx.fillStyle =
+        glow;
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
+
+
+      /* 3D rings */
+
+      rotation += .0025;
+
+
+      drawRing(
+        width / 2 +
+        mouseX * 40,
+
+        height / 2 +
+        mouseY * 25,
+
+        Math.min(
+          width,
+          height
+        ) * .28,
+
+        rotation,
+
+        "#00eaff",
+
+        1
+      );
+
+
+      drawRing(
+        width / 2 -
+        mouseX * 30,
+
+        height / 2 -
+        mouseY * 20,
+
+        Math.min(
+          width,
+          height
+        ) * .40,
+
+        -rotation * .65,
+
+        "#8b5cf6",
+
+        1
+      );
+
+
+      drawRing(
+        width / 2,
+
+        height / 2,
+
+        Math.min(
+          width,
+          height
+        ) * .52,
+
+        rotation * .45,
+
+        "#d946ef",
+
+        1
+      );
+
+
+      /* Fast code */
+
+      drawCode();
+
+
+      /* 3D particles */
+
+      drawParticles();
+
+    }
+
+
+    animate();
 
   </script>
 
