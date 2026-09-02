@@ -1,674 +1,1674 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Sensitivity Result — FF MAX</title>
-
-  <style>
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    :root {
-      --main: #31b7ff;
-      --secondary: #7c5cff;
-      --glow: rgba(49,183,255,.35);
-      --bg1: #020611;
-      --bg2: #07152c;
-    }
-
-    body {
-      min-height: 100vh;
-      color: white;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 15% 20%, var(--glow), transparent 28%),
-        radial-gradient(circle at 85% 75%, rgba(124,92,255,.18), transparent 30%),
-        linear-gradient(135deg, var(--bg1), var(--bg2));
-      overflow-x: hidden;
-    }
-
-    /* PARTICLES */
-
-    .particles {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: -1;
-      overflow: hidden;
-    }
-
-    .particle {
-      position: absolute;
-      width: 3px;
-      height: 3px;
-      border-radius: 50%;
-      background: var(--main);
-      box-shadow: 0 0 12px var(--main);
-      animation: float linear infinite;
-      opacity: .7;
-    }
-
-    @keyframes float {
-      from {
-        transform: translateY(110vh);
-      }
-
-      to {
-        transform: translateY(-20vh);
-      }
-    }
-
-    /* GRID */
-
-    .grid {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .18;
-      background-image:
-        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
-      background-size: 45px 45px;
-      mask-image: linear-gradient(to bottom, black, transparent);
-    }
-
-    /* HEADER */
-
-    header {
-      width: min(1100px, 92%);
-      margin: auto;
-      padding: 25px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    .logo {
-      font-size: 19px;
-      font-weight: 900;
-      letter-spacing: 3px;
-    }
-
-    .logo span {
-      color: var(--main);
-      text-shadow: 0 0 18px var(--main);
-    }
-
-    .back {
-      color: #b7c7dc;
-      text-decoration: none;
-      font-size: 12px;
-      padding: 10px 15px;
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 999px;
-      transition: .3s;
-    }
-
-    .back:hover {
-      color: white;
-      border-color: var(--main);
-      box-shadow: 0 0 25px var(--glow);
-    }
-
-    /* MAIN */
-
-    main {
-      width: min(1000px, 92%);
-      margin: auto;
-      padding: 50px 0 90px;
-    }
-
-    .loading {
-      text-align: center;
-      padding: 90px 0;
-      animation: fadeOut .8s 2.2s forwards;
-    }
-
-    .loader {
-      width: 75px;
-      height: 75px;
-      margin: auto;
-      border: 3px solid rgba(255,255,255,.08);
-      border-top-color: var(--main);
-      border-right-color: var(--secondary);
-      border-radius: 50%;
-      animation: spin 1s linear infinite;
-      box-shadow: 0 0 35px var(--glow);
-    }
-
-    .loading h2 {
-      margin-top: 25px;
-      letter-spacing: 2px;
-    }
-
-    .loading p {
-      margin-top: 10px;
-      color: #8195af;
-      font-size: 13px;
-    }
-
-    @keyframes spin {
-      to {
-        transform: rotate(360deg);
-      }
-    }
-
-    @keyframes fadeOut {
-      to {
-        opacity: 0;
-        visibility: hidden;
-        height: 0;
-        padding: 0;
-        overflow: hidden;
-      }
-    }
-
-    /* RESULT */
-
-    .result {
-      opacity: 0;
-      transform: translateY(35px) scale(.97);
-      animation: resultIn 1s 2.4s ease forwards;
-    }
-
-    @keyframes resultIn {
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .result-head {
-      text-align: center;
-      margin-bottom: 35px;
-    }
-
-    .result-head .badge {
-      display: inline-block;
-      padding: 8px 15px;
-      border: 1px solid var(--main);
-      border-radius: 999px;
-      color: var(--main);
-      font-size: 10px;
-      letter-spacing: 2px;
-      box-shadow: 0 0 20px var(--glow);
-    }
-
-    .result-head h1 {
-      margin-top: 20px;
-      font-size: clamp(35px, 7vw, 65px);
-      letter-spacing: -2px;
-      text-shadow: 0 0 35px var(--glow);
-    }
-
-    .device-info {
-      margin-top: 12px;
-      color: #91a5bd;
-    }
-
-    /* SENSITIVITY GRID */
-
-    .sensitivity-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    .sense-card {
-      position: relative;
-      overflow: hidden;
-      padding: 25px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: linear-gradient(
-        145deg,
-        rgba(15,35,65,.82),
-        rgba(3,9,20,.82)
-      );
-      box-shadow:
-        0 20px 50px rgba(0,0,0,.30),
-        0 0 25px rgba(40,150,255,.06);
-      transition: .35s;
-    }
-
-    .sense-card::before {
-      content: "";
-      position: absolute;
-      width: 120px;
-      height: 120px;
-      right: -60px;
-      top: -60px;
-      background: var(--main);
-      opacity: .10;
-      filter: blur(35px);
-      border-radius: 50%;
-    }
-
-    .sense-card:hover {
-      transform: translateY(-7px);
-      border-color: var(--main);
-      box-shadow:
-        0 20px 60px rgba(0,0,0,.4),
-        0 0 35px var(--glow);
-    }
-
-    .sense-name {
-      color: #8ea4bd;
-      font-size: 11px;
-      letter-spacing: 2px;
-      font-weight: bold;
-    }
-
-    .sense-value {
-      margin-top: 12px;
-      font-size: 48px;
-      font-weight: 900;
-      color: white;
-      text-shadow:
-        0 0 12px var(--main),
-        0 0 30px var(--glow);
-      animation: numberGlow 2s ease-in-out infinite alternate;
-    }
-
-    @keyframes numberGlow {
-      from {
-        filter: brightness(1);
-      }
-
-      to {
-        filter: brightness(1.35);
-      }
-    }
-
-    /* PHONE SETTINGS */
-
-    .settings {
-      margin-top: 25px;
-      padding: 30px;
-      border: 1px solid rgba(255,255,255,.10);
-      border-radius: 22px;
-      background: rgba(5,14,29,.72);
-      box-shadow: 0 25px 70px rgba(0,0,0,.35);
-    }
-
-    .settings h2 {
-      margin-bottom: 20px;
-    }
-
-    .setting {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 17px 0;
-      border-bottom: 1px solid rgba(255,255,255,.07);
-    }
-
-    .setting:last-child {
-      border-bottom: 0;
-    }
-
-    .setting span:first-child {
-      color: #91a4bc;
-    }
-
-    .setting strong {
-      color: var(--main);
-      text-shadow: 0 0 12px var(--glow);
-    }
-
-    /* BUTTON */
-
-    .actions {
-      margin-top: 28px;
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-    }
-
-    button {
-      border: 0;
-      cursor: pointer;
-      padding: 15px 25px;
-      border-radius: 13px;
-      color: white;
-      font-weight: 800;
-      background: linear-gradient(100deg, var(--main), var(--secondary));
-      box-shadow: 0 10px 35px var(--glow);
-      transition: .3s;
-    }
-
-    button:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 15px 45px var(--glow);
-    }
-
-    /* MOBILE */
-
-    @media (max-width: 700px) {
-
-      header {
-        padding: 18px 0;
-      }
-
-      main {
-        padding-top: 35px;
-      }
-
-      .sensitivity-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .sense-card {
-        padding: 20px;
-      }
-
-      .sense-value {
-        font-size: 38px;
-      }
-
-      .settings {
-        padding: 22px;
-      }
-    }
-
-    @media (max-width: 430px) {
-
-      .sensitivity-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .setting {
-        gap: 20px;
-      }
-
-      .setting strong {
-        text-align: right;
-      }
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>FF MAX Sensitivity Result</title>
+
+<style>
+
+:root{
+  --c1:#00d9ff;
+  --c2:#246bff;
+  --c3:#7b2cff;
+  --bg:#020611;
+  --text:#f4f8ff;
+  --muted:#8e9bb5;
+}
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 50% 15%,var(--c3),transparent 28%),
+    radial-gradient(circle at 10% 80%,var(--c2),transparent 25%),
+    var(--bg);
+  font-family:Arial,Helvetica,sans-serif;
+  position:relative;
+}
+
+/* ---------------- BACKGROUND ---------------- */
+
+.bg-glow{
+  position:fixed;
+  inset:-20%;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 20% 20%,var(--c1),transparent 16%),
+    radial-gradient(circle at 80% 25%,var(--c3),transparent 18%),
+    radial-gradient(circle at 50% 85%,var(--c2),transparent 20%);
+  filter:blur(90px);
+  opacity:.16;
+  animation:bgMove 12s ease-in-out infinite alternate;
+}
+
+@keyframes bgMove{
+  from{transform:translate(-2%,-2%) scale(1)}
+  to{transform:translate(3%,2%) scale(1.12)}
+}
+
+.grid{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(var(--c1) 1px,transparent 1px),
+    linear-gradient(90deg,var(--c1) 1px,transparent 1px);
+  background-size:55px 55px;
+  mask-image:linear-gradient(to bottom,transparent,black 20%,black 80%,transparent);
+  animation:gridMove 8s linear infinite;
+}
+
+@keyframes gridMove{
+  from{background-position:0 0,0 0}
+  to{background-position:0 55px,55px 0}
+}
+
+/* glowing lines */
+
+.neon-line{
+  position:fixed;
+  height:1px;
+  width:70vw;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--c1),
+    var(--c3),
+    transparent
+  );
+  opacity:.35;
+  box-shadow:
+    0 0 8px var(--c1),
+    0 0 22px var(--c3);
+  pointer-events:none;
+}
+
+.line1{
+  top:22%;
+  left:-15%;
+  transform:rotate(-14deg);
+  animation:lineMove1 7s linear infinite;
+}
+
+.line2{
+  top:68%;
+  right:-15%;
+  transform:rotate(16deg);
+  animation:lineMove2 9s linear infinite;
+}
+
+.line3{
+  top:45%;
+  left:-20%;
+  transform:rotate(7deg);
+  animation:lineMove1 11s linear infinite reverse;
+}
+
+@keyframes lineMove1{
+  0%{translate:-30vw 0}
+  100%{translate:130vw 0}
+}
+
+@keyframes lineMove2{
+  0%{translate:30vw 0}
+  100%{translate:-130vw 0}
+}
+
+/* particles */
+
+.particles{
+  position:fixed;
+  inset:0;
+  overflow:hidden;
+  pointer-events:none;
+  z-index:1;
+}
+
+.particle{
+  position:absolute;
+  width:4px;
+  height:10px;
+  border-radius:50%;
+  background:var(--c1);
+  box-shadow:
+    0 0 7px var(--c1),
+    0 0 18px var(--c1);
+  opacity:.8;
+  animation:fall linear infinite;
+}
+
+.particle.round{
+  width:7px;
+  height:7px;
+}
+
+@keyframes fall{
+  0%{
+    transform:translate3d(0,-15vh,0) rotate(0);
+    opacity:0;
+  }
+  12%{opacity:.9}
+  88%{opacity:.7}
+  100%{
+    transform:translate3d(var(--drift),115vh,0) rotate(360deg);
+    opacity:0;
+  }
+}
+
+.particle.side{
+  animation:sideMove linear infinite;
+}
+
+@keyframes sideMove{
+  0%{
+    transform:translateX(-15vw) translateY(0) rotate(0);
+    opacity:0;
+  }
+  15%{opacity:.8}
+  85%{opacity:.7}
+  100%{
+    transform:translateX(115vw) translateY(var(--sideY)) rotate(360deg);
+    opacity:0;
+  }
+}
+
+/* ---------------- MAIN ---------------- */
+
+.container{
+  position:relative;
+  z-index:5;
+  width:min(1050px,92%);
+  margin:auto;
+  padding:28px 0 70px;
+}
+
+/* header */
+
+.header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:35px;
+}
+
+.logo{
+  font-size:25px;
+  font-weight:1000;
+  letter-spacing:2px;
+  text-shadow:0 0 18px var(--c1);
+}
+
+.logo span{
+  color:var(--c1);
+}
+
+.lab{
+  padding:9px 14px;
+  border:1px solid var(--c1);
+  border-radius:999px;
+  color:var(--c1);
+  font-size:11px;
+  letter-spacing:1.5px;
+  box-shadow:0 0 15px color-mix(in srgb,var(--c1),transparent 70%);
+}
+
+/* device hero */
+
+.device-card{
+  position:relative;
+  overflow:hidden;
+  padding:32px;
+  border:1px solid color-mix(in srgb,var(--c1),transparent 55%);
+  border-radius:26px;
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.08),
+    rgba(255,255,255,.025)
+  );
+  backdrop-filter:blur(18px);
+  box-shadow:
+    0 0 35px color-mix(in srgb,var(--c1),transparent 82%),
+    inset 0 0 30px rgba(255,255,255,.02);
+  animation:cardIn .8s ease both;
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(30px) scale(.97);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.device-card:before{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  right:-130px;
+  top:-170px;
+  background:var(--c1);
+  filter:blur(100px);
+  opacity:.22;
+}
+
+.device-label{
+  font-size:11px;
+  color:var(--c1);
+  letter-spacing:3px;
+  font-weight:bold;
+}
+
+.device-name{
+  margin-top:9px;
+  font-size:clamp(30px,6vw,54px);
+  font-weight:1000;
+  line-height:1;
+  background:linear-gradient(
+    90deg,
+    var(--c1),
+    white,
+    var(--c3)
+  );
+  -webkit-background-clip:text;
+  color:transparent;
+  background-size:200% auto;
+  animation:textGlow 4s linear infinite;
+}
+
+@keyframes textGlow{
+  to{background-position:200% center}
+}
+
+.specs{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:20px;
+}
+
+.spec{
+  padding:8px 13px;
+  border-radius:10px;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.08);
+  color:#b9c5dc;
+  font-size:12px;
+}
+
+/* ---------------- SECTION TITLE ---------------- */
+
+.section-title{
+  margin:42px 0 18px;
+}
+
+.section-title small{
+  color:var(--c1);
+  letter-spacing:3px;
+  font-size:10px;
+}
+
+.section-title h2{
+  margin-top:6px;
+  font-size:28px;
+}
+
+/* ---------------- SENSITIVITY ---------------- */
+
+.sensitivity-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.sens-card{
+  padding:22px;
+  border-radius:20px;
+  border:1px solid rgba(255,255,255,.08);
+  background:rgba(7,14,30,.78);
+  backdrop-filter:blur(14px);
+  box-shadow:0 10px 35px rgba(0,0,0,.25);
+  transition:.3s;
+  animation:fadeUp .7s ease both;
+}
+
+.sens-card:hover{
+  transform:translateY(-5px);
+  border-color:var(--c1);
+  box-shadow:
+    0 0 25px color-mix(in srgb,var(--c1),transparent 75%);
+}
+
+@keyframes fadeUp{
+  from{
+    opacity:0;
+    transform:translateY(20px);
+  }
+  to{
+    opacity:1;
+    transform:none;
+  }
+}
+
+.sens-top{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  margin-bottom:15px;
+}
+
+.sens-name{
+  font-weight:800;
+  font-size:16px;
+}
+
+.value{
+  font-size:27px;
+  font-weight:1000;
+  color:var(--c1);
+  text-shadow:
+    0 0 8px var(--c1),
+    0 0 22px var(--c1);
+}
+
+/* actual FF-like sensitivity bar */
+
+.bar{
+  height:12px;
+  width:100%;
+  border-radius:20px;
+  background:#111a2b;
+  border:1px solid rgba(255,255,255,.06);
+  position:relative;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  width:0;
+  border-radius:20px;
+  background:linear-gradient(
+    90deg,
+    var(--c3),
+    var(--c2),
+    var(--c1)
+  );
+  box-shadow:
+    0 0 8px var(--c1),
+    0 0 20px var(--c1);
+  transition:width 1.4s cubic-bezier(.2,.8,.2,1);
+}
+
+.scale{
+  display:flex;
+  justify-content:space-between;
+  margin-top:8px;
+  color:#62708b;
+  font-size:9px;
+}
+
+.recommend{
+  margin-top:13px;
+  font-size:11px;
+  color:#8e9bb5;
+}
+
+/* ---------------- SETTINGS ---------------- */
+
+.settings{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:14px;
+}
+
+.setting{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:15px;
+  padding:18px;
+  border-radius:17px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.setting-left{
+  display:flex;
+  align-items:center;
+  gap:13px;
+}
+
+.icon{
+  width:38px;
+  height:38px;
+  display:grid;
+  place-items:center;
+  border-radius:12px;
+  background:color-mix(in srgb,var(--c1),transparent 85%);
+  color:var(--c1);
+  box-shadow:0 0 15px color-mix(in srgb,var(--c1),transparent 80%);
+}
+
+.setting h4{
+  font-size:13px;
+}
+
+.setting p{
+  margin-top:4px;
+  color:#75829c;
+  font-size:10px;
+}
+
+.setting-value{
+  color:var(--c1);
+  font-size:12px;
+  font-weight:bold;
+  text-align:right;
+}
+
+/* ---------------- TIPS ---------------- */
+
+.tips{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.tip{
+  padding:20px;
+  border-radius:18px;
+  background:rgba(255,255,255,.045);
+  border:1px solid rgba(255,255,255,.07);
+}
+
+.tip-number{
+  color:var(--c1);
+  font-size:11px;
+  font-weight:bold;
+}
+
+.tip h3{
+  margin:10px 0 7px;
+  font-size:15px;
+}
+
+.tip p{
+  color:#7d89a2;
+  font-size:11px;
+  line-height:1.6;
+}
+
+/* ---------------- BUTTONS ---------------- */
+
+.actions{
+  display:flex;
+  gap:13px;
+  margin-top:30px;
+}
+
+button,
+.back{
+  flex:1;
+  min-height:54px;
+  border:none;
+  border-radius:15px;
+  cursor:pointer;
+  text-decoration:none;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  letter-spacing:1px;
+  font-size:12px;
+  transition:.25s;
+}
+
+.copy{
+  color:#001018;
+  background:linear-gradient(90deg,var(--c1),#fff,var(--c1));
+  background-size:200% auto;
+  box-shadow:0 0 25px color-mix(in srgb,var(--c1),transparent 65%);
+  animation:buttonMove 3s linear infinite;
+}
+
+@keyframes buttonMove{
+  to{background-position:200% center}
+}
+
+.copy:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 35px color-mix(in srgb,var(--c1),transparent 45%);
+}
+
+.back{
+  color:#cbd6eb;
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+}
+
+.back:hover{
+  border-color:var(--c1);
+  color:var(--c1);
+}
+
+/* footer */
+
+footer{
+  text-align:center;
+  margin-top:45px;
+  color:#56627a;
+  font-size:10px;
+  letter-spacing:2px;
+}
+
+/* ---------------- LOADING ---------------- */
+
+.loader{
+  position:fixed;
+  inset:0;
+  z-index:100;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#020611;
+  transition:.7s;
+}
+
+.loader.hide{
+  opacity:0;
+  pointer-events:none;
+}
+
+.loader-box{
+  text-align:center;
+}
+
+.loader-ring{
+  width:75px;
+  height:75px;
+  margin:auto;
+  border:2px solid rgba(255,255,255,.08);
+  border-top-color:var(--c1);
+  border-right-color:var(--c3);
+  border-radius:50%;
+  animation:spin .8s linear infinite;
+  box-shadow:
+    0 0 20px var(--c1),
+    inset 0 0 20px var(--c3);
+}
+
+@keyframes spin{
+  to{transform:rotate(360deg)}
+}
+
+.loader-title{
+  margin-top:24px;
+  font-weight:1000;
+  letter-spacing:3px;
+}
+
+.loader-text{
+  margin-top:8px;
+  color:var(--c1);
+  font-size:10px;
+  letter-spacing:2px;
+  animation:pulse 1s infinite alternate;
+}
+
+@keyframes pulse{
+  to{opacity:.35}
+}
+
+/* ---------------- MOBILE ---------------- */
+
+@media(max-width:700px){
+
+  .container{
+    width:92%;
+    padding-top:20px;
+  }
+
+  .header{
+    margin-bottom:22px;
+  }
+
+  .device-card{
+    padding:24px 20px;
+  }
+
+  .sensitivity-grid,
+  .settings{
+    grid-template-columns:1fr;
+  }
+
+  .tips{
+    grid-template-columns:1fr;
+  }
+
+  .actions{
+    flex-direction:column;
+  }
+
+  .device-name{
+    font-size:38px;
+  }
+
+}
+
+</style>
 </head>
 
 <body>
 
-  <div class="grid"></div>
-  <div class="particles" id="particles"></div>
+<!-- BACKGROUND -->
+<div class="bg-glow"></div>
+<div class="grid"></div>
+
+<div class="neon-line line1"></div>
+<div class="neon-line line2"></div>
+<div class="neon-line line3"></div>
+
+<div class="particles" id="particles"></div>
 
 
-  <header>
+<!-- LOADING -->
+
+<div class="loader" id="loader">
+
+  <div class="loader-box">
+
+    <div class="loader-ring"></div>
+
+    <div class="loader-title">
+      FF MAX SENSITIVITY LAB
+    </div>
+
+    <div class="loader-text" id="loaderText">
+      ANALYZING DEVICE...
+    </div>
+
+  </div>
+
+</div>
+
+
+<div class="container">
+
+  <!-- HEADER -->
+
+  <header class="header">
 
     <div class="logo">
       FF<span>MAX</span>
     </div>
 
-    <a href="index.html" class="back">
-      ← Generate Again
-    </a>
+    <div class="lab">
+      ● DEVICE PROFILE READY
+    </div>
 
   </header>
 
 
-  <main>
+  <!-- DEVICE -->
 
-    <section class="loading">
+  <section class="device-card">
 
-      <div class="loader"></div>
+    <div class="device-label">
+      GENERATED PROFILE
+    </div>
 
-      <h2>ANALYZING DEVICE</h2>
+    <div class="device-name" id="deviceName">
+      DEVICE
+    </div>
 
-      <p>
-        Building your sensitivity profile...
-      </p>
+    <div class="specs">
 
-    </section>
+      <div class="spec" id="ramSpec">
+        RAM
+      </div>
+
+      <div class="spec" id="storageSpec">
+        STORAGE
+      </div>
+
+      <div class="spec" id="profileSpec">
+        PROFILE
+      </div>
+
+    </div>
+
+  </section>
 
 
-    <section class="result">
+  <!-- SENSITIVITY -->
 
-      <div class="result-head">
+  <section>
 
-        <div class="badge">
-          ✓ PROFILE GENERATED
+    <div class="section-title">
+
+      <small>FREE FIRE MAX</small>
+
+      <h2>Recommended Sensitivity</h2>
+
+    </div>
+
+
+    <div class="sensitivity-grid" id="sensitivityGrid">
+    </div>
+
+  </section>
+
+
+  <!-- GAME SETTINGS -->
+
+  <section>
+
+    <div class="section-title">
+
+      <small>OPTIMIZATION</small>
+
+      <h2>Game Settings</h2>
+
+    </div>
+
+
+    <div class="settings">
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">🎮</div>
+
+          <div>
+            <h4>Graphics</h4>
+            <p>Balance visual quality and smoothness</p>
+          </div>
+
         </div>
 
-        <h1 id="deviceName">
-          DEVICE
-        </h1>
+        <div class="setting-value">
+          Smooth / Balanced
+        </div>
 
-        <p class="device-info" id="deviceInfo">
-          Device profile
+      </div>
+
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">⚡</div>
+
+          <div>
+            <h4>FPS</h4>
+            <p>Use the highest option your device supports</p>
+          </div>
+
+        </div>
+
+        <div class="setting-value">
+          Highest Supported
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">📱</div>
+
+          <div>
+            <h4>Background Apps</h4>
+            <p>Reduce unnecessary background load</p>
+          </div>
+
+        </div>
+
+        <div class="setting-value">
+          Keep Minimal
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">🔋</div>
+
+          <div>
+            <h4>Battery Saver</h4>
+            <p>May limit gaming performance</p>
+          </div>
+
+        </div>
+
+        <div class="setting-value">
+          OFF While Gaming
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">🎯</div>
+
+          <div>
+            <h4>DPI</h4>
+            <p>Use comfortable/default system density</p>
+          </div>
+
+        </div>
+
+        <div class="setting-value">
+          Default / Comfortable
+        </div>
+
+      </div>
+
+
+      <div class="setting">
+
+        <div class="setting-left">
+
+          <div class="icon">🚀</div>
+
+          <div>
+            <h4>Performance Mode</h4>
+            <p>Use your phone's built-in gaming mode</p>
+          </div>
+
+        </div>
+
+        <div class="setting-value">
+          GAME MODE
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- TIPS -->
+
+  <section>
+
+    <div class="section-title">
+
+      <small>PROFILE GUIDE</small>
+
+      <h2>Quick Performance Tips</h2>
+
+    </div>
+
+
+    <div class="tips">
+
+      <div class="tip">
+
+        <div class="tip-number">01</div>
+
+        <h3>Keep Aim Consistent</h3>
+
+        <p>
+          Start with the generated profile and
+          adjust small amounts according to your
+          own drag and aiming style.
         </p>
 
       </div>
 
 
-      <div class="sensitivity-grid">
+      <div class="tip">
 
-        <div class="sense-card">
-          <div class="sense-name">GENERAL</div>
-          <div class="sense-value" id="general">185</div>
-        </div>
+        <div class="tip-number">02</div>
 
-        <div class="sense-card">
-          <div class="sense-name">RED DOT</div>
-          <div class="sense-value" id="redDot">175</div>
-        </div>
+        <h3>Keep Phone Cool</h3>
 
-        <div class="sense-card">
-          <div class="sense-name">2X SCOPE</div>
-          <div class="sense-value" id="scope2x">165</div>
-        </div>
-
-        <div class="sense-card">
-          <div class="sense-name">4X SCOPE</div>
-          <div class="sense-value" id="scope4x">155</div>
-        </div>
-
-        <div class="sense-card">
-          <div class="sense-name">SNIPER</div>
-          <div class="sense-value" id="sniper">95</div>
-        </div>
-
-        <div class="sense-card">
-          <div class="sense-name">FREE LOOK</div>
-          <div class="sense-value" id="freeLook">180</div>
-        </div>
+        <p>
+          Long gaming sessions can increase
+          thermal throttling. Give the device
+          short breaks if it becomes hot.
+        </p>
 
       </div>
 
 
-      <div class="settings">
+      <div class="tip">
 
-        <h2>PHONE & GAME SETTINGS</h2>
+        <div class="tip-number">03</div>
 
-        <div class="setting">
-          <span>Graphics</span>
-          <strong>Smooth / Balanced</strong>
-        </div>
+        <h3>Stable Performance</h3>
 
-        <div class="setting">
-          <span>FPS</span>
-          <strong>Highest Supported</strong>
-        </div>
-
-        <div class="setting">
-          <span>Background Apps</span>
-          <strong>Keep Minimal</strong>
-        </div>
-
-        <div class="setting">
-          <span>Battery Saver</span>
-          <strong>OFF While Gaming</strong>
-        </div>
-
-        <div class="setting">
-          <span>DPI</span>
-          <strong>Keep Default / Comfortable</strong>
-        </div>
-
-        <div class="setting">
-          <span>Performance Mode</span>
-          <strong>Game Mode ON</strong>
-        </div>
+        <p>
+          Close unnecessary apps and use a
+          stable network connection for a
+          smoother gaming experience.
+        </p>
 
       </div>
 
+    </div>
 
-      <div class="actions">
+  </section>
 
-        <button onclick="copySettings()">
-          COPY SETTINGS
-        </button>
 
+  <!-- ACTIONS -->
+
+  <div class="actions">
+
+    <button class="copy" id="copyBtn">
+      COPY ALL SETTINGS
+    </button>
+
+    <a href="index.html" class="back">
+      ← GENERATE AGAIN
+    </a>
+
+  </div>
+
+
+  <footer>
+    FF MAX SENSITIVITY LAB • 2026
+  </footer>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   READ DEVICE DATA
+========================================================= */
+
+const params = new URLSearchParams(window.location.search);
+
+const device =
+  params.get("device") || "Unknown Device";
+
+const ram =
+  Number(params.get("ram")) || 8;
+
+const storage =
+  Number(params.get("storage")) || 128;
+
+
+/* =========================================================
+   DEVICE DATABASE
+========================================================= */
+
+const devices = {
+
+  "poco f5":{
+    values:[188,181,170,158,96,184],
+    profile:"POCO F5 PERFORMANCE"
+  },
+
+  "poco f6":{
+    values:[194,187,176,164,101,190],
+    profile:"POCO F6 HIGH PERFORMANCE"
+  },
+
+  "poco x6":{
+    values:[184,177,167,156,94,180],
+    profile:"POCO X6 BALANCED"
+  },
+
+  "poco x6 pro":{
+    values:[192,185,175,163,99,188],
+    profile:"POCO X6 PRO PERFORMANCE"
+  },
+
+  "redmi note 13 pro":{
+    values:[181,174,164,153,92,178],
+    profile:"REDMI NOTE PERFORMANCE"
+  },
+
+  "redmi note 13 pro+":{
+    values:[188,181,171,160,96,184],
+    profile:"REDMI NOTE PRO+"
+  },
+
+  "samsung galaxy s24":{
+    values:[183,176,166,154,94,181],
+    profile:"SAMSUNG FLAGSHIP"
+  },
+
+  "samsung galaxy s24 ultra":{
+    values:[187,180,170,158,97,185],
+    profile:"SAMSUNG ULTRA"
+  },
+
+  "samsung galaxy a55":{
+    values:[174,168,158,149,89,172],
+    profile:"SAMSUNG A-SERIES"
+  },
+
+  "iphone 11":{
+    values:[171,165,156,146,87,169],
+    profile:"IPHONE 11 PROFILE"
+  },
+
+  "iphone 12":{
+    values:[176,169,160,150,89,173],
+    profile:"IPHONE 12 PROFILE"
+  },
+
+  "iphone 13":{
+    values:[181,174,164,153,92,178],
+    profile:"IPHONE 13 PROFILE"
+  },
+
+  "iphone 14":{
+    values:[184,177,167,156,94,181],
+    profile:"IPHONE 14 PROFILE"
+  },
+
+  "iphone 15":{
+    values:[188,181,171,160,97,185],
+    profile:"IPHONE 15 PROFILE"
+  },
+
+  "iphone 16":{
+    values:[191,184,174,163,99,188],
+    profile:"IPHONE 16 PROFILE"
+  },
+
+  "iphone 17":{
+    values:[194,187,177,166,101,191],
+    profile:"IPHONE 17 PROFILE"
+  },
+
+  "oneplus 12":{
+    values:[191,184,174,162,100,188],
+    profile:"ONEPLUS FLAGSHIP"
+  },
+
+  "oneplus nord 4":{
+    values:[183,176,166,155,94,180],
+    profile:"ONEPLUS NORD"
+  },
+
+  "realme gt 6":{
+    values:[190,183,173,161,99,187],
+    profile:"REALME GT PERFORMANCE"
+  },
+
+  "realme 12 pro":{
+    values:[178,171,162,151,90,175],
+    profile:"REALME PRO"
+  }
+
+};
+
+
+/* =========================================================
+   FIND DEVICE
+========================================================= */
+
+const normalized =
+  device.toLowerCase().replace(/\s+/g," ").trim();
+
+let profile = null;
+
+
+/* exact match */
+
+if(devices[normalized]){
+  profile = devices[normalized];
+}
+
+
+/* partial match */
+
+if(!profile){
+
+  const key = Object.keys(devices).find(
+    key => normalized.includes(key)
+  );
+
+  if(key){
+    profile = devices[key];
+  }
+
+}
+
+
+/* =========================================================
+   FALLBACK INTELLIGENCE
+========================================================= */
+
+function hashString(str){
+
+  let hash = 0;
+
+  for(let i=0;i<str.length;i++){
+
+    hash =
+      ((hash << 5) - hash) +
+      str.charCodeAt(i);
+
+    hash |= 0;
+  }
+
+  return Math.abs(hash);
+}
+
+
+if(!profile){
+
+  const seed = hashString(normalized);
+
+  const base = 165 + (seed % 25);
+
+  profile = {
+
+    values:[
+      base + 18,
+      base + 11,
+      base + 2,
+      base - 8,
+      Math.max(82,base - 76),
+      base + 15
+    ],
+
+    profile:"SMART DEVICE PROFILE"
+
+  };
+
+}
+
+
+/* =========================================================
+   RAM ADJUSTMENT
+========================================================= */
+
+let ramAdjustment = 0;
+
+if(ram <= 4){
+  ramAdjustment = -7;
+}
+else if(ram === 6){
+  ramAdjustment = -3;
+}
+else if(ram === 8){
+  ramAdjustment = 0;
+}
+else if(ram === 12){
+  ramAdjustment = 2;
+}
+else if(ram >= 16){
+  ramAdjustment = 4;
+}
+
+
+const values =
+  profile.values.map((value,index)=>{
+
+    /*
+      Keep sniper slightly more controlled.
+    */
+
+    if(index === 4){
+
+      return Math.min(
+        110,
+        Math.max(70,value + Math.round(ramAdjustment / 2))
+      );
+
+    }
+
+    return Math.min(
+      200,
+      Math.max(100,value + ramAdjustment)
+    );
+
+  });
+
+
+/* =========================================================
+   DEVICE THEME
+========================================================= */
+
+let theme = {
+
+  c1:"#00d9ff",
+  c2:"#246bff",
+  c3:"#7b2cff"
+
+};
+
+
+if(/iphone|apple/i.test(device)){
+
+  theme = {
+    c1:"#ff4fd8",
+    c2:"#ff4d8d",
+    c3:"#ff8a3d"
+  };
+
+}
+
+else if(/samsung|galaxy/i.test(device)){
+
+  theme = {
+    c1:"#6d8cff",
+    c2:"#3b55ff",
+    c3:"#a855f7"
+  };
+
+}
+
+else if(/oneplus/i.test(device)){
+
+  theme = {
+    c1:"#ff4655",
+    c2:"#ff7a3d",
+    c3:"#ff1744"
+  };
+
+}
+
+else if(/realme/i.test(device)){
+
+  theme = {
+    c1:"#35f2a0",
+    c2:"#00c6ff",
+    c3:"#00e5ff"
+  };
+
+}
+
+else if(/poco|xiaomi|redmi/i.test(device)){
+
+  theme = {
+    c1:"#00e5ff",
+    c2:"#0077ff",
+    c3:"#5b2cff"
+  };
+
+}
+
+else if(/vivo|iqoo/i.test(device)){
+
+  theme = {
+    c1:"#00f0ff",
+    c2:"#00aaff",
+    c3:"#0066ff"
+  };
+
+}
+
+else if(/oppo/i.test(device)){
+
+  theme = {
+    c1:"#45ff91",
+    c2:"#00d4ff",
+    c3:"#6c5ce7"
+  };
+
+}
+
+
+/* apply theme */
+
+document.documentElement.style.setProperty(
+  "--c1",theme.c1
+);
+
+document.documentElement.style.setProperty(
+  "--c2",theme.c2
+);
+
+document.documentElement.style.setProperty(
+  "--c3",theme.c3
+);
+
+
+/* =========================================================
+   DEVICE TEXT
+========================================================= */
+
+document.getElementById("deviceName")
+  .textContent = device;
+
+document.getElementById("ramSpec")
+  .textContent = ram + " GB RAM";
+
+document.getElementById("storageSpec")
+  .textContent =
+    storage >= 1024
+      ? "1 TB STORAGE"
+      : storage + " GB STORAGE";
+
+document.getElementById("profileSpec")
+  .textContent = profile.profile;
+
+
+/* =========================================================
+   SENSITIVITY CARDS
+========================================================= */
+
+const names = [
+  "General",
+  "Red Dot",
+  "2X Scope",
+  "4X Scope",
+  "Sniper Scope",
+  "Free Look"
+];
+
+const descriptions = [
+  "Main camera and drag sensitivity",
+  "Close-range aiming control",
+  "Medium-range scope control",
+  "Longer-range scope control",
+  "Precision scope control",
+  "Camera movement"
+];
+
+const grid =
+  document.getElementById("sensitivityGrid");
+
+
+names.forEach((name,index)=>{
+
+  const card =
+    document.createElement("div");
+
+  card.className = "sens-card";
+
+  card.style.animationDelay =
+    (index * 0.08) + "s";
+
+  card.innerHTML = `
+
+    <div class="sens-top">
+
+      <div class="sens-name">
+        ${name}
       </div>
 
-    </section>
+      <div class="value">
+        ${values[index]}
+      </div>
 
-  </main>
+    </div>
 
+    <div class="bar">
 
-  <script>
+      <div
+        class="fill"
+        data-value="${values[index]}"
+      ></div>
 
-    /* URL DATA */
+    </div>
 
-    const params = new URLSearchParams(window.location.search);
+    <div class="scale">
+      <span>0</span>
+      <span>50</span>
+      <span>100</span>
+      <span>150</span>
+      <span>200</span>
+    </div>
 
-    const device =
-      params.get("device") || "Unknown Device";
+    <div class="recommend">
+      ${descriptions[index]}
+    </div>
 
-    const ram =
-      params.get("ram") || "8";
+  `;
 
-    const storage =
-      params.get("storage") || "128";
+  grid.appendChild(card);
 
-
-    document.getElementById("deviceName").textContent =
-      device;
-
-    document.getElementById("deviceInfo").textContent =
-      ram + " GB RAM • " + storage + " GB STORAGE";
-
-
-    /* DEVICE THEME */
-
-    const name = device.toLowerCase();
-
-    let mainColor = "#31b7ff";
-    let secondColor = "#7c5cff";
-
-    if (name.includes("samsung")) {
-      mainColor = "#6f8cff";
-      secondColor = "#9b6cff";
-    }
-
-    else if (
-      name.includes("iphone") ||
-      name.includes("apple")
-    ) {
-      mainColor = "#ff7b9c";
-      secondColor = "#ffb36b";
-    }
-
-    else if (
-      name.includes("oneplus")
-    ) {
-      mainColor = "#ff3f5f";
-      secondColor = "#ff784d";
-    }
-
-    else if (
-      name.includes("realme")
-    ) {
-      mainColor = "#35ff9b";
-      secondColor = "#24c6ff";
-    }
-
-    else if (
-      name.includes("poco") ||
-      name.includes("xiaomi") ||
-      name.includes("redmi")
-    ) {
-      mainColor = "#32c8ff";
-      secondColor = "#5d6cff";
-    }
+});
 
 
-    document.documentElement.style.setProperty(
-      "--main",
-      mainColor
-    );
+/* animate bars */
 
-    document.documentElement.style.setProperty(
-      "--secondary",
-      secondColor
-    );
+setTimeout(()=>{
 
-    document.documentElement.style.setProperty(
-      "--glow",
-      mainColor + "55"
-    );
+  document.querySelectorAll(".fill")
+    .forEach(bar=>{
 
+      const value =
+        Number(bar.dataset.value);
 
-    /* PARTICLES */
+      bar.style.width =
+        (value / 200 * 100) + "%";
 
-    const particles =
-      document.getElementById("particles");
+    });
 
-    for (let i = 0; i < 55; i++) {
-
-      const p = document.createElement("div");
-
-      p.className = "particle";
-
-      p.style.left =
-        Math.random() * 100 + "%";
-
-      p.style.animationDuration =
-        (5 + Math.random() * 10) + "s";
-
-      p.style.animationDelay =
-        (-Math.random() * 10) + "s";
-
-      p.style.opacity =
-        0.25 + Math.random() * 0.65;
-
-      particles.appendChild(p);
-
-    }
+},500);
 
 
-    /* COPY */
+/* =========================================================
+   PARTICLES
+========================================================= */
 
-    function copySettings() {
+const particles =
+  document.getElementById("particles");
 
-      const text =
-`FF MAX SENSITIVITY
+const particleColors = [
+  theme.c1,
+  theme.c2,
+  theme.c3
+];
 
+
+/* falling particles */
+
+for(let i=0;i<75;i++){
+
+  const p =
+    document.createElement("span");
+
+  p.className =
+    "particle" +
+    (Math.random() > .7 ? " round" : "");
+
+  p.style.left =
+    Math.random()*100 + "%";
+
+  p.style.top =
+    (-20 - Math.random()*30) + "%";
+
+  p.style.animationDuration =
+    (3 + Math.random()*6) + "s";
+
+  p.style.animationDelay =
+    (-Math.random()*8) + "s";
+
+  p.style.setProperty(
+    "--drift",
+    (-80 + Math.random()*160) + "px"
+  );
+
+  p.style.background =
+    particleColors[
+      Math.floor(
+        Math.random()*particleColors.length
+      )
+    ];
+
+  p.style.boxShadow =
+    `0 0 8px ${p.style.background},
+     0 0 18px ${p.style.background}`;
+
+  particles.appendChild(p);
+
+}
+
+
+/* side particles */
+
+for(let i=0;i<28;i++){
+
+  const p =
+    document.createElement("span");
+
+  p.className =
+    "particle side round";
+
+  p.style.left =
+    "-10px";
+
+  p.style.top =
+    Math.random()*100 + "%";
+
+  p.style.animationDuration =
+    (4 + Math.random()*7) + "s";
+
+  p.style.animationDelay =
+    (-Math.random()*9) + "s";
+
+  p.style.setProperty(
+    "--sideY",
+    (-100 + Math.random()*200) + "px"
+  );
+
+  p.style.background =
+    particleColors[
+      Math.floor(
+        Math.random()*particleColors.length
+      )
+    ];
+
+  particles.appendChild(p);
+
+}
+
+
+/* =========================================================
+   COPY SETTINGS
+========================================================= */
+
+document.getElementById("copyBtn")
+.addEventListener("click",async()=>{
+
+  const text = `
+
+FF MAX SENSITIVITY PROFILE
 Device: ${device}
 RAM: ${ram} GB
 Storage: ${storage} GB
 
-General: ${document.getElementById("general").textContent}
-Red Dot: ${document.getElementById("redDot").textContent}
-2X Scope: ${document.getElementById("scope2x").textContent}
-4X Scope: ${document.getElementById("scope4x").textContent}
-Sniper: ${document.getElementById("sniper").textContent}
-Free Look: ${document.getElementById("freeLook").textContent}`;
+General: ${values[0]}
+Red Dot: ${values[1]}
+2X Scope: ${values[2]}
+4X Scope: ${values[3]}
+Sniper Scope: ${values[4]}
+Free Look: ${values[5]}
 
-      navigator.clipboard.writeText(text);
+Graphics: Smooth / Balanced
+FPS: Highest Supported
+Background Apps: Keep Minimal
+Battery Saver: OFF While Gaming
+DPI: Default / Comfortable
+Performance Mode: Game Mode
 
-      alert("Settings copied!");
+Profile: ${profile.profile}
+
+`;
+
+  try{
+
+    await navigator.clipboard.writeText(text);
+
+    const btn =
+      document.getElementById("copyBtn");
+
+    btn.textContent =
+      "✓ SETTINGS COPIED";
+
+    setTimeout(()=>{
+
+      btn.textContent =
+        "COPY ALL SETTINGS";
+
+    },1800);
+
+  }
+
+  catch(error){
+
+    alert("Copy failed. Please copy manually.");
+
+  }
+
+});
+
+
+/* =========================================================
+   LOADING SCREEN
+========================================================= */
+
+const loader =
+  document.getElementById("loader");
+
+const loaderText =
+  document.getElementById("loaderText");
+
+const messages = [
+  "ANALYZING DEVICE...",
+  "BUILDING PERFORMANCE PROFILE...",
+  "CALCULATING SENSITIVITY...",
+  "CALIBRATING AIM VALUES...",
+  "GENERATING RESULT..."
+];
+
+let messageIndex = 0;
+
+const interval =
+  setInterval(()=>{
+
+    messageIndex++;
+
+    if(messageIndex < messages.length){
+
+      loaderText.textContent =
+        messages[messageIndex];
 
     }
 
-  </script>
+  },430);
+
+
+setTimeout(()=>{
+
+  clearInterval(interval);
+
+  loader.classList.add("hide");
+
+},2300);
+
+</script>
 
 </body>
 </html>
