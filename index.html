@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>FF MAX Sensitivity Generator</title>
-  <meta name="description" content="Free Fire MAX device-based sensitivity generator.">
+  <title>Brazilian Sensi FF</title>
+  <meta name="description" content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
 
   <link rel="stylesheet" href="style.css">
 
@@ -24,10 +24,6 @@
     body {
       overflow-x: hidden;
     }
-
-    /* =====================================
-       3D CANVAS
-    ===================================== */
 
     #space3d {
       position: fixed;
@@ -72,10 +68,6 @@
       opacity: .28;
     }
 
-    /* =====================================
-       HEADER
-    ===================================== */
-
     .header {
       position: relative;
       z-index: 20;
@@ -93,10 +85,6 @@
       text-shadow:
         0 0 18px rgba(0,220,255,.28);
     }
-
-    /* =====================================
-       HERO
-    ===================================== */
 
     .hero {
       position: relative;
@@ -142,10 +130,6 @@
         background-position: 0% 50%;
       }
     }
-
-    /* =====================================
-       GENERATOR GLASS
-    ===================================== */
 
     .generator-box {
       position: relative;
@@ -206,10 +190,6 @@
       }
     }
 
-    /* =====================================
-       INPUT
-    ===================================== */
-
     #device {
       background:
         rgba(0,0,0,.35) !important;
@@ -233,10 +213,6 @@
       background:
         rgba(0,0,0,.35) !important;
     }
-
-    /* =====================================
-       BUTTON
-    ===================================== */
 
     #generateBtn {
       position: relative;
@@ -323,10 +299,6 @@
       }
     }
 
-    /* =====================================
-       INFO CARDS
-    ===================================== */
-
     .info-card {
       position: relative;
       overflow: hidden;
@@ -352,10 +324,6 @@
         rgba(0,220,255,.25) !important;
     }
 
-    /* =====================================
-       FOOTER
-    ===================================== */
-
     footer {
       position: relative;
       z-index: 5;
@@ -363,10 +331,6 @@
       background:
         rgba(2,4,10,.30);
     }
-
-    /* =====================================
-       MOBILE
-    ===================================== */
 
     @media (max-width: 700px) {
 
@@ -388,57 +352,40 @@
 
 <body>
 
-  <!-- ===================================
-       REAL-TIME 3D BACKGROUND
-  ==================================== -->
-
   <canvas id="space3d"></canvas>
 
   <div class="scene-overlay"></div>
   <div class="scanlines"></div>
 
-
-  <!-- ===================================
-       HEADER
-  ==================================== -->
-
   <header class="header">
 
     <div class="logo">
-      FF<span>MAX</span>
+      Brazilian <span>Sensi FF</span>
     </div>
 
     <div class="status">
-      ● SENSITIVITY LAB
+      ● BRAZILIAN SENSI FF
     </div>
 
   </header>
-
-
-  <!-- ===================================
-       MAIN
-  ==================================== -->
 
   <main>
 
     <section class="hero">
 
       <div class="badge">
-        FREE FIRE MAX • DEVICE OPTIMIZER
+        BRAZILIAN SENSI FF • SENSITIVITY ENGINE
       </div>
 
       <h1>
         Find Your<br>
-        <span>Perfect Sensitivity</span>
+        <span>Brazilian Sensi</span>
       </h1>
 
       <p>
         Enter your device information and get a
         recommended Free Fire MAX sensitivity profile.
       </p>
-
-
-      <!-- GENERATOR -->
 
       <div class="generator-box">
 
@@ -453,7 +400,6 @@
           autocomplete="off"
         >
 
-
         <div class="row">
 
           <div class="field">
@@ -464,34 +410,23 @@
 
             <select id="ram">
 
-              <option value="4">
-                4 GB
-              </option>
+              <option value="4">4 GB</option>
 
-              <option value="6">
-                6 GB
-              </option>
+              <option value="6">6 GB</option>
 
               <option value="8" selected>
                 8 GB
               </option>
 
-              <option value="12">
-                12 GB
-              </option>
+              <option value="12">12 GB</option>
 
-              <option value="16">
-                16 GB
-              </option>
+              <option value="16">16 GB</option>
 
-              <option value="24">
-                24 GB
-              </option>
+              <option value="24">24 GB</option>
 
             </select>
 
           </div>
-
 
           <div class="field">
 
@@ -527,7 +462,6 @@
 
         </div>
 
-
         <button id="generateBtn">
           GENERATE SENSITIVITY →
         </button>
@@ -537,11 +471,6 @@
       </div>
 
     </section>
-
-
-    <!-- =================================
-         INFO
-    ================================== -->
 
     <section class="info-section">
 
@@ -560,7 +489,6 @@
 
       </div>
 
-
       <div class="info-card">
 
         <span>02</span>
@@ -575,7 +503,6 @@
         </p>
 
       </div>
-
 
       <div class="info-card">
 
@@ -596,11 +523,10 @@
 
   </main>
 
-
   <footer>
 
     <span>
-      FF MAX SENSITIVITY LAB
+      BRAZILIAN SENSI FF
     </span>
 
     <span>
@@ -608,11 +534,6 @@
     </span>
 
   </footer>
-
-
-  <!-- ===================================
-       GENERATOR
-  ==================================== -->
 
   <script>
 
@@ -721,7 +642,10 @@
 
 
     const DPR =
-      Math.min(window.devicePixelRatio || 1, 2);
+      Math.min(
+        window.devicePixelRatio || 1,
+        2
+      );
 
 
     function resize() {
@@ -763,10 +687,6 @@
     );
 
 
-    /* ===================================
-       MOUSE PARALLAX
-    ==================================== */
-
     window.addEventListener(
       "pointermove",
       function(e) {
@@ -781,10 +701,6 @@
     );
 
 
-    /* ===================================
-       COLOR SYSTEM
-    ==================================== */
-
     const colors = [
       "#00eaff",
       "#00bfff",
@@ -798,10 +714,6 @@
       "#f472b6"
     ];
 
-
-    /* ===================================
-       3D PARTICLES
-    ==================================== */
 
     const particles = [];
 
@@ -821,9 +733,15 @@
     ) {
 
       particles.push({
-        x: (Math.random() - .5) * 1800,
-        y: (Math.random() - .5) * 1100,
-        z: Math.random() * 1800 + 100,
+
+        x:
+          (Math.random() - .5) * 1800,
+
+        y:
+          (Math.random() - .5) * 1100,
+
+        z:
+          Math.random() * 1800 + 100,
 
         size:
           Math.random() * 2 + .5,
@@ -837,17 +755,15 @@
 
         speed:
           Math.random() * 2 + .5
+
       });
 
     }
 
 
-    /* ===================================
-       CODE RAIN
-    ==================================== */
-
     const codeChars =
       "01{}[]<>/\\\\|=+-_*#$%";
+
 
     const codeWords = [
       "FFMAX",
@@ -922,10 +838,6 @@
     }
 
 
-    /* ===================================
-       RANDOM CODE
-    ==================================== */
-
     function randomCode() {
 
       if (
@@ -951,10 +863,6 @@
     }
 
 
-    /* ===================================
-       3D RINGS
-    ==================================== */
-
     let rotation = 0;
 
 
@@ -963,8 +871,7 @@
       centerY,
       radius,
       tilt,
-      color,
-      speed
+      color
     ) {
 
       ctx.save();
@@ -1031,10 +938,6 @@
     }
 
 
-    /* ===================================
-       DRAW 3D PARTICLES
-    ==================================== */
-
     function drawParticles() {
 
       for (
@@ -1067,7 +970,8 @@
           width / 2 +
           p.x *
           perspective +
-          mouseX * 25 *
+          mouseX *
+          25 *
           perspective;
 
 
@@ -1075,7 +979,8 @@
           height / 2 +
           p.y *
           perspective +
-          mouseY * 20 *
+          mouseY *
+          20 *
           perspective;
 
 
@@ -1128,15 +1033,10 @@
       }
 
       ctx.globalAlpha = 1;
-
       ctx.shadowBlur = 0;
 
     }
 
-
-    /* ===================================
-       DRAW CODE
-    ==================================== */
 
     function drawCode() {
 
@@ -1160,16 +1060,13 @@
             c.y -
             i * 17;
 
-
           const fade =
             1 -
             i / c.length;
 
-
           ctx.globalAlpha =
             c.alpha *
             fade;
-
 
           ctx.fillStyle =
             c.color;
@@ -1225,15 +1122,10 @@
       }
 
       ctx.globalAlpha = 1;
-
       ctx.shadowBlur = 0;
 
     }
 
-
-    /* ===================================
-       ANIMATION
-    ==================================== */
 
     function animate() {
 
@@ -1259,7 +1151,7 @@
       );
 
 
-      /* Dark base */
+      /* BACKGROUND */
 
       ctx.fillStyle =
         "#03050b";
@@ -1272,122 +1164,60 @@
       );
 
 
-      /* Atmospheric glow */
+      /* 3D PARTICLES */
 
-      const glow =
-        ctx.createRadialGradient(
-          width / 2 +
-          mouseX * 70,
-          height / 2 +
-          mouseY * 50,
-          0,
-          width / 2,
-          height / 2,
-          Math.max(
-            width,
-            height
-          ) * .65
-        );
+      drawParticles();
 
 
-      glow.addColorStop(
-        0,
-        "rgba(30,100,255,.10)"
-      );
-
-      glow.addColorStop(
-        .35,
-        "rgba(120,40,255,.055)"
-      );
-
-      glow.addColorStop(
-        1,
-        "rgba(0,0,0,0)"
-      );
-
-
-      ctx.fillStyle =
-        glow;
-
-      ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-      );
-
-
-      /* 3D rings */
-
-      rotation += .0025;
-
-
-      drawRing(
-        width / 2 +
-        mouseX * 40,
-
-        height / 2 +
-        mouseY * 25,
-
-        Math.min(
-          width,
-          height
-        ) * .28,
-
-        rotation,
-
-        "#00eaff",
-
-        1
-      );
-
-
-      drawRing(
-        width / 2 -
-        mouseX * 30,
-
-        height / 2 -
-        mouseY * 20,
-
-        Math.min(
-          width,
-          height
-        ) * .40,
-
-        -rotation * .65,
-
-        "#8b5cf6",
-
-        1
-      );
-
-
-      drawRing(
-        width / 2,
-
-        height / 2,
-
-        Math.min(
-          width,
-          height
-        ) * .52,
-
-        rotation * .45,
-
-        "#d946ef",
-
-        1
-      );
-
-
-      /* Fast code */
+      /* CODE RAIN */
 
       drawCode();
 
 
-      /* 3D particles */
+      /* ROTATING 3D RINGS */
 
-      drawParticles();
+      rotation +=
+        .0035;
+
+
+      const centerX =
+        width / 2 +
+        mouseX * 35;
+
+      const centerY =
+        height / 2 +
+        mouseY * 25;
+
+
+      drawRing(
+        centerX,
+        centerY,
+        Math.min(width, height) * .25,
+        rotation,
+        "#00eaff"
+      );
+
+
+      drawRing(
+        centerX,
+        centerY,
+        Math.min(width, height) * .32,
+        -rotation * 1.3,
+        "#a855f7"
+      );
+
+
+      drawRing(
+        centerX,
+        centerY,
+        Math.min(width, height) * .40,
+        rotation * .7,
+        "#ff4fd8"
+      );
+
+
+      ctx.globalAlpha = 1;
+      ctx.shadowBlur = 0;
 
     }
 
