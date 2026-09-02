@@ -1,0 +1,674 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Sensitivity Result — FF MAX</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --main: #31b7ff;
+      --secondary: #7c5cff;
+      --glow: rgba(49,183,255,.35);
+      --bg1: #020611;
+      --bg2: #07152c;
+    }
+
+    body {
+      min-height: 100vh;
+      color: white;
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 15% 20%, var(--glow), transparent 28%),
+        radial-gradient(circle at 85% 75%, rgba(124,92,255,.18), transparent 30%),
+        linear-gradient(135deg, var(--bg1), var(--bg2));
+      overflow-x: hidden;
+    }
+
+    /* PARTICLES */
+
+    .particles {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .particle {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      border-radius: 50%;
+      background: var(--main);
+      box-shadow: 0 0 12px var(--main);
+      animation: float linear infinite;
+      opacity: .7;
+    }
+
+    @keyframes float {
+      from {
+        transform: translateY(110vh);
+      }
+
+      to {
+        transform: translateY(-20vh);
+      }
+    }
+
+    /* GRID */
+
+    .grid {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: .18;
+      background-image:
+        linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.06) 1px, transparent 1px);
+      background-size: 45px 45px;
+      mask-image: linear-gradient(to bottom, black, transparent);
+    }
+
+    /* HEADER */
+
+    header {
+      width: min(1100px, 92%);
+      margin: auto;
+      padding: 25px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 19px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .logo span {
+      color: var(--main);
+      text-shadow: 0 0 18px var(--main);
+    }
+
+    .back {
+      color: #b7c7dc;
+      text-decoration: none;
+      font-size: 12px;
+      padding: 10px 15px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: 999px;
+      transition: .3s;
+    }
+
+    .back:hover {
+      color: white;
+      border-color: var(--main);
+      box-shadow: 0 0 25px var(--glow);
+    }
+
+    /* MAIN */
+
+    main {
+      width: min(1000px, 92%);
+      margin: auto;
+      padding: 50px 0 90px;
+    }
+
+    .loading {
+      text-align: center;
+      padding: 90px 0;
+      animation: fadeOut .8s 2.2s forwards;
+    }
+
+    .loader {
+      width: 75px;
+      height: 75px;
+      margin: auto;
+      border: 3px solid rgba(255,255,255,.08);
+      border-top-color: var(--main);
+      border-right-color: var(--secondary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      box-shadow: 0 0 35px var(--glow);
+    }
+
+    .loading h2 {
+      margin-top: 25px;
+      letter-spacing: 2px;
+    }
+
+    .loading p {
+      margin-top: 10px;
+      color: #8195af;
+      font-size: 13px;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+        height: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+    }
+
+    /* RESULT */
+
+    .result {
+      opacity: 0;
+      transform: translateY(35px) scale(.97);
+      animation: resultIn 1s 2.4s ease forwards;
+    }
+
+    @keyframes resultIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .result-head {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .result-head .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid var(--main);
+      border-radius: 999px;
+      color: var(--main);
+      font-size: 10px;
+      letter-spacing: 2px;
+      box-shadow: 0 0 20px var(--glow);
+    }
+
+    .result-head h1 {
+      margin-top: 20px;
+      font-size: clamp(35px, 7vw, 65px);
+      letter-spacing: -2px;
+      text-shadow: 0 0 35px var(--glow);
+    }
+
+    .device-info {
+      margin-top: 12px;
+      color: #91a5bd;
+    }
+
+    /* SENSITIVITY GRID */
+
+    .sensitivity-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .sense-card {
+      position: relative;
+      overflow: hidden;
+      padding: 25px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: linear-gradient(
+        145deg,
+        rgba(15,35,65,.82),
+        rgba(3,9,20,.82)
+      );
+      box-shadow:
+        0 20px 50px rgba(0,0,0,.30),
+        0 0 25px rgba(40,150,255,.06);
+      transition: .35s;
+    }
+
+    .sense-card::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      right: -60px;
+      top: -60px;
+      background: var(--main);
+      opacity: .10;
+      filter: blur(35px);
+      border-radius: 50%;
+    }
+
+    .sense-card:hover {
+      transform: translateY(-7px);
+      border-color: var(--main);
+      box-shadow:
+        0 20px 60px rgba(0,0,0,.4),
+        0 0 35px var(--glow);
+    }
+
+    .sense-name {
+      color: #8ea4bd;
+      font-size: 11px;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+
+    .sense-value {
+      margin-top: 12px;
+      font-size: 48px;
+      font-weight: 900;
+      color: white;
+      text-shadow:
+        0 0 12px var(--main),
+        0 0 30px var(--glow);
+      animation: numberGlow 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes numberGlow {
+      from {
+        filter: brightness(1);
+      }
+
+      to {
+        filter: brightness(1.35);
+      }
+    }
+
+    /* PHONE SETTINGS */
+
+    .settings {
+      margin-top: 25px;
+      padding: 30px;
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 22px;
+      background: rgba(5,14,29,.72);
+      box-shadow: 0 25px 70px rgba(0,0,0,.35);
+    }
+
+    .settings h2 {
+      margin-bottom: 20px;
+    }
+
+    .setting {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 17px 0;
+      border-bottom: 1px solid rgba(255,255,255,.07);
+    }
+
+    .setting:last-child {
+      border-bottom: 0;
+    }
+
+    .setting span:first-child {
+      color: #91a4bc;
+    }
+
+    .setting strong {
+      color: var(--main);
+      text-shadow: 0 0 12px var(--glow);
+    }
+
+    /* BUTTON */
+
+    .actions {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+      padding: 15px 25px;
+      border-radius: 13px;
+      color: white;
+      font-weight: 800;
+      background: linear-gradient(100deg, var(--main), var(--secondary));
+      box-shadow: 0 10px 35px var(--glow);
+      transition: .3s;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 45px var(--glow);
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 700px) {
+
+      header {
+        padding: 18px 0;
+      }
+
+      main {
+        padding-top: 35px;
+      }
+
+      .sensitivity-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .sense-card {
+        padding: 20px;
+      }
+
+      .sense-value {
+        font-size: 38px;
+      }
+
+      .settings {
+        padding: 22px;
+      }
+    }
+
+    @media (max-width: 430px) {
+
+      .sensitivity-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .setting {
+        gap: 20px;
+      }
+
+      .setting strong {
+        text-align: right;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="grid"></div>
+  <div class="particles" id="particles"></div>
+
+
+  <header>
+
+    <div class="logo">
+      FF<span>MAX</span>
+    </div>
+
+    <a href="index.html" class="back">
+      ← Generate Again
+    </a>
+
+  </header>
+
+
+  <main>
+
+    <section class="loading">
+
+      <div class="loader"></div>
+
+      <h2>ANALYZING DEVICE</h2>
+
+      <p>
+        Building your sensitivity profile...
+      </p>
+
+    </section>
+
+
+    <section class="result">
+
+      <div class="result-head">
+
+        <div class="badge">
+          ✓ PROFILE GENERATED
+        </div>
+
+        <h1 id="deviceName">
+          DEVICE
+        </h1>
+
+        <p class="device-info" id="deviceInfo">
+          Device profile
+        </p>
+
+      </div>
+
+
+      <div class="sensitivity-grid">
+
+        <div class="sense-card">
+          <div class="sense-name">GENERAL</div>
+          <div class="sense-value" id="general">185</div>
+        </div>
+
+        <div class="sense-card">
+          <div class="sense-name">RED DOT</div>
+          <div class="sense-value" id="redDot">175</div>
+        </div>
+
+        <div class="sense-card">
+          <div class="sense-name">2X SCOPE</div>
+          <div class="sense-value" id="scope2x">165</div>
+        </div>
+
+        <div class="sense-card">
+          <div class="sense-name">4X SCOPE</div>
+          <div class="sense-value" id="scope4x">155</div>
+        </div>
+
+        <div class="sense-card">
+          <div class="sense-name">SNIPER</div>
+          <div class="sense-value" id="sniper">95</div>
+        </div>
+
+        <div class="sense-card">
+          <div class="sense-name">FREE LOOK</div>
+          <div class="sense-value" id="freeLook">180</div>
+        </div>
+
+      </div>
+
+
+      <div class="settings">
+
+        <h2>PHONE & GAME SETTINGS</h2>
+
+        <div class="setting">
+          <span>Graphics</span>
+          <strong>Smooth / Balanced</strong>
+        </div>
+
+        <div class="setting">
+          <span>FPS</span>
+          <strong>Highest Supported</strong>
+        </div>
+
+        <div class="setting">
+          <span>Background Apps</span>
+          <strong>Keep Minimal</strong>
+        </div>
+
+        <div class="setting">
+          <span>Battery Saver</span>
+          <strong>OFF While Gaming</strong>
+        </div>
+
+        <div class="setting">
+          <span>DPI</span>
+          <strong>Keep Default / Comfortable</strong>
+        </div>
+
+        <div class="setting">
+          <span>Performance Mode</span>
+          <strong>Game Mode ON</strong>
+        </div>
+
+      </div>
+
+
+      <div class="actions">
+
+        <button onclick="copySettings()">
+          COPY SETTINGS
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* URL DATA */
+
+    const params = new URLSearchParams(window.location.search);
+
+    const device =
+      params.get("device") || "Unknown Device";
+
+    const ram =
+      params.get("ram") || "8";
+
+    const storage =
+      params.get("storage") || "128";
+
+
+    document.getElementById("deviceName").textContent =
+      device;
+
+    document.getElementById("deviceInfo").textContent =
+      ram + " GB RAM • " + storage + " GB STORAGE";
+
+
+    /* DEVICE THEME */
+
+    const name = device.toLowerCase();
+
+    let mainColor = "#31b7ff";
+    let secondColor = "#7c5cff";
+
+    if (name.includes("samsung")) {
+      mainColor = "#6f8cff";
+      secondColor = "#9b6cff";
+    }
+
+    else if (
+      name.includes("iphone") ||
+      name.includes("apple")
+    ) {
+      mainColor = "#ff7b9c";
+      secondColor = "#ffb36b";
+    }
+
+    else if (
+      name.includes("oneplus")
+    ) {
+      mainColor = "#ff3f5f";
+      secondColor = "#ff784d";
+    }
+
+    else if (
+      name.includes("realme")
+    ) {
+      mainColor = "#35ff9b";
+      secondColor = "#24c6ff";
+    }
+
+    else if (
+      name.includes("poco") ||
+      name.includes("xiaomi") ||
+      name.includes("redmi")
+    ) {
+      mainColor = "#32c8ff";
+      secondColor = "#5d6cff";
+    }
+
+
+    document.documentElement.style.setProperty(
+      "--main",
+      mainColor
+    );
+
+    document.documentElement.style.setProperty(
+      "--secondary",
+      secondColor
+    );
+
+    document.documentElement.style.setProperty(
+      "--glow",
+      mainColor + "55"
+    );
+
+
+    /* PARTICLES */
+
+    const particles =
+      document.getElementById("particles");
+
+    for (let i = 0; i < 55; i++) {
+
+      const p = document.createElement("div");
+
+      p.className = "particle";
+
+      p.style.left =
+        Math.random() * 100 + "%";
+
+      p.style.animationDuration =
+        (5 + Math.random() * 10) + "s";
+
+      p.style.animationDelay =
+        (-Math.random() * 10) + "s";
+
+      p.style.opacity =
+        0.25 + Math.random() * 0.65;
+
+      particles.appendChild(p);
+
+    }
+
+
+    /* COPY */
+
+    function copySettings() {
+
+      const text =
+`FF MAX SENSITIVITY
+
+Device: ${device}
+RAM: ${ram} GB
+Storage: ${storage} GB
+
+General: ${document.getElementById("general").textContent}
+Red Dot: ${document.getElementById("redDot").textContent}
+2X Scope: ${document.getElementById("scope2x").textContent}
+4X Scope: ${document.getElementById("scope4x").textContent}
+Sniper: ${document.getElementById("sniper").textContent}
+Free Look: ${document.getElementById("freeLook").textContent}`;
+
+      navigator.clipboard.writeText(text);
+
+      alert("Settings copied!");
+
+    }
+
+  </script>
+
+</body>
+</html>
