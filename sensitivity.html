@@ -18,7 +18,7 @@
   --c2:#7b5cff;
   --c3:#ff3cac;
   --bg:#03040a;
-  --panel:rgba(7,10,20,.82);
+  --panel:rgba(6,9,18,.84);
 }
 
 html{
@@ -30,15 +30,25 @@ body{
   overflow-x:hidden;
   color:#f5f7ff;
   font-family:Arial,Helvetica,sans-serif;
+
   background:
-    radial-gradient(circle at 15% 20%,color-mix(in srgb,var(--c1) 13%,transparent),transparent 30%),
-    radial-gradient(circle at 85% 75%,color-mix(in srgb,var(--c2) 11%,transparent),transparent 30%),
+    radial-gradient(
+      circle at 12% 18%,
+      color-mix(in srgb,var(--c1) 10%,transparent),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 88% 78%,
+      color-mix(in srgb,var(--c2) 9%,transparent),
+      transparent 30%
+    ),
     var(--bg);
 }
 
-/* =========================
-   BACKGROUND
-========================= */
+
+/* =====================================================
+   GLOBAL BACKGROUND
+===================================================== */
 
 .background{
   position:fixed;
@@ -51,24 +61,34 @@ body{
 .grid{
   position:absolute;
   inset:0;
-  opacity:.055;
+  opacity:.045;
+
   background-image:
     linear-gradient(var(--c1) 1px,transparent 1px),
     linear-gradient(90deg,var(--c2) 1px,transparent 1px);
+
   background-size:55px 55px;
 }
 
-/* soft glow only */
+
+/* subtle global glow */
 
 .glow{
   position:absolute;
+
   width:300px;
   height:300px;
+
   border-radius:50%;
-  filter:blur(110px);
-  opacity:.09;
+
+  filter:blur(115px);
+
+  opacity:.075;
+
   background:var(--c1);
-  animation:floatGlow 15s ease-in-out infinite alternate;
+
+  animation:
+    globalGlow 14s ease-in-out infinite alternate;
 }
 
 .glow.g1{
@@ -77,37 +97,34 @@ body{
 }
 
 .glow.g2{
-  right:-140px;
-  bottom:8%;
+  right:-130px;
+  bottom:5%;
+
   background:var(--c2);
+
   animation-delay:-5s;
 }
 
-.glow.g3{
-  left:42%;
-  top:38%;
-  width:220px;
-  height:220px;
-  background:var(--c3);
-  opacity:.045;
-  animation-delay:-9s;
-}
+@keyframes globalGlow{
 
-@keyframes floatGlow{
   0%{
-    transform:translate3d(0,0,0) scale(1);
+    transform:translate(0,0) scale(1);
   }
+
   50%{
-    transform:translate3d(60px,-30px,0) scale(1.08);
+    transform:translate(45px,-30px) scale(1.06);
   }
+
   100%{
-    transform:translate3d(-30px,55px,0) scale(.95);
+    transform:translate(-25px,40px) scale(.96);
   }
+
 }
 
-/* =========================
-   REAL CONTINUOUS CODE
-========================= */
+
+/* =====================================================
+   GLOBAL CODE STREAM
+===================================================== */
 
 .code-streams{
   position:absolute;
@@ -117,40 +134,65 @@ body{
 
 .code-column{
   position:absolute;
+
   top:-120%;
-  width:230px;
-  font-family:"Courier New",monospace;
-  font-size:11px;
+
+  width:220px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:10px;
+
   line-height:1.9;
-  letter-spacing:.3px;
+
   white-space:pre;
+
   color:var(--codeColor);
+
   opacity:var(--codeOpacity);
-  text-shadow:0 0 7px var(--codeColor);
-  will-change:transform;
+
+  text-shadow:
+    0 0 7px var(--codeColor);
+
   animation:
-    codeFall var(--speed) linear infinite;
-  animation-delay:var(--delay);
+    globalCodeFall
+    var(--speed)
+    linear
+    infinite;
+
+  animation-delay:
+    var(--delay);
+
+  will-change:transform;
 }
 
-@keyframes codeFall{
-  0%{
-    transform:translate3d(0,-5%,0);
+@keyframes globalCodeFall{
+
+  from{
+    transform:
+      translate3d(0,-5%,0);
   }
 
-  100%{
-    transform:translate3d(var(--drift),235%,0);
+  to{
+    transform:
+      translate3d(var(--drift),235%,0);
   }
+
 }
 
-/* =========================
+
+/* =====================================================
    HEADER
-========================= */
+===================================================== */
 
 .header{
   width:min(1100px,92%);
   margin:auto;
+
   padding:25px 0;
+
   display:flex;
   justify-content:space-between;
   align-items:center;
@@ -164,29 +206,41 @@ body{
 
 .logo span{
   color:var(--c1);
-  text-shadow:0 0 12px var(--c1);
+
+  text-shadow:
+    0 0 12px var(--c1);
 }
 
 .status{
   color:var(--c1);
+
   font-size:10px;
+
   letter-spacing:2px;
 }
 
-/* =========================
+
+/* =====================================================
    MAIN
-========================= */
+===================================================== */
 
 main{
   width:min(1050px,92%);
-  margin:15px auto 70px;
+
+  margin:
+    15px auto
+    70px;
 }
 
 .back{
   display:inline-block;
+
   margin-bottom:25px;
+
   color:#7d879c;
+
   text-decoration:none;
+
   font-size:12px;
 }
 
@@ -194,80 +248,339 @@ main{
   color:var(--c1);
 }
 
-/* =========================
+
+/* =====================================================
    HERO
-========================= */
+===================================================== */
 
 .hero{
   text-align:center;
+
   margin-bottom:30px;
 }
 
 .badge{
   display:inline-block;
+
   padding:8px 15px;
-  border:1px solid var(--c1);
+
+  border:
+    1px solid var(--c1);
+
   border-radius:30px;
+
   color:var(--c1);
+
   font-size:9px;
+
   letter-spacing:2px;
-  box-shadow:0 0 12px color-mix(in srgb,var(--c1) 15%,transparent);
+
+  box-shadow:
+    0 0 12px
+    color-mix(
+      in srgb,
+      var(--c1) 14%,
+      transparent
+    );
+
   margin-bottom:17px;
 }
 
 h1{
-  font-size:clamp(34px,7vw,64px);
+  font-size:
+    clamp(
+      34px,
+      7vw,
+      64px
+    );
+
   line-height:1;
 }
 
 h1 span{
   color:var(--c1);
-  text-shadow:0 0 18px color-mix(in srgb,var(--c1) 35%,transparent);
+
+  text-shadow:
+    0 0 18px
+    color-mix(
+      in srgb,
+      var(--c1) 35%,
+      transparent
+    );
 }
 
 .subtitle{
   margin-top:14px;
+
   color:#858ea2;
+
   font-size:13px;
 }
 
-/* =========================
-   DEVICE
-========================= */
 
-.device-card{
-  padding:21px;
-  margin-bottom:27px;
-  border-radius:17px;
-  border:1px solid rgba(255,255,255,.08);
-  background:var(--panel);
-  backdrop-filter:blur(16px);
+/* =====================================================
+   PROFILE CARD
+===================================================== */
+
+.profile-wrap{
+  position:relative;
+
+  margin-bottom:28px;
+
+  border-radius:20px;
+
+  overflow:hidden;
+
+  background:
+    linear-gradient(
+      135deg,
+      rgba(255,255,255,.045),
+      rgba(255,255,255,.012)
+    );
+
+  border:
+    1px solid
+    color-mix(
+      in srgb,
+      var(--c1) 28%,
+      rgba(255,255,255,.08)
+    );
+
   box-shadow:
-    0 18px 55px rgba(0,0,0,.28),
-    inset 0 0 25px rgba(255,255,255,.015);
+    0 25px 70px rgba(0,0,0,.32),
+    0 0 35px
+    color-mix(
+      in srgb,
+      var(--c1) 7%,
+      transparent
+    );
+}
+
+
+/* inner moving light line */
+
+.profile-wrap::before{
+  content:"";
+
+  position:absolute;
+
+  inset:0;
+
+  border-radius:20px;
+
+  background:
+    linear-gradient(
+      115deg,
+      transparent 20%,
+      color-mix(
+        in srgb,
+        var(--c1) 15%,
+        transparent
+      ),
+      transparent 80%
+    );
+
+  transform:
+    translateX(-100%);
+
+  animation:
+    profileSweep
+    6s linear
+    infinite;
+
+  pointer-events:none;
+}
+
+@keyframes profileSweep{
+
+  0%{
+    transform:translateX(-100%);
+  }
+
+  100%{
+    transform:translateX(100%);
+  }
+
+}
+
+
+/* =====================================================
+   PROFILE CODE AREA
+===================================================== */
+
+.profile-code{
+  position:absolute;
+
+  inset:0;
+
+  overflow:hidden;
+
+  pointer-events:none;
+
+  opacity:.9;
+}
+
+
+/* top -> bottom */
+
+.profile-down{
+  position:absolute;
+
+  top:-90%;
+
+  width:170px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:9px;
+
+  line-height:1.8;
+
+  color:var(--pc);
+
+  opacity:.17;
+
+  white-space:pre;
+
+  text-shadow:
+    0 0 8px var(--pc);
+
+  animation:
+    profileDown
+    var(--pspeed)
+    linear
+    infinite;
+
+  animation-delay:
+    var(--pdelay);
+}
+
+@keyframes profileDown{
+
+  0%{
+    transform:
+      translateY(0);
+  }
+
+  100%{
+    transform:
+      translateY(220%);
+  }
+
+}
+
+
+/* bottom -> top */
+
+.profile-up{
+  position:absolute;
+
+  bottom:-90%;
+
+  width:170px;
+
+  font-family:
+    "Courier New",
+    monospace;
+
+  font-size:9px;
+
+  line-height:1.8;
+
+  color:var(--pc);
+
+  opacity:.13;
+
+  white-space:pre;
+
+  text-shadow:
+    0 0 8px var(--pc);
+
+  animation:
+    profileUp
+    var(--pspeed)
+    linear
+    infinite;
+
+  animation-delay:
+    var(--pdelay);
+}
+
+@keyframes profileUp{
+
+  0%{
+    transform:
+      translateY(0);
+  }
+
+  100%{
+    transform:
+      translateY(-220%);
+  }
+
+}
+
+
+/* actual profile content */
+
+.profile-content{
+  position:relative;
+
+  z-index:5;
+
+  padding:24px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4,7,15,.91),
+      rgba(4,7,15,.72),
+      rgba(4,7,15,.91)
+    );
+
+  backdrop-filter:blur(8px);
 }
 
 .device-label{
   color:#737d92;
+
   font-size:9px;
+
   letter-spacing:2px;
 }
 
 .device-name{
   margin-top:7px;
-  font-size:24px;
+
+  font-size:26px;
+
   font-weight:900;
+
+  text-shadow:
+    0 0 20px
+    color-mix(
+      in srgb,
+      var(--c1) 12%,
+      transparent
+    );
 }
 
 .device-meta{
   margin-top:7px;
+
   color:var(--c1);
+
   font-size:11px;
+
+  letter-spacing:.5px;
 }
 
-/* =========================
+
+/* =====================================================
    SECTION
-========================= */
+===================================================== */
 
 .section{
   margin-top:25px;
@@ -275,8 +588,10 @@ h1 span{
 
 .section-title{
   display:flex;
+
   justify-content:space-between;
   align-items:center;
+
   margin-bottom:13px;
 }
 
@@ -286,61 +601,100 @@ h1 span{
 
 .section-title span{
   color:var(--c1);
+
   font-size:9px;
+
   letter-spacing:2px;
 }
 
-/* =========================
+
+/* =====================================================
    SENSITIVITY
-========================= */
+===================================================== */
 
 .sensitivity-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:13px;
 }
 
 .sens-card{
   padding:17px;
+
   border-radius:15px;
-  border:1px solid rgba(255,255,255,.075);
-  background:var(--panel);
-  backdrop-filter:blur(15px);
+
+  border:
+    1px solid
+    rgba(255,255,255,.075);
+
+  background:
+    rgba(6,9,18,.82);
+
+  backdrop-filter:
+    blur(15px);
+
   transition:.25s;
 }
 
 .sens-card:hover{
-  transform:translateY(-3px);
-  border-color:color-mix(in srgb,var(--c1) 35%,transparent);
+  transform:
+    translateY(-3px);
+
+  border-color:
+    color-mix(
+      in srgb,
+      var(--c1) 35%,
+      transparent
+    );
 }
 
 .sens-top{
   display:flex;
+
   justify-content:space-between;
+
   margin-bottom:11px;
 }
 
 .sens-name{
   font-size:12px;
+
   font-weight:bold;
 }
 
 .sens-value{
   color:var(--c1);
+
   font-weight:900;
-  text-shadow:0 0 10px color-mix(in srgb,var(--c1) 45%,transparent);
+
+  text-shadow:
+    0 0 10px
+    color-mix(
+      in srgb,
+      var(--c1) 40%,
+      transparent
+    );
 }
 
 .bar{
   height:8px;
+
   border-radius:20px;
-  background:rgba(255,255,255,.065);
+
+  background:
+    rgba(255,255,255,.065);
+
   overflow:hidden;
 }
 
 .bar-fill{
   height:100%;
+
   border-radius:20px;
+
   background:
     linear-gradient(
       90deg,
@@ -348,41 +702,65 @@ h1 span{
       var(--c3),
       var(--c1)
     );
-  box-shadow:0 0 11px var(--c1);
-  width:0;
-  transition:width 1.2s cubic-bezier(.2,.8,.2,1);
+
+  box-shadow:
+    0 0 11px var(--c1);
+
+  transition:
+    width 1.2s
+    cubic-bezier(.2,.8,.2,1);
 }
 
-/* =========================
+
+/* =====================================================
    SETTINGS
-========================= */
+===================================================== */
 
 .settings-grid{
   display:grid;
-  grid-template-columns:repeat(2,1fr);
+
+  grid-template-columns:
+    repeat(2,1fr);
+
   gap:13px;
 }
 
 .setting-card{
   padding:17px;
+
   border-radius:15px;
-  border:1px solid rgba(255,255,255,.075);
-  background:var(--panel);
-  backdrop-filter:blur(15px);
+
+  border:
+    1px solid
+    rgba(255,255,255,.075);
+
+  background:
+    rgba(6,9,18,.82);
+
+  backdrop-filter:
+    blur(15px);
 }
 
 .setting-card h3{
   font-size:13px;
+
   margin-bottom:10px;
 }
 
 .setting{
   display:flex;
+
   justify-content:space-between;
+
   align-items:center;
+
   gap:10px;
+
   padding:10px 0;
-  border-bottom:1px solid rgba(255,255,255,.055);
+
+  border-bottom:
+    1px solid
+    rgba(255,255,255,.055);
 }
 
 .setting:last-child{
@@ -391,72 +769,112 @@ h1 span{
 
 .setting-name{
   color:#d5d9e3;
+
   font-size:11px;
 }
 
 .state{
   padding:5px 8px;
+
   border-radius:20px;
+
   font-size:8px;
+
   font-weight:900;
+
   letter-spacing:1px;
 }
 
 .enable{
   color:#65ffae;
-  background:rgba(65,255,160,.07);
-  border:1px solid rgba(65,255,160,.25);
+
+  background:
+    rgba(65,255,160,.07);
+
+  border:
+    1px solid
+    rgba(65,255,160,.25);
 }
 
 .disable{
   color:#ff7184;
-  background:rgba(255,80,105,.06);
-  border:1px solid rgba(255,80,105,.22);
+
+  background:
+    rgba(255,80,105,.06);
+
+  border:
+    1px solid
+    rgba(255,80,105,.22);
 }
 
 .optional{
   color:#ffd166;
-  background:rgba(255,209,102,.06);
-  border:1px solid rgba(255,209,102,.22);
+
+  background:
+    rgba(255,209,102,.06);
+
+  border:
+    1px solid
+    rgba(255,209,102,.22);
 }
 
-/* =========================
+
+/* =====================================================
    NOTE
-========================= */
+===================================================== */
 
 .note{
   margin-top:13px;
+
   padding:13px;
-  border-left:2px solid var(--c1);
-  background:rgba(255,255,255,.025);
+
+  border-left:
+    2px solid var(--c1);
+
+  background:
+    rgba(255,255,255,.025);
+
   color:#788297;
+
   font-size:10px;
+
   line-height:1.7;
 }
 
-/* =========================
+
+/* =====================================================
    BUTTONS
-========================= */
+===================================================== */
 
 .actions{
   display:flex;
+
   gap:12px;
+
   margin-top:28px;
 }
 
 button{
   flex:1;
+
   padding:15px;
+
   border-radius:11px;
+
   cursor:pointer;
+
   color:white;
+
   font-weight:900;
+
   letter-spacing:1px;
+
   transition:.2s;
 }
 
 .copy{
   border:0;
+
   background:
     linear-gradient(
       120deg,
@@ -464,36 +882,59 @@ button{
       var(--c3),
       var(--c1)
     );
-  box-shadow:0 0 18px color-mix(in srgb,var(--c1) 12%,transparent);
+
+  box-shadow:
+    0 0 18px
+    color-mix(
+      in srgb,
+      var(--c1) 12%,
+      transparent
+    );
 }
 
 .generate{
-  background:rgba(255,255,255,.045);
-  border:1px solid rgba(255,255,255,.1);
+  background:
+    rgba(255,255,255,.045);
+
+  border:
+    1px solid
+    rgba(255,255,255,.1);
 }
 
 button:hover{
-  transform:translateY(-2px);
+  transform:
+    translateY(-2px);
 }
 
-/* =========================
+
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
   width:min(1050px,92%);
+
   margin:auto;
-  padding:20px 0 40px;
+
+  padding:
+    20px 0
+    40px;
+
   display:flex;
+
   justify-content:space-between;
+
   color:#5f687b;
+
   font-size:9px;
+
   letter-spacing:1px;
 }
 
-/* =========================
+
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:700px){
 
@@ -515,20 +956,35 @@ footer{
   }
 
   .code-column{
-    width:160px;
+    width:150px;
     font-size:8px;
   }
 
-  .glow{
-    opacity:.07;
+  .profile-down,
+  .profile-up{
+    width:125px;
+    font-size:7px;
   }
+
+  .profile-content{
+    padding:20px;
+  }
+
+  .device-name{
+    font-size:22px;
+  }
+
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- BACKGROUND -->
+
+<!-- =====================================================
+     GLOBAL BACKGROUND
+===================================================== -->
 
 <div class="background">
 
@@ -561,7 +1017,10 @@ footer{
 
 <main>
 
-<a href="index.html" class="back">
+
+<a
+  href="index.html"
+  class="back">
   ← BACK TO GENERATOR
 </a>
 
@@ -583,30 +1042,49 @@ footer{
 </section>
 
 
-<!-- DEVICE -->
+<!-- =====================================================
+     PREMIUM PROFILE CARD
+===================================================== -->
 
-<div class="device-card">
+<div class="profile-wrap">
 
-  <div class="device-label">
-    DEVICE DETECTED
-  </div>
 
-  <div
-    class="device-name"
-    id="deviceName">
-    Loading...
-  </div>
+  <!-- FAST CODE INSIDE PROFILE -->
 
   <div
-    class="device-meta"
-    id="deviceMeta">
-    ANALYZING...
+    class="profile-code"
+    id="profileCode">
+  </div>
+
+
+  <!-- PROFILE CONTENT -->
+
+  <div class="profile-content">
+
+    <div class="device-label">
+      DEVICE PROFILE
+    </div>
+
+    <div
+      class="device-name"
+      id="deviceName">
+      Loading...
+    </div>
+
+    <div
+      class="device-meta"
+      id="deviceMeta">
+      ANALYZING DEVICE...
+    </div>
+
   </div>
 
 </div>
 
 
-<!-- SENSITIVITY -->
+<!-- =====================================================
+     SENSITIVITY
+===================================================== -->
 
 <section class="section">
 
@@ -622,6 +1100,7 @@ footer{
 
   </div>
 
+
   <div
     class="sensitivity-grid"
     id="sensitivityGrid">
@@ -630,7 +1109,9 @@ footer{
 </section>
 
 
-<!-- PHONE SETTINGS -->
+<!-- =====================================================
+     PHONE SETTINGS
+===================================================== -->
 
 <section class="section">
 
@@ -776,7 +1257,9 @@ footer{
 </section>
 
 
-<!-- BATTERY -->
+<!-- =====================================================
+     BATTERY
+===================================================== -->
 
 <section class="section">
 
@@ -921,31 +1404,42 @@ footer{
 
 
   <div class="note">
-    ⚠ These are general recommendations. Actual FPS,
-    touch response, temperature and battery life depend
-    on your device, game version and system software.
+
+    ⚠ These are general recommendations.
+    Actual FPS, touch response, temperature
+    and battery life depend on your device,
+    game version and system software.
+
   </div>
 
 </section>
 
 
-<!-- BUTTONS -->
+<!-- =====================================================
+     ACTIONS
+===================================================== -->
 
 <div class="actions">
 
   <button
     class="copy"
     id="copyBtn">
+
     COPY SETTINGS
+
   </button>
+
 
   <button
     class="generate"
     onclick="location.href='index.html'">
+
     GENERATE AGAIN →
+
   </button>
 
 </div>
+
 
 </main>
 
@@ -966,23 +1460,22 @@ footer{
 <script>
 
 /* =====================================================
-   RANDOM COLOR ENGINE
-   Every refresh gets a different multi-color palette
+   RANDOM PALETTE
 ===================================================== */
 
 const palettes = [
 
-  ["#00eaff","#7b5cff","#ff3cac","#07111c"],
-  ["#ff3158","#ff7a18","#8b2cff","#12060a"],
-  ["#00ff9d","#00d9ff","#6d5cff","#03130e"],
-  ["#ffcc00","#ff5c00","#ff2f92","#120a02"],
-  ["#9d4edd","#00e5ff","#f72585","#090313"],
+  ["#00eaff","#7b5cff","#ff3cac","#050711"],
+  ["#ff3158","#ff7a18","#8b2cff","#10050a"],
+  ["#00ff9d","#00d9ff","#6d5cff","#03100c"],
+  ["#ffcc00","#ff5c00","#ff2f92","#100902"],
+  ["#9d4edd","#00e5ff","#f72585","#080310"],
   ["#00f5d4","#00bbf9","#9b5de5","#03100f"],
-  ["#39ff14","#00ffcc","#00aaff","#031004"],
-  ["#ff006e","#8338ec","#3a86ff","#10030c"],
+  ["#39ff14","#00ffcc","#00aaff","#021005"],
+  ["#ff006e","#8338ec","#3a86ff","#0d030a"],
   ["#f15bb5","#fee440","#00bbf9","#10070d"],
-  ["#00f0ff","#00ff88","#b8ff00","#03110c"],
-  ["#ff4d00","#ff00a8","#6c00ff","#10030a"],
+  ["#00f0ff","#00ff88","#b8ff00","#021008"],
+  ["#ff4d00","#ff00a8","#6c00ff","#100309"],
   ["#7cff00","#00ffea","#0066ff","#031007"],
   ["#ff0080","#ff004c","#7a00ff","#10030b"],
   ["#00d4ff","#0047ff","#a000ff","#030613"],
@@ -991,210 +1484,206 @@ const palettes = [
   ["#c300ff","#ff00a8","#00eaff","#0c0312"],
   ["#00ffcc","#00ff44","#b7ff00","#031008"],
   ["#ff3366","#ff6633","#ffcc00","#100603"],
-  ["#6a5cff","#00c6ff","#00ffd5","#060613"]
+  ["#6a5cff","#00c6ff","#00ffd5","#060613"],
+  ["#00ffea","#ff00d4","#6a00ff","#080310"],
+  ["#ff1744","#651fff","#00e5ff","#0c0308"],
+  ["#00c853","#00b0ff","#d500f9","#031008"],
+  ["#ff9100","#ff1744","#d500f9","#100502"],
+  ["#18ffff","#536dfe","#ff4081","#03060e"]
 ];
 
 
-/*
-  Avoid repeating the exact same palette
-  when possible.
-*/
-
 let oldPalette =
-  sessionStorage.getItem("ffmax_palette");
+  sessionStorage.getItem(
+    "ffmax_palette"
+  );
 
 let paletteIndex;
 
 do{
+
   paletteIndex =
-    Math.floor(Math.random()*palettes.length);
+    Math.floor(
+      Math.random()*palettes.length
+    );
+
 }while(
-  String(paletteIndex) === oldPalette &&
-  palettes.length > 1
+  String(paletteIndex) === oldPalette
 );
+
 
 sessionStorage.setItem(
   "ffmax_palette",
   paletteIndex
 );
 
+
 const palette =
   palettes[paletteIndex];
 
 
-document.documentElement
-  .style
-  .setProperty("--c1",palette[0]);
+document.documentElement.style
+  .setProperty(
+    "--c1",
+    palette[0]
+  );
 
-document.documentElement
-  .style
-  .setProperty("--c2",palette[1]);
+document.documentElement.style
+  .setProperty(
+    "--c2",
+    palette[1]
+  );
 
-document.documentElement
-  .style
-  .setProperty("--c3",palette[2]);
+document.documentElement.style
+  .setProperty(
+    "--c3",
+    palette[2]
+  );
 
-document.documentElement
-  .style
-  .setProperty("--bg",palette[3]);
+document.documentElement.style
+  .setProperty(
+    "--bg",
+    palette[3]
+  );
 
 
 /* =====================================================
-   CYBER CODE ENGINE
-   New random code for every column
+   GLOBAL CYBER CODE
 ===================================================== */
 
-const codeStreams =
-  document.getElementById("codeStreams");
+const globalCode =
+  document.getElementById(
+    "codeStreams"
+  );
 
 
 const codePool = [
 
-"BOOT::FFMAX_ENGINE",
-"INIT::SENSITIVITY_CORE",
-"SCAN::DEVICE_PROFILE",
-"READ::DISPLAY_CONFIG",
-"READ::TOUCH_MATRIX",
-"CHECK::REFRESH_RATE",
-"CHECK::RAM_STATUS",
-"CHECK::GPU_STATUS",
-"ANALYZE::INPUT_RESPONSE",
-"ANALYZE::SYSTEM_LOAD",
-"LOAD::GAME_PROFILE",
-"LOAD::TOUCH_PROFILE",
-"CALCULATE::SENSITIVITY",
-"CALCULATE::RESPONSE",
-"OPTIMIZE::INPUT",
-"OPTIMIZE::DISPLAY",
-"OPTIMIZE::BACKGROUND",
-"THERMAL::MONITOR_ACTIVE",
-"BATTERY::PROFILE_ACTIVE",
-"FPS::TARGET_HIGH",
-"GAME_MODE::ACTIVE",
-"PROFILE::GENERATING",
-"PROFILE::READY",
-"STATUS::ONLINE",
-"STATUS::SYNCED",
-"CORE::ACTIVE",
-"ENGINE::RUNNING",
-"DATA::STREAM_ACTIVE",
-"MEMORY::CHECK_OK",
-"TOUCH::RESPONSE_OK",
-"DISPLAY::SCAN_OK",
-"SYSTEM::STABLE",
-"CHECKSUM::VALID",
-"SYNC::COMPLETE",
-"RENDER::PIPELINE_ACTIVE",
-"INPUT::MATRIX_READY",
-"FFMAX://CORE/ONLINE",
-"FFMAX://PROFILE/READY",
-"FFMAX://DEVICE/SCAN",
-"FFMAX://ENGINE/RUN",
-"0x00FF 0xA31C 0x77D2",
-"0xA1F0 0x09CC 0xEE31",
-"0x7B22 0x4F90 0x12AC",
-"10100101 01101010 11001001",
-"01011001 10100111 00101110",
-"11100010 01010101 10011001",
-"INPUT[01] => RESPONSE[OK]",
-"DISPLAY[120Hz] => READY",
-"TOUCH[HIGH] => ACTIVE",
-"PROFILE[SAFE] => LOADED",
-"ENGINE[FFMAX] => RUNNING",
-"DATA_PACKET => VERIFIED"
+  "BOOT::FFMAX_ENGINE",
+  "INIT::SENSITIVITY_CORE",
+  "SCAN::DEVICE_PROFILE",
+  "READ::DISPLAY_CONFIG",
+  "READ::TOUCH_MATRIX",
+  "CHECK::REFRESH_RATE",
+  "CHECK::RAM_STATUS",
+  "CHECK::GPU_STATUS",
+  "ANALYZE::INPUT_RESPONSE",
+  "ANALYZE::SYSTEM_LOAD",
+  "LOAD::GAME_PROFILE",
+  "LOAD::TOUCH_PROFILE",
+  "CALCULATE::SENSITIVITY",
+  "CALCULATE::RESPONSE",
+  "OPTIMIZE::INPUT",
+  "OPTIMIZE::DISPLAY",
+  "THERMAL::MONITOR_ACTIVE",
+  "BATTERY::PROFILE_ACTIVE",
+  "FPS::TARGET_HIGH",
+  "GAME_MODE::ACTIVE",
+  "PROFILE::GENERATING",
+  "PROFILE::READY",
+  "STATUS::ONLINE",
+  "STATUS::SYNCED",
+  "CORE::ACTIVE",
+  "ENGINE::RUNNING",
+  "DATA::STREAM_ACTIVE",
+  "MEMORY::CHECK_OK",
+  "TOUCH::RESPONSE_OK",
+  "DISPLAY::SCAN_OK",
+  "SYSTEM::STABLE",
+  "CHECKSUM::VALID",
+  "SYNC::COMPLETE",
+  "RENDER::PIPELINE_ACTIVE",
+  "INPUT::MATRIX_READY",
+  "FFMAX://CORE/ONLINE",
+  "FFMAX://PROFILE/READY",
+  "FFMAX://DEVICE/SCAN",
+  "FFMAX://ENGINE/RUN",
+  "INPUT[01] => RESPONSE[OK]",
+  "TOUCH[HIGH] => ACTIVE",
+  "PROFILE[SAFE] => LOADED",
+  "ENGINE[FFMAX] => RUNNING",
+  "DATA_PACKET => VERIFIED"
 
 ];
 
 
-function randomCodeLine(){
+function randomHex(){
 
-  const line =
+  return Math.floor(
+    Math.random()*0xffffff
+  )
+  .toString(16)
+  .toUpperCase()
+  .padStart(6,"0");
+
+}
+
+
+function randomGlobalLine(){
+
+  return (
     codePool[
       Math.floor(
         Math.random()*codePool.length
       )
-    ];
+    ]
+    +
+    " [" +
+    randomHex() +
+    "]"
+  );
 
-  /*
-    Add random hexadecimal data
-    to make streams look different.
-  */
-
-  const hex =
-    Math.floor(
-      Math.random()*0xffffff
-    )
-    .toString(16)
-    .toUpperCase()
-    .padStart(6,"0");
-
-  return line + "  [" + hex + "]";
 }
 
 
-function createCodeColumn(){
+function createGlobalColumn(){
 
-  const column =
+  const el =
     document.createElement("div");
 
-  column.className =
+  el.className =
     "code-column";
 
 
-  let text = "";
+  let text="";
 
-  /*
-    Every column gets its own
-    random sequence.
-  */
 
-  for(let i=0;i<48;i++){
+  for(let i=0;i<52;i++){
 
     text +=
-      randomCodeLine() + "\n";
+      randomGlobalLine() +
+      "\n";
 
   }
 
 
-  column.textContent =
+  el.textContent =
     text;
 
 
-  const left =
-    Math.random()*100;
-
-  const speed =
-    12 + Math.random()*22;
-
-  const delay =
-    -(Math.random()*25);
-
-  const opacity =
-    .055 + Math.random()*.095;
-
-  const drift =
-    (-35 + Math.random()*70) + "px";
+  el.style.left =
+    Math.random()*100 + "%";
 
 
-  column.style.left =
-    left + "%";
-
-  column.style.setProperty(
+  el.style.setProperty(
     "--speed",
-    speed + "s"
+    11 + Math.random()*23 + "s"
   );
 
-  column.style.setProperty(
+
+  el.style.setProperty(
     "--delay",
-    delay + "s"
+    -(Math.random()*25) + "s"
   );
 
-  column.style.setProperty(
+
+  el.style.setProperty(
     "--drift",
-    drift
+    (-30+Math.random()*60) + "px"
   );
 
-  column.style.setProperty(
+
+  el.style.setProperty(
     "--codeColor",
     palette[
       Math.floor(
@@ -1203,126 +1692,412 @@ function createCodeColumn(){
     ]
   );
 
-  column.style.setProperty(
+
+  el.style.setProperty(
     "--codeOpacity",
-    opacity
+    .045 + Math.random()*.09
   );
 
 
-  codeStreams.appendChild(column);
+  globalCode.appendChild(el);
+
+}
+
+
+for(let i=0;i<18;i++){
+
+  createGlobalColumn();
+
+}
+
+
+/* =====================================================
+   PROFILE INTERNAL CODE
+===================================================== */
+
+const profileCode =
+  document.getElementById(
+    "profileCode"
+  );
+
+
+const profileWords = [
+
+  "PROFILE::INIT",
+  "DEVICE::FOUND",
+  "DEVICE::ANALYZED",
+  "RAM::CHECK",
+  "DISPLAY::READY",
+  "TOUCH::READY",
+  "GPU::READY",
+  "INPUT::OPTIMIZED",
+  "SENS::CALCULATED",
+  "PROFILE::READY",
+  "FFMAX::ONLINE",
+  "CORE::ACTIVE",
+  "DATA::SYNC",
+  "SCAN::OK",
+  "ENGINE::RUNNING",
+  "0xA1F2",
+  "0x77BC",
+  "0x09FF",
+  "0xCC21",
+  "10100101",
+  "01101010",
+  "11001001",
+  "00110110"
+
+];
+
+
+function profileLine(){
+
+  const word =
+    profileWords[
+      Math.floor(
+        Math.random()*profileWords.length
+      )
+    ];
+
+  return (
+    word +
+    "  [" +
+    randomHex() +
+    "]"
+  );
+
+}
+
+
+function createProfileStream(
+  direction,
+  index
+){
+
+  const el =
+    document.createElement("div");
+
+
+  el.className =
+    direction === "down"
+      ? "profile-down"
+      : "profile-up";
+
+
+  let text="";
+
+
+  for(let i=0;i<35;i++){
+
+    text +=
+      profileLine() +
+      "\n";
+
+  }
+
+
+  el.textContent =
+    text;
+
+
+  el.style.left =
+    (index*10 +
+     Math.random()*5) +
+    "%";
+
+
+  el.style.setProperty(
+    "--pspeed",
+    (3.5+Math.random()*4) +
+    "s"
+  );
+
+
+  el.style.setProperty(
+    "--pdelay",
+    -(Math.random()*8) +
+    "s"
+  );
+
+
+  el.style.setProperty(
+    "--pc",
+    palette[
+      Math.floor(
+        Math.random()*3
+      )
+    ]
+  );
+
+
+  profileCode.appendChild(el);
 
 }
 
 
 /*
-  Lots of independent streams.
-  They continuously loop because
-  the CSS animation is infinite.
+  Multiple fast streams going DOWN.
 */
 
-for(let i=0;i<18;i++){
+for(let i=0;i<9;i++){
 
-  createCodeColumn();
+  createProfileStream(
+    "down",
+    i
+  );
+
+}
+
+
+/*
+  Multiple fast streams going UP.
+*/
+
+for(let i=0;i<9;i++){
+
+  createProfileStream(
+    "up",
+    i
+  );
 
 }
 
 
 /* =====================================================
-   DEVICE DATABASE
+   DEVICE PROFILES
 ===================================================== */
 
 const profiles = {
 
-  "poco f1":[190,185,175,180,170,160],
-  "poco f3":[195,190,180,185,175,165],
-  "poco f4":[195,190,180,185,175,165],
-  "poco f5":[200,195,185,190,180,170],
-  "poco f5 pro":[200,195,190,195,185,175],
-  "poco f6":[200,195,190,195,185,175],
-  "poco x3":[185,180,170,175,165,155],
-  "poco x3 pro":[195,190,180,185,175,165],
-  "poco x6":[195,190,180,185,175,165],
-  "poco x6 pro":[200,195,190,195,185,175],
-  "poco x7":[195,190,180,185,175,165],
-  "poco x7 pro":[200,195,190,195,185,175],
+  "poco f1":
+  [190,185,175,180,170,160],
 
-  "redmi note 10":[180,175,165,170,160,150],
-  "redmi note 11":[185,180,170,175,165,155],
-  "redmi note 12":[185,180,170,175,165,155],
-  "redmi note 13":[190,185,175,180,170,160],
-  "redmi note 13 pro":[195,190,180,185,175,165],
-  "redmi note 13 pro plus":[200,195,190,195,185,175],
-  "redmi note 14":[195,190,180,185,175,165],
-  "redmi note 14 pro":[200,195,190,195,185,175],
+  "poco f3":
+  [195,190,180,185,175,165],
 
-  "samsung galaxy a14":[175,170,160,165,150,145],
-  "samsung galaxy a15":[180,175,165,170,155,150],
-  "samsung galaxy a24":[185,180,170,175,165,155],
-  "samsung galaxy a34":[190,185,175,180,170,160],
-  "samsung galaxy a35":[190,185,175,180,170,160],
-  "samsung galaxy a54":[195,190,180,185,175,165],
-  "samsung galaxy a55":[195,190,180,185,175,165],
+  "poco f4":
+  [195,190,180,185,175,165],
 
-  "samsung galaxy s21":[190,185,180,185,175,165],
-  "samsung galaxy s22":[195,190,185,190,180,170],
-  "samsung galaxy s23":[195,190,185,190,180,170],
-  "samsung galaxy s24":[200,195,190,195,185,175],
-  "samsung galaxy s25":[200,195,190,195,185,175],
-  "samsung galaxy s26":[200,195,195,195,190,180],
+  "poco f5":
+  [200,195,185,190,180,170],
 
-  "oneplus 10 pro":[195,190,180,185,175,165],
-  "oneplus 11":[200,195,190,195,185,175],
-  "oneplus 12":[200,195,190,195,185,175],
-  "oneplus 13":[200,195,195,195,190,180],
-  "oneplus 15":[200,195,195,195,190,180],
+  "poco f5 pro":
+  [200,195,190,195,185,175],
 
-  "realme 11 pro":[190,185,175,180,170,160],
-  "realme 12 pro":[195,190,180,185,175,165],
-  "realme 13 pro plus":[195,190,185,190,180,170],
-  "realme gt 6":[200,195,190,195,185,175],
-  "realme gt 7":[200,195,190,195,185,175],
+  "poco f6":
+  [200,195,190,195,185,175],
 
-  "oppo find x7":[195,190,180,185,175,165],
-  "oppo find x8":[200,195,190,195,185,175],
-  "oppo find x9":[200,195,195,195,190,180],
+  "poco x3":
+  [185,180,170,175,165,155],
 
-  "vivo x100":[195,190,185,190,180,170],
-  "vivo x200":[200,195,190,195,185,175],
-  "vivo x300":[200,195,195,195,190,180],
+  "poco x3 pro":
+  [195,190,180,185,175,165],
 
-  "iqoo 13":[200,195,190,195,185,175],
-  "iqoo 15":[200,195,195,195,190,180],
+  "poco x6":
+  [195,190,180,185,175,165],
 
-  "nothing phone 2":[195,190,180,185,175,165],
-  "nothing phone 3":[200,195,190,195,185,175],
+  "poco x6 pro":
+  [200,195,190,195,185,175],
 
-  "motorola edge 60 pro":[195,190,180,185,175,165],
-  "motorola edge 70 pro":[200,195,190,195,185,175],
+  "poco x7":
+  [195,190,180,185,175,165],
 
-  "infinix gt 20 pro":[195,190,185,190,180,170],
-  "infinix gt 30 pro":[200,195,190,195,185,175],
+  "poco x7 pro":
+  [200,195,190,195,185,175],
 
-  "tecno pova 6":[185,180,170,175,165,155],
-  "tecno pova 7":[190,185,175,180,170,160],
 
-  "google pixel 8":[185,180,175,180,170,160],
-  "google pixel 9":[190,185,180,185,175,165],
-  "google pixel 10":[195,190,185,190,180,170],
-  "google pixel 11":[200,195,190,195,185,175],
+  "redmi note 10":
+  [180,175,165,170,160,150],
 
-  "iphone 11":[180,175,170,175,165,155],
-  "iphone 12":[185,180,175,180,170,160],
-  "iphone 13":[190,185,180,185,175,165],
-  "iphone 14":[190,185,180,185,175,165],
-  "iphone 15":[195,190,185,190,180,170],
-  "iphone 16":[200,195,190,195,185,175],
-  "iphone 17":[200,195,195,195,190,180]
+  "redmi note 11":
+  [185,180,170,175,165,155],
+
+  "redmi note 12":
+  [185,180,170,175,165,155],
+
+  "redmi note 13":
+  [190,185,175,180,170,160],
+
+  "redmi note 13 pro":
+  [195,190,180,185,175,165],
+
+  "redmi note 13 pro plus":
+  [200,195,190,195,185,175],
+
+  "redmi note 14":
+  [195,190,180,185,175,165],
+
+  "redmi note 14 pro":
+  [200,195,190,195,185,175],
+
+
+  "samsung galaxy a14":
+  [175,170,160,165,150,145],
+
+  "samsung galaxy a15":
+  [180,175,165,170,155,150],
+
+  "samsung galaxy a24":
+  [185,180,170,175,165,155],
+
+  "samsung galaxy a34":
+  [190,185,175,180,170,160],
+
+  "samsung galaxy a35":
+  [190,185,175,180,170,160],
+
+  "samsung galaxy a54":
+  [195,190,180,185,175,165],
+
+  "samsung galaxy a55":
+  [195,190,180,185,175,165],
+
+
+  "samsung galaxy s21":
+  [190,185,180,185,175,165],
+
+  "samsung galaxy s22":
+  [195,190,185,190,180,170],
+
+  "samsung galaxy s23":
+  [195,190,185,190,180,170],
+
+  "samsung galaxy s24":
+  [200,195,190,195,185,175],
+
+  "samsung galaxy s25":
+  [200,195,190,195,185,175],
+
+  "samsung galaxy s26":
+  [200,195,195,195,190,180],
+
+
+  "oneplus 10 pro":
+  [195,190,180,185,175,165],
+
+  "oneplus 11":
+  [200,195,190,195,185,175],
+
+  "oneplus 12":
+  [200,195,190,195,185,175],
+
+  "oneplus 13":
+  [200,195,195,195,190,180],
+
+  "oneplus 15":
+  [200,195,195,195,190,180],
+
+
+  "realme 11 pro":
+  [190,185,175,180,170,160],
+
+  "realme 12 pro":
+  [195,190,180,185,175,165],
+
+  "realme 13 pro plus":
+  [195,190,185,190,180,170],
+
+  "realme gt 6":
+  [200,195,190,195,185,175],
+
+  "realme gt 7":
+  [200,195,190,195,185,175],
+
+
+  "oppo find x7":
+  [195,190,180,185,175,165],
+
+  "oppo find x8":
+  [200,195,190,195,185,175],
+
+  "oppo find x9":
+  [200,195,195,195,190,180],
+
+
+  "vivo x100":
+  [195,190,185,190,180,170],
+
+  "vivo x200":
+  [200,195,190,195,185,175],
+
+  "vivo x300":
+  [200,195,195,195,190,180],
+
+
+  "iqoo 13":
+  [200,195,190,195,185,175],
+
+  "iqoo 15":
+  [200,195,195,195,190,180],
+
+
+  "nothing phone 2":
+  [195,190,180,185,175,165],
+
+  "nothing phone 3":
+  [200,195,190,195,185,175],
+
+
+  "motorola edge 60 pro":
+  [195,190,180,185,175,165],
+
+  "motorola edge 70 pro":
+  [200,195,190,195,185,175],
+
+
+  "infinix gt 20 pro":
+  [195,190,185,190,180,170],
+
+  "infinix gt 30 pro":
+  [200,195,190,195,185,175],
+
+
+  "tecno pova 6":
+  [185,180,170,175,165,155],
+
+  "tecno pova 7":
+  [190,185,175,180,170,160],
+
+
+  "google pixel 8":
+  [185,180,175,180,170,160],
+
+  "google pixel 9":
+  [190,185,180,185,175,165],
+
+  "google pixel 10":
+  [195,190,185,190,180,170],
+
+  "google pixel 11":
+  [200,195,190,195,185,175],
+
+
+  "iphone 11":
+  [180,175,170,175,165,155],
+
+  "iphone 12":
+  [185,180,175,180,170,160],
+
+  "iphone 13":
+  [190,185,180,185,175,165],
+
+  "iphone 14":
+  [190,185,180,185,175,165],
+
+  "iphone 15":
+  [195,190,185,190,180,170],
+
+  "iphone 16":
+  [200,195,190,195,185,175],
+
+  "iphone 17":
+  [200,195,195,195,190,180]
 
 };
 
 
 /* =====================================================
-   URL DATA
+   URL PARAMETERS
 ===================================================== */
 
 const params =
@@ -1330,14 +2105,20 @@ const params =
     window.location.search
   );
 
+
 const rawDevice =
-  params.get("device") || "Unknown Device";
+  params.get("device") ||
+  "Unknown Device";
+
 
 const ram =
-  params.get("ram") || "8";
+  params.get("ram") ||
+  "8";
+
 
 const storage =
-  params.get("storage") || "128";
+  params.get("storage") ||
+  "128";
 
 
 function normalize(text){
@@ -1360,45 +2141,56 @@ let values =
 
 /* aliases */
 
-if(!values){
+const aliases = {
 
-  const aliases = {
+  "poco f5 5g":"poco f5",
+  "poco f6 5g":"poco f6",
 
-    "poco f5 5g":"poco f5",
-    "poco f6 5g":"poco f6",
-    "poco x6 pro 5g":"poco x6 pro",
+  "poco x6 pro 5g":
+    "poco x6 pro",
 
-    "s23":"samsung galaxy s23",
-    "s24":"samsung galaxy s24",
-    "s25":"samsung galaxy s25",
-    "s26":"samsung galaxy s26",
+  "s23":
+    "samsung galaxy s23",
 
-    "oneplus 12 5g":"oneplus 12",
-    "oneplus 13 5g":"oneplus 13",
+  "s24":
+    "samsung galaxy s24",
 
-    "pixel 9 pro":"google pixel 9",
-    "pixel 10 pro":"google pixel 10",
-    "pixel 11 pro":"google pixel 11"
+  "s25":
+    "samsung galaxy s25",
 
-  };
+  "s26":
+    "samsung galaxy s26",
+
+  "oneplus 12 5g":
+    "oneplus 12",
+
+  "oneplus 13 5g":
+    "oneplus 13",
+
+  "pixel 9":
+    "google pixel 9",
+
+  "pixel 10":
+    "google pixel 10",
+
+  "pixel 11":
+    "google pixel 11"
+
+};
 
 
-  if(aliases[deviceKey]){
+if(!values &&
+   aliases[deviceKey]){
 
-    values =
-      profiles[
-        aliases[deviceKey]
-      ];
-
-  }
+  values =
+    profiles[
+      aliases[deviceKey]
+    ];
 
 }
 
 
-/*
-  Unknown device:
-  use a neutral general profile.
-*/
+/* fallback */
 
 if(!values){
 
@@ -1409,7 +2201,7 @@ if(!values){
 
 
 /* =====================================================
-   DEVICE UI
+   DEVICE DISPLAY
 ===================================================== */
 
 document.getElementById(
@@ -1429,7 +2221,7 @@ document.getElementById(
 
 
 /* =====================================================
-   SENSITIVITY CARDS
+   SENSITIVITY
 ===================================================== */
 
 const labels = [
@@ -1454,7 +2246,10 @@ labels.forEach(
   (label,index)=>{
 
     const card =
-      document.createElement("div");
+      document.createElement(
+        "div"
+      );
+
 
     card.className =
       "sens-card";
@@ -1486,14 +2281,15 @@ labels.forEach(
     `;
 
 
-    sensitivityGrid.appendChild(card);
+    sensitivityGrid
+      .appendChild(card);
 
   }
 );
 
 
 /* =====================================================
-   COPY
+   COPY SETTINGS
 ===================================================== */
 
 document
@@ -1554,20 +2350,22 @@ Cooling Breaks: RECOMMENDED
           .writeText(text);
 
 
-        const button =
+        const btn =
           document.getElementById(
             "copyBtn"
           );
 
 
-        button.textContent =
+        btn.textContent =
           "✓ COPIED";
 
 
         setTimeout(
           ()=>{
-            button.textContent =
+
+            btn.textContent =
               "COPY SETTINGS";
+
           },
           1800
         );
