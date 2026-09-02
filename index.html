@@ -1,1 +1,193 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FF MAX Sensitivity Generator</title>
+  <meta name="description" content="Free Fire MAX device-based sensitivity generator.">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <div class="background-glow"></div>
+  <div class="grid"></div>
+
+  <header class="header">
+    <div class="logo">
+      FF<span>MAX</span>
+    </div>
+
+    <div class="status">
+      ● SENSITIVITY LAB
+    </div>
+  </header>
+
+
+  <main>
+
+    <section class="hero">
+
+      <div class="badge">
+        FREE FIRE MAX • DEVICE OPTIMIZER
+      </div>
+
+      <h1>
+        Find Your<br>
+        <span>Perfect Sensitivity</span>
+      </h1>
+
+      <p>
+        Enter your device information and get a
+        recommended Free Fire MAX sensitivity profile.
+      </p>
+
+
+      <div class="generator-box">
+
+        <label for="device">DEVICE NAME</label>
+
+        <input
+          type="text"
+          id="device"
+          placeholder="Example: POCO F5"
+          autocomplete="off"
+        >
+
+
+        <div class="row">
+
+          <div class="field">
+            <label for="ram">RAM</label>
+
+            <select id="ram">
+              <option value="4">4 GB</option>
+              <option value="6">6 GB</option>
+              <option value="8" selected>8 GB</option>
+              <option value="12">12 GB</option>
+              <option value="16">16 GB</option>
+              <option value="24">24 GB</option>
+            </select>
+          </div>
+
+
+          <div class="field">
+            <label for="storage">STORAGE</label>
+
+            <select id="storage">
+              <option value="64">64 GB</option>
+              <option value="128" selected>128 GB</option>
+              <option value="256">256 GB</option>
+              <option value="512">512 GB</option>
+              <option value="1024">1 TB</option>
+            </select>
+          </div>
+
+        </div>
+
+
+        <button id="generateBtn">
+          GENERATE SENSITIVITY →
+        </button>
+
+        <div id="error"></div>
+
+      </div>
+
+    </section>
+
+
+    <section class="info-section">
+
+      <div class="info-card">
+        <span>01</span>
+        <h3>Device Based</h3>
+        <p>
+          Recommendations are generated using
+          your device information.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <span>02</span>
+        <h3>Game Settings</h3>
+        <p>
+          Get useful in-game settings together
+          with your sensitivity profile.
+        </p>
+      </div>
+
+      <div class="info-card">
+        <span>03</span>
+        <h3>Performance Tips</h3>
+        <p>
+          Safe phone settings that can help
+          reduce unnecessary background load.
+        </p>
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    <span>FF MAX SENSITIVITY LAB</span>
+    <span>© 2026</span>
+  </footer>
+
+
+  <script>
+
+    const deviceInput = document.getElementById("device");
+    const ramInput = document.getElementById("ram");
+    const storageInput = document.getElementById("storage");
+    const generateBtn = document.getElementById("generateBtn");
+    const error = document.getElementById("error");
+
+
+    generateBtn.addEventListener("click", function () {
+
+      const device = deviceInput.value.trim();
+      const ram = ramInput.value;
+      const storage = storageInput.value;
+
+
+      if (!device) {
+        error.textContent = "Please enter your device name.";
+        deviceInput.focus();
+        return;
+      }
+
+
+      error.textContent = "";
+
+
+      const params = new URLSearchParams();
+
+      params.set("device", device);
+      params.set("ram", ram);
+      params.set("storage", storage);
+
+
+      window.location.href =
+        "sensitivity.html?" + params.toString();
+
+    });
+
+
+    deviceInput.addEventListener("keydown", function(event) {
+
+      if (event.key === "Enter") {
+        generateBtn.click();
+      }
+
+    });
+
+  </script>
+
+</body>
+</html>
