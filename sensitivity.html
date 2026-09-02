@@ -3,2199 +3,1540 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>FF MAX Sensitivity | Rashid Digital</title>
-<meta name="description" content="Free Fire MAX sensitivity profile generator">
+<title>FF MAX Sensitivity Profile</title>
 
 <style>
 *{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
 :root{
-  --c1:#00c8ff;
-  --c2:#635bff;
-  --c3:#00ffd0;
-  --bg:#020711;
+    --bg:#050814;
+    --c1:#00eaff;
+    --c2:#7c3cff;
+    --c3:#00ff9d;
+    --text:#ffffff;
+    --muted:#aebbd0;
 }
 
-/* =========================
-   MAIN BACKGROUND
-========================= */
-
 html,body{
-  min-height:100%;
-  background:var(--bg);
-  color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
+    width:100%;
+    min-height:100%;
 }
 
 body{
-  overflow-x:hidden;
+    font-family:Arial,Helvetica,sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 20% 20%, color-mix(in srgb,var(--c1) 15%,transparent), transparent 35%),
+        radial-gradient(circle at 80% 70%, color-mix(in srgb,var(--c2) 16%,transparent), transparent 38%),
+        var(--bg);
+    overflow-x:hidden;
 }
 
-/* almost transparent background */
-.background{
-  position:fixed;
-  inset:0;
-  z-index:-20;
-
-  background:
-    radial-gradient(
-      circle at 20% 20%,
-      rgba(0,180,255,.09),
-      transparent 34%
-    ),
-    radial-gradient(
-      circle at 80% 75%,
-      rgba(100,50,255,.08),
-      transparent 35%
-    ),
-    var(--bg);
-}
-
-/* very light lighting */
-.glow{
-  position:fixed;
-  inset:0;
-  z-index:-19;
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      circle at 50% 35%,
-      color-mix(in srgb,var(--c1) 5%,transparent),
-      transparent 42%
-    );
-}
-
-/* =========================
-   FAST CODE RAIN
-========================= */
+/* =====================================================
+   BACKGROUND
+===================================================== */
 
 #codeRain{
-  position:fixed;
-  inset:0;
-  z-index:-15;
-
-  overflow:hidden;
-  pointer-events:none;
-
-  opacity:.82;
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
 }
 
-.code{
-  position:absolute;
-  top:-300px;
-
-  width:max-content;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size:11px;
-  line-height:17px;
-
-  white-space:pre;
-
-  color:var(--c1);
-
-  opacity:.20;
-
-  text-shadow:
-    0 0 4px currentColor;
-
-  animation:
-    codeFall linear infinite;
+.codeColumn{
+    position:absolute;
+    top:-180%;
+    white-space:pre;
+    writing-mode:vertical-rl;
+    font-family:"Courier New",monospace;
+    font-size:13px;
+    line-height:1.25;
+    letter-spacing:2px;
+    opacity:.30;
+    text-shadow:
+        0 0 4px currentColor,
+        0 0 10px currentColor;
+    animation:fall linear infinite;
 }
 
-@keyframes codeFall{
-
-  from{
-    transform:
-      translate3d(0,-300px,0);
-  }
-
-  to{
-    transform:
-      translate3d(0,125vh,0);
-  }
-
+@keyframes fall{
+    from{
+        transform:translateY(-20vh);
+    }
+    to{
+        transform:translateY(220vh);
+    }
 }
 
-/* some horizontal moving code */
+.upColumn{
+    position:absolute;
+    bottom:-180%;
+    white-space:pre;
+    writing-mode:vertical-rl;
+    font-family:"Courier New",monospace;
+    font-size:12px;
+    line-height:1.3;
+    letter-spacing:2px;
+    opacity:.22;
+    text-shadow:
+        0 0 4px currentColor,
+        0 0 9px currentColor;
+    animation:rise linear infinite;
+}
+
+@keyframes rise{
+    from{
+        transform:translateY(20vh);
+    }
+    to{
+        transform:translateY(-220vh);
+    }
+}
+
+/* horizontal code */
+
+.horizontalLayer{
+    position:fixed;
+    inset:0;
+    overflow:hidden;
+    pointer-events:none;
+    z-index:0;
+}
+
 .horizontalCode{
-  position:fixed;
-
-  white-space:nowrap;
-
-  font-family:monospace;
-  font-size:10px;
-
-  color:var(--c2);
-
-  opacity:.12;
-
-  pointer-events:none;
-
-  animation:
-    horizontalMove linear infinite;
+    position:absolute;
+    white-space:nowrap;
+    font-family:"Courier New",monospace;
+    font-size:11px;
+    opacity:.18;
+    text-shadow:0 0 7px currentColor;
+    animation:moveCode linear infinite;
 }
 
-@keyframes horizontalMove{
-
-  from{
-    transform:translateX(-100%);
-  }
-
-  to{
-    transform:translateX(110vw);
-  }
-
+@keyframes moveCode{
+    from{
+        transform:translateX(-120vw);
+    }
+    to{
+        transform:translateX(120vw);
+    }
 }
 
-/* =========================
-   HEADER
-========================= */
+/* background glow */
+
+.bgGlow{
+    position:fixed;
+    width:500px;
+    height:500px;
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(90px);
+    opacity:.13;
+    z-index:0;
+}
+
+.glow1{
+    background:var(--c1);
+    top:-180px;
+    left:-180px;
+}
+
+.glow2{
+    background:var(--c2);
+    right:-180px;
+    bottom:-180px;
+}
+
+.glow3{
+    background:var(--c3);
+    left:35%;
+    top:40%;
+    width:300px;
+    height:300px;
+    opacity:.07;
+}
+
+/* =====================================================
+   MAIN UI
+===================================================== */
 
 header{
-  position:sticky;
-  top:0;
-  z-index:30;
-
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-
-  padding:15px 5%;
-
-  background:rgba(2,7,17,.28);
-
-  backdrop-filter:blur(10px);
-
-  border-bottom:
-    1px solid
-    color-mix(
-      in srgb,
-      var(--c1) 18%,
-      transparent
-    );
+    position:relative;
+    z-index:5;
+    text-align:center;
+    padding:28px 15px 10px;
 }
 
 .logo{
-  display:flex;
-  align-items:center;
-  gap:12px;
+    display:inline-block;
+    padding:9px 17px;
+    border:1px solid color-mix(in srgb,var(--c1) 55%,transparent);
+    border-radius:30px;
+    background:rgba(5,8,20,.20);
+    backdrop-filter:blur(8px);
+    color:var(--c1);
+    font-weight:bold;
+    letter-spacing:2px;
+    box-shadow:0 0 18px color-mix(in srgb,var(--c1) 18%,transparent);
 }
 
-.logoIcon{
-  width:43px;
-  height:43px;
-
-  display:grid;
-  place-items:center;
-
-  border-radius:12px;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--c1),
-      var(--c2)
-    );
-
-  box-shadow:
-    0 0 18px
-    color-mix(
-      in srgb,
-      var(--c1) 20%,
-      transparent
-    );
-
-  font-size:21px;
+header h1{
+    margin-top:15px;
+    font-size:clamp(28px,6vw,48px);
+    background:linear-gradient(90deg,var(--c1),#fff,var(--c2));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
 }
 
-.logoText h2{
-  font-size:16px;
-  letter-spacing:1px;
+header p{
+    margin-top:8px;
+    color:var(--muted);
 }
 
-.logoText p{
-  margin-top:3px;
-
-  color:var(--c1);
-
-  font-size:9px;
-  letter-spacing:2px;
-}
-
-.online{
-  display:flex;
-  align-items:center;
-  gap:7px;
-
-  color:#b6efff;
-
-  font-size:10px;
-}
-
-.dot{
-  width:7px;
-  height:7px;
-
-  border-radius:50%;
-
-  background:#00ffb0;
-
-  box-shadow:0 0 7px #00ffb0;
-}
-
-/* =========================
-   MAIN
-========================= */
+/* =====================================================
+   CONTAINER
+===================================================== */
 
 .container{
-  width:min(1050px,92%);
-
-  margin:
-    30px auto
-    70px;
+    position:relative;
+    z-index:5;
+    width:min(1050px,94%);
+    margin:20px auto 50px;
 }
 
-.back{
-  display:inline-block;
+/* =====================================================
+   GLASS CARDS
+===================================================== */
 
-  margin-bottom:20px;
-
-  color:var(--c1);
-
-  text-decoration:none;
-
-  font-size:12px;
+.glass{
+    background:rgba(5,8,20,.16);
+    border:1px solid rgba(255,255,255,.13);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+    border-radius:22px;
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.20),
+        inset 0 0 25px rgba(255,255,255,.025);
 }
 
-/* =========================
-   TRANSPARENT PROFILE
-========================= */
-
-.profile,
-.section{
-
-  position:relative;
-
-  overflow:hidden;
-
-  background:
-    rgba(2,10,22,.16);
-
-  backdrop-filter:
-    blur(5px);
-
-  -webkit-backdrop-filter:
-    blur(5px);
-
-  border:
-    1px solid
-    rgba(255,255,255,.08);
-
-  box-shadow:
-    0 15px 50px
-    rgba(0,0,0,.18);
-
-}
-
-/* profile */
 .profile{
-
-  padding:30px;
-
-  border-radius:25px;
-
-  border-color:
-    color-mix(
-      in srgb,
-      var(--c1) 20%,
-      transparent
-    );
+    padding:25px;
+    margin-bottom:22px;
+    overflow:hidden;
+    position:relative;
 }
 
-/* moving transparent shine */
-.profile:after,
-.section:after{
-
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-70%;
-
-  width:35%;
-  height:100%;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.035),
-      transparent
-    );
-
-  transform:skewX(-20deg);
-
-  animation:
-    glassSweep 7s linear infinite;
-
-  pointer-events:none;
+.profile:before{
+    content:"";
+    position:absolute;
+    width:180px;
+    height:180px;
+    border-radius:50%;
+    background:var(--c1);
+    opacity:.08;
+    filter:blur(55px);
+    top:-70px;
+    right:-40px;
 }
 
-@keyframes glassSweep{
+.profileTop{
+    position:relative;
+    z-index:2;
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+    flex-wrap:wrap;
+}
 
-  0%{
-    left:-70%;
-  }
+.profileTitle{
+    font-size:14px;
+    color:var(--c1);
+    text-transform:uppercase;
+    letter-spacing:2px;
+}
 
-  45%,100%{
-    left:135%;
-  }
+.deviceName{
+    font-size:clamp(23px,5vw,36px);
+    margin-top:8px;
+    font-weight:800;
+}
 
+.meta{
+    margin-top:8px;
+    color:var(--muted);
 }
 
 .badge{
-
-  display:inline-block;
-
-  padding:7px 12px;
-
-  margin-bottom:15px;
-
-  border-radius:30px;
-
-  color:var(--c1);
-
-  background:
-    rgba(0,150,255,.035);
-
-  border:
-    1px solid
-    color-mix(
-      in srgb,
-      var(--c1) 20%,
-      transparent
-    );
-
-  font-size:10px;
-
-  letter-spacing:1px;
+    padding:9px 15px;
+    border-radius:30px;
+    border:1px solid color-mix(in srgb,var(--c3) 55%,transparent);
+    color:var(--c3);
+    background:rgba(0,255,157,.05);
+    box-shadow:0 0 15px rgba(0,255,157,.08);
 }
 
-h1{
-
-  font-size:
-    clamp(32px,7vw,55px);
-
-  line-height:1.05;
-
-  margin-bottom:11px;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ffffff,
-      var(--c1),
-      var(--c2)
-    );
-
-  -webkit-background-clip:text;
-  background-clip:text;
-
-  color:transparent;
-}
-
-.subtitle{
-
-  max-width:760px;
-
-  color:#b1c5d7;
-
-  font-size:13px;
-
-  line-height:1.7;
-}
-
-.profileInfo{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(3,1fr);
-
-  gap:11px;
-
-  margin-top:24px;
-}
-
-.infoBox{
-
-  padding:15px;
-
-  border-radius:14px;
-
-  background:
-    rgba(0,0,0,.12);
-
-  border:
-    1px solid
-    rgba(255,255,255,.06);
-}
-
-.infoBox span{
-
-  display:block;
-
-  margin-bottom:7px;
-
-  color:#6f8ba2;
-
-  font-size:9px;
-
-  text-transform:uppercase;
-
-  letter-spacing:1px;
-}
-
-.infoBox strong{
-
-  color:#e4f8ff;
-
-  font-size:14px;
-
-  word-break:break-word;
-}
-
-/* =========================
-   SECTIONS
-========================= */
+/* =====================================================
+   SECTION
+===================================================== */
 
 .section{
-
-  margin-top:19px;
-
-  padding:24px;
-
-  border-radius:21px;
+    padding:23px;
+    margin-bottom:22px;
 }
 
-.sectionHeader{
-
-  display:flex;
-
-  justify-content:space-between;
-  align-items:center;
-
-  margin-bottom:18px;
+.section h2{
+    margin-bottom:18px;
+    font-size:22px;
 }
 
-.sectionHeader h2{
-
-  font-size:19px;
-
-  color:#eefaff;
+.section h2 span{
+    color:var(--c1);
 }
 
-.tag{
-
-  padding:6px 9px;
-
-  border-radius:20px;
-
-  color:var(--c1);
-
-  border:
-    1px solid
-    color-mix(
-      in srgb,
-      var(--c1) 20%,
-      transparent
-    );
-
-  background:
-    rgba(0,0,0,.08);
-
-  font-size:9px;
-}
-
-/* =========================
-   SENSITIVITY
-========================= */
+/* =====================================================
+   SENSITIVITY GRID
+===================================================== */
 
 .sensitivityGrid{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:12px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:14px;
 }
 
-.sense{
-
-  padding:17px;
-
-  border-radius:16px;
-
-  background:
-    rgba(0,0,0,.10);
-
-  border:
-    1px solid
-    rgba(255,255,255,.07);
-
-  backdrop-filter:
-    blur(3px);
+.sensCard{
+    position:relative;
+    padding:17px;
+    border-radius:17px;
+    background:rgba(0,0,0,.13);
+    border:1px solid rgba(255,255,255,.10);
+    overflow:hidden;
 }
 
-.senseTop{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  margin-bottom:11px;
+.sensTop{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:12px;
 }
 
-.senseTop span{
-
-  color:#c1d1de;
-
-  font-size:13px;
+.sensName{
+    font-weight:bold;
 }
 
-.value{
-
-  color:var(--c1);
-
-  font-weight:bold;
-
-  text-shadow:
-    0 0 5px
-    color-mix(
-      in srgb,
-      var(--c1) 25%,
-      transparent
-    );
+.sensValue{
+    font-size:20px;
+    font-weight:900;
+    color:var(--c1);
 }
 
 .bar{
-
-  height:8px;
-
-  overflow:hidden;
-
-  border-radius:20px;
-
-  background:
-    rgba(0,0,0,.22);
+    height:8px;
+    border-radius:20px;
+    background:rgba(255,255,255,.08);
+    overflow:hidden;
 }
 
-.fill{
-
-  width:var(--width);
-
-  height:100%;
-
-  border-radius:20px;
-
-  background:
-    linear-gradient(
-      90deg,
-      var(--c1),
-      var(--c2),
-      var(--c3)
-    );
-
-  opacity:.82;
-
-  animation:
-    barLoad 1s ease;
+.barFill{
+    height:100%;
+    width:var(--value);
+    border-radius:20px;
+    background:linear-gradient(90deg,var(--c1),var(--c2),var(--c3));
+    box-shadow:
+        0 0 7px var(--c1),
+        0 0 15px color-mix(in srgb,var(--c2) 60%,transparent);
+    animation:pulseBar 2.2s ease-in-out infinite alternate;
 }
 
-@keyframes barLoad{
-
-  from{
-    width:0;
-  }
-
+@keyframes pulseBar{
+    from{
+        filter:brightness(.85);
+    }
+    to{
+        filter:brightness(1.3);
+    }
 }
 
-/* =========================
+/* =====================================================
    SETTINGS
-========================= */
+===================================================== */
 
-.settings{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(2,1fr);
-
-  gap:10px;
+.settingsGrid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
 .setting{
-
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:12px;
-
-  padding:14px;
-
-  border-radius:14px;
-
-  background:
-    rgba(0,0,0,.09);
-
-  border:
-    1px solid
-    rgba(255,255,255,.06);
+    padding:15px;
+    border-radius:15px;
+    background:rgba(0,0,0,.13);
+    border:1px solid rgba(255,255,255,.09);
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
 }
 
 .settingName{
-
-  color:#b8cbd9;
-
-  font-size:12px;
+    color:#e9efff;
 }
 
 .settingValue{
-
-  color:var(--c1);
-
-  font-size:10px;
-
-  white-space:nowrap;
+    color:var(--c3);
+    font-weight:bold;
+    text-align:right;
 }
 
-/* =========================
+/* =====================================================
    NOTE
-========================= */
+===================================================== */
 
 .note{
-
-  padding:16px;
-
-  border-radius:14px;
-
-  color:#a4b9ca;
-
-  font-size:11px;
-
-  line-height:1.7;
-
-  background:
-    rgba(0,0,0,.08);
-
-  border:
-    1px solid
-    rgba(255,255,255,.06);
+    padding:18px;
+    line-height:1.6;
+    color:#c9d5e9;
+    border-left:3px solid var(--c1);
+    background:rgba(0,0,0,.13);
+    border-radius:12px;
 }
 
-/* =========================
+/* =====================================================
    BUTTONS
-========================= */
+===================================================== */
 
 .actions{
-
-  display:grid;
-
-  grid-template-columns:
-    repeat(4,1fr);
-
-  gap:10px;
-
-  margin-top:20px;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-top:22px;
 }
 
 button{
-
-  border:0;
-
-  cursor:pointer;
-
-  padding:13px 10px;
-
-  border-radius:13px;
-
-  color:#fff;
-
-  font-size:10px;
-
-  font-weight:bold;
-
-  background:
-    linear-gradient(
-      135deg,
-      var(--c1),
-      var(--c2)
-    );
-
-  transition:.2s;
-
-  box-shadow:
-    0 5px 18px
-    rgba(0,0,0,.16);
+    border:none;
+    cursor:pointer;
+    padding:14px 13px;
+    border-radius:14px;
+    color:white;
+    font-weight:800;
+    font-size:13px;
+    background:rgba(5,8,20,.32);
+    border:1px solid color-mix(in srgb,var(--c1) 35%,transparent);
+    transition:.2s;
+    backdrop-filter:blur(7px);
 }
 
 button:hover{
-
-  transform:
-    translateY(-2px);
-
+    transform:translateY(-3px);
+    border-color:var(--c1);
+    box-shadow:0 0 20px color-mix(in srgb,var(--c1) 20%,transparent);
 }
 
-button.secondary{
-
-  background:
-    rgba(0,0,0,.10);
-
-  border:
-    1px solid
-    rgba(255,255,255,.10);
+.primary{
+    background:linear-gradient(
+        135deg,
+        color-mix(in srgb,var(--c1) 22%,transparent),
+        color-mix(in srgb,var(--c2) 22%,transparent)
+    );
 }
 
-/* =========================
+/* =====================================================
    RECENT
-========================= */
+===================================================== */
+
+.recent{
+    margin-top:22px;
+    padding:20px;
+}
 
 .recentList{
-
-  display:grid;
-
-  gap:9px;
+    display:grid;
+    gap:10px;
+    margin-top:14px;
 }
 
 .recentItem{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+    padding:13px;
+    border-radius:13px;
+    background:rgba(0,0,0,.12);
+    border:1px solid rgba(255,255,255,.08);
+}
 
-  display:flex;
-
-  justify-content:space-between;
-
-  align-items:center;
-
-  gap:10px;
-
-  padding:13px;
-
-  border-radius:14px;
-
-  background:
-    rgba(0,0,0,.08);
-
-  border:
-    1px solid
-    rgba(255,255,255,.06);
+.recentInfo{
+    min-width:0;
 }
 
 .recentInfo strong{
-
-  display:block;
-
-  color:#e4f8ff;
-
-  font-size:12px;
+    display:block;
 }
 
 .recentInfo small{
-
-  display:block;
-
-  margin-top:5px;
-
-  color:#69849b;
-
-  font-size:9px;
+    color:var(--muted);
 }
 
-.recentItem button{
-
-  padding:8px 12px;
-
-  font-size:9px;
+.recentButtons{
+    display:flex;
+    gap:7px;
 }
 
-.empty{
-
-  color:#6b8499;
-
-  font-size:11px;
+.smallBtn{
+    padding:8px 11px;
+    font-size:11px;
 }
 
-/* =========================
+/* =====================================================
    TOAST
-========================= */
+===================================================== */
 
-#toast{
-
-  position:fixed;
-
-  left:50%;
-  bottom:25px;
-
-  z-index:100;
-
-  padding:12px 18px;
-
-  border-radius:30px;
-
-  color:#eaffff;
-
-  background:
-    rgba(2,9,20,.88);
-
-  border:
-    1px solid
-    rgba(0,191,255,.2);
-
-  font-size:11px;
-
-  opacity:0;
-
-  transform:
-    translate(-50%,25px);
-
-  pointer-events:none;
-
-  transition:.25s;
+.toast{
+    position:fixed;
+    left:50%;
+    bottom:25px;
+    transform:translate(-50%,120px);
+    z-index:50;
+    padding:13px 19px;
+    border-radius:30px;
+    background:rgba(5,8,20,.82);
+    border:1px solid var(--c1);
+    backdrop-filter:blur(12px);
+    box-shadow:0 0 25px color-mix(in srgb,var(--c1) 20%,transparent);
+    transition:.3s;
+    opacity:0;
 }
 
-#toast.show{
-
-  opacity:1;
-
-  transform:
-    translate(-50%,0);
+.toast.show{
+    transform:translate(-50%,0);
+    opacity:1;
 }
 
-/* =========================
+/* =====================================================
    FOOTER
-========================= */
+===================================================== */
 
 footer{
-
-  padding-bottom:35px;
-
-  text-align:center;
-
-  color:#536c81;
-
-  font-size:10px;
+    position:relative;
+    z-index:5;
+    text-align:center;
+    padding:15px;
+    color:#8290a8;
+    font-size:12px;
 }
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
 @media(max-width:700px){
 
-  .online{
-    display:none;
-  }
+    .sensitivityGrid,
+    .settingsGrid{
+        grid-template-columns:1fr;
+    }
 
-  .container{
-    width:94%;
-  }
+    .actions{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-  .profile{
-    padding:21px;
-  }
+    .profile,
+    .section{
+        padding:18px;
+    }
 
-  .profileInfo,
-  .sensitivityGrid,
-  .settings{
-    grid-template-columns:1fr;
-  }
-
-  .actions{
-    grid-template-columns:
-      repeat(2,1fr);
-  }
-
-  .section{
-    padding:19px;
-  }
-
-  h1{
-    font-size:35px;
-  }
-
+    .setting{
+        font-size:13px;
+    }
 }
 
-@media(max-width:400px){
+@media(max-width:420px){
 
-  .actions{
-    grid-template-columns:1fr;
-  }
+    .actions{
+        grid-template-columns:1fr;
+    }
 
+    .deviceName{
+        font-size:25px;
+    }
+
+    .codeColumn,
+    .upColumn{
+        font-size:10px;
+        opacity:.22;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<!-- BACKGROUND -->
-<div class="background"></div>
-<div class="glow"></div>
+<!-- =====================================================
+     BACKGROUND CODE
+===================================================== -->
+
 <div id="codeRain"></div>
+<div class="horizontalLayer" id="horizontalLayer"></div>
+
+<div class="bgGlow glow1"></div>
+<div class="bgGlow glow2"></div>
+<div class="bgGlow glow3"></div>
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
+    <div class="logo">⚡ FF MAX • SENSITIVITY ENGINE</div>
 
-  <div class="logo">
+    <h1>Perfect Sensitivity</h1>
 
-    <div class="logoIcon">🔥</div>
-
-    <div class="logoText">
-
-      <h2>RASHID DIGITAL</h2>
-
-      <p>FF MAX LAB</p>
-
-    </div>
-
-  </div>
-
-  <div class="online">
-
-    <span class="dot"></span>
-
-    GENERATOR ONLINE
-
-  </div>
-
+    <p>Optimized gaming profile for your device</p>
 </header>
 
+<!-- =====================================================
+     MAIN
+===================================================== -->
 
 <main class="container">
 
-<a href="index.html" class="back">
-← Back to Generator
-</a>
+    <section class="profile glass">
 
+        <div class="profileTop">
 
-<!-- PROFILE -->
+            <div>
+                <div class="profileTitle">Generated Profile</div>
 
-<section class="profile">
+                <div class="deviceName" id="deviceName">
+                    Your Device
+                </div>
 
-  <span class="badge">
-    ⚡ GENERATED PROFILE
-  </span>
+                <div class="meta" id="deviceMeta">
+                    RAM • Storage
+                </div>
+            </div>
 
-  <h1>
-    Perfect Sensitivity
-  </h1>
+            <div class="badge">
+                ● PROFILE READY
+            </div>
 
-  <p class="subtitle">
-    Device-based Free Fire MAX sensitivity
-    recommendations. Use these values as a
-    starting point and adjust them according
-    to your own touch response and play style.
-  </p>
+        </div>
 
-  <div class="profileInfo">
+    </section>
 
-    <div class="infoBox">
 
-      <span>Device</span>
+    <!-- SENSITIVITY -->
 
-      <strong id="deviceName">
-        Unknown Device
-      </strong>
+    <section class="section glass">
 
-    </div>
+        <h2>🎯 <span>Sensitivity</span> Settings</h2>
 
-    <div class="infoBox">
+        <div class="sensitivityGrid" id="sensitivityGrid"></div>
 
-      <span>RAM</span>
+    </section>
 
-      <strong id="ramValue">
-        Not specified
-      </strong>
 
-    </div>
+    <!-- GAMING -->
 
-    <div class="infoBox">
+    <section class="section glass">
 
-      <span>Storage</span>
+        <h2>🎮 <span>Gaming</span> Settings</h2>
 
-      <strong id="storageValue">
-        Not specified
-      </strong>
+        <div class="settingsGrid">
 
-    </div>
+            <div class="setting">
+                <span class="settingName">Game / Performance Mode</span>
+                <span class="settingValue">ENABLE</span>
+            </div>
 
-  </div>
+            <div class="setting">
+                <span class="settingName">High Refresh Rate</span>
+                <span class="settingValue">ENABLE</span>
+            </div>
 
-</section>
+            <div class="setting">
+                <span class="settingName">Auto-Rotate During Game</span>
+                <span class="settingValue">DISABLE</span>
+            </div>
 
+            <div class="setting">
+                <span class="settingName">Background Apps</span>
+                <span class="settingValue">LIMIT</span>
+            </div>
 
-<!-- SENSITIVITY -->
+            <div class="setting">
+                <span class="settingName">Graphics</span>
+                <span class="settingValue">SMOOTH</span>
+            </div>
 
-<section class="section">
+            <div class="setting">
+                <span class="settingName">High FPS</span>
+                <span class="settingValue">ENABLE</span>
+            </div>
 
-  <div class="sectionHeader">
+            <div class="setting">
+                <span class="settingName">Battery Saver While Gaming</span>
+                <span class="settingValue">DISABLE</span>
+            </div>
 
-    <h2>
-      🎯 Sensitivity Profile
-    </h2>
+            <div class="setting">
+                <span class="settingName">Game Booster</span>
+                <span class="settingValue">ENABLE</span>
+            </div>
 
-    <span class="tag">
-      RECOMMENDED
-    </span>
+        </div>
 
-  </div>
+    </section>
 
-  <div
-    class="sensitivityGrid"
-    id="sensitivityGrid">
-  </div>
 
-</section>
+    <!-- BATTERY -->
 
+    <section class="section glass">
 
-<!-- GAMING -->
+        <h2>🔋 <span>Battery & Thermal</span></h2>
 
-<section class="section">
+        <div class="settingsGrid">
 
-  <div class="sectionHeader">
+            <div class="setting">
+                <span class="settingName">Battery Saver During Match</span>
+                <span class="settingValue">DISABLE</span>
+            </div>
 
-    <h2>
-      🎮 Gaming Settings
-    </h2>
+            <div class="setting">
+                <span class="settingName">Background Sync</span>
+                <span class="settingValue">LIMIT</span>
+            </div>
 
-    <span class="tag">
-      DEVICE
-    </span>
+            <div class="setting">
+                <span class="settingName">Unused Apps</span>
+                <span class="settingValue">RESTRICT</span>
+            </div>
 
-  </div>
+            <div class="setting">
+                <span class="settingName">Brightness</span>
+                <span class="settingValue">BALANCED</span>
+            </div>
 
-  <div class="settings">
-
-    <div class="setting">
-      <span class="settingName">
-        Game / Performance Mode
-      </span>
-      <strong class="settingValue">
-        ENABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        High Refresh Rate
-      </span>
-      <strong class="settingValue">
-        ENABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Auto-Rotate During Game
-      </span>
-      <strong class="settingValue">
-        DISABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Background Apps
-      </span>
-      <strong class="settingValue">
-        LIMIT
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Graphics
-      </span>
-      <strong class="settingValue">
-        SMOOTH
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        High FPS
-      </span>
-      <strong class="settingValue">
-        ENABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Battery Saver While Gaming
-      </span>
-      <strong class="settingValue">
-        DISABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Game Booster
-      </span>
-      <strong class="settingValue">
-        ENABLE
-      </strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- BATTERY -->
-
-<section class="section">
-
-  <div class="sectionHeader">
-
-    <h2>
-      🔋 Battery & Thermal
-    </h2>
-
-    <span class="tag">
-      STABILITY
-    </span>
-
-  </div>
-
-  <div class="settings">
-
-    <div class="setting">
-      <span class="settingName">
-        Battery Saver During Match
-      </span>
-      <strong class="settingValue">
-        DISABLE
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Background Sync
-      </span>
-      <strong class="settingValue">
-        LIMIT
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Unused Apps
-      </span>
-      <strong class="settingValue">
-        RESTRICT
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Brightness
-      </span>
-      <strong class="settingValue">
-        BALANCED
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Heavy Gaming While Charging
-      </span>
-      <strong class="settingValue">
-        AVOID
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Extreme Performance / Overclock
-      </span>
-      <strong class="settingValue">
-        AVOID
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Temperature
-      </span>
-      <strong class="settingValue">
-        MONITOR
-      </strong>
-    </div>
-
-    <div class="setting">
-      <span class="settingName">
-        Cooling Breaks
-      </span>
-      <strong class="settingValue">
-        RECOMMENDED
-      </strong>
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- NOTE + ACTIONS -->
-
-<section class="section">
-
-  <div class="sectionHeader">
-
-    <h2>
-      💡 Profile Note
-    </h2>
-
-  </div>
-
-  <div class="note">
-
-    These are general sensitivity recommendations,
-    not guaranteed settings. Actual aim, FPS,
-    touch response, battery usage and temperature
-    can vary depending on the device, game version,
-    system software and personal play style.
-
-  </div>
-
-
-  <!-- BUTTONS STAY AT THE BOTTOM -->
-
-  <div class="actions">
-
-    <button onclick="copySettings()">
-      📋 COPY SETTINGS
-    </button>
-
-    <button onclick="saveProfile()">
-      💾 SAVE PROFILE
-    </button>
-
-    <button onclick="shareProfile()">
-      🔗 SHARE PROFILE
-    </button>
-
-    <button
-      class="secondary"
-      onclick="generateAgain()">
-
-      ⚡ GENERATE AGAIN
-
-    </button>
-
-  </div>
-
-</section>
-
-
-<!-- RECENT -->
-
-<section class="section">
-
-  <div class="sectionHeader">
-
-    <h2>
-      🕘 Recent Devices
-    </h2>
-
-    <span class="tag">
-      LAST 6
-    </span>
-
-  </div>
-
-  <div
-    id="recentList"
-    class="recentList">
-  </div>
-
-  <button
-    class="secondary"
-    style="width:100%;margin-top:12px"
-    onclick="clearRecent()">
-
-    🗑 CLEAR RECENT
-
-  </button>
-
-</section>
+            <div class="setting">
+                <span class="settingName">Heavy Gaming While Charging</span>
+                <span class="settingValue">AVOID</span>
+            </div>
+
+            <div class="setting">
+                <span class="settingName">Extreme Performance / Overclock</span>
+                <span class="settingValue">AVOID</span>
+            </div>
+
+            <div class="setting">
+                <span class="settingName">Temperature</span>
+                <span class="settingValue">MONITOR</span>
+            </div>
+
+            <div class="setting">
+                <span class="settingName">Cooling Breaks</span>
+                <span class="settingValue">RECOMMENDED</span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTE -->
+
+    <section class="section glass">
+
+        <div class="note">
+            <strong>⚠️ Note:</strong><br>
+            These are general Free Fire MAX sensitivity recommendations.
+            Actual touch response, FPS, temperature and battery behaviour
+            depend on your device, game version and system software.
+        </div>
+
+    </section>
+
+
+    <!-- ACTIONS -->
+
+    <section class="glass section">
+
+        <h2>⚡ <span>Profile Actions</span></h2>
+
+        <div class="actions">
+
+            <button class="primary" onclick="copySettings()">
+                📋 COPY SETTINGS
+            </button>
+
+            <button onclick="saveProfile()">
+                💾 SAVE PROFILE
+            </button>
+
+            <button onclick="shareProfile()">
+                📤 SHARE PROFILE
+            </button>
+
+            <button onclick="generateAgain()">
+                🔄 GENERATE AGAIN
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- RECENT DEVICES -->
+
+    <section class="recent glass">
+
+        <h2>🕘 Recent Devices</h2>
+
+        <div class="recentList" id="recentList"></div>
+
+        <button
+            class="smallBtn"
+            style="margin-top:12px"
+            onclick="clearRecent()">
+            CLEAR HISTORY
+        </button>
+
+    </section>
 
 </main>
 
 
 <footer>
-© 2026 Rashid Digital • FF MAX Sensitivity Lab
+    FF MAX Sensitivity Engine • Rashid Digital
 </footer>
 
-
-<div id="toast"></div>
+<div class="toast" id="toast"></div>
 
 
 <script>
 
-/* =========================================
-   GET DEVICE
-========================================= */
-
-const params =
-  new URLSearchParams(location.search);
-
-const device =
-  params.get("device") ||
-  "Unknown Device";
-
-const ram =
-  params.get("ram") ||
-  "Not specified";
-
-const storage =
-  params.get("storage") ||
-  "Not specified";
-
-
-document.getElementById("deviceName")
-  .textContent = device;
-
-document.getElementById("ramValue")
-  .textContent = ram;
-
-document.getElementById("storageValue")
-  .textContent = storage;
-
-
-/* =========================================
+/* =====================================================
    RANDOM THEMES
-========================================= */
+===================================================== */
 
 const themes = [
 
-  ["#00c8ff","#635bff","#00ffd0","#020711"],
-
-  ["#00e5ff","#0077ff","#8a2be2","#020812"],
-
-  ["#ff00d4","#7a00ff","#00c8ff","#09020d"],
-
-  ["#00ff91","#00cfff","#0066ff","#020d0b"],
-
-  ["#ff9100","#ff1744","#d500f9","#100502"],
-
-  ["#18ffff","#536dfe","#ff4081","#02070d"],
-
-  ["#39ff14","#00e5ff","#2979ff","#020b08"],
-
-  ["#ff3d81","#7c4dff","#00b8ff","#0b0208"],
-
-  ["#ffd600","#ff6d00","#ff1744","#0d0800"],
-
-  ["#00e676","#1de9b6","#00b0ff","#020b0a"],
-
-  ["#e040fb","#7c4dff","#536dfe","#09020f"],
-
-  ["#64ffda","#00bfa5","#2979ff","#020b0a"],
-
-  ["#ff4081","#f50057","#651fff","#0d0208"],
-
-  ["#40c4ff","#2979ff","#304ffe","#020811"],
-
-  ["#76ff03","#c6ff00","#00e676","#070d02"],
-
-  ["#ffea00","#ffc400","#ff6d00","#0d0900"],
-
-  ["#ff5252","#ff4081","#d500f9","#0d0205"],
-
-  ["#00b8d4","#6200ea","#00e5ff","#02070c"],
-
-  ["#b388ff","#7c4dff","#536dfe","#07030d"],
-
-  ["#69f0ae","#00e676","#00bfa5","#020b08"]
-
+    ["#050814","#00eaff","#7c3cff","#00ff9d"],
+    ["#08050f","#ff00e6","#6c5cff","#00eaff"],
+    ["#030b09","#00ff9d","#00eaff","#8aff00"],
+    ["#0d0505","#ff3b6b","#ff8a00","#ffe600"],
+    ["#05050d","#8b5cff","#00c8ff","#ff00d4"],
+    ["#03070d","#00aaff","#004cff","#00ffcc"],
+    ["#0a0602","#ff6b00","#ff006e","#ffe600"],
+    ["#05030c","#d000ff","#7c3cff","#00eaff"],
+    ["#020b0b","#00ffd5","#00ff66","#00bfff"],
+    ["#090308","#ff007a","#ff00d4","#8b5cff"],
+    ["#030509","#00e5ff","#0066ff","#7c3cff"],
+    ["#090503","#ff4d00","#ffb300","#ff006e"],
+    ["#04060c","#00b7ff","#6a00ff","#00ff9d"],
+    ["#08040a","#ff2bd6","#ff0062","#7c3cff"],
+    ["#020909","#00ff9d","#00eaff","#00aaff"],
+    ["#070507","#ff0055","#ff7a00","#ff00e6"],
+    ["#03060b","#1ddcff","#7b2cff","#00ff9d"],
+    ["#080309","#ff00c8","#8a2be2","#00e5ff"],
+    ["#030804","#00ff73","#9dff00","#00eaff"],
+    ["#070403","#ff4b2b","#ffb000","#ff006e"]
 ];
 
+function applyRandomTheme(){
 
+    let last = sessionStorage.getItem("ff_last_theme");
+
+    let index;
+
+    do{
+        index = Math.floor(Math.random()*themes.length);
+    }while(String(index) === last && themes.length > 1);
+
+    sessionStorage.setItem("ff_last_theme",index);
+
+    const theme = themes[index];
+
+    document.documentElement.style.setProperty("--bg",theme[0]);
+    document.documentElement.style.setProperty("--c1",theme[1]);
+    document.documentElement.style.setProperty("--c2",theme[2]);
+    document.documentElement.style.setProperty("--c3",theme[3]);
+}
+
+applyRandomTheme();
+
+
+/* =====================================================
+   CODE CHARACTERS
+===================================================== */
+
+const chars =
+`01
+10
+00
+11
+<>
+{}
+[]
+()
 /*
-   Device name also influences the theme.
-   Same device won't always get the same color.
 */
-
-let previous =
-  sessionStorage.getItem("ff_last_theme");
-
-let choices =
-  themes.filter(
-    t => t.join("|") !== previous
-  );
-
-let selected =
-  choices[
-    Math.floor(
-      Math.random()*choices.length
-    )
-  ];
-
-sessionStorage.setItem(
-  "ff_last_theme",
-  selected.join("|")
-);
-
-document.documentElement.style
-  .setProperty("--c1",selected[0]);
-
-document.documentElement.style
-  .setProperty("--c2",selected[1]);
-
-document.documentElement.style
-  .setProperty("--c3",selected[2]);
-
-document.documentElement.style
-  .setProperty("--bg",selected[3]);
-
-
-/* =========================================
-   SENSITIVITY DATABASE
-========================================= */
-
-const profiles = [
-
-  {
-    keys:["poco f5","poco f5 5g"],
-    values:[180,175,165,170,155,150]
-  },
-
-  {
-    keys:["poco f6","poco f6 5g"],
-    values:[185,180,170,175,160,155]
-  },
-
-  {
-    keys:["poco x6","poco x6 pro"],
-    values:[185,180,170,175,160,155]
-  },
-
-  {
-    keys:["redmi note 13","redmi note 13 pro"],
-    values:[180,175,165,170,155,150]
-  },
-
-  {
-    keys:["redmi note 12","redmi note 12 pro"],
-    values:[175,170,160,165,150,145]
-  },
-
-  {
-    keys:["oneplus 12","oneplus 12r"],
-    values:[185,180,170,175,160,155]
-  },
-
-  {
-    keys:["oneplus 11"],
-    values:[180,175,165,170,155,150]
-  },
-
-  {
-    keys:["oneplus nord 4","oneplus nord 3"],
-    values:[180,175,165,170,155,150]
-  },
-
-  {
-    keys:[
-      "samsung s24",
-      "galaxy s24",
-      "samsung galaxy s24"
-    ],
-    values:[175,170,160,165,150,145]
-  },
-
-  {
-    keys:[
-      "samsung s23",
-      "galaxy s23"
-    ],
-    values:[175,170,160,165,150,145]
-  },
-
-  {
-    keys:[
-      "iphone 15",
-      "iphone 15 pro",
-      "iphone 15 pro max"
-    ],
-    values:[180,175,165,170,155,150]
-  },
-
-  {
-    keys:[
-      "iphone 14",
-      "iphone 14 pro",
-      "iphone 14 pro max"
-    ],
-    values:[175,170,160,165,150,145]
-  },
-
-  {
-    keys:[
-      "realme gt",
-      "realme gt 6"
-    ],
-    values:[185,180,170,175,160,155]
-  },
-
-  {
-    keys:[
-      "iqoo 12",
-      "iqoo 13"
-    ],
-    values:[190,185,175,180,165,160]
-  },
-
-  {
-    keys:[
-      "nothing phone 2",
-      "nothing phone 3"
-    ],
-    values:[175,170,160,165,150,145]
-  }
-
-];
+::
+;;
+&&
+||
+==
+!=
+++
+--
+//
+##
+$$
+@@
+??
+AI
+FF
+MAX
+GAME
+FPS
+PING
+RAM
+CPU
+GPU
+HTTP
+TCP
+UDP
+ROOT
+SYSTEM
+DATA
+LOAD
+RUN
+CODE
+NULL
+VOID
+BYTE
+PACKET
+ENGINE
+PLAYER
+SENS
+AIM
+HEAD
+SHOT
+TARGET
+BOOST
+CORE`;
 
 
-function getSensitivity(){
+/* =====================================================
+   CREATE DOWNWARD CODE
+===================================================== */
 
-  const name =
-    device.toLowerCase();
+const rain = document.getElementById("codeRain");
 
-  for(const profile of profiles){
+function randomCode(){
 
-    for(const key of profile.keys){
+    let result="";
 
-      if(name.includes(key)){
-        return profile.values;
-      }
+    const count = 16 + Math.floor(Math.random()*15);
 
+    for(let i=0;i<count;i++){
+
+        const lines = chars.split("\n");
+
+        result +=
+            lines[Math.floor(Math.random()*lines.length)]
+            + "\n";
     }
 
-  }
-
-  return [
-    180,
-    175,
-    165,
-    170,
-    155,
-    150
-  ];
+    return result;
 }
 
 
-const values =
-  getSensitivity();
+for(let i=0;i<42;i++){
+
+    const el = document.createElement("div");
+
+    el.className="codeColumn";
+
+    el.textContent=randomCode();
+
+    el.style.left=(Math.random()*100)+"%";
+
+    el.style.animationDuration=
+        (3.5 + Math.random()*7)+"s";
+
+    el.style.animationDelay=
+        (-Math.random()*10)+"s";
+
+    const colors=[
+        "var(--c1)",
+        "var(--c2)",
+        "var(--c3)"
+    ];
+
+    el.style.color=
+        colors[Math.floor(Math.random()*colors.length)];
+
+    rain.appendChild(el);
+}
 
 
-/* =========================================
-   DISPLAY SENSITIVITY
-========================================= */
+/* =====================================================
+   CREATE UPWARD CODE
+===================================================== */
 
-const labels = [
+for(let i=0;i<32;i++){
 
-  "General",
-  "Red Dot",
-  "2x Scope",
-  "4x Scope",
-  "Sniper Scope",
-  "Free Look"
+    const el=document.createElement("div");
 
+    el.className="upColumn";
+
+    el.textContent=randomCode();
+
+    el.style.left=(Math.random()*100)+"%";
+
+    el.style.animationDuration=
+        (4 + Math.random()*8)+"s";
+
+    el.style.animationDelay=
+        (-Math.random()*12)+"s";
+
+    const colors=[
+        "var(--c1)",
+        "var(--c2)",
+        "var(--c3)"
+    ];
+
+    el.style.color=
+        colors[Math.floor(Math.random()*colors.length)];
+
+    rain.appendChild(el);
+}
+
+
+/* =====================================================
+   HORIZONTAL CODE
+===================================================== */
+
+const horizontal=
+    document.getElementById("horizontalLayer");
+
+const horizontalWords=[
+    "0101010101",
+    "FF_MAX_ENGINE",
+    "SENSITIVITY_SYSTEM",
+    "AIM_RESPONSE",
+    "GAME_CORE",
+    "PLAYER_DATA",
+    "FPS_ENGINE",
+    "TOUCH_RESPONSE",
+    "GPU_RENDER",
+    "CPU_LOAD",
+    "MEMORY_OPTIMIZATION",
+    "SYSTEM_READY",
+    "PROFILE_GENERATED",
+    "TARGET_LOCK",
+    "INPUT_PROCESSING"
 ];
 
-const grid =
-  document.getElementById(
-    "sensitivityGrid"
-  );
+for(let i=0;i<18;i++){
+
+    const el=document.createElement("div");
+
+    el.className="horizontalCode";
+
+    el.textContent=
+        horizontalWords[
+            Math.floor(Math.random()*horizontalWords.length)
+        ]
+        +"    //    "
+        +randomCode().replace(/\n/g," ");
+
+    el.style.top=(Math.random()*100)+"%";
+
+    el.style.animationDuration=
+        (9+Math.random()*14)+"s";
+
+    el.style.animationDelay=
+        (-Math.random()*15)+"s";
+
+    const colors=[
+        "var(--c1)",
+        "var(--c2)",
+        "var(--c3)"
+    ];
+
+    el.style.color=
+        colors[Math.floor(Math.random()*colors.length)];
+
+    horizontal.appendChild(el);
+}
 
 
-labels.forEach(
-  (label,index)=>{
+/* =====================================================
+   URL DATA
+===================================================== */
 
-    const card =
-      document.createElement("div");
+const params=new URLSearchParams(location.search);
 
-    card.className =
-      "sense";
+const device=
+    params.get("device") ||
+    "Your Device";
 
-    card.innerHTML = `
+const ram=
+    params.get("ram") ||
+    "Unknown RAM";
 
-      <div class="senseTop">
+const storage=
+    params.get("storage") ||
+    "Unknown Storage";
 
-        <span>
-          ${label}
-        </span>
+document.getElementById("deviceName").textContent=device;
 
-        <strong class="value">
-          ${values[index]}
-        </strong>
+document.getElementById("deviceMeta").textContent=
+    ram+" RAM • "+storage+" Storage";
 
-      </div>
 
-      <div class="bar">
+/* =====================================================
+   SENSITIVITY DATABASE
+===================================================== */
 
-        <div
-          class="fill"
-          style="
-            --width:
-            ${Math.min(values[index],200)/2}%;
-          ">
+const profiles={
+
+    "POCO F5":{
+        General:190,
+        "Red Dot":185,
+        "2x Scope":175,
+        "4x Scope":165,
+        "Sniper Scope":95,
+        "Free Look":180
+    },
+
+    "POCO X6":{
+        General:190,
+        "Red Dot":185,
+        "2x Scope":175,
+        "4x Scope":165,
+        "Sniper Scope":95,
+        "Free Look":180
+    },
+
+    "Redmi Note 13 Pro":{
+        General:185,
+        "Red Dot":180,
+        "2x Scope":170,
+        "4x Scope":160,
+        "Sniper Scope":90,
+        "Free Look":175
+    },
+
+    "Samsung Galaxy S24":{
+        General:195,
+        "Red Dot":190,
+        "2x Scope":180,
+        "4x Scope":170,
+        "Sniper Scope":100,
+        "Free Look":185
+    },
+
+    "iPhone 15":{
+        General:195,
+        "Red Dot":190,
+        "2x Scope":180,
+        "4x Scope":170,
+        "Sniper Scope":100,
+        "Free Look":185
+    },
+
+    "iPhone 16":{
+        General:196,
+        "Red Dot":191,
+        "2x Scope":181,
+        "4x Scope":171,
+        "Sniper Scope":101,
+        "Free Look":186
+    }
+
+};
+
+
+/* =====================================================
+   DEFAULT PROFILE
+===================================================== */
+
+const defaultProfile={
+
+    General:190,
+    "Red Dot":185,
+    "2x Scope":175,
+    "4x Scope":165,
+    "Sniper Scope":95,
+    "Free Look":180
+
+};
+
+const sensitivity=
+    profiles[device] ||
+    defaultProfile;
+
+
+/* =====================================================
+   RENDER SENSITIVITY
+===================================================== */
+
+const grid=
+    document.getElementById("sensitivityGrid");
+
+Object.entries(sensitivity).forEach(([name,value])=>{
+
+    const card=document.createElement("div");
+
+    card.className="sensCard";
+
+    const percent=
+        Math.min(100,Math.max(5,(value/200)*100));
+
+    card.innerHTML=`
+
+        <div class="sensTop">
+
+            <span class="sensName">
+                ${name}
+            </span>
+
+            <span class="sensValue">
+                ${value}
+            </span>
+
         </div>
 
-      </div>
+        <div class="bar">
 
+            <div
+                class="barFill"
+                style="--value:${percent}%">
+            </div>
+
+        </div>
     `;
 
     grid.appendChild(card);
 
-  }
-);
+});
 
 
-/* =========================================
-   FAST RANDOM CODE GENERATOR
-========================================= */
-
-const rain =
-  document.getElementById(
-    "codeRain"
-  );
-
-const chars =
-  "01ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz<>[]{}/\\#$%*@";
-
-const words = [
-
-  "SYSTEM",
-  "DEVICE",
-  "FFMAX",
-  "PROFILE",
-  "SENSITIVITY",
-  "TOUCH",
-  "DISPLAY",
-  "PERFORMANCE",
-  "GRAPHICS",
-  "FPS",
-  "INPUT",
-  "ENGINE",
-  "RASHID",
-  "DIGITAL",
-  "ONLINE",
-  "CONFIG",
-  "SCAN",
-  "CORE",
-  "MOBILE",
-  "ANDROID"
-
-];
-
-
-function randomCode(){
-
-  let result="";
-
-  const length =
-    Math.floor(
-      Math.random()*22
-    )+18;
-
-  for(
-    let i=0;
-    i<length;
-    i++
-  ){
-
-    if(
-      Math.random()<.14
-    ){
-
-      result +=
-        words[
-          Math.floor(
-            Math.random()*
-            words.length
-          )
-        ];
-
-    }else{
-
-      result +=
-        chars[
-          Math.floor(
-            Math.random()*
-            chars.length
-          )
-        ];
-
-    }
-
-    result += "\n";
-
-  }
-
-  return result;
-
-}
-
-
-/*
-   Many fast streams.
-   Low glow, readable and transparent.
-*/
-
-for(let i=0;i<46;i++){
-
-  const code =
-    document.createElement("div");
-
-  code.className =
-    "code";
-
-  code.textContent =
-    randomCode();
-
-  code.style.left =
-    Math.random()*100 + "%";
-
-  code.style.animationDuration =
-    (Math.random()*5+3.2) + "s";
-
-  code.style.animationDelay =
-    (-Math.random()*10) + "s";
-
-  code.style.color =
-    [
-      selected[0],
-      selected[1],
-      selected[2]
-    ][
-      Math.floor(
-        Math.random()*3
-      )
-    ];
-
-  code.style.opacity =
-    (
-      Math.random()*.13+.06
-    ).toFixed(2);
-
-  code.style.fontSize =
-    (
-      Math.random()*3+9
-    )+"px";
-
-  rain.appendChild(code);
-
-}
-
-
-/* horizontal code */
-
-for(let i=0;i<7;i++){
-
-  const line =
-    document.createElement("div");
-
-  line.className =
-    "horizontalCode";
-
-  line.textContent =
-    ">> " +
-    randomCode()
-      .replace(/\n/g," ")
-      .slice(0,110);
-
-  line.style.top =
-    Math.random()*100+"%";
-
-  line.style.animationDuration =
-    (Math.random()*10+8)+"s";
-
-  line.style.animationDelay =
-    (-Math.random()*10)+"s";
-
-  line.style.color =
-    i%2
-      ? selected[1]
-      : selected[2];
-
-  rain.appendChild(line);
-
-}
-
-
-/* =========================================
-   RECENT PROFILES
-========================================= */
-
-const RECENT_KEY =
-  "rashid_ff_recent_v3";
-
-function getRecent(){
-
-  try{
-
-    return JSON.parse(
-      localStorage.getItem(
-        RECENT_KEY
-      ) || "[]"
-    );
-
-  }catch{
-
-    return [];
-
-  }
-
-}
-
-
-function saveRecent(){
-
-  let list =
-    getRecent();
-
-  list =
-    list.filter(
-      item =>
-        !(
-          item.device === device &&
-          item.ram === ram &&
-          item.storage === storage
-        )
-    );
-
-  list.unshift({
-
-    device:device,
-    ram:ram,
-    storage:storage,
-    time:Date.now()
-
-  });
-
-  localStorage.setItem(
-    RECENT_KEY,
-    JSON.stringify(
-      list.slice(0,6)
-    )
-  );
-
-  renderRecent();
-
-}
-
-
-function renderRecent(){
-
-  const box =
-    document.getElementById(
-      "recentList"
-    );
-
-  const list =
-    getRecent();
-
-  if(!list.length){
-
-    box.innerHTML =
-      '<div class="empty">No recent devices yet.</div>';
-
-    return;
-
-  }
-
-  box.innerHTML = "";
-
-  list.forEach(item=>{
-
-    const row =
-      document.createElement("div");
-
-    row.className =
-      "recentItem";
-
-    const info =
-      document.createElement("div");
-
-    info.className =
-      "recentInfo";
-
-    const strong =
-      document.createElement("strong");
-
-    strong.textContent =
-      item.device;
-
-    const small =
-      document.createElement("small");
-
-    small.textContent =
-      item.ram +
-      " • " +
-      item.storage +
-      " • " +
-      new Date(item.time)
-        .toLocaleString();
-
-    info.appendChild(strong);
-    info.appendChild(small);
-
-    const open =
-      document.createElement("button");
-
-    open.textContent =
-      "OPEN";
-
-    open.onclick = ()=>{
-
-      location.href =
-        "sensitivity.html" +
-        "?device=" +
-        encodeURIComponent(
-          item.device
-        ) +
-        "&ram=" +
-        encodeURIComponent(
-          item.ram
-        ) +
-        "&storage=" +
-        encodeURIComponent(
-          item.storage
-        );
-
-    };
-
-    row.appendChild(info);
-    row.appendChild(open);
-
-    box.appendChild(row);
-
-  });
-
-}
-
-
-/* =========================================
-   SAVE
-========================================= */
-
-function saveProfile(){
-
-  saveRecent();
-
-  showToast(
-    "✓ Profile saved"
-  );
-
-}
-
-
-/* =========================================
+/* =====================================================
    COPY
-========================================= */
+===================================================== */
 
-async function copySettings(){
+function getSettingsText(){
 
-  const text =
+    let text=
 `FF MAX SENSITIVITY PROFILE
 
 Device: ${device}
 RAM: ${ram}
 Storage: ${storage}
 
-General: ${values[0]}
-Red Dot: ${values[1]}
-2x Scope: ${values[2]}
-4x Scope: ${values[3]}
-Sniper Scope: ${values[4]}
-Free Look: ${values[5]}`;
+Sensitivity:
+`;
 
-  try{
+    Object.entries(sensitivity).forEach(([name,value])=>{
 
-    await navigator.clipboard
-      .writeText(text);
+        text += `${name}: ${value}\n`;
 
-    showToast(
-      "✓ Settings copied"
-    );
+    });
 
-  }catch{
+    text +=`
 
-    showToast(
-      "Copy not supported"
-    );
+Gaming:
+Game / Performance Mode: ENABLE
+High Refresh Rate: ENABLE
+Auto-Rotate During Game: DISABLE
+Background Apps: LIMIT
+Graphics: SMOOTH
+High FPS: ENABLE
+Battery Saver While Gaming: DISABLE
+Game Booster: ENABLE
 
-  }
+Battery & Thermal:
+Battery Saver During Match: DISABLE
+Background Sync: LIMIT
+Unused Apps: RESTRICT
+Brightness: BALANCED
+Heavy Gaming While Charging: AVOID
+Extreme Performance / Overclock: AVOID
+Temperature: MONITOR
+Cooling Breaks: RECOMMENDED
+`;
 
+    return text;
 }
 
 
-/* =========================================
-   SHARE
-========================================= */
+async function copySettings(){
 
-async function shareProfile(){
+    try{
 
-  const text =
-`FF MAX Sensitivity Profile
-
-Device: ${device}
-RAM: ${ram}
-Storage: ${storage}
-
-General: ${values[0]}
-Red Dot: ${values[1]}
-2x Scope: ${values[2]}
-4x Scope: ${values[3]}
-Sniper Scope: ${values[4]}
-Free Look: ${values[5]}`;
-
-  try{
-
-    if(navigator.share){
-
-      await navigator.share({
-
-        title:
-          "FF MAX Sensitivity Profile",
-
-        text:text,
-
-        url:location.href
-
-      });
-
-    }else{
-
-      await navigator.clipboard
-        .writeText(
-          text +
-          "\n\n" +
-          location.href
+        await navigator.clipboard.writeText(
+            getSettingsText()
         );
 
-      showToast(
-        "✓ Profile link copied"
-      );
+        showToast("✅ Settings copied!");
+
+    }catch(e){
+
+        showToast("Copy failed");
 
     }
+}
 
-  }catch(error){
 
-    if(
-      error.name !==
-      "AbortError"
-    ){
+/* =====================================================
+   RECENT PROFILES
+===================================================== */
 
-      showToast(
-        "Share cancelled"
-      );
+const RECENT_KEY="ffmax_recent_profiles_v1";
+
+function getRecent(){
+
+    try{
+
+        return JSON.parse(
+            localStorage.getItem(RECENT_KEY)
+        ) || [];
+
+    }catch{
+
+        return [];
 
     }
+}
 
-  }
+
+function saveProfile(){
+
+    let recent=getRecent();
+
+    recent=recent.filter(
+        item =>
+        !(
+            item.device===device &&
+            item.ram===ram &&
+            item.storage===storage
+        )
+    );
+
+    recent.unshift({
+        device,
+        ram,
+        storage
+    });
+
+    recent=recent.slice(0,6);
+
+    localStorage.setItem(
+        RECENT_KEY,
+        JSON.stringify(recent)
+    );
+
+    renderRecent();
+
+    showToast("💾 Profile saved!");
 
 }
 
 
-/* =========================================
-   GENERATE AGAIN
-========================================= */
+function renderRecent(){
 
-function generateAgain(){
+    const box=
+        document.getElementById("recentList");
 
-  location.href =
-    "index.html";
+    const recent=getRecent();
+
+    if(!recent.length){
+
+        box.innerHTML=
+            `<div style="color:#8d9ab0">
+                No saved devices yet.
+            </div>`;
+
+        return;
+    }
+
+    box.innerHTML="";
+
+    recent.forEach(item=>{
+
+        const row=document.createElement("div");
+
+        row.className="recentItem";
+
+        row.innerHTML=`
+
+            <div class="recentInfo">
+
+                <strong>${escapeHTML(item.device)}</strong>
+
+                <small>
+                    ${escapeHTML(item.ram)}
+                    •
+                    ${escapeHTML(item.storage)}
+                </small>
+
+            </div>
+
+            <div class="recentButtons">
+
+                <button
+                    class="smallBtn"
+                    onclick='openRecent(${JSON.stringify(item)})'>
+                    OPEN
+                </button>
+
+            </div>
+        `;
+
+        box.appendChild(row);
+
+    });
 
 }
 
 
-/* =========================================
-   CLEAR RECENT
-========================================= */
+function openRecent(item){
+
+    const url=
+        "sensitivity.html?device="
+        +encodeURIComponent(item.device)
+        +"&ram="
+        +encodeURIComponent(item.ram)
+        +"&storage="
+        +encodeURIComponent(item.storage);
+
+    location.href=url;
+}
+
 
 function clearRecent(){
 
-  localStorage.removeItem(
-    RECENT_KEY
-  );
+    localStorage.removeItem(RECENT_KEY);
 
-  renderRecent();
+    renderRecent();
 
-  showToast(
-    "Recent devices cleared"
-  );
+    showToast("🗑 History cleared");
 
 }
 
 
-/* =========================================
+/* =====================================================
+   SHARE
+===================================================== */
+
+async function shareProfile(){
+
+    const shareData={
+        title:"FF MAX Sensitivity Profile",
+        text:getSettingsText(),
+        url:location.href
+    };
+
+    try{
+
+        if(navigator.share){
+
+            await navigator.share(shareData);
+
+            showToast("📤 Profile shared!");
+
+        }else{
+
+            await navigator.clipboard.writeText(
+                location.href
+            );
+
+            showToast(
+                "🔗 Link copied! Share it anywhere."
+            );
+
+        }
+
+    }catch(e){
+
+        if(e.name!=="AbortError"){
+
+            showToast("Share cancelled");
+
+        }
+
+    }
+
+}
+
+
+/* =====================================================
+   GENERATE AGAIN
+===================================================== */
+
+function generateAgain(){
+
+    location.href="index.html";
+
+}
+
+
+/* =====================================================
    TOAST
-========================================= */
+===================================================== */
 
 let toastTimer;
 
 function showToast(message){
 
-  const toast =
-    document.getElementById(
-      "toast"
-    );
+    const toast=
+        document.getElementById("toast");
 
-  toast.textContent =
-    message;
+    toast.textContent=message;
 
-  toast.classList.add(
-    "show"
-  );
+    toast.classList.add("show");
 
-  clearTimeout(
-    toastTimer
-  );
+    clearTimeout(toastTimer);
 
-  toastTimer =
-    setTimeout(()=>{
+    toastTimer=setTimeout(()=>{
 
-      toast.classList.remove(
-        "show"
-      );
+        toast.classList.remove("show");
 
     },2200);
 
 }
 
 
-/* =========================================
-   SAVE CURRENT PROFILE
-========================================= */
+/* =====================================================
+   HTML ESCAPE
+===================================================== */
 
-saveRecent();
+function escapeHTML(value){
+
+    return String(value)
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+
+}
+
+
+/* =====================================================
+   AUTO RENDER RECENT
+===================================================== */
 
 renderRecent();
 
