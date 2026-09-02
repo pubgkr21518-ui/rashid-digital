@@ -1,876 +1,1068 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
-
-  <meta name="description"
-        content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
-
-  <title>Brazilian Sensi FF</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
-    body {
-      min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #ffffff;
-      background:
-        radial-gradient(circle at 20% 10%, rgba(0,255,136,0.12), transparent 30%),
-        radial-gradient(circle at 80% 30%, rgba(0,140,255,0.13), transparent 32%),
-        linear-gradient(135deg, #020b0a, #03151a 45%, #020809);
-      overflow-x: hidden;
-    }
-
-    /* =========================
-       ANIMATED BACKGROUND
-    ========================== */
-
-    #codeRain {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -2;
-      pointer-events: none;
-      opacity: 0.32;
-    }
-
-    .background-glow {
-      position: fixed;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-
-      background:
-        radial-gradient(
-          circle at 50% 20%,
-          rgba(0,255,136,0.08),
-          transparent 40%
-        );
-    }
-
-    /* =========================
-       HEADER
-    ========================== */
-
-    .header {
-      width: 100%;
-      padding: 18px 5%;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-
-      position: sticky;
-      top: 0;
-      z-index: 100;
-
-      background: rgba(2, 10, 11, 0.82);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-
-      border-bottom: 1px solid rgba(0,255,136,0.18);
-    }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 900;
-      letter-spacing: 0.5px;
-      white-space: nowrap;
-    }
-
-    .logo span {
-      color: #00ff88;
-      text-shadow: 0 0 14px rgba(0,255,136,0.55);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    /* BIG PREMIUM BUTTON */
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="description"
+content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
+
+<title>Brazilian Sensi FF</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  min-height:100vh;
+  overflow-x:hidden;
+
+  font-family:Arial,Helvetica,sans-serif;
+  color:#fff;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0,255,136,.12),
+      transparent 30%
+    ),
+    radial-gradient(
+      circle at 85% 30%,
+      rgba(0,140,255,.12),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #020b0a,
+      #03151a 45%,
+      #020809
+    );
+}
 
-    .premium-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
+/* =========================
+   BACKGROUND
+========================= */
 
-      min-width: 190px;
-      padding: 14px 26px;
+#codeRain{
+  position:fixed;
+  inset:0;
 
-      color: #00ff88;
-      text-decoration: none;
+  width:100%;
+  height:100%;
 
-      font-size: 16px;
-      font-weight: 900;
-      letter-spacing: 1.3px;
+  z-index:-2;
+  pointer-events:none;
 
-      border: 1px solid rgba(0,255,136,0.75);
-      border-radius: 13px;
+  opacity:.32;
+}
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(0,255,136,0.13),
-          rgba(0,120,255,0.10)
-        );
+.background-glow{
+  position:fixed;
+  inset:0;
 
-      box-shadow:
-        0 0 15px rgba(0,255,136,0.18),
-        inset 0 0 15px rgba(0,255,136,0.04);
+  z-index:-1;
+  pointer-events:none;
 
-      transition: 0.25s ease;
-    }
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(0,255,136,.08),
+      transparent 40%
+    );
+}
 
-    .premium-link:hover {
-      transform: translateY(-2px) scale(1.04);
+/* =========================
+   HEADER
+========================= */
 
-      color: #ffffff;
+.header{
+  width:100%;
 
-      border-color: #00ff88;
+  padding:18px 5%;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(0,255,136,0.24),
-          rgba(0,140,255,0.18)
-        );
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
 
-      box-shadow:
-        0 0 25px rgba(0,255,136,0.42),
-        0 0 45px rgba(0,140,255,0.12);
-    }
+  position:sticky;
+  top:0;
+  z-index:100;
 
-    .status {
-      font-size: 11px;
-      font-weight: 700;
-      color: rgba(255,255,255,0.65);
-      letter-spacing: 0.7px;
-      white-space: nowrap;
-    }
+  background:rgba(2,10,11,.82);
 
-    /* =========================
-       HERO
-    ========================== */
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 
-    .hero {
-      width: min(1100px, 92%);
-      margin: 70px auto 30px;
+  border-bottom:1px solid rgba(0,255,136,.18);
+}
 
-      padding: 60px 30px;
+.logo{
+  font-size:22px;
+  font-weight:900;
 
-      text-align: center;
+  letter-spacing:.5px;
+  white-space:nowrap;
+}
 
-      border: 1px solid rgba(0,255,136,0.18);
-      border-radius: 28px;
+.logo span{
+  color:#00ff88;
 
-      background:
-        linear-gradient(
-          135deg,
-          rgba(4,25,23,0.74),
-          rgba(3,17,25,0.70)
-        );
+  text-shadow:
+    0 0 14px rgba(0,255,136,.55);
+}
 
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+.status{
+  font-size:11px;
+  font-weight:700;
 
-      box-shadow:
-        0 20px 70px rgba(0,0,0,0.35),
-        inset 0 0 35px rgba(0,255,136,0.025);
-    }
+  color:rgba(255,255,255,.65);
 
-    .badge {
-      display: inline-block;
+  letter-spacing:.7px;
+  white-space:nowrap;
+}
 
-      margin-bottom: 20px;
-      padding: 8px 16px;
+/* =========================
+   MAIN HERO
+========================= */
 
-      color: #00ff88;
+.hero{
+  width:min(1100px,92%);
 
-      border: 1px solid rgba(0,255,136,0.35);
-      border-radius: 999px;
+  margin:70px auto 30px;
 
-      background: rgba(0,255,136,0.06);
+  padding:60px 30px;
 
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 1.5px;
-    }
+  text-align:center;
 
-    .hero h1 {
-      font-size: clamp(38px, 7vw, 76px);
-      line-height: 1.05;
-      font-weight: 1000;
+  border:1px solid rgba(0,255,136,.18);
+  border-radius:28px;
 
-      margin-bottom: 18px;
+  background:
+    linear-gradient(
+      135deg,
+      rgba(4,25,23,.74),
+      rgba(3,17,25,.70)
+    );
 
-      text-shadow:
-        0 0 25px rgba(0,255,136,0.12);
-    }
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 
-    .hero h1 span {
-      color: #00ff88;
+  box-shadow:
+    0 20px 70px rgba(0,0,0,.35),
+    inset 0 0 35px rgba(0,255,136,.025);
+}
 
-      text-shadow:
-        0 0 18px rgba(0,255,136,0.45);
-    }
+.badge{
+  display:inline-block;
 
-    .hero p {
-      max-width: 720px;
-      margin: 0 auto;
+  margin-bottom:20px;
+  padding:8px 16px;
 
-      color: rgba(255,255,255,0.68);
+  color:#00ff88;
 
-      font-size: 16px;
-      line-height: 1.7;
-    }
+  border:1px solid rgba(0,255,136,.35);
+  border-radius:999px;
 
-    /* =========================
-       GENERATOR
-    ========================== */
+  background:rgba(0,255,136,.06);
 
-    .generator {
-      width: min(900px, 92%);
-      margin: 30px auto;
+  font-size:11px;
+  font-weight:800;
 
-      padding: 35px;
+  letter-spacing:1.5px;
+}
 
-      border: 1px solid rgba(0,255,136,0.18);
-      border-radius: 24px;
+.hero h1{
+  font-size:clamp(38px,7vw,76px);
 
-      background: rgba(2,15,17,0.72);
+  line-height:1.05;
+  font-weight:1000;
 
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+  margin-bottom:18px;
 
-      box-shadow:
-        0 20px 60px rgba(0,0,0,0.3);
-    }
+  text-shadow:
+    0 0 25px rgba(0,255,136,.12);
+}
 
-    .section-title {
-      margin-bottom: 25px;
+.hero h1 span{
+  color:#00ff88;
 
-      text-align: center;
+  text-shadow:
+    0 0 18px rgba(0,255,136,.45);
+}
 
-      font-size: 25px;
-      font-weight: 900;
-    }
+.hero p{
+  max-width:720px;
 
-    .section-title span {
-      color: #00ff88;
-    }
+  margin:0 auto;
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+  color:rgba(255,255,255,.68);
 
-    .field {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+  font-size:16px;
+  line-height:1.7;
+}
 
-    .field label {
-      color: rgba(255,255,255,0.65);
+/* =========================
+   PREMIUM TOOLS CENTER
+========================= */
 
-      font-size: 12px;
-      font-weight: 800;
+.premium-area{
+  width:min(900px,92%);
 
-      letter-spacing: 0.8px;
-    }
+  margin:35px auto 45px;
 
-    .field input,
-    .field select {
-      width: 100%;
+  text-align:center;
+}
 
-      padding: 14px 13px;
+.premium-label{
+  display:block;
 
-      color: #ffffff;
-      background: rgba(0,0,0,0.35);
+  margin-bottom:12px;
 
-      border: 1px solid rgba(0,255,136,0.22);
-      border-radius: 11px;
+  color:rgba(255,255,255,.42);
 
-      outline: none;
+  font-size:11px;
+  font-weight:800;
 
-      font-size: 14px;
+  letter-spacing:3px;
+}
 
-      transition: 0.2s ease;
-    }
+.premium-link{
+  position:relative;
 
-    .field input:focus,
-    .field select:focus {
-      border-color: #00ff88;
+  display:inline-flex;
 
-      box-shadow:
-        0 0 14px rgba(0,255,136,0.16);
-    }
+  align-items:center;
+  justify-content:center;
 
-    .field select option {
-      color: #000000;
-    }
+  min-width:340px;
 
-    .generate-btn {
-      width: 100%;
+  padding:22px 45px;
 
-      margin-top: 25px;
-      padding: 16px;
+  color:#ff334f;
 
-      border: 0;
-      border-radius: 13px;
+  text-decoration:none;
 
-      color: #00130b;
+  font-size:clamp(28px,5vw,48px);
 
-      background:
-        linear-gradient(
-          135deg,
-          #00ff88,
-          #00d9ff
-        );
+  font-weight:1000;
 
-      font-size: 15px;
-      font-weight: 1000;
-      letter-spacing: 1px;
+  letter-spacing:2px;
 
-      cursor: pointer;
+  background:
+    radial-gradient(
+      ellipse at 30% 45%,
+      rgba(130,0,15,.42),
+      transparent 55%
+    ),
+    rgba(10,2,5,.55);
 
-      box-shadow:
-        0 0 22px rgba(0,255,136,0.18);
+  border:1px solid rgba(255,35,65,.35);
 
-      transition: 0.25s ease;
-    }
+  border-radius:22px;
 
-    .generate-btn:hover {
-      transform: translateY(-2px);
+  box-shadow:
+    0 0 25px rgba(150,0,20,.18),
+    inset 0 0 35px rgba(120,0,20,.16);
 
-      box-shadow:
-        0 0 32px rgba(0,255,136,0.35);
-    }
+  text-shadow:
+    0 0 12px rgba(255,30,55,.55),
+    0 0 28px rgba(130,0,15,.25);
 
-    /* =========================
-       INFO CARDS
-    ========================== */
+  transition:
+    transform .25s ease,
+    border-color .25s ease,
+    box-shadow .25s ease;
+}
 
-    .info-section {
-      width: min(1100px, 92%);
-      margin: 40px auto 70px;
-    }
+/* dark red irregular glow */
 
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
+.premium-link::before{
+  content:"";
 
-    .card {
-      padding: 25px;
+  position:absolute;
 
-      border: 1px solid rgba(0,255,136,0.15);
-      border-radius: 20px;
+  inset:-8px;
 
-      background:
-        rgba(3,20,22,0.68);
+  z-index:-1;
 
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
+  border-radius:
+    48% 52% 44% 56% /
+    55% 43% 57% 45%;
 
-      transition: 0.25s ease;
-    }
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(105,0,15,.20),
+      transparent 70%
+    );
 
-    .card:hover {
-      transform: translateY(-5px);
+  filter:blur(9px);
+}
 
-      border-color: rgba(0,255,136,0.38);
+.premium-link:hover{
+  transform:
+    translateY(-4px)
+    scale(1.025);
 
-      box-shadow:
-        0 15px 40px rgba(0,0,0,0.25);
-    }
+  color:#ff5a6e;
 
-    .card-icon {
-      font-size: 27px;
-      margin-bottom: 12px;
-    }
+  border-color:rgba(255,45,70,.72);
 
-    .card h3 {
-      margin-bottom: 9px;
+  box-shadow:
+    0 0 30px rgba(160,0,25,.35),
+    0 0 65px rgba(90,0,15,.18),
+    inset 0 0 40px rgba(140,0,20,.22);
+}
 
-      font-size: 18px;
-    }
+.premium-subtitle{
+  margin-top:12px;
 
-    .card p {
-      color: rgba(255,255,255,0.58);
+  color:rgba(255,255,255,.42);
 
-      font-size: 13px;
-      line-height: 1.65;
-    }
+  font-size:12px;
 
-    /* =========================
-       FOOTER
-    ========================== */
+  letter-spacing:1px;
+}
 
-    footer {
-      padding: 25px 20px;
+/* =========================
+   GENERATOR
+========================= */
 
-      text-align: center;
+.generator{
+  width:min(900px,92%);
 
-      border-top: 1px solid rgba(0,255,136,0.12);
+  margin:30px auto;
 
-      color: rgba(255,255,255,0.45);
+  padding:35px;
 
-      font-size: 12px;
-    }
+  border:1px solid rgba(0,255,136,.18);
 
-    footer strong {
-      color: #00ff88;
-    }
+  border-radius:24px;
 
-    /* =========================
-       MOBILE
-    ========================== */
+  background:rgba(2,15,17,.72);
 
-    @media (max-width: 800px) {
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
 
-      .header {
-        padding: 14px 4%;
-      }
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.3);
+}
 
-      .status {
-        display: none;
-      }
+.section-title{
+  margin-bottom:25px;
 
-      .premium-link {
-        min-width: 155px;
-        padding: 12px 16px;
-        font-size: 13px;
-      }
+  text-align:center;
 
-      .logo {
-        font-size: 18px;
-      }
+  font-size:25px;
+  font-weight:900;
+}
 
-      .hero {
-        margin-top: 35px;
-        padding: 45px 20px;
-      }
+.section-title span{
+  color:#00ff88;
+}
 
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
+.form-grid{
+  display:grid;
 
-      .cards {
-        grid-template-columns: 1fr;
-      }
+  grid-template-columns:
+    repeat(3,1fr);
 
-      .generator {
-        padding: 25px 18px;
-      }
-    }
+  gap:18px;
+}
 
-    @media (max-width: 480px) {
+.field{
+  display:flex;
 
-      .header {
-        gap: 10px;
-      }
+  flex-direction:column;
 
-      .logo {
-        font-size: 16px;
-      }
+  gap:8px;
+}
 
-      .premium-link {
-        min-width: 135px;
-        padding: 11px 12px;
-        font-size: 11px;
-        letter-spacing: 0.8px;
-      }
+.field label{
+  color:rgba(255,255,255,.65);
 
-      .hero h1 {
-        font-size: 40px;
-      }
+  font-size:12px;
+  font-weight:800;
 
-      .hero p {
-        font-size: 14px;
-      }
-    }
-  </style>
+  letter-spacing:.8px;
+}
+
+.field input,
+.field select{
+  width:100%;
+
+  padding:14px 13px;
+
+  color:#fff;
+
+  background:rgba(0,0,0,.35);
+
+  border:1px solid rgba(0,255,136,.22);
+
+  border-radius:11px;
+
+  outline:none;
+
+  font-size:14px;
+
+  transition:.2s ease;
+}
+
+.field input:focus,
+.field select:focus{
+  border-color:#00ff88;
+
+  box-shadow:
+    0 0 14px rgba(0,255,136,.16);
+}
+
+.field select option{
+  color:#000;
+}
+
+.generate-btn{
+  width:100%;
+
+  margin-top:25px;
+
+  padding:16px;
+
+  border:0;
+
+  border-radius:13px;
+
+  color:#00130b;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00ff88,
+      #00d9ff
+    );
+
+  font-size:15px;
+
+  font-weight:1000;
+
+  letter-spacing:1px;
+
+  cursor:pointer;
+
+  box-shadow:
+    0 0 22px rgba(0,255,136,.18);
+
+  transition:.25s ease;
+}
+
+.generate-btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 0 32px rgba(0,255,136,.35);
+}
+
+/* =========================
+   INFO CARDS
+========================= */
+
+.info-section{
+  width:min(1100px,92%);
+
+  margin:40px auto 70px;
+}
+
+.cards{
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:18px;
+}
+
+.card{
+  padding:25px;
+
+  border:1px solid rgba(0,255,136,.15);
+
+  border-radius:20px;
+
+  background:
+    rgba(3,20,22,.68);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  transition:.25s ease;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+
+  border-color:
+    rgba(0,255,136,.38);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.25);
+}
+
+.card-icon{
+  font-size:27px;
+
+  margin-bottom:12px;
+}
+
+.card h3{
+  margin-bottom:9px;
+
+  font-size:18px;
+}
+
+.card p{
+  color:rgba(255,255,255,.58);
+
+  font-size:13px;
+
+  line-height:1.65;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
+footer{
+  padding:25px 20px;
+
+  text-align:center;
+
+  border-top:
+    1px solid rgba(0,255,136,.12);
+
+  color:rgba(255,255,255,.45);
+
+  font-size:12px;
+}
+
+footer strong{
+  color:#00ff88;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:800px){
+
+  .header{
+    padding:14px 4%;
+  }
+
+  .status{
+    display:none;
+  }
+
+  .logo{
+    font-size:18px;
+  }
+
+  .hero{
+    margin-top:35px;
+
+    padding:45px 20px;
+  }
+
+  .premium-area{
+    margin-top:30px;
+  }
+
+  .premium-link{
+    min-width:280px;
+
+    padding:19px 25px;
+
+    font-size:30px;
+  }
+
+  .form-grid{
+    grid-template-columns:1fr;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .generator{
+    padding:25px 18px;
+  }
+}
+
+@media(max-width:480px){
+
+  .logo{
+    font-size:16px;
+  }
+
+  .hero h1{
+    font-size:40px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .premium-link{
+    min-width:250px;
+
+    padding:17px 20px;
+
+    font-size:27px;
+
+    letter-spacing:1px;
+  }
+}
+
+</style>
 </head>
 
 <body>
 
-  <!-- BACKGROUND -->
-  <canvas id="codeRain"></canvas>
-  <div class="background-glow"></div>
+<!-- BACKGROUND -->
 
-  <!-- HEADER -->
-  <header class="header">
+<canvas id="codeRain"></canvas>
 
-    <div class="logo">
-      Brazilian <span>Sensi FF</span>
-    </div>
-
-    <div class="header-right">
-
-      <!-- PREMIUM TOOLS -->
-      <a href="premium.html" class="premium-link">
-        PREMIUM TOOLS
-      </a>
-
-      <div class="status">
-        ● BRAZILIAN SENSI FF
-      </div>
-
-    </div>
-
-  </header>
+<div class="background-glow"></div>
 
 
-  <!-- HERO -->
-  <section class="hero">
+<!-- HEADER -->
 
-    <div class="badge">
-      BRAZILIAN SENSI FF • SENSITIVITY ENGINE
-    </div>
+<header class="header">
 
-    <h1>
-      Brazilian <span>Sensi</span>
-    </h1>
+  <div class="logo">
+    Brazilian <span>Sensi FF</span>
+  </div>
 
-    <p>
-      Generate a recommended Free Fire MAX sensitivity
-      profile based on your device, RAM and storage.
-      Use the result as a starting point and fine-tune it
-      according to your touch response and play style.
-    </p>
+  <div class="status">
+    ● BRAZILIAN SENSI FF
+  </div>
 
-  </section>
+</header>
 
 
-  <!-- GENERATOR -->
-  <section class="generator">
+<!-- MAIN HERO -->
 
-    <div class="section-title">
-      Generate Your <span>Sensi</span>
-    </div>
+<section class="hero">
 
-    <div class="form-grid">
+  <div class="badge">
+    BRAZILIAN SENSI FF • SENSITIVITY ENGINE
+  </div>
 
-      <div class="field">
-        <label for="device">
-          DEVICE MODEL
-        </label>
+  <h1>
+    Brazilian <span>Sensi</span>
+  </h1>
 
-        <input
-          id="device"
-          type="text"
-          placeholder="Example: POCO F5"
-          autocomplete="off"
-        >
-      </div>
+  <p>
+    Generate a recommended Free Fire MAX sensitivity
+    profile based on your device, RAM and storage.
+    Use the result as a starting point and fine-tune it
+    according to your touch response and play style.
+  </p>
 
-
-      <div class="field">
-        <label for="ram">
-          RAM
-        </label>
-
-        <select id="ram">
-
-          <option value="2">2 GB</option>
-          <option value="3">3 GB</option>
-          <option value="4">4 GB</option>
-          <option value="6">6 GB</option>
-          <option value="8" selected>8 GB</option>
-          <option value="12">12 GB</option>
-          <option value="16">16 GB</option>
-          <option value="24">24 GB</option>
-
-        </select>
-      </div>
+</section>
 
 
-      <div class="field">
-        <label for="storage">
-          STORAGE
-        </label>
+<!-- PREMIUM TOOLS -->
 
-        <select id="storage">
+<section class="premium-area">
 
-          <option value="32">32 GB</option>
-          <option value="64">64 GB</option>
-          <option value="128" selected>128 GB</option>
-          <option value="256">256 GB</option>
-          <option value="512">512 GB</option>
-          <option value="1024">1 TB</option>
+  <span class="premium-label">
+    EXCLUSIVE ACCESS
+  </span>
 
-        </select>
-      </div>
+  <a
+    href="premium.html"
+    class="premium-link"
+  >
+    PREMIUM TOOLS
+  </a>
+
+  <div class="premium-subtitle">
+    Unlock premium gaming tools
+  </div>
+
+</section>
+
+
+<!-- GENERATOR -->
+
+<section class="generator">
+
+  <div class="section-title">
+    Generate Your <span>Sensi</span>
+  </div>
+
+  <div class="form-grid">
+
+    <div class="field">
+
+      <label for="device">
+        DEVICE MODEL
+      </label>
+
+      <input
+        id="device"
+        type="text"
+        placeholder="Example: POCO F5"
+        autocomplete="off"
+      >
 
     </div>
 
 
-    <button
-      class="generate-btn"
-      onclick="generateSensi()"
-    >
-      ⚡ GENERATE SENSITIVITY
-    </button>
+    <div class="field">
 
-  </section>
+      <label for="ram">
+        RAM
+      </label>
 
+      <select id="ram">
 
-  <!-- INFO -->
-  <section class="info-section">
+        <option value="2">2 GB</option>
+        <option value="3">3 GB</option>
+        <option value="4">4 GB</option>
+        <option value="6">6 GB</option>
+        <option value="8" selected>8 GB</option>
+        <option value="12">12 GB</option>
+        <option value="16">16 GB</option>
+        <option value="24">24 GB</option>
 
-    <div class="section-title">
-      Why Use <span>Brazilian Sensi?</span>
-    </div>
-
-    <div class="cards">
-
-      <div class="card">
-
-        <div class="card-icon">
-          🎯
-        </div>
-
-        <h3>
-          Device Based
-        </h3>
-
-        <p>
-          The generator considers your device and
-          RAM to provide a suitable sensitivity starting point.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          ⚡
-        </div>
-
-        <h3>
-          Gaming Focused
-        </h3>
-
-        <p>
-          Recommended settings are designed around
-          touch response, FPS and comfortable gameplay.
-        </p>
-
-      </div>
-
-
-      <div class="card">
-
-        <div class="card-icon">
-          🔥
-        </div>
-
-        <h3>
-          Easy To Use
-        </h3>
-
-        <p>
-          Enter your device information and generate
-          your profile in seconds.
-        </p>
-
-      </div>
+      </select>
 
     </div>
 
-  </section>
+
+    <div class="field">
+
+      <label for="storage">
+        STORAGE
+      </label>
+
+      <select id="storage">
+
+        <option value="32">32 GB</option>
+        <option value="64">64 GB</option>
+        <option value="128" selected>128 GB</option>
+        <option value="256">256 GB</option>
+        <option value="512">512 GB</option>
+        <option value="1024">1 TB</option>
+
+      </select>
+
+    </div>
+
+  </div>
 
 
-  <!-- FOOTER -->
-  <footer>
+  <button
+    class="generate-btn"
+    onclick="generateSensi()"
+  >
+    ⚡ GENERATE SENSITIVITY
+  </button>
 
-    <strong>BRAZILIAN SENSI FF</strong>
-    <br><br>
-
-    Free Fire MAX sensitivity recommendations.
-    Actual results may vary depending on device,
-    game version, FPS, touch response and player preference.
-
-  </footer>
+</section>
 
 
-  <script>
+<!-- INFO -->
 
-    /* =========================
-       GENERATOR
-    ========================== */
+<section class="info-section">
 
-    function generateSensi() {
+  <div class="section-title">
+    Why Use <span>Brazilian Sensi?</span>
+  </div>
 
-      const device =
-        document.getElementById("device").value.trim();
+  <div class="cards">
 
-      const ram =
-        document.getElementById("ram").value;
+    <div class="card">
 
-      const storage =
-        document.getElementById("storage").value;
+      <div class="card-icon">
+        🎯
+      </div>
 
-      if (!device) {
+      <h3>
+        Device Based
+      </h3>
 
-        alert("Please enter your device model.");
+      <p>
+        The generator considers your device and
+        RAM to provide a suitable sensitivity starting point.
+      </p>
 
-        document.getElementById("device").focus();
-
-        return;
-      }
-
-      const params = new URLSearchParams();
-
-      params.set("device", device);
-      params.set("ram", ram);
-      params.set("storage", storage);
-
-      window.location.href =
-        "sensitivity.html?" + params.toString();
-    }
+    </div>
 
 
-    /* =========================
-       ENTER KEY
-    ========================== */
+    <div class="card">
+
+      <div class="card-icon">
+        ⚡
+      </div>
+
+      <h3>
+        Gaming Focused
+      </h3>
+
+      <p>
+        Recommended settings are designed around
+        touch response, FPS and comfortable gameplay.
+      </p>
+
+    </div>
+
+
+    <div class="card">
+
+      <div class="card-icon">
+        🔥
+      </div>
+
+      <h3>
+        Easy To Use
+      </h3>
+
+      <p>
+        Enter your device information and generate
+        your profile in seconds.
+      </p>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+  <strong>BRAZILIAN SENSI FF</strong>
+
+  <br><br>
+
+  Free Fire MAX sensitivity recommendations.
+  Actual results may vary depending on device,
+  game version, FPS, touch response and player preference.
+
+</footer>
+
+
+<script>
+
+/* =========================
+   GENERATOR
+========================= */
+
+function generateSensi(){
+
+  const device =
+    document
+      .getElementById("device")
+      .value
+      .trim();
+
+  const ram =
+    document
+      .getElementById("ram")
+      .value;
+
+  const storage =
+    document
+      .getElementById("storage")
+      .value;
+
+  if(!device){
+
+    alert(
+      "Please enter your device model."
+    );
 
     document
       .getElementById("device")
-      .addEventListener("keydown", function(event) {
+      .focus();
 
-        if (event.key === "Enter") {
-          generateSensi();
-        }
+    return;
+  }
 
-      });
+  const params =
+    new URLSearchParams();
+
+  params.set(
+    "device",
+    device
+  );
+
+  params.set(
+    "ram",
+    ram
+  );
+
+  params.set(
+    "storage",
+    storage
+  );
+
+  window.location.href =
+    "sensitivity.html?" +
+    params.toString();
+}
 
 
-    /* =========================
-       CODE RAIN
-    ========================== */
+/* ENTER KEY */
 
-    const canvas =
-      document.getElementById("codeRain");
+document
+  .getElementById("device")
+  .addEventListener(
+    "keydown",
+    function(event){
 
-    const ctx =
-      canvas.getContext("2d");
-
-    let width;
-    let height;
-
-    let columns;
-    let drops;
-
-    const chars =
-      "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\$#@%&*+=-";
-
-    function resizeCanvas() {
-
-      width =
-        canvas.width =
-          window.innerWidth;
-
-      height =
-        canvas.height =
-          window.innerHeight;
-
-      columns =
-        Math.floor(width / 16);
-
-      drops =
-        Array.from(
-          { length: columns },
-          () => Math.random() * height / 16
-        );
-    }
-
-    function drawRain() {
-
-      ctx.fillStyle =
-        "rgba(2, 8, 9, 0.075)";
-
-      ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-      );
-
-      ctx.font =
-        "12px monospace";
-
-      for (
-        let i = 0;
-        i < drops.length;
-        i++
-      ) {
-
-        const char =
-          chars[
-            Math.floor(
-              Math.random() * chars.length
-            )
-          ];
-
-        const x =
-          i * 16;
-
-        const y =
-          drops[i] * 16;
-
-        ctx.fillStyle =
-          Math.random() > 0.88
-            ? "rgba(0,255,136,0.42)"
-            : "rgba(0,180,140,0.20)";
-
-        ctx.fillText(
-          char,
-          x,
-          y
-        );
-
-        if (
-          y > height &&
-          Math.random() > 0.975
-        ) {
-          drops[i] = 0;
-        }
-
-        drops[i] += 0.42;
+      if(event.key === "Enter"){
+        generateSensi();
       }
 
-      requestAnimationFrame(drawRain);
     }
+  );
 
-    window.addEventListener(
-      "resize",
-      resizeCanvas
+
+/* =========================
+   CODE RAIN
+========================= */
+
+const canvas =
+  document.getElementById(
+    "codeRain"
+  );
+
+const ctx =
+  canvas.getContext("2d");
+
+let width;
+let height;
+
+let columns;
+let drops;
+
+const chars =
+  "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\$#@%&*+=-";
+
+
+function resizeCanvas(){
+
+  width =
+    canvas.width =
+      window.innerWidth;
+
+  height =
+    canvas.height =
+      window.innerHeight;
+
+  columns =
+    Math.floor(
+      width / 16
     );
 
-    resizeCanvas();
-    drawRain();
+  drops =
+    Array.from(
+      {
+        length:columns
+      },
+      () =>
+        Math.random() *
+        height / 16
+    );
+}
 
-  </script>
+
+function drawRain(){
+
+  ctx.fillStyle =
+    "rgba(2,8,9,.075)";
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+  ctx.font =
+    "12px monospace";
+
+  for(
+    let i=0;
+    i<drops.length;
+    i++
+  ){
+
+    const char =
+      chars[
+        Math.floor(
+          Math.random() *
+          chars.length
+        )
+      ];
+
+    const x =
+      i * 16;
+
+    const y =
+      drops[i] * 16;
+
+    ctx.fillStyle =
+      Math.random() > .88
+        ? "rgba(0,255,136,.42)"
+        : "rgba(0,180,140,.20)";
+
+    ctx.fillText(
+      char,
+      x,
+      y
+    );
+
+    if(
+      y > height &&
+      Math.random() > .975
+    ){
+
+      drops[i] = 0;
+
+    }
+
+    drops[i] += .42;
+  }
+
+  requestAnimationFrame(
+    drawRain
+  );
+}
+
+
+window.addEventListener(
+  "resize",
+  resizeCanvas
+);
+
+resizeCanvas();
+
+drawRain();
+
+</script>
 
 </body>
 </html>
