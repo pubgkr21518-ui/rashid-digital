@@ -1,1230 +1,1298 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Brazilian Sensi FF</title>
-  <meta name="description" content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
-
-  <link rel="stylesheet" href="style.css">
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html,
-    body {
-      margin: 0;
-      min-height: 100%;
-      background: #03050b;
-    }
-
-    body {
-      overflow-x: hidden;
-    }
-
-    #space3d {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -10;
-      display: block;
-      background: #03050b;
-    }
-
-    .scene-overlay {
-      position: fixed;
-      inset: 0;
-      z-index: -5;
-      pointer-events: none;
-
-      background:
-        radial-gradient(
-          circle at 50% 45%,
-          transparent 0%,
-          rgba(2, 4, 10, .15) 38%,
-          rgba(2, 4, 10, .72) 100%
-        );
-    }
-
-    .scanlines {
-      position: fixed;
-      inset: 0;
-      z-index: -4;
-      pointer-events: none;
-
-      background:
-        repeating-linear-gradient(
-          0deg,
-          rgba(255,255,255,.018) 0px,
-          rgba(255,255,255,.018) 1px,
-          transparent 1px,
-          transparent 5px
-        );
-
-      opacity: .28;
-    }
-
-    .header {
-      position: relative;
-      z-index: 20;
-
-      background: rgba(3, 6, 15, .42);
-
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-
-      border-bottom:
-        1px solid rgba(255,255,255,.07);
-    }
-
-    .logo {
-      text-shadow:
-        0 0 18px rgba(0,220,255,.28);
-    }
-
-    .hero {
-      position: relative;
-      z-index: 5;
-    }
-
-    .hero h1 {
-      text-shadow:
-        0 0 35px rgba(0,180,255,.12);
-    }
-
-    .hero h1 span {
-      background:
-        linear-gradient(
-          90deg,
-          #00eaff,
-          #6675ff,
-          #bd4cff,
-          #ff4fd8,
-          #00eaff
-        );
-
-      background-size: 400% 100%;
-
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      animation:
-        titleFlow 7s ease infinite;
-    }
-
-    @keyframes titleFlow {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    .generator-box {
-      position: relative;
-      overflow: hidden;
-
-      background:
-        linear-gradient(
-          145deg,
-          rgba(10,16,31,.88),
-          rgba(4,7,16,.76)
-        ) !important;
-
-      border:
-        1px solid rgba(255,255,255,.11) !important;
-
-      box-shadow:
-        0 30px 90px rgba(0,0,0,.5),
-        0 0 50px rgba(0,190,255,.07),
-        inset 0 1px 0 rgba(255,255,255,.07) !important;
-
-      backdrop-filter: blur(22px);
-      -webkit-backdrop-filter: blur(22px);
-    }
-
-    .generator-box::before {
-      content: "";
-
-      position: absolute;
-      left: -100%;
-      top: 0;
-
-      width: 70%;
-      height: 1px;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          #00eaff,
-          #a855f7,
-          transparent
-        );
-
-      box-shadow:
-        0 0 18px #00eaff;
-
-      animation:
-        cardLaser 4s linear infinite;
-    }
-
-    @keyframes cardLaser {
-      0% {
-        left: -80%;
-      }
-
-      100% {
-        left: 130%;
-      }
-    }
-
-    #device {
-      background:
-        rgba(0,0,0,.35) !important;
-
-      border:
-        1px solid rgba(255,255,255,.10) !important;
-
-      transition: .25s ease;
-    }
-
-    #device:focus {
-      border-color:
-        rgba(0,225,255,.7) !important;
-
-      box-shadow:
-        0 0 0 3px rgba(0,220,255,.05),
-        0 0 28px rgba(0,220,255,.14) !important;
-    }
-
-    select {
-      background:
-        rgba(0,0,0,.35) !important;
-    }
-
-    #generateBtn {
-      position: relative;
-      overflow: hidden;
-
-      border: 0;
-
-      background:
-        linear-gradient(
-          100deg,
-          #00c8ff,
-          #645cff,
-          #b348ff,
-          #ff4bd8,
-          #00d9ff
-        );
-
-      background-size: 400% 100%;
-
-      box-shadow:
-        0 12px 35px rgba(0,190,255,.18);
-
-      animation:
-        buttonFlow 6s ease infinite;
-
-      transition:
-        transform .2s ease,
-        box-shadow .2s ease;
-    }
-
-    #generateBtn::after {
-      content: "";
-
-      position: absolute;
-      top: 0;
-      left: -100%;
-
-      width: 70%;
-      height: 100%;
-
-      background:
-        linear-gradient(
-          90deg,
-          transparent,
-          rgba(255,255,255,.30),
-          transparent
-        );
-
-      transform: skewX(-20deg);
-
-      animation:
-        buttonShine 3.5s linear infinite;
-    }
-
-    #generateBtn:hover {
-      transform: translateY(-2px);
-
-      box-shadow:
-        0 16px 45px rgba(0,190,255,.28);
-    }
-
-    @keyframes buttonFlow {
-      0% {
-        background-position: 0% 50%;
-      }
-
-      50% {
-        background-position: 100% 50%;
-      }
-
-      100% {
-        background-position: 0% 50%;
-      }
-    }
-
-    @keyframes buttonShine {
-      0% {
-        left: -100%;
-      }
-
-      45%,
-      100% {
-        left: 140%;
-      }
-    }
-
-    .info-card {
-      position: relative;
-      overflow: hidden;
-
-      background:
-        rgba(5,9,19,.68) !important;
-
-      border:
-        1px solid rgba(255,255,255,.075) !important;
-
-      backdrop-filter: blur(15px);
-      -webkit-backdrop-filter: blur(15px);
-
-      transition:
-        transform .3s ease,
-        border-color .3s ease;
-    }
-
-    .info-card:hover {
-      transform: translateY(-5px);
-
-      border-color:
-        rgba(0,220,255,.25) !important;
-    }
-
-    footer {
-      position: relative;
-      z-index: 5;
-
-      background:
-        rgba(2,4,10,.30);
-    }
-
-    @media (max-width: 700px) {
-
-      #space3d {
-        opacity: .85;
-      }
-
-      .scanlines {
-        opacity: .18;
-      }
-
-      .generator-box {
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Brazilian Sensi FF</title>
+
+<meta
+  name="description"
+  content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and premium gaming tools."
+>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html,
+body{
+  width:100%;
+  min-height:100%;
+}
+
+body{
+  overflow-x:hidden;
+  font-family:Arial,Helvetica,sans-serif;
+  color:#ecfff5;
+
+  background:
+    radial-gradient(
+      circle at 50% 20%,
+      rgba(0,255,120,.12),
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at 15% 80%,
+      rgba(0,150,110,.10),
+      transparent 32%
+    ),
+    linear-gradient(
+      135deg,
+      #03100c 0%,
+      #04171a 48%,
+      #020806 100%
+    );
+}
+
+/* =========================================
+   CODE BACKGROUND
+========================================= */
+
+#codeRain{
+  position:fixed;
+  inset:0;
+
+  width:100%;
+  height:100%;
+
+  z-index:-10;
+  pointer-events:none;
+
+  opacity:.27;
+}
+
+.background-glow{
+  position:fixed;
+  inset:0;
+
+  z-index:-5;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 0%,
+      rgba(0,10,8,.20) 45%,
+      rgba(0,5,4,.72) 100%
+    );
+}
+
+/* =========================================
+   HEADER
+========================================= */
+
+.header{
+  position:relative;
+  z-index:20;
+
+  min-height:76px;
+
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+
+  padding:18px 7%;
+
+  background:
+    rgba(2,12,9,.52);
+
+  border-bottom:
+    1px solid rgba(0,255,120,.12);
+
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+
+.logo{
+  font-size:21px;
+  font-weight:900;
+  letter-spacing:.5px;
+
+  text-shadow:
+    0 0 18px rgba(0,255,120,.16);
+}
+
+.logo span{
+  color:#00ff78;
+
+  text-shadow:
+    0 0 18px rgba(0,255,120,.35);
+}
+
+.header-right{
+  display:flex;
+  align-items:center;
+  gap:18px;
+}
+
+.status{
+  color:#00ff78;
+  font-size:10px;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+/* PREMIUM BUTTON */
+
+.premium-link{
+  display:inline-block;
+
+  padding:10px 15px;
+
+  color:#00ff78;
+  text-decoration:none;
+
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:1px;
+
+  border:
+    1px solid rgba(0,255,120,.28);
+
+  border-radius:10px;
+
+  background:
+    rgba(0,255,120,.045);
+
+  box-shadow:
+    0 0 20px rgba(0,255,120,.035);
+
+  transition:.25s ease;
+}
+
+.premium-link:hover{
+  color:#00160b;
+
+  background:#00ff78;
+
+  box-shadow:
+    0 0 28px rgba(0,255,120,.25);
+
+  transform:translateY(-2px);
+}
+
+/* =========================================
+   HERO
+========================================= */
+
+.hero{
+  position:relative;
+  z-index:5;
+
+  min-height:
+    calc(100vh - 76px);
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+
+  text-align:center;
+
+  padding:
+    70px 20px 90px;
+}
+
+.badge{
+  display:inline-block;
+
+  padding:9px 15px;
+
+  border:
+    1px solid rgba(0,255,120,.22);
+
+  border-radius:999px;
+
+  background:
+    rgba(0,255,120,.045);
+
+  color:#00ff78;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:2px;
+
+  box-shadow:
+    0 0 25px rgba(0,255,120,.035);
+
+  margin-bottom:22px;
+}
+
+.hero h1{
+  font-size:
+    clamp(45px,8vw,82px);
+
+  line-height:.98;
+
+  font-weight:1000;
+
+  letter-spacing:-4px;
+
+  color:#f1fff7;
+
+  text-shadow:
+    0 0 35px rgba(0,255,120,.08);
+}
+
+.hero h1 span{
+  display:inline-block;
+
+  color:#00ff78;
+
+  text-shadow:
+    0 0 15px rgba(0,255,120,.25),
+    0 0 45px rgba(0,255,120,.08);
+}
+
+.hero-description{
+  max-width:620px;
+
+  margin:
+    25px auto 0;
+
+  color:#91aa9c;
+
+  font-size:15px;
+
+  line-height:1.7;
+}
+
+/* =========================================
+   GENERATOR
+========================================= */
+
+.generator-box{
+  width:min(650px,94%);
+
+  margin-top:38px;
+
+  padding:30px;
+
+  text-align:left;
+
+  position:relative;
+  overflow:hidden;
+
+  border:
+    1px solid rgba(0,255,120,.14);
+
+  border-radius:24px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(7,25,18,.78),
+      rgba(2,10,10,.72)
+    );
+
+  backdrop-filter:blur(22px);
+  -webkit-backdrop-filter:blur(22px);
+
+  box-shadow:
+    0 30px 90px rgba(0,0,0,.48),
+    inset 0 1px 0 rgba(255,255,255,.045);
+}
+
+.generator-box::before{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-80%;
+
+  width:65%;
+  height:1px;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      #00ff78,
+      transparent
+    );
+
+  box-shadow:
+    0 0 16px #00ff78;
+
+  animation:
+    laser 4s linear infinite;
+}
+
+@keyframes laser{
+
+  0%{
+    left:-80%;
+  }
+
+  100%{
+    left:140%;
+  }
+
+}
+
+.generator-title{
+  color:#eafff2;
+
+  font-size:19px;
+  font-weight:900;
+
+  margin-bottom:7px;
+}
+
+.generator-subtitle{
+  color:#637c6d;
+
+  font-size:12px;
+
+  margin-bottom:24px;
+}
+
+label{
+  display:block;
+
+  margin-bottom:8px;
+
+  color:#91aa9c;
+
+  font-size:10px;
+  font-weight:900;
+
+  letter-spacing:1.5px;
+}
+
+input,
+select{
+  width:100%;
+
+  height:48px;
+
+  padding:
+    0 14px;
+
+  border:
+    1px solid rgba(255,255,255,.08);
+
+  border-radius:11px;
+
+  outline:none;
+
+  background:
+    rgba(0,0,0,.28);
+
+  color:#eafff4;
+
+  font-size:14px;
+
+  transition:.25s ease;
+}
+
+input::placeholder{
+  color:#50665a;
+}
+
+input:focus,
+select:focus{
+  border-color:
+    rgba(0,255,120,.45);
+
+  box-shadow:
+    0 0 0 3px rgba(0,255,120,.035),
+    0 0 22px rgba(0,255,120,.08);
+}
+
+select option{
+  background:#07120e;
+  color:#fff;
+}
+
+.field{
+  flex:1;
+}
+
+.row{
+  display:flex;
+
+  gap:14px;
+
+  margin-top:18px;
+}
+
+.generate-btn{
+  position:relative;
+
+  width:100%;
+
+  height:52px;
+
+  margin-top:22px;
+
+  border:0;
+
+  border-radius:12px;
+
+  cursor:pointer;
+
+  overflow:hidden;
+
+  color:#00150a;
+
+  font-size:13px;
+
+  font-weight:1000;
+
+  letter-spacing:.8px;
+
+  background:
+    linear-gradient(
+      100deg,
+      #00d96b,
+      #00ff78,
+      #31e889,
+      #00c968
+    );
+
+  box-shadow:
+    0 12px 35px rgba(0,255,120,.12);
+
+  transition:.25s ease;
+}
+
+.generate-btn::after{
+  content:"";
+
+  position:absolute;
+
+  top:0;
+  left:-100%;
+
+  width:65%;
+  height:100%;
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.30),
+      transparent
+    );
+
+  transform:skewX(-20deg);
+
+  animation:
+    button-shine 3.5s linear infinite;
+}
+
+@keyframes button-shine{
+
+  0%{
+    left:-100%;
+  }
+
+  45%,
+  100%{
+    left:140%;
+  }
+
+}
+
+.generate-btn:hover{
+  transform:translateY(-2px);
+
+  box-shadow:
+    0 17px 42px rgba(0,255,120,.20);
+}
+
+#error{
+  min-height:18px;
+
+  margin-top:10px;
+
+  color:#ff7474;
+
+  font-size:12px;
+}
+
+/* =========================================
+   INFO CARDS
+========================================= */
+
+.info-section{
+  position:relative;
+  z-index:5;
+
+  width:min(1050px,92%);
+
+  margin:
+    -15px auto 90px;
+
+  display:grid;
+
+  grid-template-columns:
+    repeat(3,1fr);
+
+  gap:18px;
+}
+
+.info-card{
+  padding:24px;
+
+  border:
+    1px solid rgba(0,255,120,.10);
+
+  border-radius:18px;
+
+  background:
+    rgba(3,15,11,.58);
+
+  backdrop-filter:blur(15px);
+  -webkit-backdrop-filter:blur(15px);
+
+  transition:.3s ease;
+}
+
+.info-card:hover{
+  transform:translateY(-5px);
+
+  border-color:
+    rgba(0,255,120,.28);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,.30);
+}
+
+.info-number{
+  color:#00ff78;
+
+  font-size:11px;
+  font-weight:900;
+
+  letter-spacing:1px;
+}
+
+.info-card h3{
+  margin-top:12px;
+
+  font-size:18px;
+}
+
+.info-card p{
+  margin-top:9px;
+
+  color:#718a7b;
+
+  font-size:13px;
+
+  line-height:1.6;
+}
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer{
+  position:relative;
+  z-index:5;
+
+  padding:30px 20px;
+
+  text-align:center;
+
+  color:#52695b;
+
+  border-top:
+    1px solid rgba(0,255,120,.08);
+
+  background:
+    rgba(1,7,5,.35);
+}
+
+footer strong{
+  color:#00ff78;
+}
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media(max-width:700px){
+
+  .header{
+    padding:16px 5%;
+  }
+
+  .header-right{
+    gap:7px;
+  }
+
+  .status{
+    display:none;
+  }
+
+  .premium-link{
+    padding:8px 10px;
+
+    font-size:9px;
+  }
+
+  .hero{
+    padding:
+      60px 15px 70px;
+  }
+
+  .hero h1{
+    font-size:
+      clamp(42px,14vw,65px);
+
+    letter-spacing:-3px;
+  }
+
+  .hero-description{
+    font-size:14px;
+  }
+
+  .generator-box{
+    padding:22px;
+
+    border-radius:19px;
+  }
+
+  .row{
+    flex-direction:column;
+  }
+
+  .info-section{
+    grid-template-columns:1fr;
+
+    margin-top:0;
+  }
+
+  #codeRain{
+    opacity:.18;
+  }
+
+}
+
+/* VERY SMALL PHONES */
+
+@media(max-width:400px){
+
+  .logo{
+    font-size:17px;
+  }
+
+  .premium-link{
+    font-size:8px;
+    padding:8px;
+  }
+
+}
+
+</style>
 </head>
+
 
 <body>
 
-  <canvas id="space3d"></canvas>
+<!-- =====================================
+     BACKGROUND
+====================================== -->
 
-  <div class="scene-overlay"></div>
-  <div class="scanlines"></div>
+<canvas id="codeRain"></canvas>
 
-  <header class="header">
+<div class="background-glow"></div>
 
-    <div class="logo">
-      Brazilian <span>Sensi FF</span>
-    </div>
+
+<!-- =====================================
+     HEADER
+====================================== -->
+
+<header class="header">
+
+  <div class="logo">
+    Brazilian <span>Sensi FF</span>
+  </div>
+
+  <div class="header-right">
+
+    <a
+      href="premium.html"
+      class="premium-link"
+    >
+      PREMIUM TOOLS
+    </a>
 
     <div class="status">
       ● BRAZILIAN SENSI FF
     </div>
 
-  </header>
+  </div>
 
-  <main>
+</header>
 
-    <section class="hero">
 
-      <div class="badge">
-        BRAZILIAN SENSI FF • SENSITIVITY ENGINE
-      </div>
+<!-- =====================================
+     MAIN
+====================================== -->
 
-      <h1>
-        Find Your<br>
-        <span>Brazilian Sensi</span>
-      </h1>
+<main>
 
-      <p>
-        Enter your device information and get a
-        recommended Free Fire MAX sensitivity profile.
-      </p>
+<section class="hero">
 
-      <div class="generator-box">
+  <div class="badge">
+    BRAZILIAN SENSI FF • SENSITIVITY ENGINE
+  </div>
 
-        <label for="device">
-          DEVICE NAME
+
+  <h1>
+    Find Your<br>
+    <span>Brazilian Sensi</span>
+  </h1>
+
+
+  <p class="hero-description">
+    Enter your device information and get a
+    recommended Free Fire MAX sensitivity profile
+    with gaming settings.
+  </p>
+
+
+  <!-- GENERATOR -->
+
+  <div class="generator-box">
+
+    <div class="generator-title">
+      Sensitivity Generator
+    </div>
+
+    <div class="generator-subtitle">
+      Enter your device details to generate your profile.
+    </div>
+
+
+    <label for="device">
+      DEVICE NAME
+    </label>
+
+    <input
+      type="text"
+      id="device"
+      placeholder="Example: POCO F5"
+      autocomplete="off"
+    >
+
+
+    <div class="row">
+
+      <div class="field">
+
+        <label for="ram">
+          RAM
         </label>
 
-        <input
-          type="text"
-          id="device"
-          placeholder="Example: POCO F5"
-          autocomplete="off"
-        >
+        <select id="ram">
 
-        <div class="row">
+          <option value="4">
+            4 GB
+          </option>
 
-          <div class="field">
+          <option value="6">
+            6 GB
+          </option>
 
-            <label for="ram">
-              RAM
-            </label>
+          <option value="8" selected>
+            8 GB
+          </option>
 
-            <select id="ram">
+          <option value="12">
+            12 GB
+          </option>
 
-              <option value="4">4 GB</option>
+          <option value="16">
+            16 GB
+          </option>
 
-              <option value="6">6 GB</option>
+          <option value="24">
+            24 GB
+          </option>
 
-              <option value="8" selected>
-                8 GB
-              </option>
-
-              <option value="12">12 GB</option>
-
-              <option value="16">16 GB</option>
-
-              <option value="24">24 GB</option>
-
-            </select>
-
-          </div>
-
-          <div class="field">
-
-            <label for="storage">
-              STORAGE
-            </label>
-
-            <select id="storage">
-
-              <option value="64">
-                64 GB
-              </option>
-
-              <option value="128" selected>
-                128 GB
-              </option>
-
-              <option value="256">
-                256 GB
-              </option>
-
-              <option value="512">
-                512 GB
-              </option>
-
-              <option value="1024">
-                1 TB
-              </option>
-
-            </select>
-
-          </div>
-
-        </div>
-
-        <button id="generateBtn">
-          GENERATE SENSITIVITY →
-        </button>
-
-        <div id="error"></div>
+        </select>
 
       </div>
 
-    </section>
 
-    <section class="info-section">
+      <div class="field">
 
-      <div class="info-card">
+        <label for="storage">
+          STORAGE
+        </label>
 
-        <span>01</span>
+        <select id="storage">
 
-        <h3>
-          Device Based
-        </h3>
+          <option value="64">
+            64 GB
+          </option>
 
-        <p>
-          Recommendations are generated using
-          your device information.
-        </p>
+          <option value="128" selected>
+            128 GB
+          </option>
 
-      </div>
+          <option value="256">
+            256 GB
+          </option>
 
-      <div class="info-card">
+          <option value="512">
+            512 GB
+          </option>
 
-        <span>02</span>
+          <option value="1024">
+            1 TB
+          </option>
 
-        <h3>
-          Game Settings
-        </h3>
-
-        <p>
-          Get useful in-game settings together
-          with your sensitivity profile.
-        </p>
-
-      </div>
-
-      <div class="info-card">
-
-        <span>03</span>
-
-        <h3>
-          Performance Tips
-        </h3>
-
-        <p>
-          Safe phone settings that can help
-          reduce unnecessary background load.
-        </p>
+        </select>
 
       </div>
 
-    </section>
-
-  </main>
-
-  <footer>
-
-    <span>
-      BRAZILIAN SENSI FF
-    </span>
-
-    <span>
-      © 2026
-    </span>
-
-  </footer>
-
-  <script>
-
-    const deviceInput =
-      document.getElementById("device");
-
-    const ramInput =
-      document.getElementById("ram");
-
-    const storageInput =
-      document.getElementById("storage");
-
-    const generateBtn =
-      document.getElementById("generateBtn");
-
-    const error =
-      document.getElementById("error");
+    </div>
 
 
-    generateBtn.addEventListener(
-      "click",
-      function () {
-
-        const device =
-          deviceInput.value.trim();
-
-        const ram =
-          ramInput.value;
-
-        const storage =
-          storageInput.value;
+    <button
+      id="generateBtn"
+      class="generate-btn"
+    >
+      GENERATE SENSITIVITY →
+    </button>
 
 
-        if (!device) {
+    <div id="error"></div>
 
-          error.textContent =
-            "Please enter your device name.";
+  </div>
 
-          deviceInput.focus();
-
-          return;
-        }
+</section>
 
 
-        error.textContent = "";
+<!-- =====================================
+     INFO
+====================================== -->
+
+<section class="info-section">
+
+  <div class="info-card">
+
+    <div class="info-number">
+      01
+    </div>
+
+    <h3>
+      Device Based
+    </h3>
+
+    <p>
+      Recommendations are generated using
+      your device information.
+    </p>
+
+  </div>
 
 
-        const params =
-          new URLSearchParams();
+  <div class="info-card">
 
-        params.set(
-          "device",
-          device
-        );
+    <div class="info-number">
+      02
+    </div>
 
-        params.set(
-          "ram",
-          ram
-        );
+    <h3>
+      Gaming Settings
+    </h3>
 
-        params.set(
-          "storage",
-          storage
-        );
+    <p>
+      Get useful gaming settings together
+      with your sensitivity profile.
+    </p>
 
-
-        window.location.href =
-          "sensitivity.html?" +
-          params.toString();
-
-      }
-    );
+  </div>
 
 
-    deviceInput.addEventListener(
-      "keydown",
-      function(event) {
+  <div class="info-card">
 
-        if (event.key === "Enter") {
-          generateBtn.click();
-        }
+    <div class="info-number">
+      03
+    </div>
 
-      }
-    );
+    <h3>
+      Premium Tools
+    </h3>
 
+    <p>
+      Explore additional premium tools and
+      digital products from Brazilian Sensi FF.
+    </p>
 
-    /* ===================================
-       3D ENGINE
-    ==================================== */
+  </div>
 
-    const canvas =
-      document.getElementById("space3d");
+</section>
 
-    const ctx =
-      canvas.getContext("2d");
-
-
-    let width;
-    let height;
-
-    let mouseX = 0;
-    let mouseY = 0;
-
-    let targetX = 0;
-    let targetY = 0;
+</main>
 
 
-    const DPR =
-      Math.min(
-        window.devicePixelRatio || 1,
-        2
-      );
+<!-- =====================================
+     FOOTER
+====================================== -->
+
+<footer>
+
+  <strong>
+    BRAZILIAN SENSI FF
+  </strong>
+
+  &nbsp; • &nbsp;
+
+  © 2026
+
+</footer>
 
 
-    function resize() {
+<script>
 
-      width =
-        window.innerWidth;
+/* =========================================
+   GENERATOR
+========================================= */
 
-      height =
-        window.innerHeight;
+const deviceInput =
+  document.getElementById("device");
 
-      canvas.width =
-        width * DPR;
+const ramInput =
+  document.getElementById("ram");
 
-      canvas.height =
-        height * DPR;
+const storageInput =
+  document.getElementById("storage");
 
-      canvas.style.width =
-        width + "px";
+const generateBtn =
+  document.getElementById("generateBtn");
 
-      canvas.style.height =
-        height + "px";
+const error =
+  document.getElementById("error");
 
-      ctx.setTransform(
-        DPR,
-        0,
-        0,
-        DPR,
-        0,
-        0
-      );
+
+generateBtn.addEventListener(
+  "click",
+  function(){
+
+    const device =
+      deviceInput.value.trim();
+
+    const ram =
+      ramInput.value;
+
+    const storage =
+      storageInput.value;
+
+
+    if(!device){
+
+      error.textContent =
+        "Please enter your device name.";
+
+      deviceInput.focus();
+
+      return;
     }
 
 
-    resize();
+    error.textContent = "";
 
-    window.addEventListener(
-      "resize",
-      resize
+
+    const params =
+      new URLSearchParams();
+
+
+    params.set(
+      "device",
+      device
     );
 
 
-    window.addEventListener(
-      "pointermove",
-      function(e) {
-
-        targetX =
-          (e.clientX / width - .5) * 2;
-
-        targetY =
-          (e.clientY / height - .5) * 2;
-
-      }
+    params.set(
+      "ram",
+      ram
     );
 
 
-    const colors = [
-      "#00eaff",
-      "#00bfff",
-      "#7c5cff",
-      "#a855f7",
-      "#d946ef",
-      "#ff4fd8",
-      "#22c55e",
-      "#34d399",
-      "#38bdf8",
-      "#f472b6"
-    ];
+    params.set(
+      "storage",
+      storage
+    );
 
 
-    const particles = [];
+    window.location.href =
+      "sensitivity.html?" +
+      params.toString();
 
-    const particleCount =
-      Math.min(
-        190,
-        Math.floor(
-          (width * height) / 8500
-        )
-      );
+  }
+);
 
 
-    for (
-      let i = 0;
-      i < particleCount;
-      i++
-    ) {
+deviceInput.addEventListener(
+  "keydown",
+  function(event){
 
-      particles.push({
+    if(event.key === "Enter"){
 
-        x:
-          (Math.random() - .5) * 1800,
-
-        y:
-          (Math.random() - .5) * 1100,
-
-        z:
-          Math.random() * 1800 + 100,
-
-        size:
-          Math.random() * 2 + .5,
-
-        color:
-          colors[
-            Math.floor(
-              Math.random() * colors.length
-            )
-          ],
-
-        speed:
-          Math.random() * 2 + .5
-
-      });
+      generateBtn.click();
 
     }
 
-
-    const codeChars =
-      "01{}[]<>/\\\\|=+-_*#$%";
-
-
-    const codeWords = [
-      "FFMAX",
-      "SENS",
-      "DEVICE",
-      "PROFILE",
-      "CORE",
-      "FPS",
-      "RAM",
-      "GPU",
-      "INPUT",
-      "SYSTEM",
-      "CONFIG",
-      "READY",
-      "ENGINE",
-      "DATA",
-      "OPT",
-      "LOAD"
-    ];
+  }
+);
 
 
-    const columns = [];
+/* =========================================
+   GREEN CODE RAIN
+========================================= */
 
-    const columnSize = 26;
+const canvas =
+  document.getElementById("codeRain");
 
-    const columnCount =
-      Math.ceil(
-        width / columnSize
-      );
-
-
-    for (
-      let i = 0;
-      i < columnCount;
-      i++
-    ) {
-
-      columns.push({
-
-        x:
-          i * columnSize,
-
-        y:
-          Math.random() * height,
-
-        speed:
-          1.8 +
-          Math.random() * 5.5,
-
-        length:
-          12 +
-          Math.floor(
-            Math.random() * 25
-          ),
-
-        color:
-          colors[
-            Math.floor(
-              Math.random() * colors.length
-            )
-          ],
-
-        alpha:
-          .15 +
-          Math.random() * .28,
-
-        change:
-          Math.random() * 100
-
-      });
-
-    }
+const ctx =
+  canvas.getContext("2d");
 
 
-    function randomCode() {
+let width;
+let height;
 
-      if (
-        Math.random() < .18
-      ) {
+let columns;
+let drops;
 
-        return codeWords[
-          Math.floor(
-            Math.random() *
-            codeWords.length
-          )
-        ];
 
-      }
+const characters =
+  "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\\\|=+-_*#$%@";
 
-      return codeChars[
+
+function resize(){
+
+  width =
+    window.innerWidth;
+
+  height =
+    window.innerHeight;
+
+
+  canvas.width =
+    width *
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+  canvas.height =
+    height *
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+
+  canvas.style.width =
+    width + "px";
+
+  canvas.style.height =
+    height + "px";
+
+
+  const dpr =
+    Math.min(
+      window.devicePixelRatio || 1,
+      2
+    );
+
+
+  ctx.setTransform(
+    dpr,
+    0,
+    0,
+    dpr,
+    0,
+    0
+  );
+
+
+  const size = 19;
+
+  columns =
+    Math.ceil(
+      width / size
+    );
+
+
+  drops = [];
+
+
+  for(
+    let i = 0;
+    i < columns;
+    i++
+  ){
+
+    drops.push(
+      Math.random() *
+      -80
+    );
+
+  }
+
+}
+
+
+function drawCode(){
+
+  ctx.fillStyle =
+    "rgba(2,8,6,.16)";
+
+  ctx.fillRect(
+    0,
+    0,
+    width,
+    height
+  );
+
+
+  ctx.font =
+    "12px monospace";
+
+
+  for(
+    let i = 0;
+    i < columns;
+    i++
+  ){
+
+    const char =
+      characters[
         Math.floor(
           Math.random() *
-          codeChars.length
+          characters.length
         )
       ];
 
-    }
+
+    const x =
+      i * 19;
+
+    const y =
+      drops[i] * 17;
 
 
-    let rotation = 0;
+    /* HEAD */
+
+    ctx.fillStyle =
+      "rgba(130,255,180,.85)";
+
+    ctx.shadowBlur =
+      8;
+
+    ctx.shadowColor =
+      "#00ff78";
+
+    ctx.fillText(
+      char,
+      x,
+      y
+    );
 
 
-    function drawRing(
-      centerX,
-      centerY,
-      radius,
-      tilt,
-      color
-    ) {
+    /* TRAIL */
 
-      ctx.save();
+    ctx.shadowBlur =
+      0;
 
-      ctx.translate(
-        centerX,
-        centerY
-      );
+    ctx.fillStyle =
+      "rgba(0,255,120,.38)";
 
-      ctx.rotate(
-        tilt
-      );
 
-      ctx.beginPath();
+    for(
+      let trail = 1;
+      trail < 9;
+      trail++
+    ){
 
-      const segments = 100;
+      const trailChar =
+        characters[
+          Math.floor(
+            Math.random() *
+            characters.length
+          )
+        ];
 
-      for (
-        let i = 0;
-        i <= segments;
-        i++
-      ) {
 
-        const angle =
-          (i / segments) *
-          Math.PI * 2;
+      const trailY =
+        y -
+        trail * 17;
 
-        const x =
-          Math.cos(angle) *
-          radius;
-
-        const y =
-          Math.sin(angle) *
-          radius *
-          .28;
-
-        if (i === 0) {
-          ctx.moveTo(x, y);
-        } else {
-          ctx.lineTo(x, y);
-        }
-
-      }
-
-      ctx.strokeStyle =
-        color;
 
       ctx.globalAlpha =
-        .18;
+        1 -
+        trail / 10;
 
-      ctx.lineWidth =
-        1;
 
-      ctx.shadowBlur =
-        18;
-
-      ctx.shadowColor =
-        color;
-
-      ctx.stroke();
-
-      ctx.restore();
+      ctx.fillText(
+        trailChar,
+        x,
+        trailY
+      );
 
     }
 
 
-    function drawParticles() {
-
-      for (
-        const p of particles
-      ) {
-
-        p.z -= p.speed;
-
-        if (p.z < 1) {
-
-          p.z =
-            1800;
-
-          p.x =
-            (Math.random() - .5) *
-            1800;
-
-          p.y =
-            (Math.random() - .5) *
-            1100;
-
-        }
+    ctx.globalAlpha = 1;
 
 
-        const perspective =
-          650 / p.z;
+    drops[i] +=
+      .55 +
+      Math.random() * .75;
 
 
-        const x =
-          width / 2 +
-          p.x *
-          perspective +
-          mouseX *
-          25 *
-          perspective;
+    if(
+      y > height + 200 &&
+      Math.random() > .975
+    ){
 
-
-        const y =
-          height / 2 +
-          p.y *
-          perspective +
-          mouseY *
-          20 *
-          perspective;
-
-
-        const size =
-          Math.max(
-            .4,
-            p.size *
-            perspective *
-            2
-          );
-
-
-        if (
-          x < -50 ||
-          x > width + 50 ||
-          y < -50 ||
-          y > height + 50
-        ) {
-          continue;
-        }
-
-
-        ctx.beginPath();
-
-        ctx.arc(
-          x,
-          y,
-          size,
-          0,
-          Math.PI * 2
-        );
-
-        ctx.fillStyle =
-          p.color;
-
-        ctx.globalAlpha =
-          Math.min(
-            .75,
-            perspective
-          );
-
-        ctx.shadowBlur =
-          14;
-
-        ctx.shadowColor =
-          p.color;
-
-        ctx.fill();
-
-      }
-
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
+      drops[i] =
+        Math.random() * -40;
 
     }
 
+  }
 
-    function drawCode() {
-
-      ctx.font =
-        "11px monospace";
-
-      for (
-        const c of columns
-      ) {
-
-        for (
-          let i = 0;
-          i < c.length;
-          i++
-        ) {
-
-          const char =
-            randomCode();
-
-          const y =
-            c.y -
-            i * 17;
-
-          const fade =
-            1 -
-            i / c.length;
-
-          ctx.globalAlpha =
-            c.alpha *
-            fade;
-
-          ctx.fillStyle =
-            c.color;
-
-          ctx.shadowBlur =
-            8;
-
-          ctx.shadowColor =
-            c.color;
-
-          ctx.fillText(
-            char,
-            c.x,
-            y
-          );
-
-        }
+}
 
 
-        c.y +=
-          c.speed;
+function animateCode(){
+
+  drawCode();
+
+  requestAnimationFrame(
+    animateCode
+  );
+
+}
 
 
-        if (
-          c.y -
-          c.length * 17 >
-          height
-        ) {
+resize();
 
-          c.y =
-            -Math.random() * 300;
+window.addEventListener(
+  "resize",
+  resize
+);
 
-          c.speed =
-            1.8 +
-            Math.random() * 5.5;
+animateCode();
 
-          c.color =
-            colors[
-              Math.floor(
-                Math.random() *
-                colors.length
-              )
-            ];
-
-          c.length =
-            12 +
-            Math.floor(
-              Math.random() * 25
-            );
-
-        }
-
-      }
-
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
-
-    }
-
-
-    function animate() {
-
-      requestAnimationFrame(
-        animate
-      );
-
-
-      mouseX +=
-        (targetX - mouseX) *
-        .035;
-
-      mouseY +=
-        (targetY - mouseY) *
-        .035;
-
-
-      ctx.clearRect(
-        0,
-        0,
-        width,
-        height
-      );
-
-
-      /* BACKGROUND */
-
-      ctx.fillStyle =
-        "#03050b";
-
-      ctx.fillRect(
-        0,
-        0,
-        width,
-        height
-      );
-
-
-      /* 3D PARTICLES */
-
-      drawParticles();
-
-
-      /* CODE RAIN */
-
-      drawCode();
-
-
-      /* ROTATING 3D RINGS */
-
-      rotation +=
-        .0035;
-
-
-      const centerX =
-        width / 2 +
-        mouseX * 35;
-
-      const centerY =
-        height / 2 +
-        mouseY * 25;
-
-
-      drawRing(
-        centerX,
-        centerY,
-        Math.min(width, height) * .25,
-        rotation,
-        "#00eaff"
-      );
-
-
-      drawRing(
-        centerX,
-        centerY,
-        Math.min(width, height) * .32,
-        -rotation * 1.3,
-        "#a855f7"
-      );
-
-
-      drawRing(
-        centerX,
-        centerY,
-        Math.min(width, height) * .40,
-        rotation * .7,
-        "#ff4fd8"
-      );
-
-
-      ctx.globalAlpha = 1;
-      ctx.shadowBlur = 0;
-
-    }
-
-
-    animate();
-
-  </script>
+</script>
 
 </body>
 </html>
