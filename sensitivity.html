@@ -4,2413 +4,898 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Brazilian Sensi FF</title>
+<title>AimVanta FF — Free Fire MAX Sensitivity Generator</title>
 
-<meta name="description"
-content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and gaming settings.">
+<meta name="description" content="AimVanta FF Free Fire MAX sensitivity generator. Generate device-based sensitivity settings for smoother gameplay and better control.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical"
+href="https://pubgkr21518-ui.github.io/rashid-digital/sensitivity.html">
+
+<meta property="og:title" content="AimVanta FF — Free Fire MAX Sensitivity">
+<meta property="og:description" content="Generate Free Fire MAX sensitivity settings based on your device.">
+<meta property="og:type" content="website">
+<meta property="og:url"
+content="https://pubgkr21518-ui.github.io/rashid-digital/sensitivity.html">
 
 <style>
-
 *{
-    box-sizing:border-box;
     margin:0;
     padding:0;
+    box-sizing:border-box;
 }
 
-:root{
-    --bg:#050814;
-    --c1:#00eaff;
-    --c2:#7c3cff;
-    --c3:#00ff9d;
-    --text:#ffffff;
-    --muted:#aebbd0;
-}
-
-html,
-body{
-    width:100%;
-    min-height:100%;
+html{
+    scroll-behavior:smooth;
 }
 
 body{
+    min-height:100vh;
     font-family:Arial,Helvetica,sans-serif;
-    color:var(--text);
-
+    color:#fff;
     background:
-        radial-gradient(
-            circle at 20% 20%,
-            color-mix(in srgb,var(--c1) 15%,transparent),
-            transparent 35%
-        ),
-        radial-gradient(
-            circle at 80% 70%,
-            color-mix(in srgb,var(--c2) 16%,transparent),
-            transparent 38%
-        ),
-        var(--bg);
-
+        radial-gradient(circle at 20% 20%,rgba(0,255,170,.12),transparent 30%),
+        radial-gradient(circle at 80% 70%,rgba(0,120,255,.12),transparent 30%),
+        linear-gradient(135deg,#020806,#031713,#020509);
     overflow-x:hidden;
 }
 
-
-/* =====================================================
-   BACKGROUND
-===================================================== */
-
-#codeRain{
+#matrix{
     position:fixed;
     inset:0;
     width:100%;
     height:100%;
-    overflow:hidden;
-    pointer-events:none;
-    z-index:0;
+    z-index:-2;
+    opacity:.18;
 }
 
-.codeColumn{
-    position:absolute;
-    top:-180%;
-    white-space:pre;
-    writing-mode:vertical-rl;
-
-    font-family:"Courier New",monospace;
-    font-size:13px;
-    line-height:1.25;
-    letter-spacing:2px;
-
-    opacity:.30;
-
-    text-shadow:
-        0 0 4px currentColor,
-        0 0 10px currentColor;
-
-    animation:fall linear infinite;
-}
-
-@keyframes fall{
-    from{
-        transform:translateY(-20vh);
-    }
-
-    to{
-        transform:translateY(220vh);
-    }
-}
-
-.upColumn{
-    position:absolute;
-    bottom:-180%;
-    white-space:pre;
-    writing-mode:vertical-rl;
-
-    font-family:"Courier New",monospace;
-    font-size:12px;
-    line-height:1.3;
-    letter-spacing:2px;
-
-    opacity:.22;
-
-    text-shadow:
-        0 0 4px currentColor,
-        0 0 9px currentColor;
-
-    animation:rise linear infinite;
-}
-
-@keyframes rise{
-    from{
-        transform:translateY(20vh);
-    }
-
-    to{
-        transform:translateY(-220vh);
-    }
-}
-
-.horizontalLayer{
+.overlay{
     position:fixed;
     inset:0;
-    overflow:hidden;
+    background:
+        radial-gradient(circle at center,transparent 20%,rgba(0,0,0,.5) 100%);
     pointer-events:none;
-    z-index:0;
+    z-index:-1;
 }
 
-.horizontalCode{
-    position:absolute;
-    white-space:nowrap;
-
-    font-family:"Courier New",monospace;
-    font-size:11px;
-    opacity:.18;
-
-    text-shadow:0 0 7px currentColor;
-
-    animation:moveCode linear infinite;
+.container{
+    width:min(1100px,92%);
+    margin:auto;
 }
-
-@keyframes moveCode{
-
-    from{
-        transform:translateX(-120vw);
-    }
-
-    to{
-        transform:translateX(120vw);
-    }
-}
-
-.bgGlow{
-    position:fixed;
-
-    width:500px;
-    height:500px;
-
-    border-radius:50%;
-
-    pointer-events:none;
-
-    filter:blur(90px);
-
-    opacity:.13;
-
-    z-index:0;
-}
-
-.glow1{
-    background:var(--c1);
-    top:-180px;
-    left:-180px;
-}
-
-.glow2{
-    background:var(--c2);
-    right:-180px;
-    bottom:-180px;
-}
-
-.glow3{
-    background:var(--c3);
-
-    left:35%;
-    top:40%;
-
-    width:300px;
-    height:300px;
-
-    opacity:.07;
-}
-
-
-/* =====================================================
-   HEADER
-===================================================== */
 
 header{
-    position:relative;
-    z-index:5;
-
-    text-align:center;
-
-    padding:28px 15px 10px;
+    padding:24px 0;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
 }
 
 .logo{
-    display:inline-block;
-
-    padding:9px 17px;
-
-    border:1px solid
-        color-mix(in srgb,var(--c1) 55%,transparent);
-
-    border-radius:30px;
-
-    background:rgba(5,8,20,.20);
-
-    backdrop-filter:blur(8px);
-
-    color:var(--c1);
-
-    font-weight:bold;
-
-    letter-spacing:2px;
-
-    box-shadow:
-        0 0 18px
-        color-mix(in srgb,var(--c1) 18%,transparent);
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
 }
 
-header h1{
-    margin-top:15px;
-
-    font-size:clamp(28px,6vw,48px);
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--c1),
-            #fff,
-            var(--c2)
-        );
-
-    -webkit-background-clip:text;
-    background-clip:text;
-
-    color:transparent;
+.logo span{
+    color:#00ff9d;
+    text-shadow:0 0 18px rgba(0,255,157,.65);
 }
 
-header p{
-    margin-top:8px;
-    color:var(--muted);
+.back{
+    color:#00ff9d;
+    text-decoration:none;
+    border:1px solid rgba(0,255,157,.35);
+    padding:10px 16px;
+    border-radius:12px;
+    background:rgba(0,0,0,.3);
 }
 
-
-/* =====================================================
-   CONTAINER
-===================================================== */
-
-.container{
-    position:relative;
-    z-index:5;
-
-    width:min(1050px,94%);
-
-    margin:20px auto 50px;
-}
-
-
-/* =====================================================
-   GLASS
-===================================================== */
-
-.glass{
-    background:rgba(5,8,20,.16);
-
-    border:1px solid rgba(255,255,255,.13);
-
-    backdrop-filter:blur(7px);
-    -webkit-backdrop-filter:blur(7px);
-
-    border-radius:22px;
-
-    box-shadow:
-        0 15px 45px rgba(0,0,0,.20),
-        inset 0 0 25px rgba(255,255,255,.025);
-}
-
-.profile{
-    padding:25px;
-
-    margin-bottom:22px;
-
-    overflow:hidden;
-
-    position:relative;
-}
-
-.profile:before{
-    content:"";
-
-    position:absolute;
-
-    width:180px;
-    height:180px;
-
-    border-radius:50%;
-
-    background:var(--c1);
-
-    opacity:.08;
-
-    filter:blur(55px);
-
-    top:-70px;
-    right:-40px;
-}
-
-.profileTop{
-    position:relative;
-    z-index:2;
-
-    display:flex;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    align-items:center;
-
-    flex-wrap:wrap;
-}
-
-.profileTitle{
-    font-size:14px;
-
-    color:var(--c1);
-
-    text-transform:uppercase;
-
-    letter-spacing:2px;
-}
-
-.deviceName{
-    font-size:clamp(23px,5vw,36px);
-
-    margin-top:8px;
-
-    font-weight:800;
-}
-
-.meta{
-    margin-top:8px;
-
-    color:var(--muted);
+.hero{
+    text-align:center;
+    padding:45px 0 25px;
 }
 
 .badge{
-    padding:9px 15px;
-
-    border-radius:30px;
-
-    border:1px solid
-        color-mix(in srgb,var(--c3) 55%,transparent);
-
-    color:var(--c3);
-
-    background:rgba(0,255,157,.05);
-
-    box-shadow:
-        0 0 15px rgba(0,255,157,.08);
-}
-
-
-/* =====================================================
-   DEVICE PERFORMANCE BADGE
-===================================================== */
-
-.performanceBox{
-    margin-top:20px;
-
-    display:grid;
-
-    grid-template-columns:
-        repeat(3,1fr);
-
-    gap:10px;
-}
-
-.performanceItem{
-    padding:13px;
-
-    border-radius:14px;
-
-    background:rgba(0,0,0,.13);
-
-    border:1px solid rgba(255,255,255,.08);
-
-    text-align:center;
-}
-
-.performanceItem small{
-    display:block;
-
-    color:var(--muted);
-
-    margin-bottom:5px;
-}
-
-.performanceItem strong{
-    color:var(--c1);
-
-    font-size:15px;
-}
-
-
-/* =====================================================
-   SECTION
-===================================================== */
-
-.section{
-    padding:23px;
-
-    margin-bottom:22px;
-}
-
-.section h2{
+    display:inline-block;
+    padding:8px 15px;
+    border:1px solid rgba(0,255,157,.3);
+    border-radius:999px;
+    color:#00ff9d;
+    background:rgba(0,255,157,.06);
+    font-size:12px;
+    letter-spacing:1.5px;
     margin-bottom:18px;
-
-    font-size:22px;
 }
 
-.section h2 span{
-    color:var(--c1);
+h1{
+    font-size:clamp(38px,7vw,70px);
+    line-height:1;
+    margin-bottom:18px;
 }
 
+h1 span{
+    color:#00ff9d;
+    text-shadow:
+        0 0 10px rgba(0,255,157,.45),
+        0 0 30px rgba(0,255,157,.2);
+}
 
-/* =====================================================
-   SENSITIVITY
-===================================================== */
+.hero p{
+    max-width:700px;
+    margin:auto;
+    color:#a9c5bd;
+    line-height:1.7;
+}
 
-.sensitivityGrid{
+.profile{
+    margin:30px auto;
+    max-width:850px;
+    padding:25px;
+    border:1px solid rgba(0,255,157,.18);
+    border-radius:22px;
+    background:rgba(4,18,15,.7);
+    backdrop-filter:blur(16px);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+}
+
+.profile-grid{
     display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:14px;
-}
-
-.sensCard{
-    position:relative;
-
-    padding:17px;
-
-    border-radius:17px;
-
-    background:rgba(0,0,0,.13);
-
-    border:1px solid rgba(255,255,255,.10);
-
-    overflow:hidden;
-}
-
-.sensTop{
-    display:flex;
-
-    justify-content:space-between;
-
-    align-items:center;
-
-    margin-bottom:12px;
-}
-
-.sensName{
-    font-weight:bold;
-}
-
-.sensValue{
-    font-size:20px;
-
-    font-weight:900;
-
-    color:var(--c1);
-}
-
-.bar{
-    height:8px;
-
-    border-radius:20px;
-
-    background:rgba(255,255,255,.08);
-
-    overflow:hidden;
-}
-
-.barFill{
-    height:100%;
-
-    width:var(--value);
-
-    border-radius:20px;
-
-    background:
-        linear-gradient(
-            90deg,
-            var(--c1),
-            var(--c2),
-            var(--c3)
-        );
-
-    box-shadow:
-        0 0 7px var(--c1),
-        0 0 15px
-        color-mix(in srgb,var(--c2) 60%,transparent);
-
-    animation:
-        pulseBar 2.2s
-        ease-in-out
-        infinite alternate;
-}
-
-@keyframes pulseBar{
-
-    from{
-        filter:brightness(.85);
-    }
-
-    to{
-        filter:brightness(1.3);
-    }
-}
-
-
-/* =====================================================
-   SETTINGS
-===================================================== */
-
-.settingsGrid{
-    display:grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
-    gap:12px;
-}
-
-.setting{
-    padding:15px;
-
-    border-radius:15px;
-
-    background:rgba(0,0,0,.13);
-
-    border:1px solid rgba(255,255,255,.09);
-
-    display:flex;
-
-    justify-content:space-between;
-
+    grid-template-columns:repeat(3,1fr);
     gap:15px;
 }
 
-.settingName{
-    color:#e9efff;
+.profile-item{
+    padding:18px;
+    border-radius:15px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.06);
 }
 
-.settingValue{
-    color:var(--c3);
+.profile-item small{
+    display:block;
+    color:#77948c;
+    margin-bottom:8px;
+}
 
-    font-weight:bold;
+.profile-item strong{
+    color:#fff;
+    word-break:break-word;
+}
 
+.section-title{
+    text-align:center;
+    margin:50px 0 20px;
+    font-size:30px;
+}
+
+.section-title span{
+    color:#00ff9d;
+}
+
+.sensi-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.card{
+    padding:22px;
+    border-radius:20px;
+    background:rgba(5,20,17,.72);
+    border:1px solid rgba(0,255,157,.14);
+    backdrop-filter:blur(14px);
+}
+
+.card-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:15px;
+}
+
+.card-head h3{
+    font-size:17px;
+}
+
+.value{
+    color:#00ff9d;
+    font-size:25px;
+    font-weight:900;
+}
+
+.bar{
+    height:10px;
+    background:rgba(255,255,255,.08);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.bar-fill{
+    height:100%;
+    width:0;
+    border-radius:20px;
+    background:linear-gradient(90deg,#00ff9d,#00aaff);
+    box-shadow:0 0 15px rgba(0,255,157,.4);
+    transition:width 1s ease;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.info-card{
+    padding:23px;
+    border-radius:20px;
+    background:rgba(5,20,17,.72);
+    border:1px solid rgba(0,255,157,.14);
+}
+
+.info-card h3{
+    color:#00ff9d;
+    margin-bottom:15px;
+}
+
+.setting{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:11px 0;
+    border-bottom:1px solid rgba(255,255,255,.05);
+    color:#b8ccc7;
+}
+
+.setting:last-child{
+    border-bottom:none;
+}
+
+.setting strong{
+    color:#fff;
     text-align:right;
 }
 
-
-/* =====================================================
-   NOTE
-===================================================== */
-
-.note{
-    padding:18px;
-
-    line-height:1.6;
-
-    color:#c9d5e9;
-
-    border-left:3px solid var(--c1);
-
-    background:rgba(0,0,0,.13);
-
-    border-radius:12px;
-}
-
-
-/* =====================================================
-   ACTIONS
-===================================================== */
-
 .actions{
-    display:grid;
-
-    grid-template-columns:
-        repeat(4,1fr);
-
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
     gap:12px;
-
-    margin-top:22px;
+    margin:35px 0;
 }
 
 button{
     border:none;
-
     cursor:pointer;
-
-    padding:14px 13px;
-
-    border-radius:14px;
-
-    color:white;
-
-    font-weight:800;
-
-    font-size:13px;
-
-    background:rgba(5,8,20,.32);
-
-    border:1px solid
-        color-mix(in srgb,var(--c1) 35%,transparent);
-
-    transition:.2s;
-
-    backdrop-filter:blur(7px);
+    color:#00120b;
+    font-weight:900;
+    padding:14px 20px;
+    border-radius:13px;
+    background:#00ff9d;
+    box-shadow:0 0 22px rgba(0,255,157,.2);
 }
 
-button:hover{
-    transform:translateY(-3px);
-
-    border-color:var(--c1);
-
-    box-shadow:
-        0 0 20px
-        color-mix(in srgb,var(--c1) 20%,transparent);
+button.secondary{
+    color:#fff;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.1);
 }
-
-.primary{
-    background:
-        linear-gradient(
-            135deg,
-            color-mix(in srgb,var(--c1) 22%,transparent),
-            color-mix(in srgb,var(--c2) 22%,transparent)
-        );
-}
-
-
-/* =====================================================
-   RECENT
-===================================================== */
 
 .recent{
-    margin-top:22px;
-
-    padding:20px;
+    margin-top:40px;
 }
 
-.recentList{
+.recent-list{
     display:grid;
-
     gap:10px;
-
-    margin-top:14px;
 }
 
-.recentItem{
+.recent-item{
     display:flex;
-
     justify-content:space-between;
-
     align-items:center;
-
-    gap:12px;
-
-    padding:13px;
-
-    border-radius:13px;
-
-    background:rgba(0,0,0,.12);
-
-    border:1px solid rgba(255,255,255,.08);
-}
-
-.recentInfo{
-    min-width:0;
-}
-
-.recentInfo strong{
-    display:block;
-}
-
-.recentInfo small{
-    color:var(--muted);
-}
-
-.recentButtons{
-    display:flex;
-
-    gap:7px;
-}
-
-.smallBtn{
-    padding:8px 11px;
-
-    font-size:11px;
-}
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-.toast{
-    position:fixed;
-
-    left:50%;
-    bottom:25px;
-
-    transform:
-        translate(-50%,120px);
-
-    z-index:50;
-
-    padding:13px 19px;
-
-    border-radius:30px;
-
-    background:rgba(5,8,20,.82);
-
-    border:1px solid var(--c1);
-
-    backdrop-filter:blur(12px);
-
-    box-shadow:
-        0 0 25px
-        color-mix(in srgb,var(--c1) 20%,transparent);
-
-    transition:.3s;
-
-    opacity:0;
-}
-
-.toast.show{
-    transform:
-        translate(-50%,0);
-
-    opacity:1;
-}
-
-
-/* =====================================================
-   FOOTER
-===================================================== */
-
-footer{
-    position:relative;
-
-    z-index:5;
-
-    text-align:center;
-
+    gap:15px;
     padding:15px;
+    border-radius:14px;
+    background:rgba(255,255,255,.035);
+    border:1px solid rgba(255,255,255,.06);
+}
 
-    color:#8290a8;
+.recent-item small{
+    color:#7f9a93;
+}
 
+.recent-item button{
+    padding:9px 13px;
     font-size:12px;
 }
 
+.empty{
+    color:#718780;
+    text-align:center;
+    padding:20px;
+}
 
-/* =====================================================
-   MOBILE
-===================================================== */
+.disclaimer{
+    margin:40px 0;
+    padding:18px;
+    border-radius:15px;
+    color:#8ea59f;
+    font-size:13px;
+    line-height:1.7;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.06);
+}
+
+footer{
+    text-align:center;
+    padding:35px 0;
+    color:#6f8882;
+    font-size:13px;
+}
+
+footer span{
+    color:#00ff9d;
+}
 
 @media(max-width:700px){
 
-    .sensitivityGrid,
-    .settingsGrid{
+    header{
+        align-items:flex-start;
+    }
+
+    .profile-grid,
+    .sensi-grid,
+    .info-grid{
         grid-template-columns:1fr;
     }
 
-    .actions{
-        grid-template-columns:
-            repeat(2,1fr);
+    .hero{
+        padding-top:25px;
     }
 
-    .performanceBox{
-        grid-template-columns:1fr;
+    h1{
+        font-size:43px;
     }
 
-    .profile,
-    .section{
-        padding:18px;
-    }
-
-    .setting{
-        font-size:13px;
+    .recent-item{
+        align-items:flex-start;
     }
 }
-
-@media(max-width:420px){
-
-    .actions{
-        grid-template-columns:1fr;
-    }
-
-    .deviceName{
-        font-size:25px;
-    }
-
-    .codeColumn,
-    .upColumn{
-        font-size:10px;
-
-        opacity:.22;
-    }
-}
-
 </style>
 </head>
 
-
 <body>
 
-<div id="codeRain"></div>
+<canvas id="matrix"></canvas>
+<div class="overlay"></div>
 
-<div class="horizontalLayer"
-     id="horizontalLayer"></div>
-
-<div class="bgGlow glow1"></div>
-<div class="bgGlow glow2"></div>
-<div class="bgGlow glow3"></div>
-
+<div class="container">
 
 <header>
-
     <div class="logo">
-        ⚡ BRAZILIAN SENSI FF
+        AimVanta <span>FF</span>
+    </div>
+
+    <a href="index.html" class="back">
+        ← Home
+    </a>
+</header>
+
+<section class="hero">
+
+    <div class="badge">
+        AIMVANTA FF • SENSITIVITY ENGINE
     </div>
 
     <h1>
-        Perfect Sensitivity
+        Your <span>Free Fire</span><br>
+        Sensitivity
     </h1>
 
     <p>
-        Device-optimized Free Fire MAX profile
+        Device-based Free Fire MAX sensitivity recommendations
+        designed as a starting point for smoother control and
+        comfortable gameplay.
     </p>
 
-</header>
-
-
-<main class="container">
-
-
-<section class="profile glass">
-
-    <div class="profileTop">
-
-        <div>
-
-            <div class="profileTitle">
-                Generated Profile
-            </div>
-
-            <div
-                class="deviceName"
-                id="deviceName">
-
-                Your Device
-
-            </div>
-
-            <div
-                class="meta"
-                id="deviceMeta">
-
-                RAM • Storage
-
-            </div>
-
-        </div>
-
-
-        <div
-            class="badge"
-            id="profileBadge">
-
-            ● PROFILE READY
-
-        </div>
-
-    </div>
-
-
-    <div
-        class="performanceBox"
-        id="performanceBox">
-    </div>
-
 </section>
 
+<section class="profile">
 
+    <div class="profile-grid">
 
-<section class="section glass">
-
-    <h2>
-        🎯 <span>Sensitivity</span> Settings
-    </h2>
-
-    <div
-        class="sensitivityGrid"
-        id="sensitivityGrid">
-    </div>
-
-</section>
-
-
-
-<section class="section glass">
-
-    <h2>
-        🎮 <span>Gaming</span> Settings
-    </h2>
-
-
-    <div class="settingsGrid">
-
-        <div class="setting">
-            <span class="settingName">
-                Game / Performance Mode
-            </span>
-
-            <span class="settingValue">
-                ENABLE
-            </span>
+        <div class="profile-item">
+            <small>DEVICE</small>
+            <strong id="device">Unknown Device</strong>
         </div>
 
-
-        <div class="setting">
-            <span class="settingName">
-                High Refresh Rate
-            </span>
-
-            <span class="settingValue">
-                ENABLE
-            </span>
+        <div class="profile-item">
+            <small>RAM</small>
+            <strong id="ram">Unknown</strong>
         </div>
 
-
-        <div class="setting">
-            <span class="settingName">
-                Auto-Rotate During Game
-            </span>
-
-            <span class="settingValue">
-                DISABLE
-            </span>
-        </div>
-
-
-        <div class="setting">
-            <span class="settingName">
-                Background Apps
-            </span>
-
-            <span class="settingValue">
-                LIMIT
-            </span>
-        </div>
-
-
-        <div class="setting">
-            <span class="settingName">
-                Graphics
-            </span>
-
-            <span class="settingValue">
-                SMOOTH
-            </span>
-        </div>
-
-
-        <div class="setting">
-            <span class="settingName">
-                High FPS
-            </span>
-
-            <span class="settingValue">
-                ENABLE
-            </span>
-        </div>
-
-
-        <div class="setting">
-            <span class="settingName">
-                Battery Saver While Gaming
-            </span>
-
-            <span class="settingValue">
-                DISABLE
-            </span>
-        </div>
-
-
-        <div class="setting">
-            <span class="settingName">
-                Game Booster
-            </span>
-
-            <span class="settingValue">
-                ENABLE
-            </span>
+        <div class="profile-item">
+            <small>STORAGE</small>
+            <strong id="storage">Unknown</strong>
         </div>
 
     </div>
 
 </section>
 
+<h2 class="section-title">
+    Sensitivity <span>Settings</span>
+</h2>
 
+<section class="sensi-grid" id="sensiGrid"></section>
 
-<section class="section glass">
+<h2 class="section-title">
+    Gaming <span>Settings</span>
+</h2>
 
-    <h2>
-        🔋 <span>Battery & Thermal</span>
-    </h2>
+<section class="info-grid">
 
+    <div class="info-card">
 
-    <div class="settingsGrid">
+        <h3>Phone Gaming</h3>
 
         <div class="setting">
-            <span class="settingName">
-                Battery Saver During Match
-            </span>
-
-            <span class="settingValue">
-                DISABLE
-            </span>
+            <span>Game / Performance Mode</span>
+            <strong>ENABLE</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Background Sync
-            </span>
-
-            <span class="settingValue">
-                LIMIT
-            </span>
+            <span>High Refresh Rate</span>
+            <strong>ENABLE</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Unused Apps
-            </span>
-
-            <span class="settingValue">
-                RESTRICT
-            </span>
+            <span>Auto-Rotate During Game</span>
+            <strong>DISABLE</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Brightness
-            </span>
-
-            <span class="settingValue">
-                BALANCED
-            </span>
+            <span>Background Apps</span>
+            <strong>LIMIT</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Heavy Gaming While Charging
-            </span>
-
-            <span class="settingValue">
-                AVOID
-            </span>
+            <span>Graphics</span>
+            <strong>SMOOTH</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Extreme Performance / Overclock
-            </span>
-
-            <span class="settingValue">
-                AVOID
-            </span>
+            <span>High FPS</span>
+            <strong>ENABLE</strong>
         </div>
 
-
         <div class="setting">
-            <span class="settingName">
-                Temperature
-            </span>
-
-            <span class="settingValue">
-                MONITOR
-            </span>
+            <span>Battery Saver While Gaming</span>
+            <strong>DISABLE</strong>
         </div>
 
+        <div class="setting">
+            <span>Game Booster</span>
+            <strong>ENABLE</strong>
+        </div>
+
+    </div>
+
+    <div class="info-card">
+
+        <h3>Battery & Thermal</h3>
 
         <div class="setting">
-            <span class="settingName">
-                Cooling Breaks
-            </span>
+            <span>Battery Saver During Match</span>
+            <strong>DISABLE</strong>
+        </div>
 
-            <span class="settingValue">
-                RECOMMENDED
-            </span>
+        <div class="setting">
+            <span>Background Sync</span>
+            <strong>LIMIT</strong>
+        </div>
+
+        <div class="setting">
+            <span>Unused Apps</span>
+            <strong>RESTRICT</strong>
+        </div>
+
+        <div class="setting">
+            <span>Brightness</span>
+            <strong>BALANCED</strong>
+        </div>
+
+        <div class="setting">
+            <span>Heavy Gaming While Charging</span>
+            <strong>AVOID</strong>
+        </div>
+
+        <div class="setting">
+            <span>Extreme Performance / Overclock</span>
+            <strong>AVOID</strong>
+        </div>
+
+        <div class="setting">
+            <span>Temperature</span>
+            <strong>MONITOR</strong>
+        </div>
+
+        <div class="setting">
+            <span>Cooling Breaks</span>
+            <strong>RECOMMENDED</strong>
         </div>
 
     </div>
 
 </section>
 
+<div class="actions">
 
-
-<section class="section glass">
-
-    <div class="note">
-
-        <strong>
-            🎯 Brazilian Sensi FF:
-        </strong>
-
-        <br>
-
-        These values are device-based starting profiles
-        designed for Free Fire MAX drag/headshot practice.
-
-        <br><br>
-
-        Sensitivity is not universal:
-        touch response, screen refresh rate, FPS,
-        game version and individual drag style can change
-        the result. Fine-tune by small steps after testing.
-
-    </div>
-
-</section>
-
-
-
-<section class="glass section">
-
-    <h2>
-        ⚡ <span>Profile Actions</span>
-    </h2>
-
-
-    <div class="actions">
-
-        <button
-            class="primary"
-            onclick="copySettings()">
-
-            📋 COPY SETTINGS
-
-        </button>
-
-
-        <button
-            onclick="saveProfile()">
-
-            💾 SAVE PROFILE
-
-        </button>
-
-
-        <button
-            onclick="shareProfile()">
-
-            📤 SHARE PROFILE
-
-        </button>
-
-
-        <button
-            onclick="generateAgain()">
-
-            🔄 GENERATE AGAIN
-
-        </button>
-
-    </div>
-
-</section>
-
-
-
-<section class="recent glass">
-
-    <h2>
-        🕘 Recent Devices
-    </h2>
-
-
-    <div
-        class="recentList"
-        id="recentList">
-    </div>
-
-
-    <button
-        class="smallBtn"
-        style="margin-top:12px"
-        onclick="clearRecent()">
-
-        CLEAR HISTORY
-
+    <button onclick="copySettings()">
+        COPY SETTINGS
     </button>
 
-</section>
+    <button onclick="saveProfile()">
+        SAVE PROFILE
+    </button>
 
+    <button onclick="shareProfile()">
+        SHARE PROFILE
+    </button>
 
-</main>
+    <button class="secondary" onclick="generateAgain()">
+        GENERATE AGAIN
+    </button>
 
-
-<footer>
-
-    BRAZILIAN SENSI FF •
-    FREE FIRE MAX SENSITIVITY ENGINE
-
-</footer>
-
-
-<div
-    class="toast"
-    id="toast">
 </div>
 
+<section class="recent">
 
+    <h2 class="section-title">
+        Recent <span>Devices</span>
+    </h2>
+
+    <div class="recent-list" id="recentList"></div>
+
+</section>
+
+<div class="disclaimer">
+    <strong>AimVanta FF Note:</strong><br>
+    These are recommended starting-point settings.
+    Actual sensitivity, touch response, FPS, temperature and
+    battery performance can vary depending on the device,
+    game version, system software and individual preference.
+</div>
+
+<footer>
+    © 2026 <span>AimVanta FF</span> • Free Fire MAX Sensitivity Tool
+</footer>
+
+</div>
 
 <script>
 
-/* =====================================================
-   RANDOM THEMES
-===================================================== */
+const params = new URLSearchParams(window.location.search);
 
-const themes = [
-
-    ["#050814","#00eaff","#7c3cff","#00ff9d"],
-    ["#08050f","#ff00e6","#6c5cff","#00eaff"],
-    ["#030b09","#00ff9d","#00eaff","#8aff00"],
-    ["#0d0505","#ff3b6b","#ff8a00","#ffe600"],
-    ["#05050d","#8b5cff","#00c8ff","#ff00d4"],
-    ["#03070d","#00aaff","#004cff","#00ffcc"],
-    ["#0a0602","#ff6b00","#ff006e","#ffe600"],
-    ["#05030c","#d000ff","#7c3cff","#00eaff"],
-    ["#020b0b","#00ffd5","#00ff66","#00bfff"],
-    ["#090308","#ff007a","#ff00d4","#8b5cff"],
-    ["#030509","#00e5ff","#0066ff","#7c3cff"],
-    ["#090503","#ff4d00","#ffb300","#ff006e"],
-    ["#04060c","#00b7ff","#6a00ff","#00ff9d"],
-    ["#08040a","#ff2bd6","#ff0062","#7c3cff"],
-    ["#020909","#00ff9d","#00eaff","#00aaff"],
-    ["#070507","#ff0055","#ff7a00","#ff00e6"],
-    ["#03060b","#1ddcff","#7b2cff","#00ff9d"],
-    ["#080309","#ff00c8","#8a2be2","#00e5ff"],
-    ["#030804","#00ff73","#9dff00","#00eaff"],
-    ["#070403","#ff4b2b","#ffb000","#ff006e"]
-
-];
-
-
-function applyRandomTheme(){
-
-    let last =
-        sessionStorage.getItem("ff_last_theme");
-
-    let index;
-
-    do{
-
-        index =
-            Math.floor(
-                Math.random()*themes.length
-            );
-
-    }while(
-        String(index) === last &&
-        themes.length > 1
-    );
-
-
-    sessionStorage.setItem(
-        "ff_last_theme",
-        index
-    );
-
-
-    const theme =
-        themes[index];
-
-
-    document.documentElement
-        .style
-        .setProperty(
-            "--bg",
-            theme[0]
-        );
-
-
-    document.documentElement
-        .style
-        .setProperty(
-            "--c1",
-            theme[1]
-        );
-
-
-    document.documentElement
-        .style
-        .setProperty(
-            "--c2",
-            theme[2]
-        );
-
-
-    document.documentElement
-        .style
-        .setProperty(
-            "--c3",
-            theme[3]
-        );
-}
-
-
-applyRandomTheme();
-
-
-
-/* =====================================================
-   BACKGROUND CODE
-===================================================== */
-
-const chars =
-`01
-10
-00
-11
-<>
-{}
-[]
-()
-/*
-*/
-::
-;;
-&&
-||
-==
-!=
-++
---
-//
-##
-$$
-@@
-??
-AI
-FF
-MAX
-GAME
-FPS
-PING
-RAM
-CPU
-GPU
-HTTP
-TCP
-UDP
-SYSTEM
-DATA
-LOAD
-RUN
-CODE
-NULL
-VOID
-BYTE
-ENGINE
-PLAYER
-SENS
-AIM
-HEAD
-SHOT
-TARGET
-BOOST
-CORE
-DRAG
-LOCK
-READY
-PROFILE
-BRAZIL`;
-
-
-
-const rain =
-    document.getElementById("codeRain");
-
-
-function randomCode(){
-
-    let result = "";
-
-    const lines =
-        chars.split("\n");
-
-    const count =
-        16 +
-        Math.floor(
-            Math.random()*15
-        );
-
-
-    for(let i=0;i<count;i++){
-
-        result +=
-            lines[
-                Math.floor(
-                    Math.random()*lines.length
-                )
-            ] + "\n";
-
-    }
-
-
-    return result;
-}
-
-
-
-for(let i=0;i<42;i++){
-
-    const el =
-        document.createElement("div");
-
-    el.className =
-        "codeColumn";
-
-    el.textContent =
-        randomCode();
-
-    el.style.left =
-        (Math.random()*100)+"%";
-
-    el.style.animationDuration =
-        (3.5 + Math.random()*7)+"s";
-
-    el.style.animationDelay =
-        (-Math.random()*10)+"s";
-
-
-    const colors = [
-        "var(--c1)",
-        "var(--c2)",
-        "var(--c3)"
-    ];
-
-
-    el.style.color =
-        colors[
-            Math.floor(
-                Math.random()*colors.length
-            )
-        ];
-
-
-    rain.appendChild(el);
-}
-
-
-
-/* =====================================================
-   UPWARD CODE
-===================================================== */
-
-for(let i=32;i>0;i--){
-
-    const el =
-        document.createElement("div");
-
-    el.className =
-        "upColumn";
-
-    el.textContent =
-        randomCode();
-
-    el.style.left =
-        (Math.random()*100)+"%";
-
-    el.style.animationDuration =
-        (5 + Math.random()*9)+"s";
-
-    el.style.animationDelay =
-        (-Math.random()*12)+"s";
-
-
-    const colors = [
-        "var(--c1)",
-        "var(--c2)",
-        "var(--c3)"
-    ];
-
-
-    el.style.color =
-        colors[
-            Math.floor(
-                Math.random()*colors.length
-            )
-        ];
-
-
-    document
-        .getElementById("codeRain")
-        .appendChild(el);
-}
-
-
-
-/* =====================================================
-   HORIZONTAL CODE
-===================================================== */
-
-const horizontalLayer =
-    document.getElementById(
-        "horizontalLayer"
-    );
-
-
-const horizontalWords = [
-    "FFMAX",
-    "BRAZILIAN SENSI",
-    "HEADSHOT",
-    "DRAG",
-    "AIM",
-    "SENSITIVITY",
-    "FPS",
-    "DEVICE",
-    "PROFILE",
-    "ENGINE",
-    "READY",
-    "TARGET",
-    "INPUT",
-    "TOUCH",
-    "PERFORMANCE"
-];
-
-
-for(let i=0;i<18;i++){
-
-    const el =
-        document.createElement("div");
-
-    el.className =
-        "horizontalCode";
-
-    el.textContent =
-        horizontalWords[
-            Math.floor(
-                Math.random()*
-                horizontalWords.length
-            )
-        ]
-        + " // "
-        +
-        Math.floor(
-            Math.random()*9999
-        );
-
-
-    el.style.top =
-        (Math.random()*100)+"%";
-
-
-    el.style.animationDuration =
-        (8 + Math.random()*14)+"s";
-
-
-    el.style.animationDelay =
-        (-Math.random()*15)+"s";
-
-
-    const colors = [
-        "var(--c1)",
-        "var(--c2)",
-        "var(--c3)"
-    ];
-
-
-    el.style.color =
-        colors[
-            Math.floor(
-                Math.random()*colors.length
-            )
-        ];
-
-
-    horizontalLayer.appendChild(el);
-}
-
-
-
-/* =====================================================
-   DEVICE DATA
-===================================================== */
-
-const params =
-    new URLSearchParams(
-        window.location.search
-    );
-
-
-const rawDevice =
+const deviceName =
     params.get("device") || "Unknown Device";
 
+const ramValue =
+    params.get("ram") || "Unknown";
 
-const device =
-    rawDevice.trim();
+const storageValue =
+    params.get("storage") || "Unknown";
 
-
-const ram =
-    params.get("ram") || "Unknown RAM";
-
-
-const storage =
-    params.get("storage") || "Unknown Storage";
+document.getElementById("device").textContent = deviceName;
+document.getElementById("ram").textContent = ramValue;
+document.getElementById("storage").textContent = storageValue;
 
 
-
-/* =====================================================
-   DEVICE PROFILE ENGINE
-===================================================== */
-
-function getRamNumber(){
-
-    const match =
-        String(ram).match(/\d+/);
-
-    return match
-        ? Number(match[0])
-        : 6;
-}
-
-
+/* DEVICE PROFILE */
 
 function getDeviceProfile(name){
 
-    const d =
-        name.toLowerCase();
+    const n = name.toLowerCase();
 
-
-    /*
-       LOW-END
-    */
-
-    const lowBrands = [
+    const low = [
         "redmi 9",
-        "redmi 10",
-        "redmi a",
-        "redmi 12c",
-        "redmi 13c",
+        "redmi 10a",
+        "redmi 10c",
+        "redmi a1",
+        "redmi a2",
         "realme c",
-        "realme narzo",
-        "samsung a0",
-        "samsung a1",
-        "vivo y1",
-        "vivo y2",
-        "oppo a1",
-        "oppo a2",
-        "tecno spark",
-        "itel",
-        "infinix smart"
+        "narzo c",
+        "galaxy a0",
+        "galaxy a1",
+        "infinix smart",
+        "tecno spark"
     ];
 
-
-    /*
-       HIGH-END
-    */
-
-    const highKeywords = [
-
+    const high = [
+        "poco f",
+        "poco x",
+        "poco gt",
+        "redmi k",
+        "xiaomi 13",
+        "xiaomi 14",
+        "xiaomi 15",
+        "oneplus 11",
+        "oneplus 12",
+        "oneplus 13",
+        "iqoo",
+        "rog phone",
+        "asus zenfone",
+        "pixel 8",
+        "pixel 9",
+        "pixel 10",
+        "galaxy s",
+        "galaxy z",
         "iphone 13",
         "iphone 14",
         "iphone 15",
         "iphone 16",
-        "iphone 17",
-
-        "s23",
-        "s24",
-        "s25",
-        "s26",
-
-        "pixel 7",
-        "pixel 8",
-        "pixel 9",
-        "pixel 10",
-
-        "oneplus 11",
-        "oneplus 12",
-        "oneplus 13",
-        "oneplus 14",
-
-        "xiaomi 13",
-        "xiaomi 14",
-        "xiaomi 15",
-        "xiaomi 16",
-
-        "mi 11",
-        "mi 12",
-        "mi 13",
-        "mi 14",
-
-        "poco f3",
-        "poco f4",
-        "poco f5",
-        "poco f6",
-        "poco f7",
-
-        "poco x6 pro",
-        "poco x7 pro",
-
-        "iqoo 9",
-        "iqoo 10",
-        "iqoo 11",
-        "iqoo 12",
-        "iqoo 13",
-        "iqoo 14",
-
-        "rog phone",
-        "redmagic"
+        "iphone 17"
     ];
 
-
-    /*
-       MID-RANGE
-    */
-
-    const midKeywords = [
-
-        "poco x3",
-        "poco x4",
-        "poco x5",
-        "poco x6",
-
-        "redmi note 10",
-        "redmi note 11",
-        "redmi note 12",
-        "redmi note 13",
-        "redmi note 14",
-
-        "samsung a24",
-        "samsung a25",
-        "samsung a26",
-        "samsung a34",
-        "samsung a35",
-        "samsung a36",
-        "samsung a54",
-        "samsung a55",
-        "samsung a56",
-
-        "realme 9",
-        "realme 10",
-        "realme 11",
-        "realme 12",
-        "realme 13",
-
-        "narzo 50",
-        "narzo 60",
-        "narzo 70",
-
-        "vivo v",
-        "vivo t",
-
-        "oppo reno",
-
-        "motorola edge"
-    ];
-
-
-    let tier =
-        "mid";
-
-
-    if(
-        highKeywords.some(
-            key => d.includes(key)
-        )
-    ){
-
-        tier = "high";
-
-    }
-    else if(
-        lowBrands.some(
-            key => d.includes(key)
-        )
-    ){
-
-        tier = "low";
-
-    }
-    else if(
-        midKeywords.some(
-            key => d.includes(key)
-        )
-    ){
-
-        tier = "mid";
-
-    }
-    else{
-
-        /*
-           RAM fallback
-        */
-
-        const r =
-            getRamNumber();
-
-
-        if(r <= 4){
-
-            tier = "low";
-
-        }
-        else if(r >= 12){
-
-            tier = "high";
-
-        }
-        else{
-
-            tier = "mid";
-
-        }
+    if(high.some(x => n.includes(x))){
+        return "high";
     }
 
+    if(low.some(x => n.includes(x))){
+        return "low";
+    }
 
-    return tier;
+    const ram =
+        parseInt(ramValue.replace(/\D/g,"")) || 6;
+
+    if(ram <= 3) return "low";
+    if(ram >= 8) return "high";
+
+    return "mid";
 }
 
 
+const tier = getDeviceProfile(deviceName);
 
-/* =====================================================
-   SENSITIVITY DATABASE
-===================================================== */
 
-const profiles = {
+/* BASE SETTINGS */
+
+const settings = {
 
     low:{
-
-        tierName:"LOW-END / CONTROL",
-
-        performance:"CONTROL",
-
-        touch:"STABLE",
-
-        fps:"45–60 FPS",
-
-        sensitivity:{
-
-            General:168,
-
-            "Red Dot":154,
-
-            "2X Scope":142,
-
-            "4X Scope":128,
-
-            "Sniper Scope":92,
-
-            "Free Look":125,
-
-            "Fire Button":54
-
-        }
-
+        General:168,
+        "Red Dot":154,
+        "2X":142,
+        "4X":128,
+        Sniper:92,
+        "Free Look":125,
+        "Fire Button":54
     },
-
 
     mid:{
-
-        tierName:"MID-RANGE / BALANCED",
-
-        performance:"BALANCED",
-
-        touch:"FAST",
-
-        fps:"60–90 FPS",
-
-        sensitivity:{
-
-            General:178,
-
-            "Red Dot":166,
-
-            "2X Scope":154,
-
-            "4X Scope":138,
-
-            "Sniper Scope":100,
-
-            "Free Look":135,
-
-            "Fire Button":56
-
-        }
-
+        General:178,
+        "Red Dot":166,
+        "2X":154,
+        "4X":138,
+        Sniper:100,
+        "Free Look":135,
+        "Fire Button":56
     },
 
-
     high:{
-
-        tierName:"HIGH-END / FAST",
-
-        performance:"HIGH PERFORMANCE",
-
-        touch:"VERY FAST",
-
-        fps:"90–120+ FPS",
-
-        sensitivity:{
-
-            General:188,
-
-            "Red Dot":178,
-
-            "2X Scope":165,
-
-            "4X Scope":148,
-
-            "Sniper Scope":108,
-
-            "Free Look":145,
-
-            "Fire Button":58
-
-        }
-
+        General:188,
+        "Red Dot":178,
+        "2X":165,
+        "4X":148,
+        Sniper:108,
+        "Free Look":145,
+        "Fire Button":58
     }
 
 };
 
 
-
-/* =====================================================
-   RAM ADJUSTMENT
-===================================================== */
-
-function buildSensitivity(profile){
-
-    const values = {
-        ...profile.sensitivity
-    };
+let current = {...settings[tier]};
 
 
-    const r =
-        getRamNumber();
+/* RAM ADJUSTMENT */
 
+const ramNum =
+    parseInt(ramValue.replace(/\D/g,"")) || 6;
 
-    /*
-       Lower RAM:
-       slightly reduce sensitivity
-       for better control.
-    */
+if(ramNum <= 3){
 
-    if(r <= 3){
+    current.General -= 8;
+    current["Red Dot"] -= 8;
+    current["2X"] -= 6;
+    current["4X"] -= 5;
 
-        values.General -= 8;
-        values["Red Dot"] -= 7;
-        values["2X Scope"] -= 6;
-        values["4X Scope"] -= 5;
+}else if(ramNum === 4){
 
-    }
+    current.General -= 3;
+    current["Red Dot"] -= 3;
+    current["2X"] -= 2;
 
+}else if(ramNum >= 12){
 
-    else if(r === 4){
-
-        values.General -= 4;
-        values["Red Dot"] -= 3;
-        values["2X Scope"] -= 3;
-
-    }
-
-
-    /*
-       High RAM:
-       small boost only.
-    */
-
-    else if(r >= 12){
-
-        values.General += 3;
-        values["Red Dot"] += 3;
-        values["2X Scope"] += 2;
-
-    }
-
-
-    /*
-       Keep values inside
-       Free Fire MAX range.
-    */
-
-    Object.keys(values).forEach(key => {
-
-        values[key] =
-            Math.max(
-                0,
-                Math.min(
-                    200,
-                    Math.round(values[key])
-                )
-            );
-
-    });
-
-
-    return values;
+    current.General += 3;
+    current["Red Dot"] += 3;
+    current["2X"] += 2;
 }
 
 
+/* CLAMP */
 
-/* =====================================================
-   RENDER PROFILE
-===================================================== */
+Object.keys(current).forEach(key => {
 
-const tier =
-    getDeviceProfile(device);
+    current[key] =
+        Math.max(0,Math.min(200,current[key]));
 
-
-const profile =
-    profiles[tier];
+});
 
 
-const sensitivity =
-    buildSensitivity(profile);
-
-
-
-document.getElementById(
-    "deviceName"
-).textContent =
-    device;
-
-
-
-document.getElementById(
-    "deviceMeta"
-).textContent =
-    `${ram} RAM • ${storage} Storage • ${profile.tierName}`;
-
-
-
-document.getElementById(
-    "profileBadge"
-).textContent =
-    "● " + profile.performance;
-
-
-
-/* =====================================================
-   PERFORMANCE INFO
-===================================================== */
-
-const performanceBox =
-    document.getElementById(
-        "performanceBox"
-    );
-
-
-performanceBox.innerHTML = `
-
-    <div class="performanceItem">
-
-        <small>DEVICE CLASS</small>
-
-        <strong>
-            ${profile.tierName}
-        </strong>
-
-    </div>
-
-
-    <div class="performanceItem">
-
-        <small>TOUCH PROFILE</small>
-
-        <strong>
-            ${profile.touch}
-        </strong>
-
-    </div>
-
-
-    <div class="performanceItem">
-
-        <small>FPS TARGET</small>
-
-        <strong>
-            ${profile.fps}
-        </strong>
-
-    </div>
-
-`;
-
-
-
-/* =====================================================
-   SENSITIVITY RENDER
-===================================================== */
-
-const sensitivityGrid =
-    document.getElementById(
-        "sensitivityGrid"
-    );
-
+/* RENDER */
 
 function renderSensitivity(){
 
-    sensitivityGrid.innerHTML = "";
+    const grid =
+        document.getElementById("sensiGrid");
 
+    grid.innerHTML = "";
 
-    Object.entries(
-        sensitivity
-    ).forEach(
-        ([name,value]) => {
+    Object.entries(current).forEach(([name,value]) => {
 
-            const card =
-                document.createElement("div");
+        const card =
+            document.createElement("div");
 
+        card.className = "card";
 
-            card.className =
-                "sensCard";
+        card.innerHTML = `
+            <div class="card-head">
+                <h3>${name}</h3>
+                <div class="value">${value}</div>
+            </div>
 
-
-            card.innerHTML = `
-
-                <div class="sensTop">
-
-                    <div class="sensName">
-                        ${name}
-                    </div>
-
-                    <div class="sensValue">
-                        ${value}
-                    </div>
-
+            <div class="bar">
+                <div class="bar-fill"
+                     style="width:${value / 2}%">
                 </div>
+            </div>
+        `;
 
+        grid.appendChild(card);
 
-                <div class="bar">
+    });
 
-                    <div
-                        class="barFill"
-                        style="--value:${value / 2}%">
-                    </div>
-
-                </div>
-
-            `;
-
-
-            sensitivityGrid.appendChild(
-                card
-            );
-
-        }
-    );
 }
-
 
 renderSensitivity();
 
 
-
-/* =====================================================
-   SETTINGS TEXT
-===================================================== */
-
-function settingsText(){
-
-    return `
-
-BRAZILIAN SENSI FF
-Device: ${device}
-RAM: ${ram}
-Storage: ${storage}
-
-Device Class:
-${profile.tierName}
-
-Sensitivity:
-
-General: ${sensitivity.General}
-Red Dot: ${sensitivity["Red Dot"]}
-2X Scope: ${sensitivity["2X Scope"]}
-4X Scope: ${sensitivity["4X Scope"]}
-Sniper Scope: ${sensitivity["Sniper Scope"]}
-Free Look: ${sensitivity["Free Look"]}
-Fire Button: ${sensitivity["Fire Button"]}
-
-Gaming:
-
-Performance Mode: ENABLE
-High Refresh Rate: ENABLE
-Background Apps: LIMIT
-Graphics: SMOOTH
-High FPS: ENABLE
-Battery Saver While Gaming: DISABLE
-Game Booster: ENABLE
-
-Note:
-These settings are a starting profile for
-Free Fire MAX drag/headshot practice.
-Results vary by player, touch response,
-FPS, game version and device behavior.
-
-`;
-
-}
-
-
-
-/* =====================================================
-   TOAST
-===================================================== */
-
-function showToast(message){
-
-    const toast =
-        document.getElementById(
-            "toast"
-        );
-
-
-    toast.textContent =
-        message;
-
-
-    toast.classList.add(
-        "show"
-    );
-
-
-    clearTimeout(
-        window.toastTimer
-    );
-
-
-    window.toastTimer =
-        setTimeout(
-            () => {
-
-                toast.classList.remove(
-                    "show"
-                );
-
-            },
-            2200
-        );
-}
-
-
-
-/* =====================================================
-   COPY
-===================================================== */
-
-async function copySettings(){
-
-    const text =
-        settingsText();
-
-
-    try{
-
-        await navigator.clipboard.writeText(
-            text
-        );
-
-
-        showToast(
-            "Sensitivity settings copied!"
-        );
-
-    }
-    catch(error){
-
-        showToast(
-            "Copy failed — select manually."
-        );
-
-    }
-
-}
-
-
-
-/* =====================================================
-   RECENT PROFILES
-===================================================== */
+/* RECENT PROFILES */
 
 const RECENT_KEY =
-    "ffmax_recent_profiles_v2";
-
+    "aimvanta_ff_recent_profiles_v1";
 
 function getRecent(){
 
     try{
-
         return JSON.parse(
-            localStorage.getItem(
-                RECENT_KEY
-            ) || "[]"
-        );
-
-    }
-    catch(error){
-
+            localStorage.getItem(RECENT_KEY)
+        ) || [];
+    }catch{
         return [];
-
     }
 
 }
 
 
+function saveRecent(){
 
-function saveProfile(){
+    const list = getRecent();
 
-    const list =
-        getRecent();
-
-
-    const profileData = {
-
-        device:device,
-
-        ram:ram,
-
-        storage:storage,
-
-        tier:tier,
-
-        sensitivity:sensitivity,
-
-        time:Date.now()
-
+    const profile = {
+        device:deviceName,
+        ram:ramValue,
+        storage:storageValue
     };
 
-
     const filtered =
-        list.filter(
-            item =>
-                item.device.toLowerCase()
-                !== device.toLowerCase()
+        list.filter(x =>
+            !(x.device === profile.device &&
+              x.ram === profile.ram &&
+              x.storage === profile.storage)
         );
 
-
-    filtered.unshift(
-        profileData
-    );
-
-
-    const limited =
-        filtered.slice(0,6);
-
+    filtered.unshift(profile);
 
     localStorage.setItem(
         RECENT_KEY,
-        JSON.stringify(limited)
-    );
-
-
-    renderRecent();
-
-
-    showToast(
-        "Profile saved!"
+        JSON.stringify(filtered.slice(0,6))
     );
 
 }
 
 
+function renderRecent(){
 
-/* =====================================================
-   RENDER RECENT
-===================================================== */
+    const box =
+        document.getElementById("recentList");
+
+    const list = getRecent();
+
+    if(!list.length){
+
+        box.innerHTML =
+            `<div class="empty">
+                No saved devices yet.
+            </div>`;
+
+        return;
+    }
+
+    box.innerHTML = "";
+
+    list.forEach((item,index) => {
+
+        const row =
+            document.createElement("div");
+
+        row.className = "recent-item";
+
+        row.innerHTML = `
+            <div>
+                <strong>${escapeHTML(item.device)}</strong>
+                <br>
+                <small>
+                    ${escapeHTML(item.ram)}
+                    •
+                    ${escapeHTML(item.storage)}
+                </small>
+            </div>
+
+            <button
+                onclick="openRecent(${index})">
+                OPEN
+            </button>
+        `;
+
+        box.appendChild(row);
+
+    });
+
+}
+
+
+function openRecent(index){
+
+    const list = getRecent();
+
+    const item = list[index];
+
+    if(!item) return;
+
+    window.location.href =
+        "sensitivity.html?device=" +
+        encodeURIComponent(item.device) +
+        "&ram=" +
+        encodeURIComponent(item.ram) +
+        "&storage=" +
+        encodeURIComponent(item.storage);
+
+}
+
+
+function clearRecent(){
+
+    localStorage.removeItem(RECENT_KEY);
+
+    renderRecent();
+
+}
+
 
 function escapeHTML(value){
 
@@ -2420,302 +905,185 @@ function escapeHTML(value){
         .replace(/>/g,"&gt;")
         .replace(/"/g,"&quot;")
         .replace(/'/g,"&#039;");
-}
-
-
-
-function renderRecent(){
-
-    const container =
-        document.getElementById(
-            "recentList"
-        );
-
-
-    const list =
-        getRecent();
-
-
-    if(!list.length){
-
-        container.innerHTML = `
-
-            <div class="recentItem">
-
-                <div class="recentInfo">
-
-                    <strong>
-                        No saved profiles
-                    </strong>
-
-                    <small>
-                        Your generated devices
-                        will appear here.
-                    </small>
-
-                </div>
-
-            </div>
-
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML =
-        list.map(
-            (item,index) => {
-
-                return `
-
-                    <div class="recentItem">
-
-                        <div class="recentInfo">
-
-                            <strong>
-                                ${escapeHTML(
-                                    item.device
-                                )}
-                            </strong>
-
-                            <small>
-                                ${escapeHTML(
-                                    item.ram
-                                )}
-                                •
-                                ${escapeHTML(
-                                    item.storage
-                                )}
-                                •
-                                ${escapeHTML(
-                                    item.tier
-                                )}
-                            </small>
-
-                        </div>
-
-
-                        <div
-                            class="recentButtons">
-
-                            <button
-                                class="smallBtn"
-                                onclick="
-                                    openRecent(${index})
-                                ">
-
-                                OPEN
-
-                            </button>
-
-                        </div>
-
-                    </div>
-
-                `;
-
-            }
-        ).join("");
 
 }
 
 
-
-function openRecent(index){
-
-    const list =
-        getRecent();
-
-
-    const item =
-        list[index];
-
-
-    if(!item){
-
-        return;
-    }
-
-
-    const params =
-        new URLSearchParams();
-
-
-    params.set(
-        "device",
-        item.device
-    );
-
-
-    params.set(
-        "ram",
-        item.ram
-    );
-
-
-    params.set(
-        "storage",
-        item.storage
-    );
-
-
-    window.location.href =
-        "sensitivity.html?" +
-        params.toString();
-
-}
-
-
-
-function clearRecent(){
-
-    localStorage.removeItem(
-        RECENT_KEY
-    );
-
-
-    renderRecent();
-
-
-    showToast(
-        "History cleared!"
-    );
-
-}
-
-
+saveRecent();
 renderRecent();
 
 
+/* COPY */
 
-/* =====================================================
-   SHARE
-===================================================== */
+function copySettings(){
 
-async function shareProfile(){
+    let text =
+`AimVanta FF — Free Fire MAX
+
+Device: ${deviceName}
+RAM: ${ramValue}
+Storage: ${storageValue}
+
+General: ${current.General}
+Red Dot: ${current["Red Dot"]}
+2X: ${current["2X"]}
+4X: ${current["4X"]}
+Sniper: ${current.Sniper}
+Free Look: ${current["Free Look"]}
+Fire Button: ${current["Fire Button"]}`;
+
+    navigator.clipboard.writeText(text)
+        .then(() => {
+
+            alert("Sensitivity settings copied!");
+
+        })
+        .catch(() => {
+
+            alert("Copy failed. Please copy manually.");
+
+        });
+
+}
+
+
+/* SAVE */
+
+function saveProfile(){
+
+    saveRecent();
+    renderRecent();
+
+    alert("Profile saved!");
+
+}
+
+
+/* SHARE */
+
+function shareProfile(){
 
     const text =
-        settingsText();
+`AimVanta FF Sensitivity
 
+Device: ${deviceName}
+General: ${current.General}
+Red Dot: ${current["Red Dot"]}
+2X: ${current["2X"]}
+4X: ${current["4X"]}
+Sniper: ${current.Sniper}`;
 
-    if(
-        navigator.share
-    ){
+    if(navigator.share){
 
-        try{
+        navigator.share({
+            title:"AimVanta FF",
+            text:text
+        });
 
-            await navigator.share({
+    }else{
 
-                title:
-                    "Brazilian Sensi FF",
+        navigator.clipboard.writeText(text);
 
-                text:text,
-
-                url:
-                    window.location.href
-
-            });
-
-
-            showToast(
-                "Profile shared!"
-            );
-
-        }
-        catch(error){
-
-            /*
-               User cancelled share.
-            */
-
-        }
-
-    }
-    else{
-
-        await copySettings();
-
-        showToast(
-            "Profile copied for sharing!"
-        );
+        alert("Share text copied!");
 
     }
 
 }
 
 
-
-/* =====================================================
-   GENERATE AGAIN
-===================================================== */
+/* GENERATE AGAIN */
 
 function generateAgain(){
 
-    window.location.href =
-        "index.html";
+    window.location.href = "index.html";
 
 }
 
 
+/* MATRIX BACKGROUND */
 
-/* =====================================================
-   AUTO SAVE CURRENT PROFILE
-===================================================== */
+const canvas =
+    document.getElementById("matrix");
 
-(function autoSave(){
+const ctx =
+    canvas.getContext("2d");
 
-    const list =
-        getRecent();
+function resizeCanvas(){
 
+    canvas.width =
+        window.innerWidth;
 
-    const exists =
-        list.some(
-            item =>
-                item.device.toLowerCase()
-                === device.toLowerCase()
+    canvas.height =
+        window.innerHeight;
+
+}
+
+resizeCanvas();
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+const chars =
+    "01 AIMVANTA FF FREE FIRE MAX SENSI";
+
+const fontSize = 14;
+
+let columns =
+    Math.floor(window.innerWidth / fontSize);
+
+let drops =
+    Array(columns).fill(1);
+
+function matrix(){
+
+    ctx.fillStyle =
+        "rgba(0,5,4,.12)";
+
+    ctx.fillRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+    ctx.font =
+        fontSize + "px monospace";
+
+    for(let i=0;i<drops.length;i++){
+
+        const text =
+            chars[Math.floor(
+                Math.random()*chars.length
+            )];
+
+        ctx.fillStyle =
+            "rgba(0,255,157,.55)";
+
+        ctx.fillText(
+            text,
+            i*fontSize,
+            drops[i]*fontSize
         );
 
+        if(
+            drops[i]*fontSize >
+            canvas.height &&
+            Math.random() > .975
+        ){
 
-    if(
-        device !== "Unknown Device" &&
-        !exists
-    ){
+            drops[i]=0;
 
-        const item = {
+        }
 
-            device:device,
-
-            ram:ram,
-
-            storage:storage,
-
-            tier:tier,
-
-            sensitivity:sensitivity,
-
-            time:Date.now()
-
-        };
-
-
-        list.unshift(item);
-
-
-        localStorage.setItem(
-            RECENT_KEY,
-            JSON.stringify(
-                list.slice(0,6)
-            )
-        );
-
-
-        renderRecent();
+        drops[i]++;
 
     }
 
-})();
+}
+
+setInterval(matrix,45);
 
 </script>
 
