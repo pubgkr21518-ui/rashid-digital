@@ -1,370 +1,680 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Premium Tools — Brazilian Sensi FF</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<title>AimVanta FF Premium — Premium Gaming Tools</title>
+
+<meta name="description"
+content="AimVanta FF Premium — premium gaming tools and utilities for Free Fire MAX players.">
+
+<meta name="robots" content="index, follow">
+
+<link rel="canonical"
+href="https://pubgkr21518-ui.github.io/rashid-digital/premium.html">
+
+<meta property="og:title" content="AimVanta FF Premium">
+<meta property="og:description"
+content="Explore premium AimVanta FF gaming tools.">
+<meta property="og:type" content="website">
+<meta property="og:url"
+content="https://pubgkr21518-ui.github.io/rashid-digital/premium.html">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    min-height:100vh;
+    font-family:Arial,Helvetica,sans-serif;
+    color:#fff;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(0,255,157,.12),transparent 30%),
+        radial-gradient(circle at 80% 70%,rgba(0,90,255,.12),transparent 30%),
+        linear-gradient(135deg,#020806,#061713,#020509);
+    overflow-x:hidden;
+}
+
+#bg{
+    position:fixed;
+    inset:0;
+    width:100%;
+    height:100%;
+    z-index:-2;
+    opacity:.16;
+}
+
+.overlay{
+    position:fixed;
+    inset:0;
+    background:radial-gradient(
+        circle at center,
+        transparent 15%,
+        rgba(0,0,0,.65) 100%
+    );
+    z-index:-1;
+    pointer-events:none;
+}
+
+.container{
+    width:min(1100px,92%);
+    margin:auto;
+}
+
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:25px 0;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:900;
+    letter-spacing:1px;
+}
+
+.logo span{
+    color:#00ff9d;
+    text-shadow:0 0 20px rgba(0,255,157,.65);
+}
+
+.home{
+    text-decoration:none;
+    color:#00ff9d;
+    border:1px solid rgba(0,255,157,.3);
+    padding:10px 16px;
+    border-radius:12px;
+    background:rgba(0,0,0,.3);
+}
+
+.hero{
+    text-align:center;
+    padding:65px 0 45px;
+}
+
+.badge{
+    display:inline-block;
+    padding:8px 16px;
+    border-radius:999px;
+    color:#00ff9d;
+    border:1px solid rgba(0,255,157,.3);
+    background:rgba(0,255,157,.05);
+    font-size:12px;
+    letter-spacing:2px;
+    margin-bottom:20px;
+}
+
+h1{
+    font-size:clamp(42px,8vw,78px);
+    line-height:.95;
+}
+
+h1 span{
+    color:#00ff9d;
+    text-shadow:
+        0 0 12px rgba(0,255,157,.5),
+        0 0 35px rgba(0,255,157,.2);
+}
+
+.hero p{
+    max-width:700px;
+    margin:22px auto 0;
+    color:#9db7af;
+    line-height:1.7;
+}
+
+.tools{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+    margin:25px 0 60px;
+}
+
+.card{
+    position:relative;
+    padding:28px;
+    border-radius:24px;
+    background:rgba(4,18,15,.78);
+    border:1px solid rgba(0,255,157,.15);
+    backdrop-filter:blur(16px);
+    box-shadow:0 20px 60px rgba(0,0,0,.35);
+    transition:.25s ease;
+}
+
+.card:hover{
+    transform:translateY(-6px);
+    border-color:rgba(0,255,157,.4);
+    box-shadow:
+        0 20px 70px rgba(0,0,0,.5),
+        0 0 30px rgba(0,255,157,.08);
+}
+
+.featured{
+    border-color:rgba(0,255,157,.35);
+}
+
+.tag{
+    position:absolute;
+    top:18px;
+    right:18px;
+    font-size:10px;
+    padding:6px 9px;
+    border-radius:8px;
+    color:#00120b;
+    background:#00ff9d;
+    font-weight:900;
+}
+
+.icon{
+    width:55px;
+    height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    border-radius:16px;
+    font-size:25px;
+    margin-bottom:20px;
+    background:rgba(0,255,157,.08);
+    border:1px solid rgba(0,255,157,.15);
+}
+
+.card h2{
+    font-size:22px;
+    margin-bottom:12px;
+}
+
+.card p{
+    color:#8fa8a1;
+    line-height:1.65;
+    font-size:14px;
+    min-height:70px;
+}
+
+.price{
+    margin:22px 0;
+    font-size:36px;
+    font-weight:900;
+}
+
+.price small{
+    font-size:13px;
+    color:#78928a;
+    font-weight:400;
+}
+
+.features{
+    list-style:none;
+    margin-bottom:24px;
+}
+
+.features li{
+    padding:9px 0;
+    color:#b5c9c3;
+    font-size:14px;
+    border-bottom:1px solid rgba(255,255,255,.04);
+}
+
+.features li::before{
+    content:"✓";
+    color:#00ff9d;
+    font-weight:bold;
+    margin-right:9px;
+}
+
+.buy{
+    width:100%;
+    border:0;
+    cursor:pointer;
+    padding:14px;
+    border-radius:13px;
+    background:#00ff9d;
+    color:#00120b;
+    font-weight:900;
+    font-size:15px;
+    transition:.2s;
+}
+
+.buy:hover{
+    transform:translateY(-2px);
+    box-shadow:0 0 25px rgba(0,255,157,.3);
+}
+
+.info{
+    margin:30px 0 60px;
+    padding:25px;
+    text-align:center;
+    border-radius:20px;
+    background:rgba(255,255,255,.025);
+    border:1px solid rgba(255,255,255,.07);
+}
+
+.info h2{
+    margin-bottom:10px;
+}
+
+.info p{
+    color:#879f98;
+    line-height:1.7;
+    font-size:14px;
+}
+
+footer{
+    text-align:center;
+    padding:35px 0;
+    color:#657d76;
+    font-size:13px;
+}
+
+footer span{
+    color:#00ff9d;
+}
+
+@media(max-width:850px){
+    .tools{
+        grid-template-columns:1fr;
     }
 
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 50% 20%, rgba(120, 0, 0, .22), transparent 35%),
-        linear-gradient(135deg, #020706, #06120f 50%, #020303);
-      color: white;
-      font-family: Arial, sans-serif;
-      overflow-x: hidden;
+    .hero{
+        padding-top:40px;
     }
 
-    canvas {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      opacity: .22;
+    h1{
+        font-size:48px;
+    }
+}
+
+@media(max-width:500px){
+    header{
+        gap:10px;
     }
 
-    .glow {
-      position: fixed;
-      width: 500px;
-      height: 500px;
-      left: 50%;
-      top: 35%;
-      transform: translate(-50%, -50%);
-      background: radial-gradient(circle, rgba(180,0,20,.15), transparent 70%);
-      filter: blur(30px);
-      z-index: -1;
+    .logo{
+        font-size:21px;
     }
 
-    header {
-      padding: 25px 7%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-bottom: 1px solid rgba(255,255,255,.08);
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(12px);
+    .home{
+        padding:9px 12px;
+        font-size:13px;
     }
-
-    .logo {
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .logo span {
-      color: #18ff75;
-    }
-
-    .back {
-      color: #18ff75;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    .container {
-      width: min(1050px, 92%);
-      margin: auto;
-      padding: 70px 0;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 16px;
-      border: 1px solid rgba(255,50,70,.4);
-      border-radius: 999px;
-      color: #ff4058;
-      background: rgba(80,0,10,.25);
-      font-size: 12px;
-      letter-spacing: 2px;
-      margin-bottom: 20px;
-    }
-
-    h1 {
-      font-size: clamp(42px, 8vw, 75px);
-      margin-bottom: 15px;
-    }
-
-    h1 span {
-      color: #18ff75;
-    }
-
-    .subtitle {
-      color: #9ca9a5;
-      max-width: 650px;
-      margin: auto;
-      line-height: 1.7;
-    }
-
-    .products {
-      margin-top: 55px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
-    }
-
-    .card {
-      padding: 30px;
-      text-align: left;
-      border: 1px solid rgba(255,255,255,.09);
-      border-radius: 22px;
-      background: rgba(5,10,9,.72);
-      backdrop-filter: blur(15px);
-      box-shadow: 0 20px 60px rgba(0,0,0,.35);
-      transition: .25s;
-    }
-
-    .card:hover {
-      transform: translateY(-7px);
-      border-color: rgba(24,255,117,.4);
-    }
-
-    .card h2 {
-      margin-bottom: 12px;
-    }
-
-    .card p {
-      color: #9ca9a5;
-      line-height: 1.6;
-      min-height: 75px;
-    }
-
-    .price {
-      font-size: 38px;
-      font-weight: 900;
-      margin: 20px 0;
-      color: #18ff75;
-    }
-
-    .buy {
-      display: block;
-      width: 100%;
-      text-align: center;
-      padding: 15px;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #18ff75, #08a84b);
-      color: #001108;
-      text-decoration: none;
-      font-weight: 900;
-      border: none;
-      cursor: pointer;
-    }
-
-    .payment-note {
-      margin-top: 35px;
-      padding: 18px;
-      border: 1px solid rgba(255,50,70,.2);
-      border-radius: 15px;
-      background: rgba(70,0,10,.18);
-      color: #aeb8b5;
-      line-height: 1.6;
-      font-size: 14px;
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      color: #65716d;
-      font-size: 12px;
-    }
-
-    @media(max-width: 800px) {
-      .products {
-        grid-template-columns: 1fr;
-      }
-
-      .container {
-        padding-top: 45px;
-      }
-
-      header {
-        padding: 20px;
-      }
-    }
-  </style>
+}
+</style>
 </head>
 
 <body>
 
-<canvas id="codeRain"></canvas>
-<div class="glow"></div>
+<canvas id="bg"></canvas>
+<div class="overlay"></div>
+
+<div class="container">
 
 <header>
-  <div class="logo">
-    Brazilian <span>Sensi FF</span>
-  </div>
 
-  <a href="index.html" class="back">
-    ← HOME
-  </a>
+    <div class="logo">
+        AimVanta <span>FF</span>
+    </div>
+
+    <a href="index.html" class="home">
+        ← Home
+    </a>
+
 </header>
 
-<main class="container">
 
-  <div class="badge">
-    PREMIUM ACCESS
-  </div>
+<section class="hero">
 
-  <h1>
-    Premium <span>Tools</span>
-  </h1>
-
-  <p class="subtitle">
-    Unlock premium Brazilian Sensi FF gaming tools and advanced sensitivity profiles.
-  </p>
-
-  <section class="products">
-
-    <div class="card">
-      <h2>Pro Sensitivity Engine</h2>
-
-      <p>
-        Advanced sensitivity profiles with device-based recommendations.
-      </p>
-
-      <div class="price">₹49</div>
-
-      <a href="#" class="buy" onclick="paymentRequired(event, 'Pro Sensitivity Engine', 49)">
-        BUY NOW
-      </a>
+    <div class="badge">
+        AIMVANTA FF • PREMIUM
     </div>
 
+    <h1>
+        Premium <span>Tools</span>
+    </h1>
 
-    <div class="card">
-      <h2>Premium Sensi Pack</h2>
+    <p>
+        Unlock advanced AimVanta FF tools designed to give
+        Free Fire MAX players a better and more personalized
+        gaming experience.
+    </p>
 
-      <p>
-        Premium collection of optimized Free Fire MAX sensitivity profiles.
-      </p>
-
-      <div class="price">₹99</div>
-
-      <a href="#" class="buy" onclick="paymentRequired(event, 'Premium Sensi Pack', 99)">
-        BUY NOW
-      </a>
-    </div>
+</section>
 
 
-    <div class="card">
-      <h2>Ultimate Gaming Pack</h2>
+<section class="tools">
 
-      <p>
-        Complete premium gaming settings and sensitivity recommendations.
-      </p>
 
-      <div class="price">₹149</div>
+    <!-- TOOL 1 -->
 
-      <a href="#" class="buy" onclick="paymentRequired(event, 'Ultimate Gaming Pack', 149)">
-        BUY NOW
-      </a>
-    </div>
+    <article class="card featured">
 
-  </section>
+        <div class="tag">
+            FEATURED
+        </div>
 
-  <div class="payment-note">
-    🔒 <b>Payment Required</b><br>
-    Select a premium product and complete the payment to receive access.
-  </div>
+        <div class="icon">
+            ⚡
+        </div>
 
-</main>
+        <h2>
+            AimVanta Pro Tool
+        </h2>
+
+        <p>
+            Our premium gaming utility with additional
+            features beyond the free sensitivity generator.
+        </p>
+
+        <div class="price">
+            ₹99
+            <small> one-time</small>
+        </div>
+
+        <ul class="features">
+
+            <li>
+                Premium tool access
+            </li>
+
+            <li>
+                Advanced settings
+            </li>
+
+            <li>
+                Mobile-friendly interface
+            </li>
+
+            <li>
+                Future updates
+            </li>
+
+        </ul>
+
+        <button
+            class="buy"
+            onclick="buyTool('aimvanta-pro')">
+            BUY NOW
+        </button>
+
+    </article>
+
+
+    <!-- TOOL 2 -->
+
+    <article class="card">
+
+        <div class="icon">
+            🎯
+        </div>
+
+        <h2>
+            Sensi Pro Pack
+        </h2>
+
+        <p>
+            Additional sensitivity profiles and device
+            recommendations for different hardware tiers.
+        </p>
+
+        <div class="price">
+            ₹149
+            <small> one-time</small>
+        </div>
+
+        <ul class="features">
+
+            <li>
+                Extra sensitivity profiles
+            </li>
+
+            <li>
+                Device-based presets
+            </li>
+
+            <li>
+                Easy profile management
+            </li>
+
+            <li>
+                Future updates
+            </li>
+
+        </ul>
+
+        <button
+            class="buy"
+            onclick="buyTool('sensi-pro')">
+            BUY NOW
+        </button>
+
+    </article>
+
+
+    <!-- TOOL 3 -->
+
+    <article class="card">
+
+        <div class="icon">
+            🚀
+        </div>
+
+        <h2>
+            Ultimate Pack
+        </h2>
+
+        <p>
+            A larger collection of premium gaming utilities
+            planned for future AimVanta FF releases.
+        </p>
+
+        <div class="price">
+            ₹199
+            <small> one-time</small>
+        </div>
+
+        <ul class="features">
+
+            <li>
+                Multiple premium utilities
+            </li>
+
+            <li>
+                Advanced profiles
+            </li>
+
+            <li>
+                Regular improvements
+            </li>
+
+            <li>
+                Future updates
+            </li>
+
+        </ul>
+
+        <button
+            class="buy"
+            onclick="buyTool('ultimate-pack')">
+            BUY NOW
+        </button>
+
+    </article>
+
+</section>
+
+
+<section class="info">
+
+    <h2>
+        🔒 Secure & Simple
+    </h2>
+
+    <p>
+        Payment processing should be handled through a trusted
+        payment provider. After payment, digital access or
+        download delivery can be connected to the selected tool.
+    </p>
+
+</section>
+
 
 <footer>
-  © 2026 Brazilian Sensi FF — Premium Tools
+
+    © 2026 <span>AimVanta FF</span>
+    • Premium Gaming Tools
+
 </footer>
+
+</div>
 
 
 <script>
-  /*
-    अपना payment link यहाँ डालना है।
+
+/*
+    PAYMENT LINKS
+
+    Later, replace the empty strings with your
+    actual public checkout URLs.
 
     Example:
 
-    const PAYMENT_LINKS = {
-      "Pro Sensitivity Engine": "YOUR_LINK",
-      "Premium Sensi Pack": "YOUR_LINK",
-      "Ultimate Gaming Pack": "YOUR_LINK"
-    };
-  */
+    "aimvanta-pro":
+        "YOUR_PUBLIC_CHECKOUT_URL"
 
-  const PAYMENT_LINKS = {
-    "Pro Sensitivity Engine": "",
-    "Premium Sensi Pack": "",
-    "Ultimate Gaming Pack": ""
-  };
+    Never put private API keys or secret credentials here.
+*/
+
+const PAYMENT_LINKS = {
+
+    "aimvanta-pro": "",
+
+    "sensi-pro": "",
+
+    "ultimate-pack": ""
+
+};
 
 
-  function paymentRequired(event, product, price) {
-    event.preventDefault();
+function buyTool(tool){
 
-    const link = PAYMENT_LINKS[product];
+    const link =
+        PAYMENT_LINKS[tool];
 
-    if (!link) {
-      alert(
-        "🔒 PAYMENT REQUIRED\n\n" +
-        product + "\n" +
-        "Price: ₹" + price + "\n\n" +
-        "Payment checkout अभी connect नहीं किया गया है."
-      );
+    if(link){
 
-      return;
+        window.location.href = link;
+
+        return;
+
     }
 
-    window.location.href = link;
-  }
-
-
-  // Background code rain
-  const canvas = document.getElementById("codeRain");
-  const ctx = canvas.getContext("2d");
-
-  let width;
-  let height;
-  let columns;
-  let drops = [];
-
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-
-    columns = Math.floor(width / 18);
-    drops = Array(columns).fill(0).map(() =>
-      Math.random() * -100
+    alert(
+        "Checkout is not connected yet. " +
+        "Payment link will be added here."
     );
-  }
 
-  function draw() {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.08)";
-    ctx.fillRect(0, 0, width, height);
+}
 
-    ctx.font = "13px monospace";
 
-    for (let i = 0; i < drops.length; i++) {
+/* BACKGROUND */
 
-      const chars = "01ABCDEF<>/{}[]$#@";
-      const char = chars[Math.floor(Math.random() * chars.length)];
+const canvas =
+    document.getElementById("bg");
 
-      ctx.fillStyle = "rgba(24,255,117,.55)";
-      ctx.fillText(char, i * 18, drops[i] * 18);
+const ctx =
+    canvas.getContext("2d");
 
-      if (drops[i] * 18 > height && Math.random() > .975) {
-        drops[i] = 0;
-      }
+let width;
+let height;
 
-      drops[i] += .7;
+function resize(){
+
+    width =
+        canvas.width =
+        window.innerWidth;
+
+    height =
+        canvas.height =
+        window.innerHeight;
+
+}
+
+resize();
+
+window.addEventListener(
+    "resize",
+    resize
+);
+
+
+const chars =
+    "01 AIMVANTA FF PREMIUM TOOL";
+
+const fontSize = 14;
+
+let columns =
+    Math.floor(width / fontSize);
+
+let drops =
+    Array(columns).fill(1);
+
+
+function draw(){
+
+    ctx.fillStyle =
+        "rgba(0,5,4,.12)";
+
+    ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+    );
+
+    ctx.font =
+        fontSize + "px monospace";
+
+    for(
+        let i = 0;
+        i < drops.length;
+        i++
+    ){
+
+        const char =
+            chars[
+                Math.floor(
+                    Math.random() *
+                    chars.length
+                )
+            ];
+
+        ctx.fillStyle =
+            "rgba(0,255,157,.5)";
+
+        ctx.fillText(
+            char,
+            i * fontSize,
+            drops[i] * fontSize
+        );
+
+        if(
+            drops[i] * fontSize > height &&
+            Math.random() > .975
+        ){
+            drops[i] = 0;
+        }
+
+        drops[i]++;
+
     }
 
-    requestAnimationFrame(draw);
-  }
+}
 
-  window.addEventListener("resize", resize);
+setInterval(draw,45);
 
-  resize();
-  draw();
 </script>
 
 </body>
