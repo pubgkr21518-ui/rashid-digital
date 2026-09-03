@@ -1,1503 +1,1211 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
 
-<title>Brazilian Sensi FF</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-<meta
-  name="description"
-  content="Brazilian Sensi FF - Free Fire MAX sensitivity profiles and premium gaming tools."
->
+  <title>AimVanta FF — Free Fire MAX Sensitivity</title>
 
-<style>
+  <meta name="description"
+        content="AimVanta FF provides device-based Free Fire MAX sensitivity recommendations, gaming settings and useful tools.">
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <meta name="robots"
+        content="index, follow">
 
-html,
-body{
-  width:100%;
-  min-height:100%;
-}
+  <meta name="author"
+        content="AimVanta FF">
 
-body{
-  overflow-x:hidden;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#ecfff5;
+  <meta name="theme-color"
+        content="#020807">
 
-  background:
-    radial-gradient(
-      circle at 50% 20%,
-      rgba(0,255,120,.12),
-      transparent 35%
-    ),
-    radial-gradient(
-      circle at 15% 80%,
-      rgba(0,150,110,.10),
-      transparent 32%
-    ),
-    linear-gradient(
-      135deg,
-      #03100c 0%,
-      #04171a 48%,
-      #020806 100%
-    );
-}
+  <link rel="canonical"
+        href="https://pubgkr21518-ui.github.io/rashid-digital/">
 
-/* =========================================
-   CODE BACKGROUND
-========================================= */
+  <meta property="og:type"
+        content="website">
 
-#codeRain{
-  position:fixed;
-  inset:0;
+  <meta property="og:title"
+        content="AimVanta FF — Free Fire MAX Sensitivity">
 
-  width:100%;
-  height:100%;
+  <meta property="og:description"
+        content="Device-based Free Fire MAX sensitivity recommendations and gaming tools.">
 
-  z-index:-10;
-  pointer-events:none;
+  <meta property="og:url"
+        content="https://pubgkr21518-ui.github.io/rashid-digital/">
 
-  opacity:.27;
-}
+  <meta property="og:site_name"
+        content="AimVanta FF">
 
-.background-glow{
-  position:fixed;
-  inset:0;
 
-  z-index:-5;
-  pointer-events:none;
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      transparent 0%,
-      rgba(0,10,8,.20) 45%,
-      rgba(0,5,4,.72) 100%
-    );
-}
-
-/* =========================================
-   HEADER
-========================================= */
-
-.header{
-  position:relative;
-  z-index:20;
-
-  min-height:76px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:18px 7%;
-
-  background:
-    rgba(2,12,9,.52);
-
-  border-bottom:
-    1px solid rgba(0,255,120,.12);
-
-  backdrop-filter:blur(18px);
-  -webkit-backdrop-filter:blur(18px);
-}
-
-.logo{
-  font-size:21px;
-  font-weight:900;
-  letter-spacing:.5px;
-
-  text-shadow:
-    0 0 18px rgba(0,255,120,.16);
-}
-
-.logo span{
-  color:#00ff78;
-
-  text-shadow:
-    0 0 18px rgba(0,255,120,.35);
-}
-
-.header-right{
-  display:flex;
-  align-items:center;
-}
-
-.status{
-  color:#00ff78;
-
-  font-size:10px;
-  font-weight:900;
-
-  letter-spacing:1.5px;
-}
-
-/* =========================================
-   HERO
-========================================= */
-
-.hero{
-  position:relative;
-  z-index:5;
-
-  min-height:
-    calc(100vh - 76px);
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  text-align:center;
-
-  padding:
-    70px 20px 90px;
-}
-
-.badge{
-  display:inline-block;
-
-  padding:9px 15px;
-
-  border:
-    1px solid rgba(0,255,120,.22);
-
-  border-radius:999px;
-
-  background:
-    rgba(0,255,120,.045);
-
-  color:#00ff78;
-
-  font-size:10px;
-  font-weight:900;
-
-  letter-spacing:2px;
-
-  box-shadow:
-    0 0 25px rgba(0,255,120,.035);
-
-  margin-bottom:22px;
-}
-
-.hero h1{
-  font-size:
-    clamp(45px,8vw,82px);
-
-  line-height:.98;
-
-  font-weight:1000;
-
-  letter-spacing:-4px;
-
-  color:#f1fff7;
-
-  text-shadow:
-    0 0 35px rgba(0,255,120,.08);
-}
-
-.hero h1 span{
-  display:inline-block;
-
-  color:#00ff78;
-
-  text-shadow:
-    0 0 15px rgba(0,255,120,.25),
-    0 0 45px rgba(0,255,120,.08);
-}
-
-.hero-description{
-  max-width:620px;
-
-  margin:
-    25px auto 0;
-
-  color:#91aa9c;
-
-  font-size:15px;
-
-  line-height:1.7;
-}
-
-/* =========================================
-   PREMIUM TOOLS
-   CENTER / DARK BLOOD STYLE
-========================================= */
-
-.premium-area{
-  position:relative;
-
-  z-index:8;
-
-  width:min(760px,94%);
-
-  margin:
-    8px auto 40px;
-
-  text-align:center;
-}
-
-.premium-label{
-  display:block;
-
-  margin-bottom:12px;
-
-  color:#66766d;
-
-  font-size:9px;
-  font-weight:900;
-
-  letter-spacing:3px;
-}
-
-/* DARK BLOOD BUTTON */
-
-.premium-link{
-  position:relative;
-
-  isolation:isolate;
-
-  display:inline-flex;
-
-  align-items:center;
-  justify-content:center;
-
-  min-width:
-    min(590px,92vw);
-
-  min-height:105px;
-
-  padding:
-    22px 45px;
-
-  color:#ff304c;
-
-  text-decoration:none;
-
-  font-size:
-    clamp(31px,6vw,55px);
-
-  font-weight:1000;
-
-  letter-spacing:2px;
-
-  border:
-    1px solid rgba(255,35,55,.30);
-
-  border-radius:
-    27px 18px 31px 20px;
-
-  background:
-    radial-gradient(
-      ellipse at 24% 35%,
-      rgba(110,0,12,.48),
-      transparent 31%
-    ),
-    radial-gradient(
-      ellipse at 76% 67%,
-      rgba(75,0,9,.40),
-      transparent 36%
-    ),
-    radial-gradient(
-      ellipse at 50% 50%,
-      rgba(35,2,7,.82),
-      rgba(3,3,5,.72)
-    );
-
-  box-shadow:
-    0 0 20px rgba(120,0,15,.22),
-    0 0 55px rgba(80,0,12,.13),
-    inset 0 0 35px rgba(130,0,20,.20),
-    inset 0 0 80px rgba(0,0,0,.62);
-
-  text-shadow:
-    0 0 10px rgba(255,25,50,.70),
-    0 0 25px rgba(170,0,20,.42),
-    0 0 45px rgba(100,0,12,.25);
-
-  overflow:visible;
-
-  transition:
-    transform .28s ease,
-    box-shadow .28s ease,
-    border-color .28s ease;
-}
-
-/* IRREGULAR DARK BLOOD SHADOW */
-
-.premium-link::before{
-  content:"";
-
-  position:absolute;
-
-  z-index:-2;
-
-  left:-22px;
-  right:-18px;
-
-  top:-19px;
-  bottom:-22px;
-
-  border-radius:
-    41% 59% 53% 47% /
-    57% 39% 61% 43%;
-
-  background:
-    radial-gradient(
-      ellipse at 28% 34%,
-      rgba(65,0,8,.78),
-      transparent 23%
-    ),
-    radial-gradient(
-      ellipse at 73% 63%,
-      rgba(45,0,7,.74),
-      transparent 25%
-    ),
-    radial-gradient(
-      ellipse at 48% 55%,
-      rgba(20,0,4,.82),
-      transparent 58%
-    );
-
-  filter:
-    blur(5px);
-
-  opacity:.92;
-}
-
-/* RED EDGE GLOW */
-
-.premium-link::after{
-  content:"";
-
-  position:absolute;
-
-  z-index:-1;
-
-  inset:-5px;
-
-  border-radius:
-    29px 20px 33px 23px;
-
-  border:
-    1px solid rgba(255,25,48,.15);
-
-  box-shadow:
-    0 0 22px rgba(210,0,28,.20),
-    0 0 48px rgba(125,0,16,.13);
-
-  pointer-events:none;
-}
-
-.premium-link:hover{
-  transform:
-    translateY(-5px)
-    scale(1.025);
-
-  color:#ff5368;
-
-  border-color:
-    rgba(255,40,60,.68);
-
-  box-shadow:
-    0 0 25px rgba(190,0,30,.38),
-    0 0 65px rgba(130,0,18,.25),
-    0 0 105px rgba(80,0,12,.13),
-    inset 0 0 42px rgba(155,0,25,.27),
-    inset 0 0 85px rgba(0,0,0,.68);
-
-  text-shadow:
-    0 0 12px rgba(255,30,50,.90),
-    0 0 30px rgba(210,0,28,.62),
-    0 0 55px rgba(120,0,15,.35);
-}
-
-.premium-subtitle{
-  margin-top:14px;
-
-  color:#53645b;
-
-  font-size:11px;
-
-  letter-spacing:1.4px;
-}
-
-/* =========================================
-   GENERATOR
-========================================= */
-
-.generator-box{
-  width:min(650px,94%);
-
-  margin-top:38px;
-
-  padding:30px;
-
-  text-align:left;
-
-  position:relative;
-  overflow:hidden;
-
-  border:
-    1px solid rgba(0,255,120,.14);
-
-  border-radius:24px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(7,25,18,.78),
-      rgba(2,10,10,.72)
-    );
-
-  backdrop-filter:blur(22px);
-  -webkit-backdrop-filter:blur(22px);
-
-  box-shadow:
-    0 30px 90px rgba(0,0,0,.48),
-    inset 0 1px 0 rgba(255,255,255,.045);
-}
-
-.generator-box::before{
-  content:"";
-
-  position:absolute;
-
-  top:0;
-  left:-80%;
-
-  width:65%;
-  height:1px;
-
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      #00ff78,
-      transparent
-    );
-
-  box-shadow:
-    0 0 16px #00ff78;
-
-  animation:
-    laser 4s linear infinite;
-}
-
-@keyframes laser{
-
-  0%{
-    left:-80%;
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "AimVanta FF",
+    "alternateName": "AimVanta",
+    "url": "https://pubgkr21518-ui.github.io/rashid-digital/",
+    "description": "AimVanta FF provides device-based Free Fire MAX sensitivity recommendations, gaming settings and useful tools."
   }
+  </script>
 
-  100%{
-    left:140%;
-  }
 
-}
+  <style>
 
-.generator-title{
-  color:#eafff2;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  font-size:19px;
-  font-weight:900;
+    html {
+      scroll-behavior: smooth;
+    }
 
-  margin-bottom:7px;
-}
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
 
-.generator-subtitle{
-  color:#637c6d;
+      color: #fff;
 
-  font-size:12px;
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
 
-  margin-bottom:24px;
-}
+      background:
+        radial-gradient(
+          circle at 50% 0%,
+          rgba(0,255,120,.08),
+          transparent 35%
+        ),
+        linear-gradient(
+          135deg,
+          #010605 0%,
+          #03100c 45%,
+          #020504 100%
+        );
+    }
 
-label{
-  display:block;
 
-  margin-bottom:8px;
+    #codeRain {
+      position: fixed;
+      inset: 0;
 
-  color:#91aa9c;
+      width: 100%;
+      height: 100%;
 
-  font-size:10px;
-  font-weight:900;
+      z-index: -3;
 
-  letter-spacing:1.5px;
-}
+      pointer-events: none;
 
-input,
-select{
-  width:100%;
+      opacity: .32;
+    }
 
-  height:48px;
 
-  padding:
-    0 14px;
+    .background-glow {
+      position: fixed;
 
-  border:
-    1px solid rgba(255,255,255,.08);
+      width: 650px;
+      height: 650px;
 
-  border-radius:11px;
+      left: 50%;
+      top: 30%;
 
-  outline:none;
+      transform:
+        translate(-50%,-50%);
 
-  background:
-    rgba(0,0,0,.28);
+      background:
+        radial-gradient(
+          circle,
+          rgba(0,255,120,.11),
+          transparent 68%
+        );
 
-  color:#eafff4;
+      filter: blur(35px);
 
-  font-size:14px;
+      z-index: -2;
 
-  transition:.25s ease;
-}
+      pointer-events: none;
+    }
 
-input::placeholder{
-  color:#50665a;
-}
 
-input:focus,
-select:focus{
-  border-color:
-    rgba(0,255,120,.45);
+    /* HEADER */
 
-  box-shadow:
-    0 0 0 3px rgba(0,255,120,.035),
-    0 0 22px rgba(0,255,120,.08);
-}
+    .header {
+      width: 100%;
 
-select option{
-  background:#07120e;
-  color:#fff;
-}
+      padding:
+        24px
+        clamp(20px,6vw,90px);
 
-.field{
-  flex:1;
-}
+      display: flex;
 
-.row{
-  display:flex;
+      justify-content: space-between;
+      align-items: center;
 
-  gap:14px;
+      border-bottom:
+        1px solid
+        rgba(255,255,255,.07);
 
-  margin-top:18px;
-}
+      background:
+        rgba(0,0,0,.35);
 
-.generate-btn{
-  position:relative;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
 
-  width:100%;
 
-  height:52px;
+    .logo {
+      font-size: 22px;
 
-  margin-top:22px;
+      font-weight: 900;
 
-  border:0;
+      letter-spacing: .5px;
+    }
 
-  border-radius:12px;
 
-  cursor:pointer;
+    .logo span {
+      color: #19ff78;
 
-  overflow:hidden;
+      text-shadow:
+        0 0 15px
+        rgba(25,255,120,.45);
+    }
 
-  color:#00150a;
 
-  font-size:13px;
+    .status {
+      color: #19ff78;
 
-  font-weight:1000;
+      font-size: 11px;
 
-  letter-spacing:.8px;
+      font-weight: 800;
 
-  background:
-    linear-gradient(
-      100deg,
-      #00d96b,
-      #00ff78,
-      #31e889,
-      #00c968
-    );
+      letter-spacing: 1.5px;
 
-  box-shadow:
-    0 12px 35px rgba(0,255,120,.12);
+      padding:
+        9px 14px;
 
-  transition:.25s ease;
-}
+      border:
+        1px solid
+        rgba(25,255,120,.25);
 
-.generate-btn::after{
-  content:"";
+      border-radius: 999px;
 
-  position:absolute;
+      background:
+        rgba(0,50,25,.25);
+    }
 
-  top:0;
-  left:-100%;
 
-  width:65%;
-  height:100%;
+    main {
+      width:
+        min(1100px,92%);
 
-  background:
-    linear-gradient(
-      90deg,
-      transparent,
-      rgba(255,255,255,.30),
-      transparent
-    );
+      margin: auto;
+    }
 
-  transform:skewX(-20deg);
 
-  animation:
-    button-shine 3.5s linear infinite;
-}
+    /* HERO */
 
-@keyframes button-shine{
+    .hero {
+      text-align: center;
 
-  0%{
-    left:-100%;
-  }
+      padding:
+        75px 0 40px;
+    }
 
-  45%,
-  100%{
-    left:140%;
-  }
 
-}
+    .badge {
+      display: inline-block;
 
-.generate-btn:hover{
-  transform:translateY(-2px);
+      padding:
+        9px 17px;
 
-  box-shadow:
-    0 17px 42px rgba(0,255,120,.20);
-}
+      border:
+        1px solid
+        rgba(25,255,120,.25);
 
-#error{
-  min-height:18px;
+      border-radius: 999px;
 
-  margin-top:10px;
+      color: #19ff78;
 
-  color:#ff7474;
+      background:
+        rgba(0,60,30,.22);
 
-  font-size:12px;
-}
+      font-size: 11px;
 
-/* =========================================
-   INFO CARDS
-========================================= */
+      font-weight: 800;
 
-.info-section{
-  position:relative;
-  z-index:5;
+      letter-spacing: 2px;
 
-  width:min(1050px,92%);
+      margin-bottom: 25px;
+    }
 
-  margin:
-    25px auto 90px;
 
-  display:grid;
+    .hero h1 {
+      font-size:
+        clamp(43px,8vw,82px);
 
-  grid-template-columns:
-    repeat(3,1fr);
+      line-height: 1.02;
 
-  gap:18px;
-}
+      font-weight: 950;
 
-.info-card{
-  padding:24px;
+      letter-spacing: -2px;
 
-  border:
-    1px solid rgba(0,255,120,.10);
+      margin-bottom: 24px;
+    }
 
-  border-radius:18px;
 
-  background:
-    rgba(3,15,11,.58);
+    .hero h1 span {
+      color: #19ff78;
 
-  backdrop-filter:blur(15px);
-  -webkit-backdrop-filter:blur(15px);
+      text-shadow:
+        0 0 30px
+        rgba(25,255,120,.3);
+    }
 
-  transition:.3s ease;
-}
 
-.info-card:hover{
-  transform:translateY(-5px);
+    .hero-description {
+      max-width: 680px;
 
-  border-color:
-    rgba(0,255,120,.28);
+      margin: auto;
 
-  box-shadow:
-    0 15px 40px rgba(0,0,0,.30);
-}
+      color: #a3b1ab;
 
-.info-number{
-  color:#00ff78;
+      font-size: 16px;
 
-  font-size:11px;
-  font-weight:900;
+      line-height: 1.8;
+    }
 
-  letter-spacing:1px;
-}
 
-.info-card h3{
-  margin-top:12px;
+    /* PREMIUM */
 
-  font-size:18px;
-}
+    .premium-area {
+      text-align: center;
 
-.info-card p{
-  margin-top:9px;
+      margin:
+        25px auto 55px;
+    }
 
-  color:#718a7b;
 
-  font-size:13px;
+    .premium-label {
+      display: block;
 
-  line-height:1.6;
-}
+      color: #7e8985;
 
-/* =========================================
-   FOOTER
-========================================= */
+      font-size: 10px;
 
-footer{
-  position:relative;
-  z-index:5;
+      letter-spacing: 3px;
 
-  padding:30px 20px;
+      font-weight: 800;
 
-  text-align:center;
+      margin-bottom: 12px;
+    }
 
-  color:#52695b;
 
-  border-top:
-    1px solid rgba(0,255,120,.08);
+    .premium-link {
+      position: relative;
 
-  background:
-    rgba(1,7,5,.35);
-}
+      display: inline-flex;
 
-footer strong{
-  color:#00ff78;
-}
+      align-items: center;
+      justify-content: center;
 
-/* =========================================
-   MOBILE
-========================================= */
+      width:
+        min(590px,92vw);
 
-@media(max-width:700px){
+      min-height: 105px;
 
-  .header{
-    padding:16px 5%;
-  }
+      padding: 25px;
 
-  .status{
-    display:none;
-  }
+      text-decoration: none;
 
-  .hero{
-    padding:
-      60px 15px 40px;
+      color: #ff4057;
 
-    min-height:auto;
-  }
+      font-size:
+        clamp(31px,6vw,55px);
 
-  .hero h1{
-    font-size:
-      clamp(42px,14vw,65px);
+      font-weight: 950;
 
-    letter-spacing:-3px;
-  }
+      letter-spacing: 1px;
 
-  .hero-description{
-    font-size:14px;
-  }
+      overflow: hidden;
 
-  .premium-area{
-    margin:
-      20px auto 35px;
-  }
+      background:
+        radial-gradient(
+          ellipse at 30% 35%,
+          rgba(115,0,18,.55),
+          transparent 30%
+        ),
+        radial-gradient(
+          ellipse at 70% 70%,
+          rgba(80,0,10,.65),
+          transparent 38%
+        ),
+        linear-gradient(
+          135deg,
+          rgba(2,2,2,.96),
+          rgba(20,2,5,.94)
+        );
 
-  .premium-link{
-    min-width:
-      92vw;
+      border:
+        1px solid
+        rgba(255,40,65,.24);
 
-    min-height:82px;
+      border-radius:
+        34px 19px 31px 23px;
 
-    padding:
-      18px 20px;
+      box-shadow:
+        0 20px 70px
+        rgba(0,0,0,.65),
 
-    font-size:
-      clamp(27px,8vw,40px);
+        0 0 35px
+        rgba(180,0,25,.12);
 
-    border-radius:20px;
-  }
+      transition: .25s;
+    }
 
-  .premium-link::before{
-    left:-13px;
-    right:-13px;
 
-    top:-13px;
-    bottom:-15px;
-  }
+    .premium-link::before {
+      content: "";
 
-  .generator-box{
-    padding:22px;
+      position: absolute;
 
-    border-radius:19px;
-  }
+      width: 180px;
+      height: 100px;
 
-  .row{
-    flex-direction:column;
-  }
+      left: -30px;
+      top: -30px;
 
-  .info-section{
-    grid-template-columns:1fr;
+      background:
+        radial-gradient(
+          circle,
+          rgba(130,0,20,.42),
+          transparent 70%
+        );
 
-    margin-top:0;
-  }
+      filter: blur(16px);
 
-  #codeRain{
-    opacity:.18;
-  }
+      transform: rotate(-15deg);
+    }
 
-}
 
-/* =========================================
-   SMALL PHONES
-========================================= */
+    .premium-link:hover {
+      transform:
+        translateY(-5px)
+        scale(1.01);
 
-@media(max-width:400px){
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.75),
 
-  .logo{
-    font-size:17px;
-  }
+        0 0 50px
+        rgba(210,0,35,.25);
+    }
 
-  .premium-link{
-    min-width:91vw;
 
-    font-size:27px;
-  }
+    .premium-subtitle {
+      margin-top: 13px;
 
-}
+      color: #777f7c;
 
-</style>
+      font-size: 12px;
+
+      letter-spacing: 1px;
+    }
+
+
+    /* GENERATOR */
+
+    .generator-box {
+      padding:
+        clamp(25px,5vw,45px);
+
+      border:
+        1px solid
+        rgba(255,255,255,.09);
+
+      border-radius: 25px;
+
+      background:
+        rgba(3,10,8,.72);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+
+      box-shadow:
+        0 25px 80px
+        rgba(0,0,0,.45);
+    }
+
+
+    .generator-title {
+      text-align: center;
+
+      font-size: 25px;
+
+      margin-bottom: 10px;
+    }
+
+
+    .generator-text {
+      text-align: center;
+
+      color: #7f8b86;
+
+      font-size: 13px;
+
+      margin-bottom: 30px;
+    }
+
+
+    .form-grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 15px;
+    }
+
+
+    .field label {
+      display: block;
+
+      color: #87938e;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: 1px;
+
+      margin-bottom: 8px;
+    }
+
+
+    .field input,
+    .field select {
+
+      width: 100%;
+
+      padding: 15px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.08);
+
+      border-radius: 12px;
+
+      outline: none;
+
+      color: white;
+
+      background:
+        rgba(0,0,0,.38);
+
+      font-size: 14px;
+    }
+
+
+    .field input:focus,
+    .field select:focus {
+
+      border-color:
+        rgba(25,255,120,.45);
+
+      box-shadow:
+        0 0 20px
+        rgba(25,255,120,.06);
+    }
+
+
+    .field select option {
+      background: #07100d;
+      color: white;
+    }
+
+
+    .generate-btn {
+
+      width: 100%;
+
+      margin-top: 20px;
+
+      padding: 17px;
+
+      border: none;
+
+      border-radius: 13px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #19ff78,
+          #079d47
+        );
+
+      color: #001108;
+
+      font-size: 15px;
+
+      font-weight: 950;
+
+      cursor: pointer;
+
+      transition: .2s;
+    }
+
+
+    .generate-btn:hover {
+      transform:
+        translateY(-2px);
+    }
+
+
+    .error {
+      display: none;
+
+      margin-top: 12px;
+
+      color: #ff5266;
+
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+
+    /* INFO */
+
+    .info-grid {
+
+      display: grid;
+
+      grid-template-columns:
+        repeat(3,1fr);
+
+      gap: 18px;
+
+      margin:
+        35px 0 60px;
+    }
+
+
+    .info-card {
+
+      padding: 25px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.07);
+
+      border-radius: 20px;
+
+      background:
+        rgba(3,10,8,.58);
+
+      backdrop-filter: blur(12px);
+
+      transition: .25s;
+    }
+
+
+    .info-card:hover {
+      transform:
+        translateY(-5px);
+
+      border-color:
+        rgba(25,255,120,.2);
+    }
+
+
+    .info-icon {
+      font-size: 25px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .info-card h3 {
+      margin-bottom: 10px;
+
+      font-size: 17px;
+    }
+
+
+    .info-card p {
+      color: #7f8b86;
+
+      line-height: 1.7;
+
+      font-size: 13px;
+    }
+
+
+    /* SEO CONTENT */
+
+    .seo-section {
+
+      margin-bottom: 60px;
+
+      padding: 30px;
+
+      border:
+        1px solid
+        rgba(255,255,255,.06);
+
+      border-radius: 20px;
+
+      background:
+        rgba(2,8,6,.55);
+    }
+
+
+    .seo-section h2 {
+      font-size: 24px;
+
+      margin-bottom: 15px;
+    }
+
+
+    .seo-section h3 {
+      font-size: 17px;
+
+      margin:
+        25px 0 8px;
+    }
+
+
+    .seo-section p {
+      color: #8d9994;
+
+      font-size: 14px;
+
+      line-height: 1.8;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+
+      padding:
+        35px 20px;
+
+      text-align: center;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,.06);
+
+      color: #59645f;
+
+      font-size: 11px;
+    }
+
+
+    .footer-brand {
+      color: #19ff78;
+
+      font-weight: 800;
+    }
+
+
+    @media (max-width:800px) {
+
+      .form-grid,
+      .info-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 55px;
+      }
+
+    }
+
+
+    @media (max-width:500px) {
+
+      .logo {
+        font-size: 18px;
+      }
+
+      .status {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 43px;
+      }
+
+    }
+
+  </style>
+
 </head>
 
 
 <body>
 
+  <canvas id="codeRain"></canvas>
 
-<!-- =====================================
-     BACKGROUND
-====================================== -->
-
-<canvas id="codeRain"></canvas>
-
-<div class="background-glow"></div>
+  <div class="background-glow"></div>
 
 
-<!-- =====================================
-     HEADER
-====================================== -->
+  <header class="header">
 
-<header class="header">
-
-  <div class="logo">
-    Brazilian <span>Sensi FF</span>
-  </div>
-
-  <div class="header-right">
+    <div class="logo">
+      AimVanta <span>FF</span>
+    </div>
 
     <div class="status">
-      ● BRAZILIAN SENSI FF
+      ● AIMVANTA FF
     </div>
 
-  </div>
-
-</header>
+  </header>
 
 
-<!-- =====================================
-     MAIN
-====================================== -->
-
-<main>
-
-<section class="hero">
-
-  <div class="badge">
-    BRAZILIAN SENSI FF • SENSITIVITY ENGINE
-  </div>
+  <main>
 
 
-  <h1>
-    Find Your<br>
-    <span>Brazilian Sensi</span>
-  </h1>
+    <section class="hero">
+
+      <div class="badge">
+        AIMVANTA FF • SENSITIVITY ENGINE
+      </div>
+
+      <h1>
+        Find Your<br>
+        <span>Free Fire Sensi</span>
+      </h1>
+
+      <p class="hero-description">
+        Generate device-based Free Fire MAX sensitivity
+        recommendations and useful gaming settings
+        for your device.
+      </p>
+
+    </section>
 
 
-  <p class="hero-description">
-    Enter your device information and get a
-    recommended Free Fire MAX sensitivity profile
-    with gaming settings.
-  </p>
+    <section class="premium-area">
+
+      <span class="premium-label">
+        EXCLUSIVE ACCESS
+      </span>
+
+      <a
+        href="premium.html"
+        class="premium-link">
+
+        PREMIUM TOOLS
+
+      </a>
+
+      <div class="premium-subtitle">
+        Unlock premium gaming tools
+      </div>
+
+    </section>
 
 
-  <!-- =================================
-       PREMIUM TOOLS
-  ================================== -->
+    <section class="generator-box">
 
-  <div class="premium-area">
+      <h2 class="generator-title">
+        Sensitivity Generator
+      </h2>
 
-    <span class="premium-label">
-      EXCLUSIVE ACCESS
+      <p class="generator-text">
+        Enter your device details to generate a recommended profile.
+      </p>
+
+
+      <div class="form-grid">
+
+
+        <div class="field">
+
+          <label for="device">
+            DEVICE MODEL
+          </label>
+
+          <input
+            id="device"
+            type="text"
+            placeholder="Example: POCO F5"
+            autocomplete="off">
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="ram">
+            RAM
+          </label>
+
+          <select id="ram">
+
+            <option value="">
+              Select RAM
+            </option>
+
+            <option value="2">2 GB</option>
+            <option value="3">3 GB</option>
+            <option value="4">4 GB</option>
+            <option value="6">6 GB</option>
+            <option value="8">8 GB</option>
+            <option value="12">12 GB</option>
+            <option value="16">16 GB</option>
+            <option value="24">24 GB</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="field">
+
+          <label for="storage">
+            STORAGE
+          </label>
+
+          <select id="storage">
+
+            <option value="">
+              Select Storage
+            </option>
+
+            <option value="32">32 GB</option>
+            <option value="64">64 GB</option>
+            <option value="128">128 GB</option>
+            <option value="256">256 GB</option>
+            <option value="512">512 GB</option>
+            <option value="1024">1 TB</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <button
+        class="generate-btn"
+        onclick="generateSensitivity()">
+
+        GENERATE MY SENSITIVITY
+
+      </button>
+
+
+      <div
+        class="error"
+        id="error">
+
+        Please enter your device, RAM and storage.
+
+      </div>
+
+    </section>
+
+
+    <section class="info-grid">
+
+
+      <article class="info-card">
+
+        <div class="info-icon">🎯</div>
+
+        <h3>
+          Device Based
+        </h3>
+
+        <p>
+          Get sensitivity recommendations based on
+          your device configuration.
+        </p>
+
+      </article>
+
+
+      <article class="info-card">
+
+        <div class="info-icon">⚡</div>
+
+        <h3>
+          Gaming Settings
+        </h3>
+
+        <p>
+          Explore useful settings for smoother and
+          more consistent gameplay.
+        </p>
+
+      </article>
+
+
+      <article class="info-card">
+
+        <div class="info-icon">📱</div>
+
+        <h3>
+          Mobile Friendly
+        </h3>
+
+        <p>
+          AimVanta FF is designed to work comfortably
+          on mobile devices.
+        </p>
+
+      </article>
+
+
+    </section>
+
+
+    <section class="seo-section">
+
+      <h2>
+        AimVanta FF
+      </h2>
+
+      <p>
+        AimVanta FF is a Free Fire MAX sensitivity
+        recommendation website designed to help players
+        create a starting sensitivity profile based on
+        their device configuration.
+      </p>
+
+
+      <h3>
+        Free Fire MAX Sensitivity
+      </h3>
+
+      <p>
+        Sensitivity can feel different from one device
+        to another because touch response, display
+        refresh rate, frame rate and game settings vary.
+        Use the generated values as a starting point and
+        adjust them according to your gameplay.
+      </p>
+
+
+      <h3>
+        Device-Based Recommendations
+      </h3>
+
+      <p>
+        Enter your phone model, RAM and storage to get
+        a device-based recommendation.
+      </p>
+
+
+      <h3>
+        Important Note
+      </h3>
+
+      <p>
+        AimVanta FF provides general gaming recommendations.
+        Actual results may vary depending on device hardware,
+        touch response, refresh rate, game version and
+        personal preference.
+      </p>
+
+    </section>
+
+
+  </main>
+
+
+  <footer>
+
+    <span class="footer-brand">
+      AIMVANTA FF
     </span>
 
-    <a
-      href="premium.html"
-      class="premium-link"
-    >
-      PREMIUM TOOLS
-    </a>
+    <br><br>
 
-    <div class="premium-subtitle">
-      Unlock premium gaming tools
-    </div>
+    Free Fire MAX sensitivity recommendations and gaming tools.
 
-  </div>
+  </footer>
 
 
-  <!-- =================================
-       GENERATOR
-  ================================== -->
+  <script>
 
-  <div class="generator-box">
+    function generateSensitivity() {
 
-    <div class="generator-title">
-      Sensitivity Generator
-    </div>
+      const device =
+        document.getElementById("device").value.trim();
 
-    <div class="generator-subtitle">
-      Enter your device details to generate your profile.
-    </div>
+      const ram =
+        document.getElementById("ram").value;
 
+      const storage =
+        document.getElementById("storage").value;
 
-    <label for="device">
-      DEVICE NAME
-    </label>
+      const error =
+        document.getElementById("error");
 
-    <input
-      type="text"
-      id="device"
-      placeholder="Example: POCO F5"
-      autocomplete="off"
-    >
 
+      if (!device || !ram || !storage) {
 
-    <div class="row">
+        error.style.display = "block";
 
-      <div class="field">
+        return;
+      }
 
-        <label for="ram">
-          RAM
-        </label>
 
-        <select id="ram">
+      error.style.display = "none";
 
-          <option value="4">
-            4 GB
-          </option>
 
-          <option value="6">
-            6 GB
-          </option>
+      const url =
+        "sensitivity.html" +
+        "?device=" +
+        encodeURIComponent(device) +
+        "&ram=" +
+        encodeURIComponent(ram) +
+        "&storage=" +
+        encodeURIComponent(storage);
 
-          <option value="8" selected>
-            8 GB
-          </option>
 
-          <option value="12">
-            12 GB
-          </option>
+      window.location.href = url;
 
-          <option value="16">
-            16 GB
-          </option>
-
-          <option value="24">
-            24 GB
-          </option>
-
-        </select>
-
-      </div>
-
-
-      <div class="field">
-
-        <label for="storage">
-          STORAGE
-        </label>
-
-        <select id="storage">
-
-          <option value="64">
-            64 GB
-          </option>
-
-          <option value="128" selected>
-            128 GB
-          </option>
-
-          <option value="256">
-            256 GB
-          </option>
-
-          <option value="512">
-            512 GB
-          </option>
-
-          <option value="1024">
-            1 TB
-          </option>
-
-        </select>
-
-      </div>
-
-    </div>
-
-
-    <button
-      id="generateBtn"
-      class="generate-btn"
-    >
-      GENERATE SENSITIVITY →
-    </button>
-
-
-    <div id="error"></div>
-
-  </div>
-
-</section>
-
-
-<!-- =====================================
-     INFO
-====================================== -->
-
-<section class="info-section">
-
-  <div class="info-card">
-
-    <div class="info-number">
-      01
-    </div>
-
-    <h3>
-      Device Based
-    </h3>
-
-    <p>
-      Recommendations are generated using
-      your device information.
-    </p>
-
-  </div>
-
-
-  <div class="info-card">
-
-    <div class="info-number">
-      02
-    </div>
-
-    <h3>
-      Gaming Settings
-    </h3>
-
-    <p>
-      Get useful gaming settings together
-      with your sensitivity profile.
-    </p>
-
-  </div>
-
-
-  <div class="info-card">
-
-    <div class="info-number">
-      03
-    </div>
-
-    <h3>
-      Premium Tools
-    </h3>
-
-    <p>
-      Explore additional premium tools and
-      digital products from Brazilian Sensi FF.
-    </p>
-
-  </div>
-
-</section>
-
-</main>
-
-
-<!-- =====================================
-     FOOTER
-====================================== -->
-
-<footer>
-
-  <strong>
-    BRAZILIAN SENSI FF
-  </strong>
-
-  &nbsp; • &nbsp;
-
-  © 2026
-
-</footer>
-
-
-<script>
-
-/* =========================================
-   GENERATOR
-========================================= */
-
-const deviceInput =
-  document.getElementById("device");
-
-const ramInput =
-  document.getElementById("ram");
-
-const storageInput =
-  document.getElementById("storage");
-
-const generateBtn =
-  document.getElementById("generateBtn");
-
-const error =
-  document.getElementById("error");
-
-
-generateBtn.addEventListener(
-  "click",
-  function(){
-
-    const device =
-      deviceInput.value.trim();
-
-    const ram =
-      ramInput.value;
-
-    const storage =
-      storageInput.value;
-
-
-    if(!device){
-
-      error.textContent =
-        "Please enter your device name.";
-
-      deviceInput.focus();
-
-      return;
     }
 
 
-    error.textContent = "";
-
-
-    const params =
-      new URLSearchParams();
-
-
-    params.set(
-      "device",
-      device
-    );
-
-
-    params.set(
-      "ram",
-      ram
-    );
-
-
-    params.set(
-      "storage",
-      storage
-    );
-
-
-    window.location.href =
-      "sensitivity.html?" +
-      params.toString();
-
-  }
-);
-
-
-/* ENTER KEY */
-
-deviceInput.addEventListener(
-  "keydown",
-  function(event){
-
-    if(event.key === "Enter"){
-
-      generateBtn.click();
-
-    }
-
-  }
-);
-
-
-/* =========================================
-   CODE RAIN
-========================================= */
-
-const canvas =
-  document.getElementById("codeRain");
-
-const ctx =
-  canvas.getContext("2d");
-
-
-let width;
-let height;
-
-let columns;
-let drops;
-
-
-const characters =
-  "01ABCDEFGHIJKLMNOPQRSTUVWXYZ{}[]<>/\\\\|=+-_*#$%@";
-
-
-function resize(){
-
-  width =
-    window.innerWidth;
-
-  height =
-    window.innerHeight;
-
-
-  canvas.width =
-    width *
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-  canvas.height =
-    height *
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-
-  canvas.style.width =
-    width + "px";
-
-  canvas.style.height =
-    height + "px";
-
-
-  const dpr =
-    Math.min(
-      window.devicePixelRatio || 1,
-      2
-    );
-
-
-  ctx.setTransform(
-    dpr,
-    0,
-    0,
-    dpr,
-    0,
-    0
-  );
-
-
-  const size = 19;
-
-  columns =
-    Math.ceil(
-      width / size
-    );
-
-
-  drops = [];
-
-
-  for(
-    let i = 0;
-    i < columns;
-    i++
-  ){
-
-    drops.push(
-      Math.random() * -80
-    );
-
-  }
-
-}
-
-
-function drawCode(){
-
-  ctx.fillStyle =
-    "rgba(2,8,6,.16)";
-
-  ctx.fillRect(
-    0,
-    0,
-    width,
-    height
-  );
-
-
-  ctx.font =
-    "12px monospace";
-
-
-  for(
-    let i = 0;
-    i < columns;
-    i++
-  ){
-
-    const char =
-      characters[
-        Math.floor(
-          Math.random() *
-          characters.length
-        )
-      ];
-
-
-    const x =
-      i * 19;
-
-    const y =
-      drops[i] * 17;
-
-
-    ctx.fillStyle =
-      "rgba(130,255,180,.85)";
-
-    ctx.shadowBlur =
-      8;
-
-    ctx.shadowColor =
-      "#00ff78";
-
-    ctx.fillText(
-      char,
-      x,
-      y
-    );
-
-
-    ctx.shadowBlur =
-      0;
-
-    ctx.fillStyle =
-      "rgba(0,255,120,.38)";
-
-
-    for(
-      let trail = 1;
-      trail < 9;
-      trail++
-    ){
-
-      const trailChar =
-        characters[
-          Math.floor(
-            Math.random() *
-            characters.length
-          )
-        ];
-
-
-      const trailY =
-        y -
-        trail * 17;
-
-
-      ctx.globalAlpha =
-        1 -
-        trail / 10;
-
-
-      ctx.fillText(
-        trailChar,
-        x,
-        trailY
+    document
+      .getElementById("device")
+      .addEventListener(
+        "keydown",
+        function(event) {
+
+          if (event.key === "Enter") {
+            generateSensitivity();
+          }
+
+        }
       );
 
+
+    /* CODE RAIN */
+
+    const canvas =
+      document.getElementById("codeRain");
+
+    const ctx =
+      canvas.getContext("2d");
+
+    let width;
+    let height;
+    let columns;
+    let drops;
+
+
+    function resizeCanvas() {
+
+      width =
+        canvas.width =
+        window.innerWidth;
+
+      height =
+        canvas.height =
+        window.innerHeight;
+
+      columns =
+        Math.floor(width / 18);
+
+      drops =
+        Array.from(
+          { length: columns },
+          () => Math.random() * -100
+        );
+
     }
 
 
-    ctx.globalAlpha = 1;
+    function drawRain() {
+
+      ctx.fillStyle =
+        "rgba(0,0,0,.075)";
+
+      ctx.fillRect(
+        0,
+        0,
+        width,
+        height
+      );
 
 
-    drops[i] +=
-      .55 +
-      Math.random() * .75;
+      ctx.font =
+        "13px monospace";
 
 
-    if(
-      y > height + 200 &&
-      Math.random() > .975
-    ){
+      const characters =
+        "01ABCDEF<>/{}[]$#@";
 
-      drops[i] =
-        Math.random() * -40;
+
+      for (
+        let i = 0;
+        i < drops.length;
+        i++
+      ) {
+
+        const char =
+          characters[
+            Math.floor(
+              Math.random() *
+              characters.length
+            )
+          ];
+
+
+        ctx.fillStyle =
+          "rgba(25,255,120,.45)";
+
+
+        ctx.fillText(
+          char,
+          i * 18,
+          drops[i] * 18
+        );
+
+
+        if (
+          drops[i] * 18 > height &&
+          Math.random() > .975
+        ) {
+
+          drops[i] = 0;
+
+        }
+
+
+        drops[i] += .65;
+
+      }
+
+
+      requestAnimationFrame(drawRain);
 
     }
 
-  }
 
-}
-
-
-function animateCode(){
-
-  drawCode();
-
-  requestAnimationFrame(
-    animateCode
-  );
-
-}
+    window.addEventListener(
+      "resize",
+      resizeCanvas
+    );
 
 
-resize();
+    resizeCanvas();
+    drawRain();
 
-window.addEventListener(
-  "resize",
-  resize
-);
-
-animateCode();
-
-</script>
+  </script>
 
 </body>
+
 </html>
