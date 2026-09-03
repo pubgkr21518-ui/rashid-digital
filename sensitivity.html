@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>AimVanta FF — Device Sensitivity</title>
-<meta name="description" content="AimVanta FF device-based Free Fire sensitivity generator. Search your exact phone model to get its sensitivity profile.">
+<title>AimVanta FF — Sensitivity Generator</title>
+<meta name="description" content="AimVanta FF device based Free Fire sensitivity generator.">
 
 <style>
 *{
@@ -19,21 +19,21 @@ body{
   font-family:Arial,Helvetica,sans-serif;
   color:#fff;
   background:
-    radial-gradient(circle at 20% 20%,rgba(0,255,140,.12),transparent 30%),
-    radial-gradient(circle at 80% 80%,rgba(0,120,255,.12),transparent 30%),
+    radial-gradient(circle at 15% 15%,rgba(0,255,145,.12),transparent 30%),
+    radial-gradient(circle at 85% 85%,rgba(0,120,255,.12),transparent 30%),
     #030807;
   overflow-x:hidden;
 }
 
 .container{
-  width:min(900px,94%);
+  width:min(920px,94%);
   margin:auto;
-  padding:30px 0 60px;
+  padding:28px 0 60px;
 }
 
 .header{
   text-align:center;
-  margin-bottom:25px;
+  margin-bottom:22px;
 }
 
 .logo{
@@ -44,17 +44,17 @@ body{
 }
 
 .subtitle{
-  color:#9db5aa;
   margin-top:7px;
+  color:#8fa99c;
 }
 
 .card{
-  background:rgba(7,18,14,.88);
-  border:1px solid rgba(0,255,145,.18);
+  margin-top:18px;
+  padding:24px;
   border-radius:20px;
-  padding:25px;
+  background:rgba(7,18,14,.9);
+  border:1px solid rgba(0,255,145,.18);
   box-shadow:0 0 35px rgba(0,255,145,.08);
-  margin-top:20px;
 }
 
 h2{
@@ -83,28 +83,40 @@ input:focus{
 
 button{
   width:100%;
-  border:0;
   padding:15px;
+  margin-top:11px;
+  border:0;
   border-radius:12px;
-  margin-top:12px;
+  cursor:pointer;
+  font-size:15px;
+  font-weight:900;
   background:linear-gradient(90deg,#00d878,#00ff91);
   color:#001c10;
-  font-weight:900;
-  font-size:16px;
-  cursor:pointer;
 }
 
 button:hover{
   filter:brightness(1.08);
 }
 
+.dark-btn{
+  background:#101b16;
+  color:#fff;
+  border:1px solid #254634;
+}
+
+.red-btn{
+  background:linear-gradient(90deg,#501212,#8b1e1e);
+  color:#fff;
+  border:1px solid #a52c2c;
+}
+
 .suggestions{
   display:none;
   position:absolute;
-  z-index:10;
   width:100%;
-  max-height:250px;
-  overflow:auto;
+  z-index:20;
+  max-height:240px;
+  overflow-y:auto;
   background:#08120e;
   border:1px solid #214f39;
   border-radius:12px;
@@ -125,12 +137,13 @@ button:hover{
 .error{
   display:none;
   margin-top:15px;
-  padding:15px;
+  padding:16px;
   border-radius:12px;
-  background:rgba(255,40,40,.08);
-  border:1px solid rgba(255,60,60,.35);
+  background:rgba(255,30,30,.08);
+  border:1px solid rgba(255,70,70,.35);
   color:#ff7777;
-  font-weight:700;
+  line-height:1.6;
+  font-weight:800;
 }
 
 .result{
@@ -138,62 +151,109 @@ button:hover{
 }
 
 .device-name{
-  color:#00ff91;
-  font-size:24px;
+  font-size:25px;
   font-weight:900;
-  margin-bottom:8px;
+  color:#00ff91;
 }
 
 .device-info{
-  color:#9db5aa;
-  margin-bottom:20px;
+  margin-top:6px;
+  color:#91a79c;
 }
 
 .grid{
   display:grid;
   grid-template-columns:repeat(2,1fr);
   gap:12px;
+  margin-top:20px;
 }
 
 .item{
   padding:17px;
+  border-radius:14px;
   background:#09150f;
   border:1px solid #183d2c;
-  border-radius:14px;
 }
 
 .item span{
   display:block;
-  color:#8fa79b;
+  color:#8ca397;
   font-size:13px;
   margin-bottom:7px;
 }
 
 .item strong{
-  font-size:25px;
-  color:#fff;
+  font-size:26px;
 }
 
-.back{
-  background:#101b16;
-  color:#fff;
-  border:1px solid #254634;
+.section-title{
+  margin-top:25px;
+  margin-bottom:12px;
+  color:#00ff91;
+}
+
+.info-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:12px;
+}
+
+.info-box{
+  padding:16px;
+  border-radius:14px;
+  background:#09150f;
+  border:1px solid #183d2c;
+  line-height:1.6;
+}
+
+.info-box b{
+  color:#00ff91;
 }
 
 .note{
-  color:#83968d;
+  margin-top:18px;
+  color:#82968c;
   font-size:13px;
   line-height:1.6;
-  margin-top:18px;
+}
+
+.recent{
+  margin-top:12px;
+}
+
+.recent-item{
+  padding:12px;
+  margin-top:8px;
+  border-radius:10px;
+  background:#09150f;
+  border:1px solid #183d2c;
+  cursor:pointer;
+}
+
+.recent-item:hover{
+  color:#00ff91;
+  border-color:#00ff91;
+}
+
+.footer{
+  text-align:center;
+  margin-top:30px;
+  color:#667a70;
+  font-size:13px;
 }
 
 @media(max-width:600px){
-  .grid{
+  .grid,
+  .info-grid{
     grid-template-columns:1fr;
   }
 
   .logo{
     font-size:27px;
+  }
+
+  .card{
+    padding:19px;
   }
 }
 </style>
@@ -205,14 +265,16 @@ button:hover{
 
   <div class="header">
     <div class="logo">AIMVANTA FF</div>
-    <div class="subtitle">Device-Based Sensitivity Generator</div>
+    <div class="subtitle">Advanced Device Sensitivity Generator</div>
   </div>
 
+  <!-- SEARCH -->
   <div class="card">
 
-    <h2>Search Your Exact Device</h2>
+    <h2>Search Your Device</h2>
 
     <div class="searchbox">
+
       <input
         id="deviceInput"
         type="text"
@@ -221,6 +283,7 @@ button:hover{
       >
 
       <div id="suggestions" class="suggestions"></div>
+
     </div>
 
     <button onclick="generateSensitivity()">
@@ -229,14 +292,20 @@ button:hover{
 
     <div id="error" class="error">
       DEVICE NOT FOUND<br>
-      <small>Please enter an exact supported phone model.</small>
+      <small>
+        This device is not currently supported.
+        Select an exact model from the supported device list.
+      </small>
     </div>
 
   </div>
 
+
+  <!-- RESULT -->
   <div id="result" class="card result">
 
     <div class="device-name" id="resultName"></div>
+
     <div class="device-info" id="resultInfo"></div>
 
     <div class="grid">
@@ -278,639 +347,717 @@ button:hover{
 
     </div>
 
-    <div class="note">
-      These values are starting-point settings for Free Fire.
-      Test them in Training Mode and adjust according to your own touch response.
+
+    <!-- PROFILE ACTIONS -->
+    <div class="section-title">
+      PROFILE ACTIONS
     </div>
 
     <button onclick="copySensitivity()">
-      COPY SENSITIVITY
+      📋 COPY PROFILE
     </button>
 
-    <button class="back" onclick="location.reload()">
-      SEARCH ANOTHER DEVICE
+    <button onclick="saveProfile()">
+      💾 SAVE PROFILE
     </button>
 
+    <button onclick="shareProfile()">
+      🔗 SHARE PROFILE
+    </button>
+
+    <button class="dark-btn" onclick="generateAgain()">
+      🔄 GENERATE AGAIN
+    </button>
+
+
+    <!-- DEVICE INFO -->
+    <div class="section-title">
+      DEVICE PROFILE
+    </div>
+
+    <div class="info-grid">
+
+      <div class="info-box">
+        <b>Device</b><br>
+        <span id="infoDevice"></span>
+      </div>
+
+      <div class="info-box">
+        <b>RAM</b><br>
+        <span id="infoRam"></span>
+      </div>
+
+      <div class="info-box">
+        <b>Reference DPI</b><br>
+        <span id="infoDpi"></span>
+      </div>
+
+      <div class="info-box">
+        <b>Profile Type</b><br>
+        <span>Device Based</span>
+      </div>
+
+    </div>
+
+
+    <!-- GAMING SETTINGS -->
+    <div class="section-title">
+      GAMING SETTINGS
+    </div>
+
+    <div class="info-grid">
+
+      <div class="info-box">
+        <b>Graphics</b><br>
+        Smooth / Standard
+      </div>
+
+      <div class="info-box">
+        <b>High FPS</b><br>
+        Enable the highest stable FPS available
+      </div>
+
+      <div class="info-box">
+        <b>Auto Scale</b><br>
+        Off when possible
+      </div>
+
+      <div class="info-box">
+        <b>Battery Saver</b><br>
+        Keep disabled while gaming if performance drops
+      </div>
+
+    </div>
+
+
+    <!-- RECENT PROFILES -->
+    <div class="section-title">
+      RECENT PROFILES
+    </div>
+
+    <div id="recentProfiles" class="recent"></div>
+
+
+    <div class="note">
+      These settings are starting-point values based on the selected
+      device profile. Test them in Training Mode and adjust them
+      according to your own touch response and play style.
+    </div>
+
+  </div>
+
+
+  <!-- INFORMATION -->
+  <div class="card">
+
+    <h2>About AimVanta FF</h2>
+
+    <div class="note">
+      AimVanta FF generates device-based sensitivity profiles.
+      Different supported devices use different profiles rather than
+      applying one universal sensitivity to every phone.
+    </div>
+
+    <div class="note">
+      Only exact supported device models are accepted.
+      Random or unsupported model names will return
+      <b>DEVICE NOT FOUND</b>.
+    </div>
+
+  </div>
+
+
+  <div class="footer">
+    © 2026 AimVanta FF — Device Sensitivity Tool
   </div>
 
 </div>
 
+
 <script>
 
 /* =========================================================
-   AIMVANTA DEVICE DATABASE
-   ONLY DEVICES PRESENT HERE CAN GENERATE SENSITIVITY
+   DEVICE DATABASE
    ========================================================= */
 
 const DEVICE_DATABASE = {
 
-  /* ---------- POCO ---------- */
-
-  "poco f5": {
+  "poco f5":{
     name:"POCO F5",
     ram:"8GB / 12GB",
     dpi:395,
     base:[184,174,160,144,104,142,57]
   },
 
-  "poco f5 pro": {
+  "poco f5 pro":{
     name:"POCO F5 Pro",
     ram:"8GB / 12GB",
     dpi:515,
     base:[188,179,165,150,109,146,58]
   },
 
-  "poco x3": {
+  "poco x3":{
     name:"POCO X3",
     ram:"6GB / 8GB",
     dpi:395,
     base:[177,165,153,137,98,135,56]
   },
 
-  "poco x3 pro": {
+  "poco x3 pro":{
     name:"POCO X3 Pro",
     ram:"6GB / 8GB",
     dpi:395,
     base:[181,169,157,141,101,138,56]
   },
 
-  "poco x4 pro 5g": {
+  "poco x4 pro 5g":{
     name:"POCO X4 Pro 5G",
     ram:"6GB / 8GB",
     dpi:395,
     base:[179,168,155,139,100,137,56]
   },
 
-  "poco x5": {
+  "poco x5":{
     name:"POCO X5",
     ram:"6GB / 8GB",
     dpi:395,
     base:[180,169,157,140,101,138,56]
   },
 
-  "poco x5 pro": {
+  "poco x5 pro":{
     name:"POCO X5 Pro",
     ram:"6GB / 8GB",
     dpi:395,
     base:[183,172,159,143,103,141,57]
   },
 
-  "poco x6": {
+  "poco x6":{
     name:"POCO X6",
     ram:"8GB / 12GB",
     dpi:395,
     base:[185,175,162,146,105,143,57]
   },
 
-  "poco x6 pro": {
+  "poco x6 pro":{
     name:"POCO X6 Pro",
     ram:"8GB / 12GB / 16GB",
     dpi:395,
     base:[189,179,166,150,109,147,58]
   },
 
-  "poco x7": {
+  "poco x7":{
     name:"POCO X7",
     ram:"8GB / 12GB",
     dpi:395,
     base:[186,176,163,147,106,144,57]
   },
 
-  "poco x7 pro": {
+  "poco x7 pro":{
     name:"POCO X7 Pro",
     ram:"8GB / 12GB",
     dpi:395,
     base:[191,181,168,152,111,149,58]
   },
 
-  "poco m5": {
+  "poco m5":{
     name:"POCO M5",
     ram:"4GB / 6GB",
     dpi:320,
     base:[169,157,145,130,93,128,55]
   },
 
-  "poco m5s": {
-    name:"POCO M5s",
-    ram:"4GB / 6GB",
-    dpi:395,
-    base:[174,163,150,134,96,132,55]
-  },
-
-  "poco c65": {
+  "poco c65":{
     name:"POCO C65",
     ram:"6GB / 8GB",
     dpi:320,
     base:[165,153,141,126,90,125,54]
   },
 
-  /* ---------- XIAOMI ---------- */
 
-  "xiaomi 13 pro": {
+  "xiaomi 13 pro":{
     name:"Xiaomi 13 Pro",
     ram:"8GB / 12GB",
     dpi:480,
     base:[190,181,168,151,110,148,58]
   },
 
-  "xiaomi 14 ultra": {
+  "xiaomi 14 ultra":{
     name:"Xiaomi 14 Ultra",
     ram:"12GB / 16GB",
     dpi:522,
     base:[193,184,171,154,113,151,59]
   },
 
-  "xiaomi 14t": {
+  "xiaomi 14t":{
     name:"Xiaomi 14T",
     ram:"12GB",
     dpi:446,
     base:[188,178,165,149,108,146,58]
   },
 
-  /* ---------- REDMI ---------- */
 
-  "redmi note 8 pro": {
+  "redmi note 8 pro":{
     name:"Redmi Note 8 Pro",
     ram:"6GB / 8GB",
     dpi:395,
     base:[176,164,152,136,97,134,56]
   },
 
-  "redmi note 9": {
+  "redmi note 9":{
     name:"Redmi Note 9",
     ram:"3GB / 4GB / 6GB",
     dpi:395,
     base:[171,160,147,132,94,130,55]
   },
 
-  "redmi note 9s": {
+  "redmi note 9s":{
     name:"Redmi Note 9S",
     ram:"4GB / 6GB",
     dpi:395,
     base:[174,163,150,135,96,132,55]
   },
 
-  "redmi note 10": {
+  "redmi note 10":{
     name:"Redmi Note 10",
     ram:"4GB / 6GB",
     dpi:395,
     base:[177,166,153,137,98,135,56]
   },
 
-  "redmi note 10 pro": {
+  "redmi note 10 pro":{
     name:"Redmi Note 10 Pro",
     ram:"6GB / 8GB",
     dpi:395,
     base:[181,170,157,141,101,138,56]
   },
 
-  "redmi note 11 pro": {
+  "redmi note 11 pro":{
     name:"Redmi Note 11 Pro",
     ram:"6GB / 8GB",
     dpi:395,
     base:[183,172,159,143,103,141,57]
   },
 
-  "redmi note 12 pro": {
+  "redmi note 12 pro":{
     name:"Redmi Note 12 Pro",
     ram:"6GB / 8GB / 12GB",
     dpi:395,
     base:[185,175,162,146,105,143,57]
   },
 
-  "redmi note 13": {
+  "redmi note 13":{
     name:"Redmi Note 13",
     ram:"6GB / 8GB / 12GB",
     dpi:395,
     base:[184,174,161,144,104,142,57]
   },
 
-  "redmi note 13 5g": {
+  "redmi note 13 5g":{
     name:"Redmi Note 13 5G",
     ram:"6GB / 8GB / 12GB",
     dpi:395,
     base:[187,177,164,148,107,145,58]
   },
 
-  /* ---------- SAMSUNG ---------- */
 
-  "samsung galaxy a05": {
+  "samsung galaxy a05":{
     name:"Samsung Galaxy A05",
     ram:"4GB / 6GB",
     dpi:320,
     base:[164,152,140,125,89,124,54]
   },
 
-  "samsung galaxy a15": {
+  "samsung galaxy a15":{
     name:"Samsung Galaxy A15",
     ram:"4GB / 6GB / 8GB",
     dpi:395,
     base:[172,161,149,133,95,131,55]
   },
 
-  "samsung galaxy a25": {
+  "samsung galaxy a25":{
     name:"Samsung Galaxy A25",
     ram:"6GB / 8GB",
     dpi:395,
     base:[178,167,154,138,99,136,56]
   },
 
-  "samsung galaxy a34": {
+  "samsung galaxy a34":{
     name:"Samsung Galaxy A34",
     ram:"6GB / 8GB",
     dpi:394,
     base:[181,170,157,141,101,139,56]
   },
 
-  "samsung galaxy a54": {
+  "samsung galaxy a54":{
     name:"Samsung Galaxy A54",
     ram:"8GB",
     dpi:450,
     base:[185,175,162,146,105,143,57]
   },
 
-  "samsung galaxy s23": {
+  "samsung galaxy s23":{
     name:"Samsung Galaxy S23",
     ram:"8GB",
     dpi:425,
     base:[188,179,166,150,109,147,58]
   },
 
-  "samsung galaxy s24": {
+  "samsung galaxy s24":{
     name:"Samsung Galaxy S24",
     ram:"8GB / 12GB",
     dpi:425,
     base:[190,181,168,152,111,149,58]
   },
 
-  "samsung galaxy s25": {
+  "samsung galaxy s25":{
     name:"Samsung Galaxy S25",
     ram:"12GB",
     dpi:425,
     base:[192,183,170,154,113,151,59]
   },
 
-  /* ---------- ONEPLUS ---------- */
 
-  "oneplus 9 pro": {
+  "oneplus 9 pro":{
     name:"OnePlus 9 Pro",
     ram:"8GB / 12GB",
     dpi:525,
     base:[188,179,166,150,109,147,58]
   },
 
-  "oneplus 11": {
+  "oneplus 11":{
     name:"OnePlus 11",
     ram:"8GB / 12GB / 16GB",
     dpi:450,
     base:[191,182,169,153,112,150,59]
   },
 
-  "oneplus 12": {
+  "oneplus 12":{
     name:"OnePlus 12",
     ram:"12GB / 16GB / 24GB",
     dpi:510,
     base:[193,184,171,155,114,152,59]
   },
 
-  "oneplus nord 3": {
+  "oneplus nord 3":{
     name:"OnePlus Nord 3",
     ram:"8GB / 16GB",
     dpi:394,
     base:[180,169,156,140,101,138,56]
   },
 
-  /* ---------- REALME ---------- */
 
-  "realme 8": {
-    name:"Realme 8 4G",
+  "realme 8":{
+    name:"Realme 8",
     ram:"4GB / 6GB / 8GB",
     dpi:411,
     base:[175,164,151,135,97,133,55]
   },
 
-  "realme 9": {
+  "realme 9":{
     name:"Realme 9",
     ram:"6GB / 8GB",
     dpi:394,
     base:[178,167,154,138,99,136,56]
   },
 
-  "realme 9i": {
+  "realme 9i":{
     name:"Realme 9i",
     ram:"4GB / 6GB",
     dpi:394,
     base:[176,165,152,136,98,134,56]
   },
 
-  "realme gt 3": {
+  "realme gt 3":{
     name:"Realme GT 3",
     ram:"8GB / 12GB / 16GB",
     dpi:395,
     base:[188,179,166,149,108,146,58]
   },
 
-  "realme gt 5 pro": {
+  "realme gt 5 pro":{
     name:"Realme GT 5 Pro",
     ram:"12GB / 16GB",
     dpi:450,
     base:[192,183,170,154,113,151,59]
   },
 
-  "realme gt 6": {
+  "realme gt 6":{
     name:"Realme GT 6",
     ram:"8GB / 12GB / 16GB",
     dpi:450,
     base:[191,182,169,153,112,150,59]
   },
 
-  "realme 13+": {
-    name:"Realme 13+",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[184,174,161,145,104,142,57]
-  },
 
-  /* ---------- VIVO ---------- */
-
-  "vivo v21": {
+  "vivo v21":{
     name:"Vivo V21",
     ram:"8GB",
     dpi:411,
     base:[177,166,153,137,98,135,56]
   },
 
-  "vivo v40e": {
+  "vivo v40e":{
     name:"Vivo V40e",
     ram:"8GB",
     dpi:394,
     base:[183,173,160,143,103,141,57]
   },
 
-  "vivo v50": {
+  "vivo v50":{
     name:"Vivo V50",
     ram:"8GB / 12GB",
     dpi:394,
     base:[187,177,164,148,107,145,58]
   },
 
-  "vivo x90 pro": {
+  "vivo x90 pro":{
     name:"Vivo X90 Pro",
     ram:"12GB",
     dpi:440,
     base:[190,181,168,152,111,149,58]
   },
 
-  "vivo x100 pro": {
+  "vivo x100 pro":{
     name:"Vivo X100 Pro",
     ram:"16GB",
     dpi:460,
     base:[192,183,170,154,113,151,59]
   },
 
-  /* ---------- IQOO ---------- */
 
-  "iqoo z7": {
+  "iqoo z7":{
     name:"iQOO Z7",
     ram:"6GB / 8GB",
     dpi:395,
     base:[179,168,155,139,100,137,56]
   },
 
-  "iqoo neo 10": {
+  "iqoo neo 10":{
     name:"iQOO Neo 10",
     ram:"8GB / 12GB / 16GB",
     dpi:395,
     base:[190,181,168,152,111,149,58]
   },
 
-  "iqoo neo 10r": {
+  "iqoo neo 10r":{
     name:"iQOO Neo 10R",
     ram:"8GB / 12GB",
     dpi:395,
     base:[188,179,166,150,109,147,58]
   },
 
-  /* ---------- OPPO ---------- */
 
-  "oppo a78 5g": {
+  "oppo a78 5g":{
     name:"OPPO A78 5G",
     ram:"4GB / 8GB",
     dpi:394,
     base:[174,163,150,134,96,132,55]
   },
 
-  "oppo reno 8 5g": {
+  "oppo reno 8 5g":{
     name:"OPPO Reno 8 5G",
     ram:"8GB",
     dpi:394,
     base:[180,169,156,140,101,138,56]
   },
 
-  "oppo f27": {
+  "oppo f27":{
     name:"OPPO F27",
     ram:"8GB",
     dpi:394,
     base:[182,171,158,142,102,140,57]
   },
 
-  "oppo f29": {
+  "oppo f29":{
     name:"OPPO F29",
     ram:"8GB / 12GB",
     dpi:394,
     base:[185,175,162,146,105,143,57]
   },
 
-  /* ---------- INFINIX ---------- */
 
-  "infinix hot 30": {
+  "infinix hot 30":{
     name:"Infinix Hot 30",
     ram:"8GB",
     dpi:320,
     base:[169,158,145,130,93,128,55]
   },
 
-  "infinix hot 40": {
+  "infinix hot 40":{
     name:"Infinix Hot 40",
     ram:"8GB",
     dpi:320,
     base:[171,160,147,132,94,130,55]
   },
 
-  "infinix hot 50 pro": {
+  "infinix hot 50 pro":{
     name:"Infinix Hot 50 Pro",
     ram:"8GB",
     dpi:320,
     base:[176,165,152,136,98,134,56]
   },
 
-  "infinix gt 10 pro": {
+  "infinix gt 10 pro":{
     name:"Infinix GT 10 Pro",
     ram:"8GB",
     dpi:395,
     base:[183,173,160,143,103,141,57]
   },
 
-  "infinix gt 20 pro": {
+  "infinix gt 20 pro":{
     name:"Infinix GT 20 Pro",
     ram:"8GB / 12GB",
     dpi:395,
     base:[188,178,165,149,108,146,58]
   },
 
-  /* ---------- TECNO ---------- */
 
-  "tecno pova 5": {
+  "tecno pova 5":{
     name:"Tecno Pova 5",
     ram:"8GB",
     dpi:395,
     base:[181,170,157,141,101,138,56]
   },
 
-  "tecno spark 20": {
+  "tecno spark 20":{
     name:"Tecno Spark 20",
     ram:"4GB / 8GB",
     dpi:320,
     base:[169,158,145,130,93,128,55]
   },
 
-  /* ---------- MOTOROLA ---------- */
 
-  "moto g22": {
-    name:"Moto G22",
-    ram:"4GB",
-    dpi:320,
-    base:[168,157,144,129,92,127,55]
-  },
-
-  "motorola edge 40": {
+  "motorola edge 40":{
     name:"Motorola Edge 40",
     ram:"8GB",
     dpi:394,
     base:[182,172,159,142,102,140,57]
   },
 
-  /* ---------- NOTHING ---------- */
+  "moto g22":{
+    name:"Moto G22",
+    ram:"4GB",
+    dpi:320,
+    base:[168,157,144,129,92,127,55]
+  },
 
-  "nothing phone 1": {
+
+  "nothing phone 1":{
     name:"Nothing Phone 1",
     ram:"8GB / 12GB",
     dpi:424,
     base:[183,173,160,144,104,142,57]
   },
 
-  "nothing phone 2": {
+  "nothing phone 2":{
     name:"Nothing Phone 2",
     ram:"8GB / 12GB",
     dpi:424,
     base:[188,178,165,149,108,146,58]
   },
 
-  /* ---------- GOOGLE ---------- */
 
-  "google pixel 6 pro": {
+  "google pixel 6 pro":{
     name:"Google Pixel 6 Pro",
     ram:"12GB",
     dpi:512,
     base:[186,177,164,148,107,145,58]
   },
 
-  "google pixel 7 pro": {
+  "google pixel 7 pro":{
     name:"Google Pixel 7 Pro",
     ram:"12GB",
     dpi:512,
     base:[189,180,167,151,110,148,58]
   },
 
-  "google pixel 8 pro": {
+  "google pixel 8 pro":{
     name:"Google Pixel 8 Pro",
     ram:"12GB",
     dpi:489,
     base:[191,182,169,153,112,150,59]
   },
 
-  /* ---------- ASUS ROG ---------- */
 
-  "asus rog phone 7": {
+  "asus rog phone 7":{
     name:"ASUS ROG Phone 7",
     ram:"12GB / 16GB",
     dpi:395,
     base:[193,184,171,155,114,152,59]
   },
 
-  "asus rog phone 8 pro": {
+  "asus rog phone 8 pro":{
     name:"ASUS ROG Phone 8 Pro",
     ram:"16GB / 24GB",
     dpi:395,
     base:[195,186,173,157,116,154,60]
   },
 
-  /* ---------- APPLE ---------- */
 
-  "iphone 11": {
+  "iphone 11":{
     name:"iPhone 11",
     ram:"4GB",
     dpi:326,
     base:[177,166,153,137,98,135,56]
   },
 
-  "iphone 12": {
+  "iphone 12":{
     name:"iPhone 12",
     ram:"4GB",
     dpi:460,
     base:[184,174,161,145,104,142,57]
   },
 
-  "iphone 13": {
+  "iphone 13":{
     name:"iPhone 13",
     ram:"4GB",
     dpi:460,
     base:[187,177,164,148,107,145,58]
   },
 
-  "iphone 14": {
+  "iphone 14":{
     name:"iPhone 14",
     ram:"6GB",
     dpi:460,
     base:[189,180,167,151,110,148,58]
   },
 
-  "iphone 15": {
+  "iphone 15":{
     name:"iPhone 15",
     ram:"6GB",
     dpi:460,
     base:[191,182,169,153,112,150,59]
   },
 
-  "iphone 15 pro": {
+  "iphone 15 pro":{
     name:"iPhone 15 Pro",
     ram:"8GB",
     dpi:460,
     base:[193,184,171,155,114,152,59]
   },
 
-  "iphone 15 pro max": {
+  "iphone 15 pro max":{
     name:"iPhone 15 Pro Max",
     ram:"8GB",
     dpi:460,
     base:[194,185,172,156,115,153,60]
   },
 
-  "iphone 16": {
+  "iphone 16":{
     name:"iPhone 16",
     ram:"8GB",
     dpi:460,
     base:[193,184,171,155,114,152,59]
   },
 
-  "iphone 16 pro": {
+  "iphone 16 pro":{
     name:"iPhone 16 Pro",
     ram:"8GB",
     dpi:460,
     base:[195,186,173,157,116,154,60]
   },
 
-  "iphone 16 pro max": {
+  "iphone 16 pro max":{
     name:"iPhone 16 Pro Max",
     ram:"8GB",
     dpi:460,
@@ -921,12 +1068,12 @@ const DEVICE_DATABASE = {
 
 
 /* =========================================================
-   NORMALIZE SEARCH
+   NORMALIZE
    ========================================================= */
 
 function normalize(text){
 
-  return text
+  return String(text || "")
     .toLowerCase()
     .replace(/[®™]/g,"")
     .replace(/\s+/g," ")
@@ -936,32 +1083,26 @@ function normalize(text){
 
 
 /* =========================================================
-   EXACT DEVICE LOOKUP
+   EXACT MATCH ONLY
    ========================================================= */
 
-function findDevice(input){
+function findDevice(value){
 
-  const key = normalize(input);
-
-  if(!key){
-    return null;
-  }
-
-  return DEVICE_DATABASE[key] || null;
+  return DEVICE_DATABASE[normalize(value)] || null;
 
 }
 
 
 /* =========================================================
-   SEARCH SUGGESTIONS
+   SUGGESTIONS
    ========================================================= */
 
-const input = document.getElementById("deviceInput");
-const suggestions = document.getElementById("suggestions");
+const deviceInput=document.getElementById("deviceInput");
+const suggestions=document.getElementById("suggestions");
 
-input.addEventListener("input",function(){
+deviceInput.addEventListener("input",function(){
 
-  const value = normalize(this.value);
+  const value=normalize(this.value);
 
   suggestions.innerHTML="";
 
@@ -972,7 +1113,7 @@ input.addEventListener("input",function(){
 
   }
 
-  const matches = Object.values(DEVICE_DATABASE)
+  const matches=Object.values(DEVICE_DATABASE)
     .filter(device =>
       normalize(device.name).includes(value)
     )
@@ -994,7 +1135,7 @@ input.addEventListener("input",function(){
 
     div.onclick=function(){
 
-      input.value=device.name;
+      deviceInput.value=device.name;
       suggestions.style.display="none";
 
     };
@@ -1014,21 +1155,13 @@ input.addEventListener("input",function(){
 
 function generateSensitivity(){
 
-  const value=input.value;
-
-  const device=findDevice(value);
+  const device=findDevice(deviceInput.value);
 
   const error=document.getElementById("error");
   const result=document.getElementById("result");
 
   error.style.display="none";
   result.style.display="none";
-
-  /*
-    IMPORTANT:
-    If the exact device does NOT exist in our database,
-    NOTHING is generated.
-  */
 
   if(!device){
 
@@ -1053,7 +1186,13 @@ function generateSensitivity(){
   document.getElementById("freeLook").textContent=values[5];
   document.getElementById("fireButton").textContent=values[6];
 
+  document.getElementById("infoDevice").textContent=device.name;
+  document.getElementById("infoRam").textContent=device.ram;
+  document.getElementById("infoDpi").textContent=device.dpi;
+
   result.style.display="block";
+
+  saveRecent(device.name);
 
   result.scrollIntoView({
     behavior:"smooth",
@@ -1064,15 +1203,13 @@ function generateSensitivity(){
 
 
 /* =========================================================
-   COPY
+   COPY PROFILE
    ========================================================= */
 
 function copySensitivity(){
 
-  const name=document.getElementById("resultName").textContent;
-
   const text=
-`${name}
+`AimVanta FF — ${document.getElementById("resultName").textContent}
 
 General: ${document.getElementById("general").textContent}
 Red Dot: ${document.getElementById("redDot").textContent}
@@ -1082,9 +1219,177 @@ Sniper Scope: ${document.getElementById("sniper").textContent}
 Free Look: ${document.getElementById("freeLook").textContent}
 Fire Button: ${document.getElementById("fireButton").textContent}`;
 
-  navigator.clipboard.writeText(text).then(()=>{
+  navigator.clipboard.writeText(text)
+    .then(()=>alert("Profile copied successfully!"))
+    .catch(()=>alert("Copy failed. Please copy manually."));
 
-    alert("Sensitivity copied!");
+}
+
+
+/* =========================================================
+   SAVE PROFILE
+   ========================================================= */
+
+function saveProfile(){
+
+  const device=document.getElementById("resultName").textContent;
+
+  const profile={
+    device:device,
+    general:document.getElementById("general").textContent,
+    redDot:document.getElementById("redDot").textContent,
+    scope2x:document.getElementById("scope2x").textContent,
+    scope4x:document.getElementById("scope4x").textContent,
+    sniper:document.getElementById("sniper").textContent,
+    freeLook:document.getElementById("freeLook").textContent,
+    fireButton:document.getElementById("fireButton").textContent
+  };
+
+  localStorage.setItem(
+    "aimvanta_saved_profile",
+    JSON.stringify(profile)
+  );
+
+  alert("Profile saved on this device!");
+
+}
+
+
+/* =========================================================
+   SHARE PROFILE
+   ========================================================= */
+
+function shareProfile(){
+
+  const device=document.getElementById("resultName").textContent;
+
+  const params=new URLSearchParams();
+
+  params.set("device",device);
+
+  const shareUrl=
+    window.location.origin+
+    window.location.pathname+
+    "?"+params.toString();
+
+  if(navigator.share){
+
+    navigator.share({
+      title:"AimVanta FF Sensitivity",
+      text:"My AimVanta FF sensitivity profile: "+device,
+      url:shareUrl
+    }).catch(()=>{});
+
+  }else{
+
+    navigator.clipboard.writeText(shareUrl)
+      .then(()=>alert("Profile link copied!"))
+      .catch(()=>alert(shareUrl));
+
+  }
+
+}
+
+
+/* =========================================================
+   GENERATE AGAIN
+   ========================================================= */
+
+function generateAgain(){
+
+  document.getElementById("result").style.display="none";
+
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+
+  deviceInput.focus();
+
+}
+
+
+/* =========================================================
+   RECENT PROFILES
+   ========================================================= */
+
+function saveRecent(deviceName){
+
+  let recent=[];
+
+  try{
+
+    recent=JSON.parse(
+      localStorage.getItem("aimvanta_recent_profiles") || "[]"
+    );
+
+  }catch(e){
+
+    recent=[];
+
+  }
+
+  recent=recent.filter(x=>x!==deviceName);
+
+  recent.unshift(deviceName);
+
+  recent=recent.slice(0,5);
+
+  localStorage.setItem(
+    "aimvanta_recent_profiles",
+    JSON.stringify(recent)
+  );
+
+  renderRecent();
+
+}
+
+
+function renderRecent(){
+
+  const box=document.getElementById("recentProfiles");
+
+  let recent=[];
+
+  try{
+
+    recent=JSON.parse(
+      localStorage.getItem("aimvanta_recent_profiles") || "[]"
+    );
+
+  }catch(e){
+
+    recent=[];
+
+  }
+
+  box.innerHTML="";
+
+  if(recent.length===0){
+
+    box.innerHTML=
+      '<div class="note">No recent profiles yet.</div>';
+
+    return;
+
+  }
+
+  recent.forEach(name=>{
+
+    const div=document.createElement("div");
+
+    div.className="recent-item";
+    div.textContent="📱 "+name;
+
+    div.onclick=function(){
+
+      deviceInput.value=name;
+
+      generateSensitivity();
+
+    };
+
+    box.appendChild(div);
 
   });
 
@@ -1092,7 +1397,7 @@ Fire Button: ${document.getElementById("fireButton").textContent}`;
 
 
 /* =========================================================
-   URL DEVICE SUPPORT
+   URL SUPPORT
    ========================================================= */
 
 const params=new URLSearchParams(window.location.search);
@@ -1101,11 +1406,12 @@ const urlDevice=params.get("device");
 
 if(urlDevice){
 
-  input.value=urlDevice;
+  deviceInput.value=urlDevice;
 
   /*
-    Automatically generate only when the exact
-    device exists in DEVICE_DATABASE.
+    IMPORTANT:
+    URL ALSO USES EXACT DATABASE VALIDATION.
+    Unknown devices cannot bypass the check.
   */
 
   const device=findDevice(urlDevice);
@@ -1121,6 +1427,28 @@ if(urlDevice){
   }
 
 }
+
+
+/* =========================================================
+   LOAD RECENT PROFILES
+   ========================================================= */
+
+renderRecent();
+
+
+/* =========================================================
+   CLOSE SUGGESTIONS WHEN CLICKING OUTSIDE
+   ========================================================= */
+
+document.addEventListener("click",function(event){
+
+  if(!event.target.closest(".searchbox")){
+
+    suggestions.style.display="none";
+
+  }
+
+});
 
 </script>
 
