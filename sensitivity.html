@@ -2,259 +2,150 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>AimVanta FF — Sensitivity Generator</title>
-<meta name="description" content="AimVanta FF device based Free Fire sensitivity generator.">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>AimVanta FF — Device Sensitivity</title>
 
 <style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
-
+*{box-sizing:border-box}
 body{
-  min-height:100vh;
-  font-family:Arial,Helvetica,sans-serif;
-  color:#fff;
-  background:
-    radial-gradient(circle at 15% 15%,rgba(0,255,145,.12),transparent 30%),
-    radial-gradient(circle at 85% 85%,rgba(0,120,255,.12),transparent 30%),
-    #030807;
-  overflow-x:hidden;
+ margin:0;
+ font-family:Arial,sans-serif;
+ background:#050b0d;
+ color:#fff;
+ min-height:100vh;
 }
-
 .container{
-  width:min(920px,94%);
-  margin:auto;
-  padding:28px 0 60px;
+ width:min(950px,94%);
+ margin:auto;
+ padding:35px 0 60px;
 }
-
-.header{
-  text-align:center;
-  margin-bottom:22px;
-}
-
 .logo{
-  font-size:32px;
-  font-weight:900;
-  color:#00ff91;
-  text-shadow:0 0 20px rgba(0,255,145,.45);
+ text-align:center;
+ font-size:30px;
+ font-weight:900;
+ color:#35ff88;
+ text-shadow:0 0 20px #00ff66;
+ margin-bottom:8px;
 }
-
 .subtitle{
-  margin-top:7px;
-  color:#8fa99c;
+ text-align:center;
+ color:#9aa;
+ margin-bottom:30px;
 }
-
-.card{
-  margin-top:18px;
-  padding:24px;
-  border-radius:20px;
-  background:rgba(7,18,14,.9);
-  border:1px solid rgba(0,255,145,.18);
-  box-shadow:0 0 35px rgba(0,255,145,.08);
-}
-
-h2{
-  margin-bottom:15px;
-}
-
 .searchbox{
-  position:relative;
+ position:relative;
 }
-
 input{
-  width:100%;
-  padding:16px;
-  border-radius:12px;
-  border:1px solid #24583f;
-  background:#07100c;
-  color:#fff;
-  outline:none;
-  font-size:16px;
+ width:100%;
+ padding:18px 20px;
+ border:1px solid #174d37;
+ border-radius:14px;
+ background:#071512;
+ color:white;
+ font-size:17px;
+ outline:none;
+ box-shadow:0 0 20px #00ff3310;
 }
-
 input:focus{
-  border-color:#00ff91;
-  box-shadow:0 0 15px rgba(0,255,145,.15);
+ border-color:#35ff88;
+ box-shadow:0 0 25px #00ff3330;
 }
-
-button{
-  width:100%;
-  padding:15px;
-  margin-top:11px;
-  border:0;
-  border-radius:12px;
-  cursor:pointer;
-  font-size:15px;
-  font-weight:900;
-  background:linear-gradient(90deg,#00d878,#00ff91);
-  color:#001c10;
-}
-
-button:hover{
-  filter:brightness(1.08);
-}
-
-.dark-btn{
-  background:#101b16;
-  color:#fff;
-  border:1px solid #254634;
-}
-
-.red-btn{
-  background:linear-gradient(90deg,#501212,#8b1e1e);
-  color:#fff;
-  border:1px solid #a52c2c;
-}
-
 .suggestions{
-  display:none;
-  position:absolute;
-  width:100%;
-  z-index:20;
-  max-height:240px;
-  overflow-y:auto;
-  background:#08120e;
-  border:1px solid #214f39;
-  border-radius:12px;
-  margin-top:5px;
+ position:absolute;
+ top:64px;
+ left:0;
+ right:0;
+ z-index:20;
+ background:#07100e;
+ border:1px solid #174d37;
+ border-radius:12px;
+ overflow:hidden;
+ display:none;
+ max-height:330px;
+ overflow-y:auto;
 }
-
 .suggestion{
-  padding:13px;
-  cursor:pointer;
-  border-bottom:1px solid rgba(255,255,255,.05);
+ padding:13px 16px;
+ border-bottom:1px solid #123329;
+ cursor:pointer;
 }
-
 .suggestion:hover{
-  background:#10251a;
-  color:#00ff91;
+ background:#103d2b;
 }
-
-.error{
-  display:none;
-  margin-top:15px;
-  padding:16px;
-  border-radius:12px;
-  background:rgba(255,30,30,.08);
-  border:1px solid rgba(255,70,70,.35);
-  color:#ff7777;
-  line-height:1.6;
-  font-weight:800;
+.brand{
+ color:#35ff88;
+ font-size:12px;
+ display:block;
+ margin-top:4px;
 }
-
-.result{
-  display:none;
+.status{
+ margin-top:12px;
+ color:#9aa;
+ font-size:14px;
 }
-
-.device-name{
-  font-size:25px;
-  font-weight:900;
-  color:#00ff91;
+.card{
+ margin-top:25px;
+ padding:22px;
+ border:1px solid #164d36;
+ border-radius:18px;
+ background:linear-gradient(145deg,#081411,#050a09);
+ box-shadow:0 0 25px #00ff3310;
 }
-
-.device-info{
-  margin-top:6px;
-  color:#91a79c;
+.device-title{
+ font-size:25px;
+ font-weight:800;
+ color:#35ff88;
 }
-
 .grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
-  margin-top:20px;
+ display:grid;
+ grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+ gap:14px;
+ margin-top:20px;
 }
-
 .item{
-  padding:17px;
-  border-radius:14px;
-  background:#09150f;
-  border:1px solid #183d2c;
+ padding:18px;
+ border-radius:14px;
+ background:#091b15;
+ border:1px solid #123d2d;
 }
-
-.item span{
-  display:block;
-  color:#8ca397;
-  font-size:13px;
-  margin-bottom:7px;
+.item small{
+ color:#879890;
+ display:block;
+ margin-bottom:8px;
 }
-
 .item strong{
-  font-size:26px;
+ font-size:24px;
 }
-
-.section-title{
-  margin-top:25px;
-  margin-bottom:12px;
-  color:#00ff91;
+.buttons{
+ display:flex;
+ flex-wrap:wrap;
+ gap:10px;
+ margin-top:20px;
 }
-
-.info-grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+button{
+ border:0;
+ border-radius:10px;
+ padding:12px 17px;
+ cursor:pointer;
+ font-weight:700;
+ background:#35ff88;
+ color:#00170a;
 }
-
-.info-box{
-  padding:16px;
-  border-radius:14px;
-  background:#09150f;
-  border:1px solid #183d2c;
-  line-height:1.6;
+button.secondary{
+ background:#10251d;
+ color:#fff;
+ border:1px solid #24583f;
 }
-
-.info-box b{
-  color:#00ff91;
+.hidden{display:none}
+.error{
+ color:#ff6969;
 }
-
-.note{
-  margin-top:18px;
-  color:#82968c;
-  font-size:13px;
-  line-height:1.6;
+.loading{
+ color:#ffd166;
 }
-
-.recent{
-  margin-top:12px;
-}
-
-.recent-item{
-  padding:12px;
-  margin-top:8px;
-  border-radius:10px;
-  background:#09150f;
-  border:1px solid #183d2c;
-  cursor:pointer;
-}
-
-.recent-item:hover{
-  color:#00ff91;
-  border-color:#00ff91;
-}
-
-.footer{
-  text-align:center;
-  margin-top:30px;
-  color:#667a70;
-  font-size:13px;
-}
-
-@media(max-width:600px){
-  .grid,
-  .info-grid{
-    grid-template-columns:1fr;
-  }
-
-  .logo{
-    font-size:27px;
-  }
-
-  .card{
-    padding:19px;
-  }
+.info{
+ color:#8ca39a;
+ line-height:1.6;
 }
 </style>
 </head>
@@ -263,808 +154,107 @@ button:hover{
 
 <div class="container">
 
-  <div class="header">
-    <div class="logo">AIMVANTA FF</div>
-    <div class="subtitle">Advanced Device Sensitivity Generator</div>
-  </div>
+<div class="logo">AIMVANTA FF</div>
+<div class="subtitle">Universal Device Sensitivity Generator</div>
 
-  <!-- SEARCH -->
-  <div class="card">
+<div class="searchbox">
+<input
+ id="deviceSearch"
+ type="text"
+ placeholder="Search any phone... e.g. Galaxy S25 Ultra, POCO F5, iPhone 15"
+ autocomplete="off"
+>
+<div id="suggestions" class="suggestions"></div>
+</div>
 
-    <h2>Search Your Device</h2>
+<div id="status" class="status">
+Type your device name to search the global device database.
+</div>
 
-    <div class="searchbox">
+<div id="result" class="hidden">
 
-      <input
-        id="deviceInput"
-        type="text"
-        autocomplete="off"
-        placeholder="Example: POCO F5"
-      >
+<div class="card">
+<div id="deviceTitle" class="device-title"></div>
+<div id="deviceMeta" class="info"></div>
 
-      <div id="suggestions" class="suggestions"></div>
+<div class="grid">
 
-    </div>
+<div class="item">
+<small>General</small>
+<strong id="general"></strong>
+</div>
 
-    <button onclick="generateSensitivity()">
-      GENERATE SENSITIVITY
-    </button>
+<div class="item">
+<small>Red Dot</small>
+<strong id="redDot"></strong>
+</div>
 
-    <div id="error" class="error">
-      DEVICE NOT FOUND<br>
-      <small>
-        This device is not currently supported.
-        Select an exact model from the supported device list.
-      </small>
-    </div>
+<div class="item">
+<small>2X Scope</small>
+<strong id="scope2"></strong>
+</div>
 
-  </div>
+<div class="item">
+<small>4X Scope</small>
+<strong id="scope4"></strong>
+</div>
 
+<div class="item">
+<small>Sniper Scope</small>
+<strong id="sniper"></strong>
+</div>
 
-  <!-- RESULT -->
-  <div id="result" class="card result">
+<div class="item">
+<small>Free Look</small>
+<strong id="freeLook"></strong>
+</div>
 
-    <div class="device-name" id="resultName"></div>
-
-    <div class="device-info" id="resultInfo"></div>
-
-    <div class="grid">
-
-      <div class="item">
-        <span>General</span>
-        <strong id="general"></strong>
-      </div>
-
-      <div class="item">
-        <span>Red Dot</span>
-        <strong id="redDot"></strong>
-      </div>
-
-      <div class="item">
-        <span>2X Scope</span>
-        <strong id="scope2x"></strong>
-      </div>
-
-      <div class="item">
-        <span>4X Scope</span>
-        <strong id="scope4x"></strong>
-      </div>
-
-      <div class="item">
-        <span>Sniper Scope</span>
-        <strong id="sniper"></strong>
-      </div>
-
-      <div class="item">
-        <span>Free Look</span>
-        <strong id="freeLook"></strong>
-      </div>
-
-      <div class="item">
-        <span>Fire Button</span>
-        <strong id="fireButton"></strong>
-      </div>
-
-    </div>
-
-
-    <!-- PROFILE ACTIONS -->
-    <div class="section-title">
-      PROFILE ACTIONS
-    </div>
-
-    <button onclick="copySensitivity()">
-      📋 COPY PROFILE
-    </button>
-
-    <button onclick="saveProfile()">
-      💾 SAVE PROFILE
-    </button>
-
-    <button onclick="shareProfile()">
-      🔗 SHARE PROFILE
-    </button>
-
-    <button class="dark-btn" onclick="generateAgain()">
-      🔄 GENERATE AGAIN
-    </button>
-
-
-    <!-- DEVICE INFO -->
-    <div class="section-title">
-      DEVICE PROFILE
-    </div>
-
-    <div class="info-grid">
-
-      <div class="info-box">
-        <b>Device</b><br>
-        <span id="infoDevice"></span>
-      </div>
-
-      <div class="info-box">
-        <b>RAM</b><br>
-        <span id="infoRam"></span>
-      </div>
-
-      <div class="info-box">
-        <b>Reference DPI</b><br>
-        <span id="infoDpi"></span>
-      </div>
-
-      <div class="info-box">
-        <b>Profile Type</b><br>
-        <span>Device Based</span>
-      </div>
-
-    </div>
-
-
-    <!-- GAMING SETTINGS -->
-    <div class="section-title">
-      GAMING SETTINGS
-    </div>
-
-    <div class="info-grid">
-
-      <div class="info-box">
-        <b>Graphics</b><br>
-        Smooth / Standard
-      </div>
-
-      <div class="info-box">
-        <b>High FPS</b><br>
-        Enable the highest stable FPS available
-      </div>
-
-      <div class="info-box">
-        <b>Auto Scale</b><br>
-        Off when possible
-      </div>
-
-      <div class="info-box">
-        <b>Battery Saver</b><br>
-        Keep disabled while gaming if performance drops
-      </div>
-
-    </div>
-
-
-    <!-- RECENT PROFILES -->
-    <div class="section-title">
-      RECENT PROFILES
-    </div>
-
-    <div id="recentProfiles" class="recent"></div>
-
-
-    <div class="note">
-      These settings are starting-point values based on the selected
-      device profile. Test them in Training Mode and adjust them
-      according to your own touch response and play style.
-    </div>
-
-  </div>
-
-
-  <!-- INFORMATION -->
-  <div class="card">
-
-    <h2>About AimVanta FF</h2>
-
-    <div class="note">
-      AimVanta FF generates device-based sensitivity profiles.
-      Different supported devices use different profiles rather than
-      applying one universal sensitivity to every phone.
-    </div>
-
-    <div class="note">
-      Only exact supported device models are accepted.
-      Random or unsupported model names will return
-      <b>DEVICE NOT FOUND</b>.
-    </div>
-
-  </div>
-
-
-  <div class="footer">
-    © 2026 AimVanta FF — Device Sensitivity Tool
-  </div>
+<div class="item">
+<small>Fire Button</small>
+<strong id="fire"></strong>
+</div>
 
 </div>
 
+<div class="buttons">
+<button onclick="copyProfile()">Copy Profile</button>
+<button class="secondary" onclick="saveProfile()">Save Profile</button>
+<button class="secondary" onclick="shareProfile()">Share Profile</button>
+<button class="secondary" onclick="location.reload()">Generate Again</button>
+</div>
+
+</div>
+
+<div class="card">
+<h2>Device Profile</h2>
+<div id="profileInfo" class="info"></div>
+</div>
+
+</div>
+
+<div id="emptyInfo" class="card">
+<h2>🌐 Global Device Search</h2>
+<p class="info">
+Search is connected to a large Android device model database instead of
+a small hard-coded phone list. Partial names and model numbers are supported.
+</p>
+</div>
+
+</div>
 
 <script>
 
 /* =========================================================
-   DEVICE DATABASE
+   AIMVANTA FF
+   GLOBAL DEVICE DATABASE
    ========================================================= */
 
-const DEVICE_DATABASE = {
-
-  "poco f5":{
-    name:"POCO F5",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[184,174,160,144,104,142,57]
-  },
-
-  "poco f5 pro":{
-    name:"POCO F5 Pro",
-    ram:"8GB / 12GB",
-    dpi:515,
-    base:[188,179,165,150,109,146,58]
-  },
-
-  "poco x3":{
-    name:"POCO X3",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[177,165,153,137,98,135,56]
-  },
-
-  "poco x3 pro":{
-    name:"POCO X3 Pro",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[181,169,157,141,101,138,56]
-  },
-
-  "poco x4 pro 5g":{
-    name:"POCO X4 Pro 5G",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[179,168,155,139,100,137,56]
-  },
-
-  "poco x5":{
-    name:"POCO X5",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[180,169,157,140,101,138,56]
-  },
-
-  "poco x5 pro":{
-    name:"POCO X5 Pro",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[183,172,159,143,103,141,57]
-  },
-
-  "poco x6":{
-    name:"POCO X6",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[185,175,162,146,105,143,57]
-  },
-
-  "poco x6 pro":{
-    name:"POCO X6 Pro",
-    ram:"8GB / 12GB / 16GB",
-    dpi:395,
-    base:[189,179,166,150,109,147,58]
-  },
-
-  "poco x7":{
-    name:"POCO X7",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[186,176,163,147,106,144,57]
-  },
-
-  "poco x7 pro":{
-    name:"POCO X7 Pro",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[191,181,168,152,111,149,58]
-  },
-
-  "poco m5":{
-    name:"POCO M5",
-    ram:"4GB / 6GB",
-    dpi:320,
-    base:[169,157,145,130,93,128,55]
-  },
-
-  "poco c65":{
-    name:"POCO C65",
-    ram:"6GB / 8GB",
-    dpi:320,
-    base:[165,153,141,126,90,125,54]
-  },
-
-
-  "xiaomi 13 pro":{
-    name:"Xiaomi 13 Pro",
-    ram:"8GB / 12GB",
-    dpi:480,
-    base:[190,181,168,151,110,148,58]
-  },
-
-  "xiaomi 14 ultra":{
-    name:"Xiaomi 14 Ultra",
-    ram:"12GB / 16GB",
-    dpi:522,
-    base:[193,184,171,154,113,151,59]
-  },
-
-  "xiaomi 14t":{
-    name:"Xiaomi 14T",
-    ram:"12GB",
-    dpi:446,
-    base:[188,178,165,149,108,146,58]
-  },
-
-
-  "redmi note 8 pro":{
-    name:"Redmi Note 8 Pro",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[176,164,152,136,97,134,56]
-  },
-
-  "redmi note 9":{
-    name:"Redmi Note 9",
-    ram:"3GB / 4GB / 6GB",
-    dpi:395,
-    base:[171,160,147,132,94,130,55]
-  },
-
-  "redmi note 9s":{
-    name:"Redmi Note 9S",
-    ram:"4GB / 6GB",
-    dpi:395,
-    base:[174,163,150,135,96,132,55]
-  },
-
-  "redmi note 10":{
-    name:"Redmi Note 10",
-    ram:"4GB / 6GB",
-    dpi:395,
-    base:[177,166,153,137,98,135,56]
-  },
-
-  "redmi note 10 pro":{
-    name:"Redmi Note 10 Pro",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[181,170,157,141,101,138,56]
-  },
-
-  "redmi note 11 pro":{
-    name:"Redmi Note 11 Pro",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[183,172,159,143,103,141,57]
-  },
-
-  "redmi note 12 pro":{
-    name:"Redmi Note 12 Pro",
-    ram:"6GB / 8GB / 12GB",
-    dpi:395,
-    base:[185,175,162,146,105,143,57]
-  },
-
-  "redmi note 13":{
-    name:"Redmi Note 13",
-    ram:"6GB / 8GB / 12GB",
-    dpi:395,
-    base:[184,174,161,144,104,142,57]
-  },
-
-  "redmi note 13 5g":{
-    name:"Redmi Note 13 5G",
-    ram:"6GB / 8GB / 12GB",
-    dpi:395,
-    base:[187,177,164,148,107,145,58]
-  },
-
-
-  "samsung galaxy a05":{
-    name:"Samsung Galaxy A05",
-    ram:"4GB / 6GB",
-    dpi:320,
-    base:[164,152,140,125,89,124,54]
-  },
-
-  "samsung galaxy a15":{
-    name:"Samsung Galaxy A15",
-    ram:"4GB / 6GB / 8GB",
-    dpi:395,
-    base:[172,161,149,133,95,131,55]
-  },
-
-  "samsung galaxy a25":{
-    name:"Samsung Galaxy A25",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[178,167,154,138,99,136,56]
-  },
-
-  "samsung galaxy a34":{
-    name:"Samsung Galaxy A34",
-    ram:"6GB / 8GB",
-    dpi:394,
-    base:[181,170,157,141,101,139,56]
-  },
-
-  "samsung galaxy a54":{
-    name:"Samsung Galaxy A54",
-    ram:"8GB",
-    dpi:450,
-    base:[185,175,162,146,105,143,57]
-  },
-
-  "samsung galaxy s23":{
-    name:"Samsung Galaxy S23",
-    ram:"8GB",
-    dpi:425,
-    base:[188,179,166,150,109,147,58]
-  },
-
-  "samsung galaxy s24":{
-    name:"Samsung Galaxy S24",
-    ram:"8GB / 12GB",
-    dpi:425,
-    base:[190,181,168,152,111,149,58]
-  },
-
-  "samsung galaxy s25":{
-    name:"Samsung Galaxy S25",
-    ram:"12GB",
-    dpi:425,
-    base:[192,183,170,154,113,151,59]
-  },
-
-
-  "oneplus 9 pro":{
-    name:"OnePlus 9 Pro",
-    ram:"8GB / 12GB",
-    dpi:525,
-    base:[188,179,166,150,109,147,58]
-  },
-
-  "oneplus 11":{
-    name:"OnePlus 11",
-    ram:"8GB / 12GB / 16GB",
-    dpi:450,
-    base:[191,182,169,153,112,150,59]
-  },
-
-  "oneplus 12":{
-    name:"OnePlus 12",
-    ram:"12GB / 16GB / 24GB",
-    dpi:510,
-    base:[193,184,171,155,114,152,59]
-  },
-
-  "oneplus nord 3":{
-    name:"OnePlus Nord 3",
-    ram:"8GB / 16GB",
-    dpi:394,
-    base:[180,169,156,140,101,138,56]
-  },
-
-
-  "realme 8":{
-    name:"Realme 8",
-    ram:"4GB / 6GB / 8GB",
-    dpi:411,
-    base:[175,164,151,135,97,133,55]
-  },
-
-  "realme 9":{
-    name:"Realme 9",
-    ram:"6GB / 8GB",
-    dpi:394,
-    base:[178,167,154,138,99,136,56]
-  },
-
-  "realme 9i":{
-    name:"Realme 9i",
-    ram:"4GB / 6GB",
-    dpi:394,
-    base:[176,165,152,136,98,134,56]
-  },
-
-  "realme gt 3":{
-    name:"Realme GT 3",
-    ram:"8GB / 12GB / 16GB",
-    dpi:395,
-    base:[188,179,166,149,108,146,58]
-  },
-
-  "realme gt 5 pro":{
-    name:"Realme GT 5 Pro",
-    ram:"12GB / 16GB",
-    dpi:450,
-    base:[192,183,170,154,113,151,59]
-  },
-
-  "realme gt 6":{
-    name:"Realme GT 6",
-    ram:"8GB / 12GB / 16GB",
-    dpi:450,
-    base:[191,182,169,153,112,150,59]
-  },
-
-
-  "vivo v21":{
-    name:"Vivo V21",
-    ram:"8GB",
-    dpi:411,
-    base:[177,166,153,137,98,135,56]
-  },
-
-  "vivo v40e":{
-    name:"Vivo V40e",
-    ram:"8GB",
-    dpi:394,
-    base:[183,173,160,143,103,141,57]
-  },
-
-  "vivo v50":{
-    name:"Vivo V50",
-    ram:"8GB / 12GB",
-    dpi:394,
-    base:[187,177,164,148,107,145,58]
-  },
-
-  "vivo x90 pro":{
-    name:"Vivo X90 Pro",
-    ram:"12GB",
-    dpi:440,
-    base:[190,181,168,152,111,149,58]
-  },
-
-  "vivo x100 pro":{
-    name:"Vivo X100 Pro",
-    ram:"16GB",
-    dpi:460,
-    base:[192,183,170,154,113,151,59]
-  },
-
-
-  "iqoo z7":{
-    name:"iQOO Z7",
-    ram:"6GB / 8GB",
-    dpi:395,
-    base:[179,168,155,139,100,137,56]
-  },
-
-  "iqoo neo 10":{
-    name:"iQOO Neo 10",
-    ram:"8GB / 12GB / 16GB",
-    dpi:395,
-    base:[190,181,168,152,111,149,58]
-  },
-
-  "iqoo neo 10r":{
-    name:"iQOO Neo 10R",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[188,179,166,150,109,147,58]
-  },
-
-
-  "oppo a78 5g":{
-    name:"OPPO A78 5G",
-    ram:"4GB / 8GB",
-    dpi:394,
-    base:[174,163,150,134,96,132,55]
-  },
-
-  "oppo reno 8 5g":{
-    name:"OPPO Reno 8 5G",
-    ram:"8GB",
-    dpi:394,
-    base:[180,169,156,140,101,138,56]
-  },
-
-  "oppo f27":{
-    name:"OPPO F27",
-    ram:"8GB",
-    dpi:394,
-    base:[182,171,158,142,102,140,57]
-  },
-
-  "oppo f29":{
-    name:"OPPO F29",
-    ram:"8GB / 12GB",
-    dpi:394,
-    base:[185,175,162,146,105,143,57]
-  },
-
-
-  "infinix hot 30":{
-    name:"Infinix Hot 30",
-    ram:"8GB",
-    dpi:320,
-    base:[169,158,145,130,93,128,55]
-  },
-
-  "infinix hot 40":{
-    name:"Infinix Hot 40",
-    ram:"8GB",
-    dpi:320,
-    base:[171,160,147,132,94,130,55]
-  },
-
-  "infinix hot 50 pro":{
-    name:"Infinix Hot 50 Pro",
-    ram:"8GB",
-    dpi:320,
-    base:[176,165,152,136,98,134,56]
-  },
-
-  "infinix gt 10 pro":{
-    name:"Infinix GT 10 Pro",
-    ram:"8GB",
-    dpi:395,
-    base:[183,173,160,143,103,141,57]
-  },
-
-  "infinix gt 20 pro":{
-    name:"Infinix GT 20 Pro",
-    ram:"8GB / 12GB",
-    dpi:395,
-    base:[188,178,165,149,108,146,58]
-  },
-
-
-  "tecno pova 5":{
-    name:"Tecno Pova 5",
-    ram:"8GB",
-    dpi:395,
-    base:[181,170,157,141,101,138,56]
-  },
-
-  "tecno spark 20":{
-    name:"Tecno Spark 20",
-    ram:"4GB / 8GB",
-    dpi:320,
-    base:[169,158,145,130,93,128,55]
-  },
-
-
-  "motorola edge 40":{
-    name:"Motorola Edge 40",
-    ram:"8GB",
-    dpi:394,
-    base:[182,172,159,142,102,140,57]
-  },
-
-  "moto g22":{
-    name:"Moto G22",
-    ram:"4GB",
-    dpi:320,
-    base:[168,157,144,129,92,127,55]
-  },
-
-
-  "nothing phone 1":{
-    name:"Nothing Phone 1",
-    ram:"8GB / 12GB",
-    dpi:424,
-    base:[183,173,160,144,104,142,57]
-  },
-
-  "nothing phone 2":{
-    name:"Nothing Phone 2",
-    ram:"8GB / 12GB",
-    dpi:424,
-    base:[188,178,165,149,108,146,58]
-  },
-
-
-  "google pixel 6 pro":{
-    name:"Google Pixel 6 Pro",
-    ram:"12GB",
-    dpi:512,
-    base:[186,177,164,148,107,145,58]
-  },
-
-  "google pixel 7 pro":{
-    name:"Google Pixel 7 Pro",
-    ram:"12GB",
-    dpi:512,
-    base:[189,180,167,151,110,148,58]
-  },
-
-  "google pixel 8 pro":{
-    name:"Google Pixel 8 Pro",
-    ram:"12GB",
-    dpi:489,
-    base:[191,182,169,153,112,150,59]
-  },
-
-
-  "asus rog phone 7":{
-    name:"ASUS ROG Phone 7",
-    ram:"12GB / 16GB",
-    dpi:395,
-    base:[193,184,171,155,114,152,59]
-  },
-
-  "asus rog phone 8 pro":{
-    name:"ASUS ROG Phone 8 Pro",
-    ram:"16GB / 24GB",
-    dpi:395,
-    base:[195,186,173,157,116,154,60]
-  },
-
-
-  "iphone 11":{
-    name:"iPhone 11",
-    ram:"4GB",
-    dpi:326,
-    base:[177,166,153,137,98,135,56]
-  },
-
-  "iphone 12":{
-    name:"iPhone 12",
-    ram:"4GB",
-    dpi:460,
-    base:[184,174,161,145,104,142,57]
-  },
-
-  "iphone 13":{
-    name:"iPhone 13",
-    ram:"4GB",
-    dpi:460,
-    base:[187,177,164,148,107,145,58]
-  },
-
-  "iphone 14":{
-    name:"iPhone 14",
-    ram:"6GB",
-    dpi:460,
-    base:[189,180,167,151,110,148,58]
-  },
-
-  "iphone 15":{
-    name:"iPhone 15",
-    ram:"6GB",
-    dpi:460,
-    base:[191,182,169,153,112,150,59]
-  },
-
-  "iphone 15 pro":{
-    name:"iPhone 15 Pro",
-    ram:"8GB",
-    dpi:460,
-    base:[193,184,171,155,114,152,59]
-  },
-
-  "iphone 15 pro max":{
-    name:"iPhone 15 Pro Max",
-    ram:"8GB",
-    dpi:460,
-    base:[194,185,172,156,115,153,60]
-  },
-
-  "iphone 16":{
-    name:"iPhone 16",
-    ram:"8GB",
-    dpi:460,
-    base:[193,184,171,155,114,152,59]
-  },
-
-  "iphone 16 pro":{
-    name:"iPhone 16 Pro",
-    ram:"8GB",
-    dpi:460,
-    base:[195,186,173,157,116,154,60]
-  },
-
-  "iphone 16 pro max":{
-    name:"iPhone 16 Pro Max",
-    ram:"8GB",
-    dpi:460,
-    base:[196,187,174,158,117,155,60]
-  }
-
-};
+const DEVICE_API =
+"https://cdn.jsdelivr.net/gh/bsthen/device-models/devices.json";
+
+let ALL_DEVICES = {};
+let CURRENT_DEVICE = null;
+let SEARCH_TIMER = null;
 
 
 /* =========================================================
@@ -1072,383 +262,527 @@ const DEVICE_DATABASE = {
    ========================================================= */
 
 function normalize(text){
+    return String(text || "")
+        .toLowerCase()
+        .replace(/[^\w\s+.-]/g," ")
+        .replace(/\s+/g," ")
+        .trim();
+}
 
-  return String(text || "")
-    .toLowerCase()
-    .replace(/[®™]/g,"")
-    .replace(/\s+/g," ")
-    .trim();
+
+/* =========================================================
+   LOAD GLOBAL DATABASE
+   ========================================================= */
+
+async function loadDevices(){
+
+    const status = document.getElementById("status");
+
+    status.innerHTML =
+        '<span class="loading">Loading global device database...</span>';
+
+    try{
+
+        const response = await fetch(DEVICE_API, {
+            cache:"no-store"
+        });
+
+        if(!response.ok){
+            throw new Error("Database request failed");
+        }
+
+        ALL_DEVICES = await response.json();
+
+        status.innerHTML =
+            "Global device database loaded. Search your phone.";
+
+    }catch(error){
+
+        console.error(error);
+
+        status.innerHTML =
+            '<span class="error">Could not load device database. Check your internet connection and refresh.</span>';
+
+    }
 
 }
 
 
 /* =========================================================
-   EXACT MATCH ONLY
+   SEARCH DEVICES
    ========================================================= */
 
-function findDevice(value){
+function searchDevices(query){
 
-  return DEVICE_DATABASE[normalize(value)] || null;
+    query = normalize(query);
+
+    const box = document.getElementById("suggestions");
+
+    box.innerHTML = "";
+
+    if(!query){
+        box.style.display = "none";
+        return;
+    }
+
+    const results = [];
+
+    for(const code in ALL_DEVICES){
+
+        const device = ALL_DEVICES[code];
+
+        if(!device) continue;
+
+        const name = device.name || "";
+        const brand = device.brand || "";
+
+        const full =
+            normalize(brand + " " + name + " " + code);
+
+        if(full.includes(query)){
+
+            results.push({
+                code:code,
+                name:name,
+                brand:brand
+            });
+
+        }
+
+        if(results.length >= 30) break;
+    }
+
+
+    if(!results.length){
+
+        box.innerHTML =
+            `<div class="suggestion">
+                No exact database match.
+                <span class="brand">
+                You can still generate a profile for this device.
+                </span>
+             </div>`;
+
+        box.style.display = "block";
+        return;
+    }
+
+
+    results.forEach(device => {
+
+        const div = document.createElement("div");
+
+        div.className = "suggestion";
+
+        div.innerHTML =
+            `<strong>${escapeHTML(device.name)}</strong>
+             <span class="brand">
+                ${escapeHTML(device.brand)} · ${escapeHTML(device.code)}
+             </span>`;
+
+        div.onclick = () => {
+
+            document.getElementById("deviceSearch").value =
+                device.brand + " " + device.name;
+
+            box.style.display = "none";
+
+            generate(device);
+
+        };
+
+        box.appendChild(div);
+
+    });
+
+    box.style.display = "block";
+}
+
+
+/* =========================================================
+   ESCAPE HTML
+   ========================================================= */
+
+function escapeHTML(value){
+
+    return String(value || "")
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
 
 }
 
 
 /* =========================================================
-   SUGGESTIONS
+   CREATE STABLE NUMBER
    ========================================================= */
 
-const deviceInput=document.getElementById("deviceInput");
-const suggestions=document.getElementById("suggestions");
+function hashString(str){
 
-deviceInput.addEventListener("input",function(){
+    let hash = 0;
 
-  const value=normalize(this.value);
+    for(let i=0;i<str.length;i++){
 
-  suggestions.innerHTML="";
+        hash =
+            ((hash << 5) - hash) +
+            str.charCodeAt(i);
 
-  if(!value){
+        hash |= 0;
+    }
 
-    suggestions.style.display="none";
-    return;
+    return Math.abs(hash);
 
-  }
+}
 
-  const matches=Object.values(DEVICE_DATABASE)
-    .filter(device =>
-      normalize(device.name).includes(value)
-    )
-    .slice(0,8);
 
-  if(matches.length===0){
+/* =========================================================
+   GENERATE SENSITIVITY
+   ========================================================= */
 
-    suggestions.style.display="none";
-    return;
+function generate(device){
 
-  }
+    CURRENT_DEVICE = device;
 
-  matches.forEach(device=>{
+    const key =
+        device.brand + "|" +
+        device.name + "|" +
+        device.code;
 
-    const div=document.createElement("div");
+    const seed = hashString(key);
 
-    div.className="suggestion";
-    div.textContent=device.name;
+    /*
+      Different device gets a different starting profile.
+      These are starting-point values, not guaranteed perfect
+      settings for every player.
+    */
 
-    div.onclick=function(){
+    const general =
+        170 + (seed % 31);
 
-      deviceInput.value=device.name;
-      suggestions.style.display="none";
+    const red =
+        Math.max(
+            120,
+            general - 10 - (seed % 12)
+        );
 
-    };
+    const scope2 =
+        Math.max(
+            105,
+            general - 25 - (seed % 10)
+        );
 
-    suggestions.appendChild(div);
+    const scope4 =
+        Math.max(
+            90,
+            general - 40 - (seed % 12)
+        );
 
-  });
+    const sniper =
+        Math.max(
+            60,
+            general - 70 - (seed % 10)
+        );
 
-  suggestions.style.display="block";
+    const free =
+        Math.min(
+            200,
+            general + 5 + (seed % 8)
+        );
+
+    const fire =
+        48 + (seed % 23);
+
+
+    document.getElementById("deviceTitle").textContent =
+        device.brand + " " + device.name;
+
+    document.getElementById("deviceMeta").innerHTML =
+        "Model code: " +
+        escapeHTML(device.code);
+
+
+    document.getElementById("general").textContent =
+        general;
+
+    document.getElementById("redDot").textContent =
+        red;
+
+    document.getElementById("scope2").textContent =
+        scope2;
+
+    document.getElementById("scope4").textContent =
+        scope4;
+
+    document.getElementById("sniper").textContent =
+        sniper;
+
+    document.getElementById("freeLook").textContent =
+        free;
+
+    document.getElementById("fire").textContent =
+        fire;
+
+
+    document.getElementById("profileInfo").innerHTML =
+        `<b>Brand:</b> ${escapeHTML(device.brand)}<br>
+         <b>Device:</b> ${escapeHTML(device.name)}<br>
+         <b>Model Code:</b> ${escapeHTML(device.code)}<br>
+         <b>Profile:</b> AimVanta Dynamic Starting Profile`;
+
+
+    document.getElementById("result")
+        .classList.remove("hidden");
+
+    document.getElementById("emptyInfo")
+        .classList.add("hidden");
+
+    document.getElementById("status").textContent =
+        "Profile generated successfully.";
+
+}
+
+
+/* =========================================================
+   INPUT
+   ========================================================= */
+
+document
+.getElementById("deviceSearch")
+.addEventListener("input", function(){
+
+    clearTimeout(SEARCH_TIMER);
+
+    const value = this.value;
+
+    SEARCH_TIMER = setTimeout(() => {
+
+        searchDevices(value);
+
+    },150);
 
 });
 
 
 /* =========================================================
-   GENERATE
+   ENTER KEY
    ========================================================= */
 
-function generateSensitivity(){
+document
+.getElementById("deviceSearch")
+.addEventListener("keydown", function(e){
 
-  const device=findDevice(deviceInput.value);
+    if(e.key !== "Enter") return;
 
-  const error=document.getElementById("error");
-  const result=document.getElementById("result");
+    const query = normalize(this.value);
 
-  error.style.display="none";
-  result.style.display="none";
+    if(!query) return;
 
-  if(!device){
+    let found = null;
 
-    error.style.display="block";
+    for(const code in ALL_DEVICES){
 
-    return;
+        const device = ALL_DEVICES[code];
 
-  }
+        const full =
+            normalize(
+                (device.brand || "") +
+                " " +
+                (device.name || "") +
+                " " +
+                code
+            );
 
-  const values=device.base;
+        if(
+            full === query ||
+            normalize(device.name) === query ||
+            full.includes(query)
+        ){
 
-  document.getElementById("resultName").textContent=device.name;
+            found = {
+                code:code,
+                name:device.name,
+                brand:device.brand
+            };
 
-  document.getElementById("resultInfo").textContent=
-    "RAM: "+device.ram+" • Reference DPI: "+device.dpi;
+            break;
+        }
 
-  document.getElementById("general").textContent=values[0];
-  document.getElementById("redDot").textContent=values[1];
-  document.getElementById("scope2x").textContent=values[2];
-  document.getElementById("scope4x").textContent=values[3];
-  document.getElementById("sniper").textContent=values[4];
-  document.getElementById("freeLook").textContent=values[5];
-  document.getElementById("fireButton").textContent=values[6];
+    }
 
-  document.getElementById("infoDevice").textContent=device.name;
-  document.getElementById("infoRam").textContent=device.ram;
-  document.getElementById("infoDpi").textContent=device.dpi;
 
-  result.style.display="block";
+    /*
+      If database does not have the exact marketing name,
+      don't block the user with DEVICE NOT FOUND.
+      Generate a fallback profile using the entered name.
+    */
 
-  saveRecent(device.name);
+    if(found){
 
-  result.scrollIntoView({
-    behavior:"smooth",
-    block:"start"
-  });
+        generate(found);
 
-}
+    }else{
+
+        const typed = this.value.trim();
+
+        generate({
+
+            code:"CUSTOM",
+            name:typed,
+            brand:"Unknown / Custom Device"
+
+        });
+
+    }
+
+    document.getElementById("suggestions")
+        .style.display = "none";
+
+});
 
 
 /* =========================================================
-   COPY PROFILE
+   COPY
    ========================================================= */
 
-function copySensitivity(){
+function copyProfile(){
 
-  const text=
-`AimVanta FF — ${document.getElementById("resultName").textContent}
+    if(!CURRENT_DEVICE) return;
+
+    const text =
+`AimVanta FF
+Device: ${CURRENT_DEVICE.brand} ${CURRENT_DEVICE.name}
 
 General: ${document.getElementById("general").textContent}
 Red Dot: ${document.getElementById("redDot").textContent}
-2X Scope: ${document.getElementById("scope2x").textContent}
-4X Scope: ${document.getElementById("scope4x").textContent}
+2X Scope: ${document.getElementById("scope2").textContent}
+4X Scope: ${document.getElementById("scope4").textContent}
 Sniper Scope: ${document.getElementById("sniper").textContent}
 Free Look: ${document.getElementById("freeLook").textContent}
-Fire Button: ${document.getElementById("fireButton").textContent}`;
+Fire Button: ${document.getElementById("fire").textContent}`;
 
-  navigator.clipboard.writeText(text)
-    .then(()=>alert("Profile copied successfully!"))
-    .catch(()=>alert("Copy failed. Please copy manually."));
 
+    navigator.clipboard.writeText(text);
+
+    alert("Profile copied!");
 }
 
 
 /* =========================================================
-   SAVE PROFILE
+   SAVE
    ========================================================= */
 
 function saveProfile(){
 
-  const device=document.getElementById("resultName").textContent;
+    if(!CURRENT_DEVICE) return;
 
-  const profile={
-    device:device,
-    general:document.getElementById("general").textContent,
-    redDot:document.getElementById("redDot").textContent,
-    scope2x:document.getElementById("scope2x").textContent,
-    scope4x:document.getElementById("scope4x").textContent,
-    sniper:document.getElementById("sniper").textContent,
-    freeLook:document.getElementById("freeLook").textContent,
-    fireButton:document.getElementById("fireButton").textContent
-  };
+    const saved =
+        JSON.parse(
+            localStorage.getItem("aimvanta_profiles") || "[]"
+        );
 
-  localStorage.setItem(
-    "aimvanta_saved_profile",
-    JSON.stringify(profile)
-  );
+    saved.unshift({
 
-  alert("Profile saved on this device!");
+        device:
+            CURRENT_DEVICE.brand +
+            " " +
+            CURRENT_DEVICE.name,
 
-}
+        general:
+            document.getElementById("general").textContent,
 
+        redDot:
+            document.getElementById("redDot").textContent,
 
-/* =========================================================
-   SHARE PROFILE
-   ========================================================= */
+        scope2:
+            document.getElementById("scope2").textContent,
 
-function shareProfile(){
+        scope4:
+            document.getElementById("scope4").textContent,
 
-  const device=document.getElementById("resultName").textContent;
+        sniper:
+            document.getElementById("sniper").textContent,
 
-  const params=new URLSearchParams();
+        freeLook:
+            document.getElementById("freeLook").textContent,
 
-  params.set("device",device);
+        fire:
+            document.getElementById("fire").textContent,
 
-  const shareUrl=
-    window.location.origin+
-    window.location.pathname+
-    "?"+params.toString();
+        date:new Date().toLocaleString()
 
-  if(navigator.share){
+    });
 
-    navigator.share({
-      title:"AimVanta FF Sensitivity",
-      text:"My AimVanta FF sensitivity profile: "+device,
-      url:shareUrl
-    }).catch(()=>{});
-
-  }else{
-
-    navigator.clipboard.writeText(shareUrl)
-      .then(()=>alert("Profile link copied!"))
-      .catch(()=>alert(shareUrl));
-
-  }
-
-}
-
-
-/* =========================================================
-   GENERATE AGAIN
-   ========================================================= */
-
-function generateAgain(){
-
-  document.getElementById("result").style.display="none";
-
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-
-  deviceInput.focus();
-
-}
-
-
-/* =========================================================
-   RECENT PROFILES
-   ========================================================= */
-
-function saveRecent(deviceName){
-
-  let recent=[];
-
-  try{
-
-    recent=JSON.parse(
-      localStorage.getItem("aimvanta_recent_profiles") || "[]"
+    localStorage.setItem(
+        "aimvanta_profiles",
+        JSON.stringify(saved.slice(0,20))
     );
 
-  }catch(e){
-
-    recent=[];
-
-  }
-
-  recent=recent.filter(x=>x!==deviceName);
-
-  recent.unshift(deviceName);
-
-  recent=recent.slice(0,5);
-
-  localStorage.setItem(
-    "aimvanta_recent_profiles",
-    JSON.stringify(recent)
-  );
-
-  renderRecent();
-
+    alert("Profile saved!");
 }
 
 
-function renderRecent(){
+/* =========================================================
+   SHARE
+   ========================================================= */
 
-  const box=document.getElementById("recentProfiles");
+async function shareProfile(){
 
-  let recent=[];
+    if(!CURRENT_DEVICE) return;
 
-  try{
+    const text =
+        "AimVanta FF Sensitivity — " +
+        CURRENT_DEVICE.brand +
+        " " +
+        CURRENT_DEVICE.name;
 
-    recent=JSON.parse(
-      localStorage.getItem("aimvanta_recent_profiles") || "[]"
-    );
+    if(navigator.share){
 
-  }catch(e){
+        try{
 
-    recent=[];
+            await navigator.share({
+                title:"AimVanta FF",
+                text:text,
+                url:location.href
+            });
 
-  }
+        }catch(e){}
 
-  box.innerHTML="";
+    }else{
 
-  if(recent.length===0){
+        await navigator.clipboard.writeText(
+            text + "\n" + location.href
+        );
 
-    box.innerHTML=
-      '<div class="note">No recent profiles yet.</div>';
+        alert("Share text copied!");
 
-    return;
-
-  }
-
-  recent.forEach(name=>{
-
-    const div=document.createElement("div");
-
-    div.className="recent-item";
-    div.textContent="📱 "+name;
-
-    div.onclick=function(){
-
-      deviceInput.value=name;
-
-      generateSensitivity();
-
-    };
-
-    box.appendChild(div);
-
-  });
+    }
 
 }
 
 
 /* =========================================================
-   URL SUPPORT
+   CLOSE SUGGESTIONS
    ========================================================= */
 
-const params=new URLSearchParams(window.location.search);
+document.addEventListener("click", function(e){
 
-const urlDevice=params.get("device");
+    if(!e.target.closest(".searchbox")){
 
-if(urlDevice){
+        document.getElementById("suggestions")
+            .style.display = "none";
 
-  deviceInput.value=urlDevice;
-
-  /*
-    IMPORTANT:
-    URL ALSO USES EXACT DATABASE VALIDATION.
-    Unknown devices cannot bypass the check.
-  */
-
-  const device=findDevice(urlDevice);
-
-  if(device){
-
-    generateSensitivity();
-
-  }else{
-
-    document.getElementById("error").style.display="block";
-
-  }
-
-}
-
-
-/* =========================================================
-   LOAD RECENT PROFILES
-   ========================================================= */
-
-renderRecent();
-
-
-/* =========================================================
-   CLOSE SUGGESTIONS WHEN CLICKING OUTSIDE
-   ========================================================= */
-
-document.addEventListener("click",function(event){
-
-  if(!event.target.closest(".searchbox")){
-
-    suggestions.style.display="none";
-
-  }
+    }
 
 });
+
+
+/* =========================================================
+   START
+   ========================================================= */
+
+loadDevices();
 
 </script>
 
